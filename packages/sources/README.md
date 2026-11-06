@@ -9,8 +9,8 @@ browser, a Web Worker or Node 18+.
 |---|---|---|---|
 | PubMed | done | NCBI E-utilities directly (CORS allowed) | `server/preprocessing/other-scripts/pubmed.R` |
 | BASE | done | source gateway (BASE needs a registered IP) | `base.R`, `subject_cleaning.R`, `preprocess.R`, `workers/base`, `common/deduplication.py`, `common/enrichment.py` |
-| OpenAIRE | planned | OpenAIRE API | `openaire.R` |
-| Crossref citations | planned | Crossref REST API | `metrics.R` (`add_citations`) |
+| OpenAIRE | done | OpenAIRE search API (CORS not yet checked; a gateway URL can be passed) | `openaire.R`, `run_openaire_projectdata.R` |
+| Crossref citations | done | Crossref REST API (CORS allowed) | `metrics.R` (`add_citations`) |
 
 ## PubMed
 
@@ -85,6 +85,48 @@ Left out:
   more) of strict duplicates, and Python fails on a CCSD record with only a
   second ISSN. The port returns a result in both cases.
 
+## OpenAIRE
+
+```ts
+import { searchOpenaire, getOpenaireProject } from "@okmaps/sources";
+const { papers, content } = await searchOpenaire({ project_id: "643410", funder: "EC" });
+const project = await getOpenaireProject({ project_id: "643410", funder: "EC" }); // map header details
+```
+
+The search checks that the project exists, then fetches its publications and
+datasets (up to 1000 each) from OpenAIRE's search API, the same requests
+ropenaire makes. Errors carry the R reason codes (`"project id or funder id
+wrong"`, `"not enough results for project"`, `"API error: OpenAIRE not
+reachable"`).
+
+Parity: `test/golden/r/openaire_golden.R` runs `get_papers` from
+`openaire.R` and `parse_project` from `run_openaire_projectdata.R` on the
+responses in `test/fixtures/openaire` (ropenaire stubbed), and the tests
+compare every field and the clustering text. Kept as in R: only the first
+`<subject>` of a record is used, and `openaire_link` is the first
+`<websiteurl>` in the record, which can be a participant's.
+
+One deliberate difference: R fails with "No results retrieved." when a
+project has datasets but no publications (it checks the publication count
+twice). The port returns the datasets.
+
+The OpenAIRE search API is OpenAIRE's older interface. If it is retired or
+does not allow browser requests, `endpoint` takes a gateway URL.
+
+## Crossref citation counts
+
+```ts
+import { addCitationCounts } from "@okmaps/sources";
+const withCounts = await addCitationCounts(papers, { mailto: "maps@example.org" });
+// each paper gets citation_count: number | null
+```
+
+The PubMed worker runs this on every map (through the metrics worker). R
+asks Crossref's OpenURL service, which browsers can't call, so the port uses
+the REST API's `is-referenced-by-count`, 50 DOIs per request. Both are
+Crossref's cited-by count. A failed request leaves its counts `null`, as R
+leaves them `NA`. Not yet compared against live Crossref answers.
+
 ## XML
 
 `src/xml.ts` is a small XML reader (DOMParser is not available in Web
@@ -98,7 +140,7 @@ npm ci && npm run typecheck && npm test
 ```
 
 Regenerating the goldens needs R with xml2, data.table, jsonlite, logging,
-stringi, dplyr, stringr and stringdist, and Python with pandas, numpy,
+stringi, dplyr, stringr, stringdist and plyr, and Python with pandas, numpy,
 rapidfuzz, Levenshtein, dateparser and redis:
 
 ```
@@ -111,4 +153,5 @@ Rscript test/golden/r/base_records_golden.R test/fixtures/base test/golden/base_
 PYTHONPATH=../../server/workers/common:../../server/workers/base/src \
   python test/golden/py/base_worker_golden.py test/golden/base_records test/golden/base_worker
 python test/golden/py/fuzz_golden.py test/golden/fuzz.json.gz
+Rscript test/golden/r/openaire_golden.R test/fixtures/openaire test/golden/openaire
 ```

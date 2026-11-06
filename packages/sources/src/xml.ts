@@ -189,7 +189,7 @@ function compile(path: string): Step[] {
     .slice(3)
     .split("/")
     .map((s) => {
-      const m = /^([A-Za-z_][\w.-]*)(?:\[@([\w.-]+)=["']([^"']*)["']\])?$/.exec(s);
+      const m = /^([A-Za-z_][\w.:-]*)(?:\[@([\w.-]+)=["']([^"']*)["']\])?$/.exec(s);
       if (!m) throw new Error(`unsupported path step ${s}`);
       return m[2] ? { name: m[1], attr: [m[2], m[3]] as [string, string] } : { name: m[1] };
     });

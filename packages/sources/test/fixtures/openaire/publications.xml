@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<response xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.openaire.eu/schema/0.2/oaf-0.2.xsd">
+  <header>
+    <query>(oaftype exact result) and (resulttypeid exact publication) and (relprojectid exact "corda__h2020::abc")</query>
+    <locale>en_US</locale>
+    <size>1000</size>
+    <page>1</page>
+    <total>8</total>
+    <fields/>
+  </header>
+  <results>
+    <result>
+      <header>
+        <dri:objIdentifier xmlns:dri="http://www.driver-repository.eu/namespace/dri">od______2659::0a1b2c3d4e5f60718293a4b5c6d7e8f9</dri:objIdentifier>
+        <dri:dateOfCollection xmlns:dri="http://www.driver-repository.eu/namespace/dri">2020-01-30T10:00:00Z</dri:dateOfCollection>
+        <status>under curation</status>
+      </header>
+      <metadata>
+        <oaf:entity xmlns:oaf="http://namespace.openaire.eu/oaf" xsi:schemaLocation="http://namespace.openaire.eu/oaf http://namespace.openaire.eu/oaf">
+          <oaf:result>
+          <collectedfrom name="Zenodo" id="opendoar____::2659"/>
+          <originalId>oai:zenodo.org:e8f9</originalId>
+          <pid classid="doi" classname="Digital Object Identifier" schemeid="dnet:pid_types" schemename="dnet:pid_types">10.5281/ZENODO.1234567</pid>
+          <pid classid="handle" classname="Handle" schemeid="dnet:pid_types" schemename="dnet:pid_types">11234/e8f9</pid>
+          <title classid="main title" classname="main title" schemeid="dnet:dataCite_title" schemename="dnet:dataCite_title">Multi-agent coordination for open science infrastructures</title>
+          <bestaccessright classid="OPEN" classname="Open Access" schemeid="dnet:access_modes" schemename="dnet:access_modes"/>
+          <creator rank="1">Manghi, Paolo</creator>
+          <creator rank="2">Bardi, Alessia</creator>
+          <creator rank="3">Schirrwagen, Jochen</creator>
+          <dateofacceptance>2019-05-01</dateofacceptance>
+          <description>We describe how
+agents coordinate
+in research infrastructures.</description>
+          <subject classid="keyword" classname="keyword" schemeid="dnet:subject_classification_typologies" schemename="dnet:subject_classification_typologies">[ INFO.INFO-MA ] Computer Science [cs]/Multiagent Systems [cs.MA]</subject>
+          <subject classid="keyword" classname="keyword" schemeid="dnet:subject_classification_typologies" schemename="dnet:subject_classification_typologies">open science</subject>
+          <language classid="eng" classname="English" schemeid="dnet:languages" schemename="dnet:languages"/>
+          <publisher>Zenodo</publisher>
+          <resulttype classid="publication" classname="publication" schemeid="dnet:result_typologies" schemename="dnet:result_typologies"/>
+          <journal issn="1234-5678" eissn="" lissn="" ep="" iss="" sp="" vol="">Journal of Infrastructure Studies</journal>
+          <rels><rel inferred="false" trust="0.9" inferenceprovenance="" provenanceaction="sysimport:crosswalk:repository"><to class="isProducedBy" scheme="dnet:result_project_relations" type="project">corda__h2020::abc</to><code>643410</code><acronym>OpenAIRE2020</acronym><title>Open Access Infrastructure for Research in Europe 2020</title><funding><funder id="ec__________::EC" shortname="EC" name="European Commission" jurisdiction="EU"/></funding></rel></rels>
+          <children><instance id="opendoar____::2659"><accessright classid="OPEN" classname="Open Access" schemeid="dnet:access_modes" schemename="dnet:access_modes"/><hostedby name="Zenodo" id="opendoar____::2659"/><webresource><url>https://zenodo.org/record/1234567</url></webresource></instance></children>
+          </oaf:result>
+        </oaf:entity>
+      </metadata>
+    </result>
+    <result>
+      <header>
+        <dri:objIdentifier xmlns:dri="http://www.driver-repository.eu/namespace/dri">od______1084::5a6b7c8d9e0f1a2b3c4d5e6f7a8b9c0d</dri:objIdentifier>
+        <dri:dateOfCollection xmlns:dri="http://www.driver-repository.eu/namespace/dri">2020-01-30T10:00:00Z</dri:dateOfCollection>
+        <status>under curation</status>
+      </header>
+      <metadata>
+        <oaf:entity xmlns:oaf="http://namespace.openaire.eu/oaf" xsi:schemaLocation="http://namespace.openaire.eu/oaf http://namespace.openaire.eu/oaf">
+          <oaf:result>
+          <collectedfrom name="Zenodo" id="opendoar____::2659"/>
+          <originalId>oai:zenodo.org:9c0d</originalId>
+          <pid classid="doi" classname="Digital Object Identifier" schemeid="dnet:pid_types" schemename="dnet:pid_types"> 10.1000/ABC.Def
+</pid>
+          <pid classid="handle" classname="Handle" schemeid="dnet:pid_types" schemename="dnet:pid_types">11234/9c0d</pid>
+          <title classid="main title" classname="main title" schemeid="dnet:dataCite_title" schemename="dnet:dataCite_title">Reconeixement de formes en senyals de telecomunicació</title>
+          <bestaccessright classid="CLOSED" classname="Closed Access" schemeid="dnet:access_modes" schemename="dnet:access_modes"/>
+          <creator rank="1">Puig, Marta</creator>
+          <dateofacceptance>2019-05-01</dateofacceptance>
+          <description>Treball sobre senyals.</description>
+          <subject classid="keyword" classname="keyword" schemeid="dnet:subject_classification_typologies" schemename="dnet:subject_classification_typologies">:Enginyeria de la telecomunicació::Processament del senyal::Reconeixement de formes [Àrees temàtiques de la UPC]</subject>
+          <language classid="cat" classname="Catalan" schemeid="dnet:languages" schemename="dnet:languages"/>
+          <publisher>Universitat Politècnica de Catalunya</publisher>
+          <resulttype classid="publication" classname="publication" schemeid="dnet:result_typologies" schemename="dnet:result_typologies"/>
+          <rels><rel inferred="false" trust="0.9" inferenceprovenance="" provenanceaction="sysimport:crosswalk:repository"><to class="isProducedBy" scheme="dnet:result_project_relations" type="project">corda__h2020::abc</to><code>643410</code><acronym>OpenAIRE2020</acronym><title>Open Access Infrastructure for Research in Europe 2020</title><funding><funder id="ec__________::EC" shortname="EC" name="European Commission" jurisdiction="EU"/></funding></rel></rels>
+          <children><instance id="opendoar____::2659"><accessright classid="CLOSED" classname="Closed Access" schemeid="dnet:access_modes" schemename="dnet:access_modes"/><hostedby name="Zenodo" id="opendoar____::2659"/><webresource><url>http://hdl.handle.net/2117/1234</url></webresource></instance></children>
+          </oaf:result>
+        </oaf:entity>
+      </metadata>
+    </result>
+    <result>
+      <header>
+        <dri:objIdentifier xmlns:dri="http://www.driver-repository.eu/namespace/dri">od______2367::11112222333344445555666677778888</dri:objIdentifier>
+        <dri:dateOfCollection xmlns:dri="http://www.driver-repository.eu/namespace/dri">2020-01-30T10:00:00Z</dri:dateOfCollection>
+        <status>under curation</status>
+      </header>
+      <metadata>
+        <oaf:entity xmlns:oaf="http://namespace.openaire.eu/oaf" xsi:schemaLocation="http://namespace.openaire.eu/oaf http://namespace.openaire.eu/oaf">
+          <oaf:result>
+          <collectedfrom name="Zenodo" id="opendoar____::2659"/>
+          <originalId>oai:zenodo.org:8888</originalId>
+          <pid classid="handle" classname="Handle" schemeid="dnet:pid_types" schemename="dnet:pid_types">11234/8888</pid>
+          <title classid="main title" classname="main title" schemeid="dnet:dataCite_title" schemename="dnet:dataCite_title">Electronic computers and science policy</title>
+          <bestaccessright classid="RESTRICTED" classname="Restricted" schemeid="dnet:access_modes" schemename="dnet:access_modes"/>
+          <creator rank="1">Kovács, Anna</creator>
+          <creator rank="2">Nagy, Béla</creator>
+          <dateofacceptance>2018</dateofacceptance>
+          <description>A survey of computing policy &amp;amp; practice. 007.52 classified.</description>
+          <subject classid="keyword" classname="keyword" schemeid="dnet:subject_classification_typologies" schemename="dnet:subject_classification_typologies">QA75 Electronic computers. Computer science; számítástechnika, számítógéptudomány</subject>
+          <language classid="eng" classname="English" schemeid="dnet:languages" schemename="dnet:languages"/>
+          <publisher>Zenodo</publisher>
+          <resulttype classid="publication" classname="publication" schemeid="dnet:result_typologies" schemename="dnet:result_typologies"/>
+          <journal issn="1234-5678" eissn="" lissn="" ep="" iss="" sp="" vol="">Acta Informatica Hungarica</journal>
+          <rels><rel inferred="false" trust="0.9" inferenceprovenance="" provenanceaction="sysimport:crosswalk:repository"><to class="isProducedBy" scheme="dnet:result_project_relations" type="project">corda__h2020::abc</to><code>643410</code><acronym>OpenAIRE2020</acronym><title>Open Access Infrastructure for Research in Europe 2020</title><funding><funder id="ec__________::EC" shortname="EC" name="European Commission" jurisdiction="EU"/></funding></rel></rels>
+          </oaf:result>
+        </oaf:entity>
+      </metadata>
+    </result>
+    <result>
+      <header>
+        <dri:objIdentifier xmlns:dri="http://www.driver-repository.eu/namespace/dri">od______4321::99990000aaaabbbbccccddddeeeeffff</dri:objIdentifier>
+        <dri:dateOfCollection xmlns:dri="http://www.driver-repository.eu/namespace/dri">2020-01-30T10:00:00Z</dri:dateOfCollection>
+        <status>under curation</status>
+      </header>
+      <metadata>
+        <oaf:entity xmlns:oaf="http://namespace.openaire.eu/oaf" xsi:schemaLocation="http://namespace.openaire.eu/oaf http://namespace.openaire.eu/oaf">
+          <oaf:result>
+          <collectedfrom name="Zenodo" id="opendoar____::2659"/>
+          <originalId>oai:zenodo.org:ffff</originalId>
+          <pid classid="doi" classname="Digital Object Identifier" schemeid="dnet:pid_types" schemename="dnet:pid_types">10.1103/PhysRevD.99.074506</pid>
+          <pid classid="handle" classname="Handle" schemeid="dnet:pid_types" schemename="dnet:pid_types">11234/ffff</pid>
+          <title classid="main title" classname="main title" schemeid="dnet:dataCite_title" schemename="dnet:dataCite_title">Lattice simulations of hadron structure</title>
+          <bestaccessright classid="OPEN" classname="Open Access" schemeid="dnet:access_modes" schemename="dnet:access_modes"/>
+          <creator rank="1">Alexandrou, Constantia</creator>
+          <creator rank="2">Bacchio, Simone</creator>
+          <dateofacceptance>2019-05-01</dateofacceptance>
+          <description>Lattice QCD results.</description>
+          <subject classid="keyword" classname="keyword" schemeid="dnet:subject_classification_typologies" schemename="dnet:subject_classification_typologies">High energy physics - lattice</subject>
+          <subject classid="keyword" classname="keyword" schemeid="dnet:subject_classification_typologies" schemename="dnet:subject_classification_typologies">Physics::Optics</subject>
+          <language classid="eng" classname="English" schemeid="dnet:languages" schemename="dnet:languages"/>
+          <publisher>Zenodo</publisher>
+          <resulttype classid="publication" classname="publication" schemeid="dnet:result_typologies" schemename="dnet:result_typologies"/>
+          <journal issn="1234-5678" eissn="" lissn="" ep="" iss="" sp="" vol="">Physical Review D</journal>
+          <rels><rel inferred="false" trust="0.9" inferenceprovenance="" provenanceaction="sysimport:crosswalk:repository"><to class="isProducedBy" scheme="dnet:result_project_relations" type="project">corda__h2020::abc</to><code>643410</code><acronym>OpenAIRE2020</acronym><title>Open Access Infrastructure for Research in Europe 2020</title><funding><funder id="ec__________::EC" shortname="EC" name="European Commission" jurisdiction="EU"/></funding></rel></rels>
+          <children><instance id="opendoar____::2659"><accessright classid="OPEN" classname="Open Access" schemeid="dnet:access_modes" schemename="dnet:access_modes"/><hostedby name="Zenodo" id="opendoar____::2659"/><webresource><url>https://doi.org/10.1103/PhysRevD.99.074506</url></webresource></instance></children>
+          </oaf:result>
+        </oaf:entity>
+      </metadata>
+    </result>
+    <result>
+      <header>
+        <dri:objIdentifier xmlns:dri="http://www.driver-repository.eu/namespace/dri">od______4321::a0a0a0a0b1b1b1b1c2c2c2c2d3d3d3d3</dri:objIdentifier>
+        <dri:dateOfCollection xmlns:dri="http://www.driver-repository.eu/namespace/dri">2020-01-30T10:00:00Z</dri:dateOfCollection>
+        <status>under curation</status>
+      </header>
+      <metadata>
+        <oaf:entity xmlns:oaf="http://namespace.openaire.eu/oaf" xsi:schemaLocation="http://namespace.openaire.eu/oaf http://namespace.openaire.eu/oaf">
+          <oaf:result>
+          <collectedfrom name="Zenodo" id="opendoar____::2659"/>
+          <originalId>oai:zenodo.org:d3d3</originalId>
+          <pid classid="handle" classname="Handle" schemeid="dnet:pid_types" schemename="dnet:pid_types">11234/d3d3</pid>
+          <title classid="main title" classname="main title" schemeid="dnet:dataCite_title" schemename="dnet:dataCite_title">Network routing measurements</title>
+          <bestaccessright classid="OPEN" classname="Open Access" schemeid="dnet:access_modes" schemename="dnet:access_modes"/>
+          <subject classid="keyword" classname="keyword" schemeid="dnet:subject_classification_typologies" schemename="dnet:subject_classification_typologies">ComputerSystemsOrganization_COMPUTER-COMMUNICATIONNETWORKS</subject>
+          <resulttype classid="publication" classname="publication" schemeid="dnet:result_typologies" schemename="dnet:result_typologies"/>
+          <rels><rel inferred="false" trust="0.9" inferenceprovenance="" provenanceaction="sysimport:crosswalk:repository"><to class="isProducedBy" scheme="dnet:result_project_relations" type="project">corda__h2020::abc</to><code>643410</code><acronym>OpenAIRE2020</acronym><title>Open Access Infrastructure for Research in Europe 2020</title><funding><funder id="ec__________::EC" shortname="EC" name="European Commission" jurisdiction="EU"/></funding></rel></rels>
+          </oaf:result>
+        </oaf:entity>
+      </metadata>
+    </result>
+    <result>
+      <header>
+        <dri:objIdentifier xmlns:dri="http://www.driver-repository.eu/namespace/dri">od______4321::e4e4e4e4f5f5f5f5a6a6a6a6b7b7b7b7</dri:objIdentifier>
+        <dri:dateOfCollection xmlns:dri="http://www.driver-repository.eu/namespace/dri">2020-01-30T10:00:00Z</dri:dateOfCollection>
+        <status>under curation</status>
+      </header>
+      <metadata>
+        <oaf:entity xmlns:oaf="http://namespace.openaire.eu/oaf" xsi:schemaLocation="http://namespace.openaire.eu/oaf http://namespace.openaire.eu/oaf">
+          <oaf:result>
+          <collectedfrom name="Zenodo" id="opendoar____::2659"/>
+          <originalId>oai:zenodo.org:b7b7</originalId>
+          <pid classid="doi" classname="Digital Object Identifier" schemeid="dnet:pid_types" schemename="dnet:pid_types">10.1186/S12889-019-6789-0</pid>
+          <pid classid="handle" classname="Handle" schemeid="dnet:pid_types" schemename="dnet:pid_types">11234/b7b7</pid>
+          <title classid="main title" classname="main title" schemeid="dnet:dataCite_title" schemename="dnet:dataCite_title">Health outcomes of open data policies</title>
+          <bestaccessright classid="OPEN" classname="Open Access" schemeid="dnet:access_modes" schemename="dnet:access_modes"/>
+          <creator rank="1">Smith, John</creator>
+          <dateofacceptance>2019-05-01</dateofacceptance>
+          <description>Public health
+study.</description>
+          <subject classid="keyword" classname="keyword" schemeid="dnet:subject_classification_typologies" schemename="dnet:subject_classification_typologies">dk/atira/pure/researchoutput/pubmedpublicationtype/D013486</subject>
+          <language classid="eng" classname="English" schemeid="dnet:languages" schemename="dnet:languages"/>
+          <publisher>Zenodo</publisher>
+          <resulttype classid="publication" classname="publication" schemeid="dnet:result_typologies" schemename="dnet:result_typologies"/>
+          <journal issn="1234-5678" eissn="" lissn="" ep="" iss="" sp="" vol="">BMC Public Health</journal>
+          <rels><rel inferred="false" trust="0.9" inferenceprovenance="" provenanceaction="sysimport:crosswalk:repository"><to class="isProducedBy" scheme="dnet:result_project_relations" type="project">corda__h2020::abc</to><code>643410</code><acronym>OpenAIRE2020</acronym><title>Open Access Infrastructure for Research in Europe 2020</title><funding><funder id="ec__________::EC" shortname="EC" name="European Commission" jurisdiction="EU"/></funding></rel></rels>
+          <children><instance id="opendoar____::2659"><accessright classid="OPEN" classname="Open Access" schemeid="dnet:access_modes" schemename="dnet:access_modes"/><hostedby name="Zenodo" id="opendoar____::2659"/><webresource><url>https://bmcpublichealth.biomedcentral.com/x</url></webresource></instance></children>
+          </oaf:result>
+        </oaf:entity>
+      </metadata>
+    </result>
+    <result>
+      <header>
+        <dri:objIdentifier xmlns:dri="http://www.driver-repository.eu/namespace/dri">od______4321::c8c8c8c8d9d9d9d9eaeaeaeafbfbfbfb</dri:objIdentifier>
+        <dri:dateOfCollection xmlns:dri="http://www.driver-repository.eu/namespace/dri">2020-01-30T10:00:00Z</dri:dateOfCollection>
+        <status>under curation</status>
+      </header>
+      <metadata>
+        <oaf:entity xmlns:oaf="http://namespace.openaire.eu/oaf" xsi:schemaLocation="http://namespace.openaire.eu/oaf http://namespace.openaire.eu/oaf">
+          <oaf:result>
+          <collectedfrom name="Zenodo" id="opendoar____::2659"/>
+          <originalId>oai:zenodo.org:fbfb</originalId>
+          <pid classid="handle" classname="Handle" schemeid="dnet:pid_types" schemename="dnet:pid_types">11234/fbfb</pid>
+          <title classid="main title" classname="main title" schemeid="dnet:dataCite_title" schemename="dnet:dataCite_title">Economics of scholarly publishing</title>
+          <bestaccessright classid="OPEN" classname="Open Access" schemeid="dnet:access_modes" schemename="dnet:access_modes"/>
+          <creator rank="1">Müller, Jörg</creator>
+          <creator rank="2">O&#x27;Brien, Siobhán</creator>
+          <dateofacceptance>2019-05-01</dateofacceptance>
+          <description>Costs of publishing.</description>
+          <subject classid="keyword" classname="keyword" schemeid="dnet:subject_classification_typologies" schemename="dnet:subject_classification_typologies">jel:C55 ddc:330 TA1-2040 info:eu-repo/classification/ddc/004 info:eu-repo/classification/acm/C.2.4 networks &amp;lt;b&amp;gt;bold&amp;lt;/b&amp;gt;</subject>
+          <language classid="eng" classname="English" schemeid="dnet:languages" schemename="dnet:languages"/>
+          <publisher>Zenodo</publisher>
+          <resulttype classid="publication" classname="publication" schemeid="dnet:result_typologies" schemename="dnet:result_typologies"/>
+          <journal issn="1234-5678" eissn="" lissn="" ep="" iss="" sp="" vol="">Economics Letters</journal>
+          <rels><rel inferred="false" trust="0.9" inferenceprovenance="" provenanceaction="sysimport:crosswalk:repository"><to class="isProducedBy" scheme="dnet:result_project_relations" type="project">corda__h2020::abc</to><code>643410</code><acronym>OpenAIRE2020</acronym><title>Open Access Infrastructure for Research in Europe 2020</title><funding><funder id="ec__________::EC" shortname="EC" name="European Commission" jurisdiction="EU"/></funding></rel></rels>
+          <children><instance id="opendoar____::2659"><accessright classid="OPEN" classname="Open Access" schemeid="dnet:access_modes" schemename="dnet:access_modes"/><hostedby name="Zenodo" id="opendoar____::2659"/><webresource><url>https://example.org/econ</url></webresource></instance></children>
+          </oaf:result>
+        </oaf:entity>
+      </metadata>
+    </result>
+    <result>
+      <header>
+        <dri:objIdentifier xmlns:dri="http://www.driver-repository.eu/namespace/dri">od______4321::0c0c0c0c1d1d1d1d2e2e2e2e3f3f3f3f</dri:objIdentifier>
+        <dri:dateOfCollection xmlns:dri="http://www.driver-repository.eu/namespace/dri">2020-01-30T10:00:00Z</dri:dateOfCollection>
+        <status>under curation</status>
+      </header>
+      <metadata>
+        <oaf:entity xmlns:oaf="http://namespace.openaire.eu/oaf" xsi:schemaLocation="http://namespace.openaire.eu/oaf http://namespace.openaire.eu/oaf">
+          <oaf:result>
+          <collectedfrom name="Zenodo" id="opendoar____::2659"/>
+          <originalId>oai:zenodo.org:3f3f</originalId>
+          <pid classid="handle" classname="Handle" schemeid="dnet:pid_types" schemename="dnet:pid_types">11234/3f3f</pid>
+          <title classid="main title" classname="main title" schemeid="dnet:dataCite_title" schemename="dnet:dataCite_title">Physics::Optics: a review</title>
+          <bestaccessright classid="OPEN" classname="Open Access" schemeid="dnet:access_modes" schemename="dnet:access_modes"/>
+          <creator rank="1">Lee, Kim</creator>
+          <dateofacceptance>2019-05-01</dateofacceptance>
+          <description>Optics review.</description>
+          <subject classid="keyword" classname="keyword" schemeid="dnet:subject_classification_typologies" schemename="dnet:subject_classification_typologies">Physics::Optics / Quantum Physics [quant-ph]</subject>
+          <language classid="eng" classname="English" schemeid="dnet:languages" schemename="dnet:languages"/>
+          <publisher>Zenodo</publisher>
+          <resulttype classid="publication" classname="publication" schemeid="dnet:result_typologies" schemename="dnet:result_typologies"/>
+          <rels><rel inferred="false" trust="0.9" inferenceprovenance="" provenanceaction="sysimport:crosswalk:repository"><to class="isProducedBy" scheme="dnet:result_project_relations" type="project">corda__h2020::abc</to><code>643410</code><acronym>OpenAIRE2020</acronym><title>Open Access Infrastructure for Research in Europe 2020</title><funding><funder id="ec__________::EC" shortname="EC" name="European Commission" jurisdiction="EU"/></funding></rel></rels>
+          <children><instance id="opendoar____::2659"><accessright classid="OPEN" classname="Open Access" schemeid="dnet:access_modes" schemename="dnet:access_modes"/><hostedby name="Zenodo" id="opendoar____::2659"/><webresource><url>https://arxiv.org/abs/1234.5678</url></webresource></instance></children>
+          </oaf:result>
+        </oaf:entity>
+      </metadata>
+    </result>
+  </results>
+</response>

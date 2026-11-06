@@ -8,6 +8,7 @@ import { fileURLToPath } from "node:url";
 import { expect, it } from "vitest";
 import { searchBase } from "../src/base/index.js";
 import { parsePubmedXml, toPubmedRecords } from "../src/pubmed.js";
+import { parseOpenaireXml, toOpenaireRecords } from "../src/openaire.js";
 import { buildOverviewMap, loadDefaultResources } from "../../pipeline/src/index.js";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
@@ -31,5 +32,13 @@ it("builds a map from PubMed records", async () => {
   const xml = fs.readFileSync(path.join(here, "fixtures/pubmed_efetch.xml"), "utf8");
   const { papers, content } = toPubmedRecords(parsePubmedXml(xml));
   const map = buildOverviewMap({ papers, content, service: "pubmed" }, await loadDefaultResources());
+  expect(map.documents.map((d) => d.id)).toEqual(papers.map((p) => p.id));
+});
+
+it("builds a map from OpenAIRE records", async () => {
+  const read = (f: string) => fs.readFileSync(path.join(here, "fixtures/openaire", f), "utf8");
+  const rows = [...parseOpenaireXml(read("publications.xml")), ...parseOpenaireXml(read("datasets.xml"))];
+  const { papers, content } = toOpenaireRecords(rows);
+  const map = buildOverviewMap({ papers, content, service: "openaire" }, await loadDefaultResources());
   expect(map.documents.map((d) => d.id)).toEqual(papers.map((p) => p.id));
 });
