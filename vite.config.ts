@@ -25,6 +25,7 @@ export default defineConfig({
     globals: true,
     environment: "jsdom",
     setupFiles: "./vis/test/setupTests.js",
-    exclude: [...configDefaults.exclude, "e2e/**"],
+    // packages/* have their own test setup (cd packages/<name> && npm test)
+    exclude: [...configDefaults.exclude, "e2e/**", "packages/**"],
   },
 });
