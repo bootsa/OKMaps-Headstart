@@ -1,5 +1,5 @@
 /**
- * The last part of BaseClient.execute_search (server/workers/base/src/base.py)
+ * The last part of BaseClient.execute_search (legacy/workers/base/src/base.py)
  * after duplicate merging: annotations, the list_size cut, ordering by id,
  * journal fields parsed from published_in (parsers.py), and the clustering
  * text.

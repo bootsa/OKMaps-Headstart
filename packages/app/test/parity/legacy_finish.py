@@ -1,9 +1,9 @@
 """Second half of legacy_maps.R: what the server does to vis_layout's output
 before vis/ reads it, then gzips each case.
 
-- dataprocessing (server/workers/dataprocessing/src/headstart.py):
+- dataprocessing (server/workers/dataprocessing/src/headstart.py on the legacy-server branch):
   pd.DataFrame(json.loads(output)).to_json(orient="records")
-- PHP (server/services/search.php): json_encode, then <U+XXXX> -> &#xXXXX;
+- PHP (server/services/search.php, legacy-server branch): json_encode, then <U+XXXX> -> &#xXXXX;
 
 Needs pandas.
 """

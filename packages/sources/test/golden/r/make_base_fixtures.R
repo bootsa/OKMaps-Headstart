@@ -8,7 +8,7 @@ suppressMessages(library(xml2))
 invisible(Sys.setlocale("LC_ALL", "en_US.UTF-8"))
 outdir <- commandArgs(TRUE)[1]
 here <- normalizePath(dirname(sub("--file=", "", grep("--file=", commandArgs(FALSE), value = TRUE))))
-replay <- normalizePath(file.path(here, "../../../../../server/preprocessing/other-scripts/test/replay"))
+replay <- normalizePath(file.path(here, "../../../../../legacy/preprocessing/other-scripts/test/replay"))
 dir.create(outdir, showWarnings = FALSE, recursive = TRUE)
 
 split_multi <- function(x) {

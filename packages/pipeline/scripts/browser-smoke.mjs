@@ -15,7 +15,7 @@ const { chromium } = await import("playwright").catch(() =>
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const name = process.argv[2] ?? "testcase9";
-const casePath = path.resolve(here, `../../../server/workers/tests/knowncases/${name}.json`);
+const casePath = path.resolve(here, `../../../legacy/workers/tests/knowncases/${name}.json`);
 const raw = JSON.parse(fs.readFileSync(casePath, "utf8"));
 const input = {
   papers: JSON.parse(raw.input_data.metadata),

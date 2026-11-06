@@ -10,7 +10,7 @@ on:
       - "packages/gateway/**"
       - "packages/app/**"
       - "packages/storage/**"
-      - "server/workers/tests/knowncases/**"
+      - "legacy/**"
       - ".github/workflows/pipeline.yml"
 
 jobs:

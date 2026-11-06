@@ -1,4 +1,4 @@
-# Convert the R labelling replay fixtures (server/preprocessing/other-scripts/
+# Convert the R labelling replay fixtures (legacy/preprocessing/other-scripts/
 # test/replay/*.inputs.rds) to JSON for the TypeScript label tests, with the
 # labels the current R code produces in the default configuration (mode 0,
 # n-gram setting 0).
@@ -10,7 +10,7 @@ args <- commandArgs(TRUE)
 out_dir <- args[1]
 dir.create(out_dir, showWarnings = FALSE, recursive = TRUE)
 out_dir <- normalizePath(out_dir)
-setwd("server/preprocessing/other-scripts")
+setwd("legacy/preprocessing/other-scripts")
 suppressMessages({
   library(tm); library(jsonlite); library(stringi); library(stringr); library(logging)
   library(parallel)

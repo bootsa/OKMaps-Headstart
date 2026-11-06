@@ -3,15 +3,10 @@
 .pytest_cache/
 .vscode/
 api_cache/
-checks/
 dist/
 doc/
-examples/
-local_dev/
+legacy/
 node_modules/
-server/
 
 # Exact files that should not be checked by Prettier
-.docker.test.env
-.flake8
 CHANGELOG.md

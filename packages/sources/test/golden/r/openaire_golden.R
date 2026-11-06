@@ -1,4 +1,4 @@
-# Runs server/preprocessing/other-scripts/openaire.R (get_papers) and the
+# Runs legacy/preprocessing/other-scripts/openaire.R (get_papers) and the
 # parse_project part of run_openaire_projectdata.R on saved OpenAIRE
 # responses, so the TypeScript adaptor can be compared with R.
 #
@@ -20,7 +20,7 @@ args <- commandArgs(TRUE)
 fixtures <- args[1]
 out <- args[2]
 here <- normalizePath(dirname(sub("--file=", "", grep("--file=", commandArgs(FALSE), value = TRUE))))
-scripts <- normalizePath(file.path(here, "../../../../../server/preprocessing/other-scripts"))
+scripts <- normalizePath(file.path(here, "../../../../../legacy/preprocessing/other-scripts"))
 basicConfig(level = "ERROR")
 .GlobalEnv$VIS_ID <- "golden"
 

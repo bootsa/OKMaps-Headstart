@@ -5,7 +5,7 @@ positions, areas and area titles of an overview map. It has no runtime
 dependencies and uses no Node APIs, so the same code runs in a browser Web
 Worker and in Node.
 
-It is a port of the R scripts in `server/preprocessing/other-scripts`
+It is a port of the R scripts in `legacy/preprocessing/other-scripts`
 (`vis_layout()` for `vis_type = "overview"`), step 1 of the plan to run OKMaps
 as a browser app with a thin gateway (no R, Python, PHP, Postgres or Redis).
 
@@ -32,7 +32,7 @@ const map = buildOverviewMap({ papers }, resources);
 
 Tested against R outputs in `test/golden`:
 
-- **21 known cases** (`server/workers/tests/knowncases`, BASE and PubMed):
+- **21 known cases** (`legacy/workers/tests/knowncases`, BASE and PubMed):
   the stemmed corpus, the term list, the distances (to 1e-7), the merge order of
   the clustering, the explained variance, the number of areas, every paper's
   area and every keyword filled in for papers without keywords are identical
@@ -70,7 +70,7 @@ logging, doParallel, plyr, dplyr and jsonlite, and the `en_US.UTF-8` locale
 replaced by `test/golden/r/gmd_shim.R`. From the repository root:
 
 ```sh
-Rscript packages/pipeline/test/golden/r/generate_goldens.R server/workers/tests/knowncases /tmp/goldens
+Rscript packages/pipeline/test/golden/r/generate_goldens.R legacy/workers/tests/knowncases /tmp/goldens
 Rscript packages/pipeline/test/golden/r/convert_replay.R /tmp/replay
 # then gzip the JSON files into test/golden/data and test/golden/replay
 ```

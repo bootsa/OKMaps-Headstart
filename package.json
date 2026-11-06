@@ -10,20 +10,10 @@
     "test": "TZ='Europe/Vienna' vitest",
     "dev": "webpack --progress --watch --mode=development",
     "prod": "webpack",
-    "start": "webpack serve --progress --mode=development --env example=base",
-    "example:base": "npm start",
-    "example:pubmed": "npm start -- --env example=pubmed",
-    "example:triple": "npm start -- --env example=triple",
-    "example:viper": "npm start -- --env example=viper",
-    "example:covis": "npm start -- --env example=covis",
     "eslint:check": "eslint .",
     "eslint:fix": "eslint . --fix",
     "prettier:check": "prettier . --check",
-    "prettier:fix": "prettier . --write",
-    "test:e2e": "playwright test",
-    "test:e2e:ui": "playwright test --ui",
-    "test:e2e:headed": "playwright test --headed",
-    "test:e2e:with-environment-startup": "bash ./local-hotreload.sh && playwright test"
+    "prettier:fix": "prettier . --write"
   },
   "repository": {
     "type": "git",

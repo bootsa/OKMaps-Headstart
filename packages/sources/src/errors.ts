@@ -1,6 +1,6 @@
 /**
  * Errors from source adaptors carry the same `reason` codes that the R data
- * clients return (server/preprocessing/other-scripts/utils.R, detect_error),
+ * clients return (legacy/preprocessing/other-scripts/utils.R, detect_error),
  * because the frontend turns those codes into its error messages.
  */
 

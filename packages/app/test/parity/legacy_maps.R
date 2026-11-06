@@ -22,7 +22,7 @@ out_dir <- normalizePath(args[1])
 here <- normalizePath(dirname(sub("--file=", "", grep("--file=", commandArgs(FALSE), value = TRUE))))
 root <- normalizePath(file.path(here, "../../../.."))
 golden <- file.path(root, "packages/sources/test/golden")
-setwd(file.path(root, "server/preprocessing/other-scripts"))
+setwd(file.path(root, "legacy/preprocessing/other-scripts"))
 
 library <- function(pkg, ...) {
   p <- as.character(substitute(pkg))
@@ -39,7 +39,7 @@ setup_logging("WARN")
 Sys.setlocale(category = "LC_ALL", locale = "en_US.UTF-8")
 MAX_CLUSTERS <- 15  # run_vis_layout.R sets this global, which cluster.R reads
 
-# The dataprocessing worker's defaults (server/workers/dataprocessing/src/headstart.py),
+# The dataprocessing worker's defaults (server/workers/dataprocessing/src/headstart.py on the legacy-server branch),
 # then each API's settings (server/workers/api/src/apis/*.py).
 defaults <- list(MAX_CLUSTERS = 15, language = "english", taxonomy_separator = ";", list_size = -1)
 with_defaults <- function(p) modifyList(defaults, p)

@@ -11,7 +11,6 @@ dist/
 .cache
 coverage/
 .vscode/
-.phpunit.result.cache
 
 # local deployment files
 /deploy.sh
@@ -27,30 +26,15 @@ coverage/
 /lc_cache.json
 /linkedcat.sqlite
 .env
-backend_*.sh
-server/workers/tests/*.csv
-server/workers/tests/*.txt
-server/workers/tests/testutils/
-local_dev/renv/*
-local_dev/dev.env
-local_dev/paper_preview
-.docker.test.env
 
-# php files
-/server/classes/headstart/vendor
-/server/classes/headstart/var/*
-**.phpunit.cache
 
 # R files
-server/preprocessing/other-scripts/.Rhistory
-server/preprocessing/other-scripts/renv
 .Rhistory
 .Rprofile
 .Rproj*
 /*.Rproj
 */**/*.Rproj
 */**/*.RData
-server/workers/*/renv
 .Rproj.user
 
 # python files
@@ -59,7 +43,6 @@ server/workers/*/renv
 .ipynb_checkpoints
 *.ipynb
 /nbproject/private/
-/server/nbproject/private/
 .pytest_cache
 *__pycache__*
 .venv
@@ -69,11 +52,6 @@ server/workers/*/renv
 .vscode/
 
 # temporal
-local_dev/config_local_headstart.ini
-local_dev/config_local_searchflow.ini
-local_dev/tools/**/*.csv
-local_dev/tools/**/*.json
-local_dev/tools/**/*.log
 
 # Playwright
 /test-results/
@@ -82,12 +60,6 @@ local_dev/tools/**/*.log
 /playwright/.cache/
 
 # inspection output
-e2e/reproducibility/output/*
-e2e/reproducibility/logs/*
-local_dev/tools/label_analysis
-local_dev/tools/keyword_analysis
-local_dev/tools/reproducibility
-local_dev/tools/dedup_review/*
 
 # mac os
 .DS_Store
