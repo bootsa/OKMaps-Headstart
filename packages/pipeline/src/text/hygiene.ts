@@ -76,6 +76,7 @@ export function punctuationSegments(input: string | null | undefined): string[] 
 	let text = input ?? "";
 	text = sanitizeCorpusNoise(decodeHtmlEntities(text));
 	text = text.replace(/[\x01-\x08\x0b\x0c\x0e-\x1f]/g, " ");
+	// biome-ignore lint/suspicious/noMisleadingCharacterClass: each invisible character is removed on its own, as the R code does
 	text = text.replace(/[\u00ad\u200b\u200c\u200d\ufeff]/g, "");
 	text = text.replace(/\u2011/g, "-");
 	text = text.replace(/[\u2019\u2018\u02bc]/g, "'");

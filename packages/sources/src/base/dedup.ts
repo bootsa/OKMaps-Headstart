@@ -279,7 +279,6 @@ const USES_PARAMS = new Set([
 
 /** The parts of Python's urllib.parse.urlparse that deduplicate_links uses. */
 function urlParse(input: string): { scheme: string; normalized: string } {
-	// eslint-disable-next-line no-control-regex
 	let url = input.replace(/^[\x00-\x20]+/, "").replace(/[\t\r\n]/g, "");
 	let scheme = "";
 	const colon = url.indexOf(":");

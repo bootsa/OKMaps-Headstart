@@ -37,6 +37,7 @@ let session: Promise<SolidSession | null> | undefined;
  * Null when nobody is logged in.
  */
 export function solidSession(): Promise<SolidSession | null> {
+	// biome-ignore lint/suspicious/noAssignInExpressions: start the login once and share the promise
 	return (session ??= (async () => {
 		const a = await load();
 		// A restored session comes back to the page it logged in from, without
