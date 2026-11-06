@@ -1,5 +1,19 @@
 # Changelog
 
+## [7.1.2](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.0...v7.1.2) (2026-11-06)
+
+
+### Features
+
+* geo map places and streamgraph streams in the Svelte data layer ([8036aef](https://github.com/bootsa/OKMaps-Headstart/commit/8036aefd1caaa4a08d5f3ee45260c44f5039859b))
+* process maps and hold the interface state in the Svelte package ([8245f8f](https://github.com/bootsa/OKMaps-Headstart/commit/8245f8f082609ef64f774521a3f43617b550872a))
+* process maps and hold the interface state in the Svelte package ([94829d3](https://github.com/bootsa/OKMaps-Headstart/commit/94829d344e34725de5e5de24b1b9bf8203a7ae13))
+
+
+### Miscellaneous Chores
+
+* replace ESLint and Prettier with Biome ([92803e1](https://github.com/bootsa/OKMaps-Headstart/commit/92803e1a0ab264697734d24ac449079fafe6f901))
+
 ## [7.1.0](https://github.com/bootsa/OKMaps-Headstart/compare/v7.0.0...v7.1.0) (2026-11-06)
 
 
