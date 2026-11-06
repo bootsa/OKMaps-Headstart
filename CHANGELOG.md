@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.1.4](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.3...v7.1.4) (2026-11-06)
+
+
+### Features
+
+* **ui-svelte:** add the paper list with search, filter and sort ([fb3a28b](https://github.com/bootsa/OKMaps-Headstart/commit/fb3a28b3f288679bf50ba8d1820589a3a6448c35))
+* **ui-svelte:** add the paper list with search, filter and sort ([ac5fa16](https://github.com/bootsa/OKMaps-Headstart/commit/ac5fa16ce5bec1cdb3b9820b62e63c7ef73d9a8b))
+
 ## [7.1.3](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.2...v7.1.3) (2026-11-06)
 
 
