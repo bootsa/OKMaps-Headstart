@@ -29,3 +29,12 @@ if (typeof window !== "undefined" && !window.matchMedia) {
 			dispatchEvent: () => false,
 		}) as MediaQueryList;
 }
+
+// jsdom has no ResizeObserver; Svelte's bind:clientWidth uses it.
+if (typeof globalThis.ResizeObserver === "undefined") {
+	globalThis.ResizeObserver = class {
+		observe() {}
+		unobserve() {}
+		disconnect() {}
+	} as unknown as typeof ResizeObserver;
+}

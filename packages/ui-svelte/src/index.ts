@@ -29,4 +29,6 @@ export type {
 	StreamgraphData,
 } from "./data/types";
 export { type Strings, strings, t } from "./i18n/strings";
+export { authorsLine, List, ListEntry, shortTitle } from "./list";
+export { default as Visualization } from "./Visualization.svelte";
 export { KnowledgeMap, layoutMap, mapGeometry } from "./views/knowledge-map";

@@ -187,14 +187,21 @@ async function checkNewLook(p, name, areas) {
 		areas: document.querySelectorAll("#visualization .okm-bubble").length,
 		papers: document.querySelectorAll("#visualization .okm-paper").length,
 		images: document.querySelectorAll("#visualization img").length,
+		listEntries: document.querySelectorAll("#visualization .okm-entry").length,
 	}));
 	await p.screenshot({ path: path.join(shots, `${name}-new.png`) });
 	console.log(JSON.stringify({ map: `${name} (new look)`, ...drawn }));
 	if (areas !== undefined && drawn.areas !== areas)
 		throw new Error(`${name}: new look drew ${drawn.areas} areas, not ${areas}`);
 	if (drawn.images) throw new Error(`${name}: new look rendered markup from the map`);
+	if (drawn.listEntries !== drawn.papers)
+		throw new Error(`${name}: new look lists ${drawn.listEntries} of ${drawn.papers} papers`);
 	await p.click("#visualization .okm-bubble", { force: true }); // its papers may sit on top: both zoom in
 	await p.waitForSelector("#visualization svg.okm-knowledge-map.zoom");
+	const zoomedPapers = await p.$$eval("#visualization .okm-paper", (g) => g.length);
+	const zoomedEntries = await p.$$eval("#visualization .okm-entry", (e) => e.length);
+	if (zoomedEntries !== zoomedPapers)
+		throw new Error(`${name}: zoomed list shows ${zoomedEntries} of ${zoomedPapers} papers`);
 }
 
 await makeMap(async () => {
