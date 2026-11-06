@@ -13,7 +13,10 @@ const out = path.resolve(here, "../public/vis");
 const base = process.env.APP_BASE ?? "/";
 const publicPath = `${base}vis/`;
 
-execFileSync("pnpm", ["exec", "webpack", "--mode=production", "--env", `publicPath=${publicPath}`], { cwd: ui, stdio: "inherit" });
+execFileSync("pnpm", ["exec", "webpack", "--mode=production", "--env", `publicPath=${publicPath}`], {
+	cwd: ui,
+	stdio: "inherit",
+});
 
 const dist = path.join(ui, "dist");
 const php = fs.readFileSync(path.join(dist, "headstart.php"), "utf8");

@@ -1,26 +1,26 @@
 <script module lang="ts">
-  import { defineMeta } from "@storybook/addon-svelte-csf";
-  import type { ComponentProps } from "svelte";
-  import Button from "./Button.svelte";
+	import { defineMeta } from "@storybook/addon-svelte-csf";
+	import type { ComponentProps } from "svelte";
+	import Button from "./Button.svelte";
 
-  const { Story } = defineMeta({
-    title: "Components/Button",
-    component: Button,
-    tags: ["autodocs"],
-    argTypes: {
-      variant: {
-        control: "inline-radio",
-        options: ["primary", "secondary", "ghost"],
-      },
-      size: { control: "inline-radio", options: ["sm", "md"] },
-      disabled: { control: "boolean" },
-    },
-    args: { variant: "primary", size: "md" },
-  });
+	const { Story } = defineMeta({
+		title: "Components/Button",
+		component: Button,
+		tags: ["autodocs"],
+		argTypes: {
+			variant: {
+				control: "inline-radio",
+				options: ["primary", "secondary", "ghost"],
+			},
+			size: { control: "inline-radio", options: ["sm", "md"] },
+			disabled: { control: "boolean" },
+		},
+		args: { variant: "primary", size: "md" },
+	});
 </script>
 
 {#snippet template(args: Omit<ComponentProps<typeof Button>, "children">)}
-  <div class="okmaps"><Button {...args}>Export map</Button></div>
+	<div class="okmaps"><Button {...args}>Export map</Button></div>
 {/snippet}
 
 <Story name="Primary" {template} />

@@ -6,25 +6,25 @@ export { default as Dialog } from "./components/Dialog.svelte";
 export { default as Tag } from "./components/Tag.svelte";
 
 export {
-  mapConfig,
-  type MapConfig,
-  type Service,
-  type VisType,
+	type MapConfig,
+	mapConfig,
+	type Service,
+	type VisType,
 } from "./data/config";
+export { type ListQuery, listPapers } from "./data/filter";
 export { parsePlace } from "./data/papers";
-export { parseStreams } from "./data/streams";
-export { listPapers, type ListQuery } from "./data/filter";
 export { processMap, resizeMap } from "./data/process";
 export { MapState } from "./data/state.svelte";
+export { parseStreams } from "./data/streams";
 export type {
-  Area,
-  MapContext,
-  MapRecord,
-  Paper,
-  ProcessedMap,
-  Place,
-  RawDocument,
-  Stream,
-  StreamgraphData,
+	Area,
+	MapContext,
+	MapRecord,
+	Paper,
+	Place,
+	ProcessedMap,
+	RawDocument,
+	Stream,
+	StreamgraphData,
 } from "./data/types";
-export { strings, t, type Strings } from "./i18n/strings";
+export { type Strings, strings, t } from "./i18n/strings";

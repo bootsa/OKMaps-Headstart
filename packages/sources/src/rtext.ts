@@ -33,20 +33,20 @@ export const striTrim = (s: string) => s.replace(STRI_TRIM, "");
  * empty part is dropped ("a;" -> ["a"], "a;;" -> ["a", ""]).
  */
 export function strsplitFixed(s: string, sep: string): string[] {
-  if (s === "") return [];
-  const parts = s.split(sep);
-  if (parts.length > 1 && parts[parts.length - 1] === "") parts.pop();
-  return parts;
+	if (s === "") return [];
+	const parts = s.split(sep);
+	if (parts.length > 1 && parts[parts.length - 1] === "") parts.pop();
+	return parts;
 }
 
 /** tolower/toupper per code point, as towlower/towupper do (no ß -> SS). */
 function mapCodePoints(s: string, f: (c: string) => string): string {
-  let out = "";
-  for (const c of s) {
-    const m = f(c);
-    out += [...m].length === 1 ? m : c;
-  }
-  return out;
+	let out = "";
+	for (const c of s) {
+		const m = f(c);
+		out += [...m].length === 1 ? m : c;
+	}
+	return out;
 }
 export const rLower = (s: string) => mapCodePoints(s, (c) => c.toLowerCase());
 export const rUpper = (s: string) => mapCodePoints(s, (c) => c.toUpperCase());
