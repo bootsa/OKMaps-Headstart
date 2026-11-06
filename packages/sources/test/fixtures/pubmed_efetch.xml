@@ -1,0 +1,269 @@
+<?xml version="1.0" ?>
+<!DOCTYPE PubmedArticleSet PUBLIC "-//NLM//DTD PubMedArticle, 1st January 2025//EN" "https://dtd.nlm.nih.gov/ncbi/pubmed/out/pubmed_250101.dtd">
+<PubmedArticleSet>
+<PubmedArticle>
+    <MedlineCitation Status="MEDLINE" Owner="NLM" IndexingMethod="Automated">
+        <PMID Version="1">39000001</PMID>
+        <DateCompleted>
+            <Year>2025</Year>
+            <Month>02</Month>
+            <Day>10</Day>
+        </DateCompleted>
+        <Article PubModel="Print-Electronic">
+            <Journal>
+                <ISSN IssnType="Electronic">1476-4687</ISSN>
+                <JournalIssue CitedMedium="Internet">
+                    <Volume>637</Volume>
+                    <Issue>8045</Issue>
+                    <PubDate>
+                        <Year>2025</Year>
+                        <Month>Jan</Month>
+                    </PubDate>
+                </JournalIssue>
+                <Title>Nature</Title>
+                <ISOAbbreviation>Nature</ISOAbbreviation>
+            </Journal>
+            <ArticleTitle>Soil microbial communities drive <i>Arabidopsis</i> drought tolerance &amp; CO<sub>2</sub> uptake.</ArticleTitle>
+            <Pagination>
+                <StartPage>101</StartPage>
+            </Pagination>
+            <ELocationID EIdType="doi" ValidYN="Y">10.1038/s41586-024-00001-1</ELocationID>
+            <Abstract>
+                <AbstractText Label="BACKGROUND" NlmCategory="BACKGROUND">Drought limits plant growth &lt;worldwide&gt;.</AbstractText>
+                <AbstractText Label="METHODS" NlmCategory="METHODS">We sequenced 16S rRNA from 120 soils (pH 5.5&#x2013;7.0).</AbstractText>
+                <AbstractText Label="RESULTS" NlmCategory="RESULTS">Taxa such as <i>Streptomyces</i> were enriched
+ under drought.</AbstractText>
+                <CopyrightInformation>© 2025. The Author(s).</CopyrightInformation>
+            </Abstract>
+            <AuthorList CompleteYN="Y">
+                <Author ValidYN="Y">
+                    <LastName>Müller</LastName>
+                    <ForeName>Anna K</ForeName>
+                    <Initials>AK</Initials>
+                    <AffiliationInfo>
+                        <Affiliation>Department of Ecology, University of Vienna, Austria.</Affiliation>
+                    </AffiliationInfo>
+                </Author>
+                <Author ValidYN="Y">
+                    <LastName>O'Brien</LastName>
+                    <ForeName>Seán</ForeName>
+                    <Initials>S</Initials>
+                </Author>
+                <Author ValidYN="Y">
+                    <CollectiveName>Global Soil Consortium</CollectiveName>
+                </Author>
+                <Author ValidYN="Y">
+                    <LastName>Nakamura</LastName>
+                    <Initials>T</Initials>
+                </Author>
+            </AuthorList>
+            <Language>eng</Language>
+            <PublicationTypeList>
+                <PublicationType UI="D016428">Journal Article</PublicationType>
+                <PublicationType UI="D013485">Research Support, Non-U.S. Gov't</PublicationType>
+            </PublicationTypeList>
+        </Article>
+        <MedlineJournalInfo>
+            <Country>England</Country>
+            <MedlineTA>Nature</MedlineTA>
+        </MedlineJournalInfo>
+        <KeywordList Owner="NOTNLM">
+            <Keyword MajorTopicYN="N">drought</Keyword>
+            <Keyword MajorTopicYN="N">Soil Microbiome</Keyword>
+            <Keyword MajorTopicYN="N">16S rRNA</Keyword>
+        </KeywordList>
+    </MedlineCitation>
+    <PubmedData>
+        <History>
+            <PubMedPubDate PubStatus="received">
+                <Year>2024</Year>
+                <Month>3</Month>
+                <Day>1</Day>
+            </PubMedPubDate>
+        </History>
+        <PublicationStatus>ppublish</PublicationStatus>
+        <ArticleIdList>
+            <ArticleId IdType="pubmed">39000001</ArticleId>
+            <ArticleId IdType="doi">10.1038/s41586-024-00001-1</ArticleId>
+            <ArticleId IdType="pmc">PMC11000001</ArticleId>
+        </ArticleIdList>
+        <ReferenceList>
+            <Reference>
+                <Citation>Smith J. Soil and water. J Ecol. 2020.</Citation>
+                <ArticleIdList>
+                    <ArticleId IdType="doi">10.1111/ref.0001</ArticleId>
+                </ArticleIdList>
+            </Reference>
+        </ReferenceList>
+    </PubmedData>
+</PubmedArticle>
+<PubmedArticle>
+    <MedlineCitation Status="PubMed-not-MEDLINE" Owner="NLM">
+        <PMID Version="1">39000002</PMID>
+        <DateCreated>
+            <Year>2016</Year>
+            <Month>11</Month>
+            <Day>04</Day>
+        </DateCreated>
+        <Article PubModel="Print">
+            <Journal>
+                <JournalIssue CitedMedium="Print">
+                    <PubDate>
+                        <MedlineDate>2016 Nov-Dec</MedlineDate>
+                    </PubDate>
+                </JournalIssue>
+                <Title>Journal of applied ecology &amp; conservation</Title>
+            </Journal>
+            <ArticleTitle>Wetland restoration outcomes: a meta-analysis</ArticleTitle>
+            <Abstract>
+                <AbstractText>Restored wetlands recovered 74% of
+biodiversity.
+Recovery was slower in boreal sites.  </AbstractText>
+            </Abstract>
+            <AuthorList>
+                <Author>
+                    <LastName>Silva</LastName>
+                    <ForeName>João</ForeName>
+                </Author>
+            </AuthorList>
+            <PublicationTypeList>
+                <PublicationType UI="D017418">Meta-Analysis</PublicationType>
+            </PublicationTypeList>
+        </Article>
+        <KeywordList Owner="NOTNLM">
+            <Keyword MajorTopicYN="N">wetlands</Keyword>
+        </KeywordList>
+        <KeywordList Owner="NLM">
+            <Keyword MajorTopicYN="Y">Ecosystem Restoration</Keyword>
+        </KeywordList>
+    </MedlineCitation>
+    <PubmedData>
+        <ArticleIdList>
+            <ArticleId IdType="pubmed">39000002</ArticleId>
+        </ArticleIdList>
+    </PubmedData>
+</PubmedArticle>
+<PubmedArticle>
+    <MedlineCitation Status="MEDLINE" Owner="NLM">
+        <PMID Version="1">39000003</PMID>
+        <Article PubModel="Electronic">
+            <Journal>
+                <JournalIssue CitedMedium="Internet">
+                    <PubDate>
+                        <Year>2024</Year>
+                        <Season>Spring</Season>
+                    </PubDate>
+                </JournalIssue>
+                <Title>PLoS One</Title>
+            </Journal>
+            <ArticleTitle>Urban heat islands and pollinator decline.</ArticleTitle>
+            <Abstract>
+                <AbstractText>Cities are warming.</AbstractText>
+            </Abstract>
+            <OtherAbstract Type="Publisher" Language="ger">
+                <AbstractText>Städte erwärmen sich.</AbstractText>
+            </OtherAbstract>
+            <AuthorList>
+                <Author>
+                    <LastName>Lee</LastName>
+                    <ForeName>Min-Ji</ForeName>
+                </Author>
+                <Author>
+                    <LastName>Garcia</LastName>
+                    <ForeName>Luis</ForeName>
+                    <Suffix>Jr</Suffix>
+                </Author>
+            </AuthorList>
+            <PublicationTypeList>
+                <PublicationType>Journal Article</PublicationType>
+            </PublicationTypeList>
+        </Article>
+    </MedlineCitation>
+    <PubmedData>
+        <ArticleIdList>
+            <ArticleId IdType="pubmed">39000003</ArticleId>
+            <ArticleId IdType="doi">10.1371/journal.pone.0300003</ArticleId>
+            <ArticleId IdType="doi">10.1371/journal.pone.0300003.r001</ArticleId>
+        </ArticleIdList>
+    </PubmedData>
+</PubmedArticle>
+<PubmedArticle>
+    <MedlineCitation Status="In-Data-Review" Owner="NLM">
+        <PMID Version="1">39000004</PMID>
+        <Article PubModel="Print">
+            <Journal>
+                <JournalIssue>
+                    <PubDate>
+                        <Year>2023</Year>
+                    </PubDate>
+                </JournalIssue>
+                <Title>Ecology letters</Title>
+            </Journal>
+            <ArticleTitle>Empty abstract record</ArticleTitle>
+            <AuthorList>
+                <Author>
+                    <ForeName>Prince</ForeName>
+                </Author>
+            </AuthorList>
+            <PublicationTypeList>
+                <PublicationType>Letter</PublicationType>
+                <PublicationType>Comment</PublicationType>
+            </PublicationTypeList>
+        </Article>
+        <CommentsCorrectionsList>
+            <CommentsCorrections RefType="CommentOn">
+                <RefSource>Ecol Lett. 2022</RefSource>
+                <PMID Version="1">35000000</PMID>
+            </CommentsCorrections>
+        </CommentsCorrectionsList>
+    </MedlineCitation>
+    <PubmedData>
+        <ArticleIdList>
+            <ArticleId IdType="pubmed">39000004</ArticleId>
+            <ArticleId IdType="doi">10.1111/ele.14000</ArticleId>
+        </ArticleIdList>
+    </PubmedData>
+</PubmedArticle>
+<PubmedBookArticle>
+    <BookDocument>
+        <PMID Version="1">39000005</PMID>
+        <ArticleIdList>
+            <ArticleId IdType="bookaccession">NBK500005</ArticleId>
+        </ArticleIdList>
+        <Book>
+            <Publisher>
+                <PublisherName>StatPearls Publishing</PublisherName>
+                <PublisherLocation>Treasure Island (FL)</PublisherLocation>
+            </Publisher>
+            <BookTitle book="statpearls">StatPearls: Ecology of infectious disease</BookTitle>
+            <PubDate>
+                <Year>2024</Year>
+                <Month>01</Month>
+            </PubDate>
+            <AuthorList Type="editors">
+                <Author>
+                    <LastName>Editor</LastName>
+                    <ForeName>Ed</ForeName>
+                </Author>
+            </AuthorList>
+        </Book>
+        <AuthorList Type="authors">
+            <Author>
+                <LastName>Writer</LastName>
+                <ForeName>Wanda</ForeName>
+            </Author>
+        </AuthorList>
+        <Abstract>
+            <AbstractText>Vector-borne <b>disease</b> ecology.</AbstractText>
+        </Abstract>
+        <KeywordList>
+            <Keyword>vectors</Keyword>
+        </KeywordList>
+    </BookDocument>
+    <PubmedBookData>
+        <ArticleIdList>
+            <ArticleId IdType="pubmed">39000005</ArticleId>
+        </ArticleIdList>
+    </PubmedBookData>
+</PubmedBookArticle>
+</PubmedArticleSet>
