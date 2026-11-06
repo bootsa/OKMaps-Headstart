@@ -14,7 +14,7 @@
 	import type { Area, Paper } from "../../data/types";
 	import { t } from "../../i18n/strings";
 	import Bubble from "./Bubble.svelte";
-	import { type Geometry, iconRect, mapGeometry } from "./geometry";
+	import { type Geometry, iconRect, labelWidth, mapGeometry } from "./geometry";
 	import MapPaper from "./MapPaper.svelte";
 	import PaperPopup from "./PaperPopup.svelte";
 
@@ -117,6 +117,7 @@
 				{paper}
 				icon={iconRect(rect, zoom)}
 				{size}
+				labelWidth={labelWidth(size)}
 				{zoom}
 				selected={map.selectedPaper === paper.safeId}
 				hovered={zoom && hoveredPaper === paper.safeId}
