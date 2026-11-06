@@ -86,6 +86,33 @@ Rscript packages/app/test/parity/legacy_maps.R packages/app/test/parity/legacy
 python3 packages/app/test/parity/legacy_finish.py packages/app/test/parity/legacy
 ```
 
+## Where maps are kept
+
+By default maps are kept in the browser (IndexedDB). Under "Where your maps
+are kept" on the start page a person can choose a WebDAV folder instead
+(Nextcloud, ownCloud, or any WebDAV server that allows the site through
+CORS), and copy the maps they have there. The choice, and the WebDAV
+password, are kept in that browser's localStorage. Maps then follow the
+person to any browser that uses the same folder. The storage adaptors are in
+`packages/storage`. Maps made before this choice existed are moved into the
+new browser storage once.
+
+A Solid Pod works the same way after logging in (Solid-OIDC, with
+`@inrupt/solid-client-authn-browser`, loaded only when a Pod is used). The
+person names their identity provider and, optionally, a folder; without one
+the maps go in `okmaps/` at the top of the Pod their WebID names. The login
+lives in one page and restoring it passes through the provider, so only the
+start page logs in. The map page reads Pod maps from a copy kept in the
+browser (`okmaps-pod-copy`, made when the start page reads or saves a map),
+and what it saves there (the share id) is sent to the Pod by the start page
+next time. A map with no copy yet (a bookmark) goes through the start page,
+which logs in, fetches it and comes back. The browser test runs this against
+a simulated provider and Pod (`test/fake-solid.ts`).
+
+An Atomic Data server works with a Folder or Drive URL and the agent's
+secret (from User settings in the Atomic data browser), which is kept in the
+browser's localStorage like the WebDAV password.
+
 ## Share links
 
 On a saved map, Share publishes it to the gateway once and shows the link

@@ -8,7 +8,7 @@
 import { domDecode, fetchSharedMap, neutralise, publishMap, shareUrl, type SharedMap } from "./share.ts";
 import { settings } from "./settings.ts";
 import { registerServiceWorker } from "./offline.ts";
-import { getMap, saveMap, type SavedMap } from "./store.ts";
+import { getMap, readChoice, saveMap, withoutPodLogin, type SavedMap } from "./store.ts";
 import { visConfig } from "./vis-config.ts";
 
 declare global {
@@ -132,7 +132,13 @@ async function main() {
     return draw(safe);
   }
   const id = params.get("id");
+  withoutPodLogin();
   const saved = id ? await getMap(id) : undefined;
+  if (!saved && id && readChoice().kind === "solid") {
+    // Not copied from the Pod yet: the main page logs in and fetches it.
+    location.replace(`./?open=${encodeURIComponent(id)}`);
+    return;
+  }
   if (!saved) return showMessage("This map is not saved in this browser.");
   if (settings.gatewayUrl) offerShare(saved);
   return draw(saved);

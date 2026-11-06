@@ -2,6 +2,9 @@
  * Published maps: what a share link points to. A map is stored once,
  * under an id derived from its content, and never changes.
  */
+import { bucketStorage, memoryStorage, type MapStorage, type ObjectBucket } from "../../storage/src/index.ts";
+
+export type { ObjectBucket };
 
 /** Where published maps are kept. Ids are checked before they reach the store. */
 export interface MapStore {
@@ -10,35 +13,19 @@ export interface MapStore {
   put(id: string, body: string): Promise<void>;
 }
 
+/** Keeps published maps on any storage (packages/storage), as <id>.json in its root. */
+export function storageMapStore(storage: MapStorage): MapStore {
+  return {
+    get: (id) => storage.get(`${id}.json`),
+    put: (id, body) => storage.put(`${id}.json`, body, "application/json"),
+  };
+}
+
 /** Keeps maps in memory (tests, local development). */
-export function memoryStore(): MapStore {
-  const maps = new Map<string, string>();
-  return {
-    get: async (id) => maps.get(id) ?? null,
-    put: async (id, body) => {
-      if (!maps.has(id)) maps.set(id, body);
-    },
-  };
-}
+export const memoryStore = (): MapStore => storageMapStore(memoryStorage());
 
-/** The part of a Cloudflare R2 bucket binding (or similar object store) the gateway uses. */
-export interface ObjectBucket {
-  get(key: string): Promise<{ text(): Promise<string> } | null>;
-  put(key: string, value: string, options?: { httpMetadata?: { contentType?: string } }): Promise<unknown>;
-}
-
-/** Keeps maps in an object store, as maps/<id>.json. */
-export function bucketStore(bucket: ObjectBucket, prefix = "maps/"): MapStore {
-  return {
-    get: async (id) => {
-      const obj = await bucket.get(`${prefix}${id}.json`);
-      return obj ? obj.text() : null;
-    },
-    put: async (id, body) => {
-      await bucket.put(`${prefix}${id}.json`, body, { httpMetadata: { contentType: "application/json" } });
-    },
-  };
-}
+/** Keeps maps in an object store binding (Cloudflare R2 or similar), as maps/<id>.json. */
+export const bucketStore = (bucket: ObjectBucket, prefix = "maps/"): MapStore => storageMapStore(bucketStorage(bucket, prefix));
 
 /** 24 lowercase hex characters (96 bits of SHA-256). */
 export const MAP_ID = /^[0-9a-f]{24}$/;

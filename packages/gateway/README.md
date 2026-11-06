@@ -29,7 +29,8 @@ BASE_API_KEY=... ALLOWED_ORIGINS=https://maps.example.org PORT=8787 node src/ser
 ```
 
 Node 22.18 or later runs the TypeScript directly; there is nothing to
-install or build. `docker build -t okmaps-gateway .` makes a container. Set
+install or build. `docker build -f gateway/Dockerfile -t okmaps-gateway packages`
+(from the repository root) makes a container; it includes `packages/storage`. Set
 `TRUST_PROXY=1` behind a reverse proxy so clients are told apart by
 `X-Forwarded-For`.
 
@@ -48,11 +49,15 @@ SHA-256, 24 hex characters). The same map published twice gets the same id.
 Published maps never change, so `GET /maps/{id}` is cacheable for a year.
 There is no listing and no delete route.
 
-Publishing is off unless a store is given:
+Publishing is off unless a store is given. Maps are kept with the adaptors
+of `packages/storage`:
 
 - `MAPS_DIR=/var/lib/okmaps/maps` with `src/server.ts` keeps one JSON file per map.
-- `bucketStore(env.MAPS)` keeps them in a Cloudflare R2 bucket (or anything
-  with the same `get`/`put`), as `maps/<id>.json`.
+- `MAPS_WEBDAV_URL=https://dav.example.org/okmaps/` keeps them in a WebDAV
+  folder, with `MAPS_WEBDAV_USER` and `MAPS_WEBDAV_PASSWORD` (or
+  `MAPS_WEBDAV_TOKEN` for a bearer token).
+- `bucketStore(env.MAPS)` keeps them in a Cloudflare R2 bucket, as `maps/<id>.json`.
+- `storageMapStore(anyStorage)` takes any other `MapStorage`.
 - `memoryStore()` for tests.
 
 Maps are at most 3 MB and 1000 documents, and a client may publish 30 per

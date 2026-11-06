@@ -10,6 +10,8 @@ import { execSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { fakeAnswer, GATEWAY } from "../test/fake-net.ts";
 import { createGateway, memoryStore } from "../../gateway/src/index.ts";
+import { fakeAtomic, fakeWebdav } from "../../storage/test/fakes.ts";
+import { fakeSolidWorld, ISSUER } from "../test/fake-solid.ts";
 
 // Playwright: the global copy (whose browser is installed) if there is one, else the project's.
 const { chromium } = await import(path.join(execSync("npm root -g").toString().trim(), "playwright/index.mjs")).catch(
@@ -51,8 +53,39 @@ const unknown = new Set();
 // Share links go to a real gateway handler with an in-memory store.
 const mapStore = memoryStore();
 const gateway = createGateway({ baseApiKey: "k", allowedOrigins: ["*"], maps: { store: mapStore } });
+// A WebDAV server at https://dav.test/dav/ (user "me", password "secret").
+const dav = fakeWebdav("https://dav.test");
+const davCors = { "access-control-allow-origin": "*", "access-control-allow-headers": "authorization, content-type, depth", "access-control-allow-methods": "GET, PUT, DELETE, MKCOL, PROPFIND" };
+// An Atomic Data server at https://atomic.test, with one agent.
+const atomicKey = crypto.getRandomValues(new Uint8Array(32));
+const atomicAgent = { subject: "https://atomic.test/agents/me", privateKey: Buffer.from(atomicKey).toString("base64") };
+const { ed25519 } = await import("../../storage/src/index.ts");
+const atomic = fakeAtomic("https://atomic.test", { subject: atomicAgent.subject, publicKey: (await ed25519(atomicAgent.privateKey)).publicKey });
+const atomicCors = { "access-control-allow-origin": "*", "access-control-allow-headers": "*", "access-control-allow-methods": "GET, POST, OPTIONS" };
+// A Solid identity provider (https://idp.test) and Pod (https://pod.test/me/).
+const solid = await fakeSolidWorld();
 async function answer(route) {
   const url = route.request().url();
+  if (url.startsWith("https://atomic.test/")) {
+    const r = route.request();
+    if (r.method() === "OPTIONS") return route.fulfill({ status: 204, headers: atomicCors });
+    const raw = r.postDataBuffer();
+    // The fake reads uploads as FormData, as a server framework would hand them over.
+    const body = raw && r.method() === "POST" && url.includes("/upload") ? await new Request(url, { method: "POST", headers: r.headers(), body: raw }).formData() : raw?.toString();
+    const res = await atomic.fetch(url, { method: r.method(), headers: r.headers(), body });
+    return route.fulfill({ status: res.status, body: await res.text(), headers: { ...atomicCors, "content-type": res.headers.get("content-type") ?? "text/plain" } });
+  }
+  if (/^https:\/\/(idp|pod)\.test\//.test(url)) {
+    const r = route.request();
+    const res = await solid.answer(r.method(), url, r.headers(), r.postData() ?? undefined);
+    return route.fulfill({ status: res.status, headers: res.headers, body: res.body ?? "" });
+  }
+  if (url.startsWith("https://dav.test/")) {
+    const r = route.request();
+    if (r.method() === "OPTIONS") return route.fulfill({ status: 204, headers: davCors });
+    const res = await dav.fetch(url, { method: r.method(), headers: r.headers(), body: r.postData() ?? undefined });
+    return route.fulfill({ status: res.status, body: await res.text(), headers: { ...davCors, "content-type": res.headers.get("content-type") ?? "text/plain" } });
+  }
   if (url.startsWith(`${GATEWAY}/maps`)) {
     const r = route.request();
     const res = await gateway(
@@ -159,6 +192,106 @@ if (listed.length !== 3) throw new Error("expected 3 saved maps");
 await page.screenshot({ path: path.join(shots, "home.png") });
 await page.click("#maps li .delete");
 await page.waitForFunction(() => document.querySelectorAll("#maps li").length === 2);
+
+// Keep the maps in a WebDAV folder instead, copying the ones made so far.
+async function useStorage(fill) {
+  await page.evaluate(() => (document.querySelector("#storage-settings").open = true));
+  await fill();
+  await page.click("#storage-save");
+  await page.waitForFunction(() => /now kept|could not/.test(document.querySelector("#storage-status").textContent));
+  return page.textContent("#storage-status");
+}
+const wrongPassword = await useStorage(async () => {
+  await page.check('#storage input[value="webdav"]');
+  await page.fill("#dav-url", "https://dav.test/dav/okmaps/");
+  await page.fill("#dav-user", "me");
+  await page.fill("#dav-password", "wrong");
+});
+console.log(JSON.stringify({ wrongPassword }));
+if (!/could not be used/.test(wrongPassword)) throw new Error("a refused WebDAV login was not reported");
+await page.fill("#dav-password", "secret");
+await page.click("#storage-save");
+await page.waitForFunction(() => /now kept/.test(document.querySelector("#storage-status").textContent));
+console.log(JSON.stringify({ webdav: await page.textContent("#storage-status") }));
+await page.reload();
+await page.waitForSelector("#maps li");
+const onDav = await page.$$eval("#maps li a", (as) => as.map((a) => a.textContent));
+const davFiles = [...dav.tree.keys()].filter((k) => k.startsWith("/dav/okmaps/"));
+console.log(JSON.stringify({ listedFromWebdav: onDav, label: await page.textContent("#storage-label"), davFiles: davFiles.length }));
+if (JSON.stringify(onDav) !== JSON.stringify(listed.slice(1)) || !davFiles.includes("/dav/okmaps/index.json")) throw new Error("maps were not moved to WebDAV");
+await page.click("#maps li a");
+await page.waitForSelector("#visualization circle.area", { timeout: 30_000 });
+await page.goto(home);
+// Back to this browser (nothing to copy: the maps are there already).
+await useStorage(async () => {
+  await page.check('#storage input[value="browser"]');
+});
+await page.waitForSelector("#maps li");
+
+// Keep them in a Solid Pod: log in at the identity provider, come back, and
+// the maps are copied to okmaps/ at the top of the Pod the WebID names.
+await page.evaluate(() => (document.querySelector("#storage-settings").open = true));
+await page.check('#storage input[value="solid"]');
+await page.fill("#solid-issuer", ISSUER);
+await page.click("#storage-save");
+await page.waitForFunction(() => /now kept|could not/.test(document.querySelector("#storage-status")?.textContent ?? ""), null, { timeout: 30_000 });
+const solidStatus = await page.textContent("#storage-status");
+console.log(JSON.stringify({ solid: solidStatus, idp: solid.log }));
+if (!/now kept in Solid Pod \(https:\/\/pod\.test\/me\/okmaps\/\)/.test(solidStatus)) throw new Error("the Pod was not used after logging in");
+await page.waitForSelector("#maps li");
+const onPod = await page.$$eval("#maps li a", (as) => as.map((a) => a.textContent));
+const podFiles = [...solid.pod.tree.keys()].filter((k) => k.startsWith("/me/okmaps/maps/") && k.endsWith(".json"));
+if (JSON.stringify(onPod) !== JSON.stringify(onDav) || podFiles.length !== onPod.length) throw new Error(`maps were not copied to the Pod: ${JSON.stringify({ onPod, podFiles })}`);
+// The map page reads Pod maps from a copy in this browser, made on the way.
+await page.click("#maps li a");
+await page.waitForSelector("#visualization circle.area", { timeout: 30_000 });
+const podMapUrl = page.url();
+// Without that copy (a bookmark, say), the main page logs in again silently,
+// fetches the map and comes back.
+await page.evaluate(() => new Promise((r) => { const q = indexedDB.deleteDatabase("okmaps-pod-copy"); q.onsuccess = q.onerror = q.onblocked = r; }));
+const authsBefore = solid.log.filter((l) => l === "GET /auth").length;
+await page.goto(podMapUrl);
+await page.waitForURL((u) => u.href === podMapUrl, { timeout: 30_000 });
+await page.waitForSelector("#visualization circle.area", { timeout: 30_000 });
+console.log(JSON.stringify({ podMapWithoutCopy: page.url() === podMapUrl, silentLogins: solid.log.filter((l) => l === "GET /auth").length - authsBefore }));
+// Sharing saves the published id with the map; the map page cannot write to
+// the Pod, so the main page sends it there next time.
+await page.click("#share");
+await page.waitForSelector("#share-panel:not([hidden])");
+const podMapId = new URL(podMapUrl).searchParams.get("id");
+await page.goto(home);
+await page.waitForSelector("#maps li");
+await page.waitForFunction(async () => !(await new Promise((r) => { const q = indexedDB.open("okmaps-pod-copy"); q.onsuccess = () => { const g = q.result.transaction("docs").objectStore("docs").get("unsent.json"); g.onsuccess = () => { q.result.close(); r(g.result); }; }; })));
+if (!JSON.parse(solid.pod.tree.get(`/me/okmaps/maps/${podMapId}.json`)).sharedId) throw new Error("the map page's change did not reach the Pod");
+console.log(JSON.stringify({ listedFromPod: await page.$$eval("#maps li a", (as) => as.map((a) => a.textContent)), label: await page.textContent("#storage-label") }));
+await useStorage(async () => {
+  await page.check('#storage input[value="browser"]');
+  await page.uncheck('#storage input[name="copy"]');
+});
+await page.waitForSelector("#maps li");
+
+// An Atomic Data server: requests and commits signed with the agent's key.
+const atomicStatus = await useStorage(async () => {
+  await page.check('#storage input[value="atomic"]');
+  await page.check('#storage input[name="copy"]');
+  await page.fill("#atomic-parent", "https://atomic.test/drive/okmaps");
+  await page.fill("#atomic-secret", Buffer.from(JSON.stringify(atomicAgent)).toString("base64"));
+});
+console.log(JSON.stringify({ atomic: atomicStatus }));
+if (!/now kept in Atomic Data/.test(atomicStatus)) throw new Error("the Atomic Data server was not used");
+await page.reload();
+await page.waitForSelector("#maps li");
+const onAtomic = await page.$$eval("#maps li a", (as) => as.map((a) => a.textContent));
+if (JSON.stringify(onAtomic) !== JSON.stringify(onDav)) throw new Error(`maps were not copied to Atomic Data: ${JSON.stringify(onAtomic)}`);
+await page.click("#maps li a");
+await page.waitForSelector("#visualization circle.area", { timeout: 30_000 });
+console.log(JSON.stringify({ listedFromAtomic: onAtomic, atomicFiles: atomic.resources.size }));
+await page.goto(home);
+await useStorage(async () => {
+  await page.check('#storage input[value="browser"]');
+  await page.uncheck('#storage input[name="copy"]');
+});
+await page.waitForSelector("#maps li");
 
 // A failing search shows the reason, not a crash.
 await page.check('input[value="openaire"]');
