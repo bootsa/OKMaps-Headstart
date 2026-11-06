@@ -22,8 +22,15 @@ const shots = path.resolve(here, "../test-results");
 fs.mkdirSync(shots, { recursive: true });
 const types = { ".html": "text/html", ".js": "text/javascript", ".css": "text/css", ".json": "application/json", ".svg": "image/svg+xml", ".png": "image/png", ".woff2": "font/woff2", ".woff": "font/woff", ".ttf": "font/ttf" };
 
+// APP_BASE: the path the site was built for (as on GitHub Pages); the server strips it.
+const base = process.env.APP_BASE ?? "/";
 const server = http.createServer((req, res) => {
-  const p = decodeURIComponent(new URL(req.url, "http://x").pathname);
+  let p = decodeURIComponent(new URL(req.url, "http://x").pathname);
+  if (!p.startsWith(base)) {
+    res.writeHead(404).end();
+    return;
+  }
+  p = "/" + p.slice(base.length);
   let file = path.join(dist, p.endsWith("/") ? p + "index.html" : p);
   if (!file.startsWith(dist) || !fs.existsSync(file)) {
     res.writeHead(404).end();
@@ -34,6 +41,7 @@ const server = http.createServer((req, res) => {
 });
 await new Promise((r) => server.listen(0, "127.0.0.1", r));
 const origin = `http://127.0.0.1:${server.address().port}`;
+const home = `${origin}${base}`;
 
 const browser = await chromium.launch();
 const page = await browser.newPage({ viewport: { width: 1280, height: 860 } });
@@ -74,7 +82,7 @@ async function openShared(p, url, name) {
 }
 
 async function makeMap(fill, name) {
-  await page.goto(`${origin}/`);
+  await page.goto(home);
   await fill();
   const t0 = Date.now();
   await page.click("#submit");
@@ -118,7 +126,7 @@ await other.route(/^https?:\/\/(?!127\.0\.0\.1)/, answer);
 await openShared(other, link, "shared");
 await other.click("#save");
 await other.waitForSelector("#save:disabled");
-await other.goto(`${origin}/`);
+await other.goto(home);
 await other.waitForSelector("#maps li");
 const savedCopy = await other.$$eval("#maps li a", (as) => as.map((a) => a.textContent));
 console.log(JSON.stringify({ savedFromLink: savedCopy }));
@@ -143,7 +151,7 @@ if (await other.evaluate(() => window.pwned)) throw new Error("a shared map ran 
 console.log(JSON.stringify({ craftedMapSafe: true }));
 await other.close();
 
-await page.goto(`${origin}/`);
+await page.goto(home);
 await page.waitForSelector("#maps li");
 const listed = await page.$$eval("#maps li a", (as) => as.map((a) => a.textContent));
 console.log(JSON.stringify({ listed }));
@@ -161,7 +169,7 @@ await page.waitForSelector(".status.error");
 console.log(JSON.stringify({ error: await page.textContent("#status") }));
 
 // Offline: once the service worker has stored the app, saved maps open without a network.
-await page.goto(`${origin}/`);
+await page.goto(home);
 const cached = await page.evaluate(async () => {
   await navigator.serviceWorker.ready;
   const keys = await caches.keys();

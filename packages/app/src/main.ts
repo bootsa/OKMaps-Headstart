@@ -41,6 +41,12 @@ form.addEventListener("change", (e) => {
   if ((e.target as HTMLElement).id === "from") $<HTMLInputElement>("from").dataset.touched = "1";
   if ((e.target as HTMLInputElement).name === "service") updateFields();
 });
+// BASE needs the gateway (registered IP and API key).
+if (!settings.gatewayUrl) {
+  const base = form.querySelector<HTMLInputElement>('input[name="service"][value="base"]')!;
+  base.disabled = true;
+  base.parentElement!.append(" (needs a gateway)");
+}
 updateFields();
 
 function readRequest(): SearchRequest {

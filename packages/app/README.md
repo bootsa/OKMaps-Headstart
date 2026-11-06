@@ -36,6 +36,18 @@ npm run build               # static site in dist/
 both build steps if it is not served from the root. `npm run dev` serves the
 app with hot reload (after `build:vis`).
 
+### GitHub Pages
+
+`.github/workflows/pages.yml` builds the site and publishes it to GitHub
+Pages on every push to `main` that touches the app, its packages or vis/
+(or by hand from the Actions tab). To turn it on, set the repository's
+Settings > Pages > Source to "GitHub Actions". The site is then at
+`https://<owner>.github.io/<repository>/`.
+
+Set the repository variable `GATEWAY_URL` to a running gateway to turn on
+BASE searches and share links; without it they are off and the site says
+so. `CROSSREF_MAILTO` sets the contact address sent to Crossref.
+
 ## Tests
 
 ```
@@ -51,6 +63,28 @@ an error message. It then shares a map, opens the link in a second browser
 profile and saves it there, and opens a crafted map whose titles hold markup
 to check that no script runs. Last, it goes offline and opens a saved map.
 Screenshots go to `test-results/`.
+
+### Parity with the current server
+
+`test/parity/parity.test.ts` (part of `npm test`) compares the maps the app
+makes from the recorded provider answers with the maps today's server makes
+from the same answers. The server's maps (`test/parity/legacy/*.json.gz`) are
+made by running the server's own code: the R and Python source stages (as
+recorded in `packages/sources/test/golden`), the PubMed citation merge,
+`vis_layout()`, and the pandas and PHP steps before vis/ reads the data.
+It checks the documents, every field, which papers share an area, the area
+titles, and the layout (against R's own run-to-run variation), and writes a
+summary to `test-results/parity.md`. Intended differences are listed in the
+test with their reasons.
+
+To remake the server's maps (needs R with the packages listed in
+`packages/pipeline/test/golden/r/generate_goldens.R`, and pandas), from the
+repository root:
+
+```
+Rscript packages/app/test/parity/legacy_maps.R packages/app/test/parity/legacy
+python3 packages/app/test/parity/legacy_finish.py packages/app/test/parity/legacy
+```
 
 ## Share links
 

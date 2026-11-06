@@ -124,6 +124,7 @@ async function main() {
   const params = new URLSearchParams(location.search);
   const shared = params.get("shared");
   if (shared) {
+    if (!settings.gatewayUrl) return showMessage("Share links need a gateway, and this site has none.");
     const map = await fetchSharedMap(settings.gatewayUrl, shared);
     if (!map) return showMessage("This shared map does not exist.");
     const safe = neutralise(map, domDecode);
@@ -133,7 +134,7 @@ async function main() {
   const id = params.get("id");
   const saved = id ? await getMap(id) : undefined;
   if (!saved) return showMessage("This map is not saved in this browser.");
-  offerShare(saved);
+  if (settings.gatewayUrl) offerShare(saved);
   return draw(saved);
 }
 
