@@ -1,0 +1,24 @@
+{
+  "name": "@okmaps/gateway",
+  "version": "0.1.0",
+  "description": "OKMaps source gateway: forwards browser requests to providers that need a registered IP or a secret (BASE). Stateless; runs on Node or any Fetch-API runtime.",
+  "license": "MIT",
+  "type": "module",
+  "private": true,
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "start": "node src/server.ts",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "engines": {
+    "node": ">=22.18"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "typescript": "^5.7.2",
+    "vitest": "^3.2.4"
+  }
+}

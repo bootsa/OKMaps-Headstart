@@ -104,3 +104,4 @@ export async function searchBase(params: BaseParams, opts: BaseOptions): Promise
     throw toSourceError("base", err, params);
   }
 }
+export { parseBaseRepositories, fetchBaseContentProviders } from "./repositories.js";
