@@ -1,0 +1,80 @@
+name: GitHub Pages
+
+# Builds the browser app (packages/app) with the visualisation and publishes
+# it to GitHub Pages at https://<owner>.github.io/<repository>/.
+# Repository variables (Settings > Secrets and variables > Actions > Variables):
+#   GATEWAY_URL      the gateway's URL; without it BASE searches and share links are off
+#   CROSSREF_MAILTO  contact address for Crossref's polite pool (optional)
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "packages/**"
+      - "vis/**"
+      - "package.json"
+      - "package-lock.json"
+      - "webpack.config.js"
+      - ".github/workflows/pages.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      APP_BASE: /${{ github.event.repository.name }}/
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            packages/app/package-lock.json
+
+      - name: Install the visualisation's dependencies
+        run: |
+          cp config.example.js config.js
+          npm ci
+
+      - name: Install the app's dependencies
+        working-directory: packages/app
+        run: npm ci
+
+      - name: Build the visualisation
+        working-directory: packages/app
+        run: npm run build:vis
+
+      - name: Build the app
+        working-directory: packages/app
+        env:
+          VITE_GATEWAY_URL: ${{ vars.GATEWAY_URL }}
+          VITE_CROSSREF_MAILTO: ${{ vars.CROSSREF_MAILTO }}
+        run: |
+          npm run build
+          touch dist/.nojekyll
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: packages/app/dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

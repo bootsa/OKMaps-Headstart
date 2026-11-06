@@ -36,6 +36,18 @@ npm run build               # static site in dist/
 both build steps if it is not served from the root. `npm run dev` serves the
 app with hot reload (after `build:vis`).
 
+### GitHub Pages
+
+`.github/workflows/pages.yml` builds the site and publishes it to GitHub
+Pages on every push to `main` that touches the app, its packages or vis/
+(or by hand from the Actions tab). To turn it on, set the repository's
+Settings > Pages > Source to "GitHub Actions". The site is then at
+`https://<owner>.github.io/<repository>/`.
+
+Set the repository variable `GATEWAY_URL` to a running gateway to turn on
+BASE searches and share links; without it they are off and the site says
+so. `CROSSREF_MAILTO` sets the contact address sent to Crossref.
+
 ## Tests
 
 ```
