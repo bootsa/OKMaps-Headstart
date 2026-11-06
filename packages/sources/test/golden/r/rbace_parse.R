@@ -1,5 +1,5 @@
 # Vendored from rbace (MIT, https://github.com/OpenKnowledgeMaps/rbace, commit f4d5f21, R/parse.R),
-# the version pinned in server/workers/base/renv.lock. Used only to generate goldens.
+# the version pinned in legacy/workers/base/renv.lock. Used only to generate goldens.
 
 nmtxt <- function(x) {
   if (xml2::xml_name(x) == "arr") {

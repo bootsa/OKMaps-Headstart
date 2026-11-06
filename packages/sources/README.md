@@ -7,7 +7,7 @@ browser, a Web Worker or Node 18+.
 
 | Provider | Status | Talks to | Port of |
 |---|---|---|---|
-| PubMed | done | NCBI E-utilities directly (CORS allowed) | `server/preprocessing/other-scripts/pubmed.R` |
+| PubMed | done | NCBI E-utilities directly (CORS allowed) | `legacy/preprocessing/other-scripts/pubmed.R` |
 | BASE | done | source gateway (BASE needs a registered IP) | `base.R`, `subject_cleaning.R`, `preprocess.R`, `workers/base`, `common/deduplication.py`, `common/enrichment.py` |
 | OpenAIRE | done | OpenAIRE search API (CORS not yet checked; a gateway URL can be passed) | `openaire.R`, `run_openaire_projectdata.R` |
 | Crossref citations | done | Crossref REST API (CORS allowed) | `metrics.R` (`add_citations`) |
@@ -153,7 +153,7 @@ Rscript test/golden/r/subject_golden.R test/golden/subject_cleaning.json.gz
 Rscript test/golden/r/base_query_golden.R test/golden/base_query.json
 Rscript test/golden/r/make_base_fixtures.R test/fixtures/base   # then gzip -9 -n the .xml files
 Rscript test/golden/r/base_records_golden.R test/fixtures/base test/golden/base_records
-PYTHONPATH=../../server/workers/common:../../server/workers/base/src \
+PYTHONPATH=../../legacy/workers/common:../../legacy/workers/base/src \
   python test/golden/py/base_worker_golden.py test/golden/base_records test/golden/base_worker
 python test/golden/py/fuzz_golden.py test/golden/fuzz.json.gz
 Rscript test/golden/r/openaire_golden.R test/fixtures/openaire test/golden/openaire

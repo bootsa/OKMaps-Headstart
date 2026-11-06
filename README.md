@@ -1,27 +1,40 @@
 # Head Start
 
-Head Start is a web-based knowledge mapping software intended to give anyone a head start on their literature search (hence the name). It comes with a scalable backend that is capable of automatically producing knowledge maps from a variety of data sources.
+Head Start is a web-based knowledge mapping software intended to give anyone a head start on their literature search (hence the name). It makes knowledge maps from a variety of data sources, in the browser.
 
 ![Head Start](headstart.png)
 
-## Getting Started
+## How it is built
 
-### Client
-To get started, clone this repository. Next, duplicate the file `config.example.js` in the root folder and rename it to `config.js`.
+Maps are made in the browser. A search goes straight to the provider (or
+through a small gateway where the provider needs one), the map is computed
+in a Web Worker, and the person's maps are kept where they choose: in the
+browser, a WebDAV folder, a Solid Pod or an Atomic Data server. It works
+offline once installed as a web app.
 
-Make sure to have installed `node` version >= 18.20.0 and `npm` version >=10.7.0 (best way to install is with [nvm](https://github.com/nvm-sh/nvm), `nvm install 18.20.0`) and run the following command to install the Headstart dependencies:
+| Folder | What |
+|---|---|
+| `packages/app` | the browser app (Vite): search, map list, storage choice, share links, offline |
+| `packages/pipeline` | turns records into a map: clustering, layout, area titles (a TypeScript port of the R scripts) |
+| `packages/sources` | the providers: PubMed, BASE, OpenAIRE, Crossref citation counts |
+| `packages/storage` | where maps are kept: one interface, an adaptor per storage system |
+| `packages/gateway` | the small server some providers need (BASE's registered IP and key) and the store for share links |
+| `vis/` | the map visualisation (webpack; the app builds and loads it) |
+| `legacy/` | the old R and Python code, kept only to regenerate test goldens and run the parity checks |
 
-    npm install
+Each package has a README with how to run and test it. To run the app:
 
-We use [webpack](https://webpack.github.io/) to build our client-side application. The development server is based on the `webpack serve` utility, which means that changes to files are tracked and the page is reloaded automatically. Run the local BASE example with the following command:
+    cp config.example.js config.js && npm ci
+    cd packages/app && npm ci && npm run build:vis && npm run dev
 
-	npm run example:base
+The app is published to GitHub Pages by `.github/workflows/pages.yml`.
 
-The browser will automatically open a new window with the example.
+The earlier server (PHP, R and Python workers, Postgres, Redis, Docker
+setup) is on the [`legacy-server`](https://github.com/bootsa/OKMaps-Headstart/tree/legacy-server) branch.
 
-You can run also run the PubMed example using `npm run example:pubmed`
+### Visualisation tests
 
-If everything has worked out, you should see the example visualization.
+    npm ci && npm test
 
 ## Contributors
 

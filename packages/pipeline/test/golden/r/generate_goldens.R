@@ -2,7 +2,7 @@
 #
 # Usage (from the repository root):
 #   Rscript packages/pipeline/test/golden/r/generate_goldens.R \
-#     server/workers/tests/knowncases packages/pipeline/test/golden/data
+#     legacy/workers/tests/knowncases packages/pipeline/test/golden/data
 #
 # Runs the same functions as vis_layout() (overview, default ranking mode 0 and
 # n-gram setting 0) on each known case and writes the intermediate stages that
@@ -16,7 +16,7 @@ out_dir <- args[2]
 dir.create(out_dir, showWarnings = FALSE, recursive = TRUE)
 out_dir <- normalizePath(out_dir)
 shim <- normalizePath(file.path(dirname(sub("--file=", "", grep("--file=", commandArgs(FALSE), value = TRUE))), "gmd_shim.R"))
-scripts <- normalizePath("server/preprocessing/other-scripts")
+scripts <- normalizePath("legacy/preprocessing/other-scripts")
 setwd(scripts)
 
 library <- function(pkg, ...) {

@@ -1,6 +1,7 @@
 /**
  * Settings for the existing visualisation (vis/), per service. They follow
- * the local examples in examples/public/main_integration, with the features
+ * the old local examples (examples/public/main_integration on the
+ * legacy-server branch), with the features
  * that need the PHP server (PDF preview, share and embed links, export,
  * annotations, analytics) turned off until the browser app has its own.
  */

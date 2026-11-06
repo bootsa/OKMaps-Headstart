@@ -8,7 +8,7 @@ suppressMessages({ library(jsonlite); library(logging); library(stringr); librar
 invisible(Sys.setlocale("LC_ALL", "en_US.UTF-8"))
 args <- commandArgs(TRUE)
 here <- normalizePath(dirname(sub("--file=", "", grep("--file=", commandArgs(FALSE), value = TRUE))))
-scripts <- normalizePath(file.path(here, "../../../../../server/preprocessing/other-scripts"))
+scripts <- normalizePath(file.path(here, "../../../../../legacy/preprocessing/other-scripts"))
 basicConfig(level = "ERROR")
 .GlobalEnv$VIS_ID <- "golden"
 source(file.path(here, "rbace_parse.R"))

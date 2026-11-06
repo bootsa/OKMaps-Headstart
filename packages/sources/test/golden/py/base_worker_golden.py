@@ -2,11 +2,11 @@
 
 Feeds the R output (test/golden/base_records/*.json.gz, the metadata JSON
 run_base.R prints) through BaseClient.execute_search from
-server/workers/base/src/base.py, with the R subprocess replaced by that
+legacy/workers/base/src/base.py, with the R subprocess replaced by that
 output. Duplicate merging, annotations, the list_size cut, enrichment of
 journal fields and the clustering text all run as in production.
 
-    PYTHONPATH=server/workers/common:server/workers/base/src \
+    PYTHONPATH=../../legacy/workers/common:../../legacy/workers/base/src \
       python test/golden/py/base_worker_golden.py test/golden/base_records test/golden/base_worker
 
 Needs pandas, numpy, rapidfuzz, Levenshtein, dateparser, redis (import only).
@@ -19,7 +19,7 @@ import os
 import sys
 
 here = os.path.dirname(os.path.abspath(__file__))
-workers = os.path.normpath(os.path.join(here, "../../../../../server/workers"))
+workers = os.path.normpath(os.path.join(here, "../../../../../legacy/workers"))
 spec = importlib.util.spec_from_file_location("base_worker", os.path.join(workers, "base/src/base.py"))
 base = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(base)

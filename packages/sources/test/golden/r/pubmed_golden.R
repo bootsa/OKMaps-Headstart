@@ -1,4 +1,4 @@
-# Runs the parsing part of server/preprocessing/other-scripts/pubmed.R on a
+# Runs the parsing part of legacy/preprocessing/other-scripts/pubmed.R on a
 # saved EFetch response, so the TypeScript adaptor can be compared with R.
 #
 #   Rscript test/golden/r/pubmed_golden.R test/fixtures/pubmed_efetch.xml > test/golden/pubmed_efetch.json
@@ -17,7 +17,7 @@ invisible(Sys.setlocale(category = "LC_ALL", locale = "en_US.UTF-8"))
 args <- commandArgs(TRUE)
 fixture <- args[1]
 here <- normalizePath(dirname(sub("--file=", "", grep("--file=", commandArgs(FALSE), value = TRUE))))
-scripts <- normalizePath(file.path(here, "../../../../../server/preprocessing/other-scripts"))
+scripts <- normalizePath(file.path(here, "../../../../../legacy/preprocessing/other-scripts"))
 
 entrez_retry_options <- function(...) list()
 entrez_search <- function(...) list(web_history = NULL)

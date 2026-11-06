@@ -1,5 +1,5 @@
 /**
- * PubMed adaptor, a port of server/preprocessing/other-scripts/pubmed.R.
+ * PubMed adaptor, a port of legacy/preprocessing/other-scripts/pubmed.R.
  *
  * It talks to the NCBI E-utilities directly (they allow cross-origin calls),
  * so it needs no gateway: ESearch with history, then EFetch for the records

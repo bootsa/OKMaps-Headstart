@@ -5,7 +5,7 @@ import { fileURLToPath } from "node:url";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 export const goldenDir = path.join(here, "data");
-export const casesDir = path.resolve(here, "../../../../server/workers/tests/knowncases");
+export const casesDir = path.resolve(here, "../../../../legacy/workers/tests/knowncases");
 
 export interface Golden {
   name: string;

@@ -1,5 +1,5 @@
 /**
- * BASE keyword cleaning, a port of server/preprocessing/other-scripts/
+ * BASE keyword cleaning, a port of legacy/preprocessing/other-scripts/
  * subject_cleaning.R (clean_subject_string and its helpers).
  *
  * Each pattern notes the R engine it came from. TRE patterns (R's default)
