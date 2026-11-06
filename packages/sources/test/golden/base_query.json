@@ -1,0 +1,4093 @@
+[
+  {
+    "q": "sugar",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:sugar",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:sugar) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "digital education",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:digital textus:education",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:digital textus:education) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "economic growth",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:economic textus:growth",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:economic textus:growth) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "machine learning",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:machine textus:learning",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:machine textus:learning) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "money supply",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:money textus:supply",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:money textus:supply) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "psychology",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:psychology",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:psychology) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "cancer",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:cancer",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:cancer) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "beton",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:beton",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:beton) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "tax evasion",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:tax textus:evasion",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:tax textus:evasion) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "osint",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:osint",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:osint) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "audit",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:audit",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:audit) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "deep learning",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:deep textus:learning",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:deep textus:learning) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "education",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:education",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:education) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "critical thinking",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:critical textus:thinking",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:critical textus:thinking) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "open science",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:open textus:science",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:open textus:science) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "data mining",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:data textus:mining",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:data textus:mining) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "pertumbuhan ekonomi",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:pertumbuhan textus:ekonomi",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:pertumbuhan textus:ekonomi) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "music",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:music",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:music) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "water sensitive city",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:water textus:sensitive textus:city",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:water textus:sensitive textus:city) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "blockchain",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:blockchain",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:blockchain) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "kemiskinan",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:kemiskinan",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:kemiskinan) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "artificial intelligence",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:artificial textus:intelligence",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:artificial textus:intelligence) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "learning",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:learning",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:learning) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "kualitas audit",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:kualitas textus:audit",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:kualitas textus:audit) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "computer science",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:computer textus:science",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:computer textus:science) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "diabetes",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:diabetes",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:diabetes) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "data science",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:data textus:science",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:data textus:science) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "virtual reality",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:virtual textus:reality",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:virtual textus:reality) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "depression",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:depression",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:depression) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "skeptisisme",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:skeptisisme",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:skeptisisme) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "knowledge map",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:knowledge textus:map",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:knowledge textus:map) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "math",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:math",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:math) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "asuransi syariah",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:asuransi textus:syariah",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:asuransi textus:syariah) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "cycling participation",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:cycling textus:participation",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:cycling textus:participation) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "unemployment",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:unemployment",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:unemployment) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "library",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:library",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:library) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "urban design",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:urban textus:design",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:urban textus:design) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "pajak",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:pajak",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:pajak) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "love",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:love",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:love) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "auditing",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:auditing",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:auditing) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "inflation",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:inflation",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:inflation) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "brexit",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:brexit",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:brexit) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "nutrition",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:nutrition",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:nutrition) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "knowledge management",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:knowledge textus:management",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:knowledge textus:management) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "sistem pakar",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:sistem textus:pakar",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:sistem textus:pakar) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "corporate social responsibility",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:corporate textus:social textus:responsibility",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:corporate textus:social textus:responsibility) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "management",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:management",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:management) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "design",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:design",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:design) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "literasi matematika",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:literasi textus:matematika",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:literasi textus:matematika) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "psak 45",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:psak textus:45",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:psak textus:45) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "speech act",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:speech textus:act",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:speech textus:act) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "green accounting",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:green textus:accounting",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:green textus:accounting) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "social support",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:social textus:support",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:social textus:support) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "fintech",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:fintech",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:fintech) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "parenting",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:parenting",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:parenting) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "financial distress",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:financial textus:distress",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:financial textus:distress) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "chi square",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:chi textus:square",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:chi textus:square) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "sekretaris",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:sekretaris",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:sekretaris) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "csr",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:csr",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:csr) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "pendidikan matematika",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:pendidikan textus:matematika",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:pendidikan textus:matematika) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "pendapatan",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:pendapatan",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:pendapatan) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "sales",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:sales",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:sales) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "tataniaga pertanian",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:tataniaga textus:pertanian",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:tataniaga textus:pertanian) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "climate change",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:climate textus:change",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:climate textus:change) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "entrepreneurship",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:entrepreneurship",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:entrepreneurship) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "umkm",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:umkm",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:umkm) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "pengangguran",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:pengangguran",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:pengangguran) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "gaji",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:gaji",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:gaji) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "tax amnesty",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:tax textus:amnesty",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:tax textus:amnesty) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "tafsir",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:tafsir",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:tafsir) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "sistem informasi akuntansi",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:sistem textus:informasi textus:akuntansi",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:sistem textus:informasi textus:akuntansi) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "tourism",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:tourism",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:tourism) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "tenaga kerja",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:tenaga textus:kerja",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:tenaga textus:kerja) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "marketing",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:marketing",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:marketing) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "livelihood",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:livelihood",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:livelihood) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "metacognition",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:metacognition",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:metacognition) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "infrastruktur",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:infrastruktur",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:infrastruktur) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "penyerapan tenaga kerja",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:penyerapan textus:tenaga textus:kerja",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:penyerapan textus:tenaga textus:kerja) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "implicature",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:implicature",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:implicature) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "augmented reality",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:augmented textus:reality",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:augmented textus:reality) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "sistem pendukung keputusan",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:sistem textus:pendukung textus:keputusan",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:sistem textus:pendukung textus:keputusan) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "problem solving",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:problem textus:solving",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:problem textus:solving) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "body shaming",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:body textus:shaming",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:body textus:shaming) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "komunikasi",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:komunikasi",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:komunikasi) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "keuangan",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:keuangan",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:keuangan) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "pendidikan",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:pendidikan",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:pendidikan) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "hoax",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:hoax",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:hoax) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "disability",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:disability",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:disability) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "leadership",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:leadership",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:leadership) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "e-commerce",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:e-commerce",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:e-commerce) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "cash holding",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:cash textus:holding",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:cash textus:holding) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "gender",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:gender",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:gender) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "tax avoidance",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:tax textus:avoidance",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:tax textus:avoidance) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "terrorism",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:terrorism",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:terrorism) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "poverty",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:poverty",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:poverty) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "tax compliance",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:tax textus:compliance",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:tax textus:compliance) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "self efficacy",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:self textus:efficacy",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:self textus:efficacy) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "harga saham",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:harga textus:saham",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:harga textus:saham) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "anemia",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:anemia",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:anemia) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "pragmatics",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:pragmatics",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:pragmatics) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "chicken eggshell coloration",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "language": "english",
+      "limit": 120,
+      "list_size": 100,
+      "q": "chicken eggshell coloration",
+      "raw": true,
+      "service": "base",
+      "sorting": "most-recent",
+      "to": "2018-09-19"
+    },
+    "exact": "textus:chicken textus:eggshell textus:coloration",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2018-09-19] (textus:chicken textus:eggshell textus:coloration) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "dcyear desc",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "happiness",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "2020-01-31",
+      "language": "english",
+      "limit": 120,
+      "list_size": 100,
+      "q": "happiness",
+      "raw": true,
+      "service": "base",
+      "sorting": "most-relevant",
+      "to": "2020-08-06"
+    },
+    "exact": "textus:happiness",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[2020-01-31 TO 2020-08-06] (textus:happiness) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "pariwisata",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "2018-08-27",
+      "language": "english",
+      "limit": 120,
+      "list_size": 100,
+      "q": "pariwisata",
+      "raw": true,
+      "service": "base",
+      "sorting": "most-relevant",
+      "to": "2020-08-06"
+    },
+    "exact": "textus:pariwisata",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[2018-08-27 TO 2020-08-06] (textus:pariwisata) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "pembelajaran di masa pandemi",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "2020-02-26",
+      "language": "english",
+      "limit": 120,
+      "list_size": 100,
+      "q": "pembelajaran di masa pandemi",
+      "raw": true,
+      "service": "base",
+      "sorting": "most-relevant",
+      "to": "2020-08-06"
+    },
+    "exact": "textus:pembelajaran textus:di textus:masa textus:pandemi",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[2020-02-26 TO 2020-08-06] (textus:pembelajaran textus:di textus:masa textus:pandemi) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "social attention",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "2018-08-17",
+      "language": "english",
+      "limit": 120,
+      "list_size": 100,
+      "q": "social attention",
+      "raw": true,
+      "service": "base",
+      "sorting": "most-relevant",
+      "to": "2020-08-06"
+    },
+    "exact": "textus:social textus:attention",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[2018-08-17 TO 2020-08-06] (textus:social textus:attention) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "studi kelayakan proyek",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "2017-12-25",
+      "language": "english",
+      "limit": 120,
+      "list_size": 100,
+      "q": "studi kelayakan proyek",
+      "raw": true,
+      "service": "base",
+      "sorting": "most-relevant",
+      "to": "2020-08-06"
+    },
+    "exact": "textus:studi textus:kelayakan textus:proyek",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[2017-12-25 TO 2020-08-06] (textus:studi textus:kelayakan textus:proyek) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "stuff",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "language": "english",
+      "limit": 120,
+      "list_size": 100,
+      "q": "stuff",
+      "raw": true,
+      "service": "base",
+      "sorting": "most-relevant",
+      "to": "2020-07-01"
+    },
+    "exact": "textus:stuff",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2020-07-01] (textus:stuff) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "stuff",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "2018-06-28",
+      "language": "english",
+      "limit": 120,
+      "list_size": 100,
+      "q": "stuff",
+      "raw": true,
+      "service": "base",
+      "sorting": "most-relevant",
+      "to": "2020-08-06"
+    },
+    "exact": "textus:stuff",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[2018-06-28 TO 2020-08-06] (textus:stuff) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "stuff",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "2018-10-28",
+      "language": "english",
+      "limit": 120,
+      "list_size": 100,
+      "q": "stuff",
+      "raw": true,
+      "service": "base",
+      "sorting": "most-relevant",
+      "to": "2020-08-06"
+    },
+    "exact": "textus:stuff",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[2018-10-28 TO 2020-08-06] (textus:stuff) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "explosion",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "2018-10-28",
+      "language": "english",
+      "limit": 120,
+      "list_size": 100,
+      "q": "explosion",
+      "raw": true,
+      "service": "base",
+      "sorting": "most-relevant",
+      "to": "2020-12-08"
+    },
+    "exact": "textus:explosion",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[2018-10-28 TO 2020-12-08] (textus:explosion) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "“hannah arendt\"",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1809-01-01",
+      "language": "english",
+      "limit": 120,
+      "list_size": 100,
+      "q": "“hannah arendt\"",
+      "raw": true,
+      "service": "base",
+      "sorting": "most-relevant",
+      "to": "2021-02-28"
+    },
+    "exact": "textus:\"hannah arendt\"",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1809-01-01 TO 2021-02-28] (textus:\"hannah arendt\") dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "stuff",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "language": "english",
+      "limit": 120,
+      "list_size": 100,
+      "q": "stuff",
+      "raw": true,
+      "service": "base",
+      "sorting": "most-relevant",
+      "to": "2020-07-01"
+    },
+    "exact": "textus:stuff",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2020-07-01] (textus:stuff) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "\"black lives matter\"",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "language": "english",
+      "limit": 120,
+      "list_size": 100,
+      "q": "\"black lives matter\"",
+      "raw": true,
+      "service": "base",
+      "sorting": "most-relevant",
+      "to": "2020-06-08"
+    },
+    "exact": "textus:\"black lives matter\"",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2020-06-08] (textus:\"black lives matter\") dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "\"black lives matter\"",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "language": "english",
+      "limit": 120,
+      "list_size": 100,
+      "q": "\"black lives matter\"",
+      "raw": true,
+      "service": "base",
+      "sorting": "most-relevant",
+      "to": "2020-06-08"
+    },
+    "exact": "textus:\"black lives matter\"",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2020-06-08] (textus:\"black lives matter\") dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "\"systemic racism\"",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "language": "english",
+      "limit": 120,
+      "list_size": 100,
+      "q": "\"systemic racism\"",
+      "raw": true,
+      "service": "base",
+      "sorting": "most-relevant",
+      "to": "2020-06-16"
+    },
+    "exact": "textus:\"systemic racism\"",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2020-06-16] (textus:\"systemic racism\") dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "heart disease",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "2019-01-06",
+      "language": "english",
+      "limit": 120,
+      "list_size": 100,
+      "q": "heart disease",
+      "raw": true,
+      "service": "base",
+      "sorting": "most-relevant",
+      "to": "2020-08-06"
+    },
+    "exact": "textus:heart textus:disease",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[2019-01-06 TO 2020-08-06] (textus:heart textus:disease) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "corona",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "2020-03-31",
+      "language": "english",
+      "limit": 120,
+      "list_size": 100,
+      "q": "corona",
+      "raw": true,
+      "service": "base",
+      "sorting": "most-relevant",
+      "to": "2020-08-06"
+    },
+    "exact": "textus:corona",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[2020-03-31 TO 2020-08-06] (textus:corona) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "corona",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "2020-03-31",
+      "language": "english",
+      "limit": 120,
+      "list_size": 100,
+      "q": "corona",
+      "raw": true,
+      "service": "base",
+      "sorting": "most-relevant",
+      "to": "2020-08-06"
+    },
+    "exact": "textus:corona",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[2020-03-31 TO 2020-08-06] (textus:corona) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "digital marketing",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "2018-07-18",
+      "language": "english",
+      "limit": 120,
+      "list_size": 100,
+      "q": "digital marketing",
+      "raw": true,
+      "service": "base",
+      "sorting": "most-recent",
+      "to": "2020-08-06"
+    },
+    "exact": "textus:digital textus:marketing",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[2018-07-18 TO 2020-08-06] (textus:digital textus:marketing) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "dcyear desc",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "\"climate change\" adaptation",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:\"climate change\" textus:adaptation",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:\"climate change\" textus:adaptation) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "climate+change",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:climate textus:change",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:climate textus:change) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "climate ++ change \"a+b\"",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:climate textus:change textus:\"a+b\"",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:climate textus:change textus:\"a+b\") dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "climate -change",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:climate -textus:change",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:climate -textus:change) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "climate --  change",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:climate -textus:change",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:climate -textus:change) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "-climate",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "-textus:climate",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (-textus:climate) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "(a and b) or (a and c)",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "(textus:a and textus:b) or (textus:a and textus:c)",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] ((textus:a and textus:b) or (textus:a and textus:c)) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "a OR b",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:a textus:OR textus:b",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:a textus:OR textus:b) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "a or b",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:a or textus:b",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:a or textus:b) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "a and b",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:a and textus:b",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:a and textus:b) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "  lots   of    space  ",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:lots textus:of textus:space",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:lots textus:of textus:space) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "\"unclosed phrase",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:\"unclosed textus:phrase",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:\"unclosed textus:phrase) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "“curly” quotes",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:\"curly\" textus:quotes",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:\"curly\" textus:quotes) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "back\\slash",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:backslash",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:backslash) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "x -\"quoted phrase\"",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:x -textus:\"quoted phrase\"",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:x -textus:\"quoted phrase\") dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "title:test",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:title:test",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:title:test) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "(climate)",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "(textus:climate)",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] ((textus:climate)) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "a (-b)",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:a (-b)",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:a (-b)) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "+a +b",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:a textus:b",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:a textus:b) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "café société",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:café textus:société",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:café textus:société) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "ü-bahn",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:ü-bahn",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:ü-bahn) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "COVID-19",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:COVID-19",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:COVID-19) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "a - b",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:a -textus:b",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:a -textus:b) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "\"\"",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:\"\"",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:\"\") dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "a \"b c\" d \"e\"",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:a textus:\"b c\" textus:d textus:\"e\"",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:a textus:\"b c\" textus:d textus:\"e\") dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "orange and lemons",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:orange and textus:lemons",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:orange and textus:lemons) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "ordinal andante",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:ordinal textus:andante",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:ordinal textus:andante) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "(-a)",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "(-a)",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] ((-a)) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "-(a b)",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "-(textus:a textus:b)",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (-(textus:a textus:b)) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "a\tb",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:a\ttextus:b",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:a\ttextus:b) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "climate",
+    "params": {
+      "document_types": ["121", "7", "F"],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-recent",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:climate",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:climate) dctypenorm:(121 OR 7 OR F)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "dcyear desc",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "climate",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100,
+      "lang_id": [
+        "eng",
+        "ger"
+      ],
+      "min_descsize": 0
+    },
+    "exact": "textus:climate",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:climate) dctypenorm:(121) dclang:(eng OR ger)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[0%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "climate",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100,
+      "lang_id": [
+        "all-lang"
+      ]
+    },
+    "exact": "textus:climate",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:climate) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "climate",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100,
+      "exclude_date_filters": true
+    },
+    "exact": "textus:climate",
+    "request": {
+      "hits": 120,
+      "query": "(textus:climate) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "climate",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 1000,
+      "list_size": 100,
+      "exclude_date_filters": "true",
+      "vis_type": "timeline"
+    },
+    "exact": "textus:climate",
+    "request": {
+      "hits": 1000,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:climate) dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "climate",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100,
+      "q_advanced": "dcsubject:ocean",
+      "repo": "ftunivlausanne",
+      "coll": "ftx"
+    },
+    "exact": "textus:climate",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:climate) dctypenorm:(121) dcsubject:ocean",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": "ftunivlausanne",
+      "coll": "ftx",
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "climate",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100,
+      "q_advanced": "dcsubject:ocean",
+      "q_advanced_only": "true"
+    },
+    "exact": "textus:climate",
+    "request": {
+      "hits": 120,
+      "query": "dcsubject:ocean",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100,
+      "repo": "fttriple"
+    },
+    "exact": null,
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] dctypenorm:(121)",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": "fttriple",
+      "coll": null,
+      "offset": 0,
+      "non_public": true
+    }
+  },
+  {
+    "q": "climate",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100,
+      "custom_clustering": "title"
+    },
+    "exact": "textus:climate",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:climate) dctypenorm:(121) dctitle:*",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "climate",
+    "params": {
+      "document_types": [
+        "121"
+      ],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100,
+      "custom_clustering": "ORKG"
+    },
+    "exact": "textus:climate",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:climate) dctypenorm:(121) dcsubject:ORKG* textus:\"ORKG:\" ORKG:*",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  },
+  {
+    "q": "climate",
+    "params": {
+      "document_types": [],
+      "from": "1665-01-01",
+      "to": "2023-12-07",
+      "sorting": "most-relevant",
+      "limit": 120,
+      "list_size": 100
+    },
+    "exact": "textus:climate",
+    "request": {
+      "hits": 120,
+      "query": "dcdate:[1665-01-01 TO 2023-12-07] (textus:climate) dctypenorm:()",
+      "fields": "dcdocid,dctitle,dcdescription,dcsource,dcdate,dcsubject,dccreator,dclink,dcoa,dcidentifier,dcrelation,dctype,dctypenorm,dcprovider,dclang,dclanguage,dccoverage,dccollection,dcdoi",
+      "sortby": "",
+      "filter": "descsize:[300%20TO%20*]",
+      "target": null,
+      "coll": null,
+      "offset": 0,
+      "non_public": false
+    }
+  }
+]
