@@ -3,8 +3,8 @@
 // `okmaps` class (and data-skin for a skin).
 export { default as Button } from "./components/Button.svelte";
 export { default as Dialog } from "./components/Dialog.svelte";
+export { default as Highlight } from "./components/Highlight.svelte";
 export { default as Tag } from "./components/Tag.svelte";
-
 export {
 	type MapConfig,
 	mapConfig,
@@ -12,6 +12,7 @@ export {
 	type VisType,
 } from "./data/config";
 export { type ListQuery, listPapers } from "./data/filter";
+export { highlightParts, queryTerms } from "./data/highlight";
 export { parsePlace } from "./data/papers";
 export { processMap, resizeMap } from "./data/process";
 export { MapState } from "./data/state.svelte";
@@ -28,3 +29,4 @@ export type {
 	StreamgraphData,
 } from "./data/types";
 export { type Strings, strings, t } from "./i18n/strings";
+export { KnowledgeMap, layoutMap, mapGeometry } from "./views/knowledge-map";

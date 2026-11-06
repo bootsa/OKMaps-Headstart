@@ -44,7 +44,7 @@ const server = http.createServer((req, res) => {
 		return;
 	}
 	p = "/" + p.slice(base.length);
-	let file = path.join(dist, p.endsWith("/") ? p + "index.html" : p);
+	const file = path.join(dist, p.endsWith("/") ? p + "index.html" : p);
 	if (!file.startsWith(dist) || !fs.existsSync(file)) {
 		res.writeHead(404).end();
 		return;
@@ -173,6 +173,28 @@ async function makeMap(fill, name) {
 	await page.screenshot({ path: path.join(shots, `${name}.png`) });
 	console.log(JSON.stringify({ map: name, msToMap: made, ...counts }));
 	if (counts.areas === 0) throw new Error(`${name}: no areas drawn`);
+	return counts;
+}
+
+/** Opens the current map in the new (Svelte) interface and checks it draws the same areas. */
+async function checkNewLook(p, name, areas) {
+	const toggle = await p.getAttribute("#ui-toggle", "href");
+	if (!toggle?.includes("ui=new")) throw new Error(`${name}: no link to the new look`);
+	await p.goto(toggle);
+	await p.waitForSelector("#visualization svg.okm-knowledge-map .okm-bubble", { timeout: 30_000 });
+	await p.waitForTimeout(500);
+	const drawn = await p.evaluate(() => ({
+		areas: document.querySelectorAll("#visualization .okm-bubble").length,
+		papers: document.querySelectorAll("#visualization .okm-paper").length,
+		images: document.querySelectorAll("#visualization img").length,
+	}));
+	await p.screenshot({ path: path.join(shots, `${name}-new.png`) });
+	console.log(JSON.stringify({ map: `${name} (new look)`, ...drawn }));
+	if (areas !== undefined && drawn.areas !== areas)
+		throw new Error(`${name}: new look drew ${drawn.areas} areas, not ${areas}`);
+	if (drawn.images) throw new Error(`${name}: new look rendered markup from the map`);
+	await p.click("#visualization .okm-bubble", { force: true }); // its papers may sit on top: both zoom in
+	await p.waitForSelector("#visualization svg.okm-knowledge-map.zoom");
 }
 
 await makeMap(async () => {
@@ -183,10 +205,11 @@ await makeMap(async () => {
 	await page.check('input[value="base"]');
 	await page.fill("#q", "digital education");
 }, "base");
-await makeMap(async () => {
+const openaire = await makeMap(async () => {
 	await page.check('input[value="openaire"]');
 	await page.fill("#project_id", "643410");
 }, "openaire");
+await checkNewLook(page, "openaire", openaire.areas);
 
 // Share the open (OpenAIRE) map, then open the link as someone else would.
 await page.click("#share");
@@ -238,6 +261,8 @@ const posted = await gateway(
 const evilId = (await posted.json()).id;
 await openShared(other, link.replace(/shared=.*/, `shared=${evilId}`), "shared-crafted");
 if (await other.evaluate(() => window.pwned)) throw new Error("a shared map ran script");
+await checkNewLook(other, "shared-crafted");
+if (await other.evaluate(() => window.pwned)) throw new Error("a shared map ran script in the new look");
 console.log(JSON.stringify({ craftedMapSafe: true }));
 await other.close();
 

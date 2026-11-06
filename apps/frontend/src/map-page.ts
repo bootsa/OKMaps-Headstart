@@ -3,7 +3,7 @@
  * map.html?shared=...  a published map (share link)
  *
  * The existing visualisation draws it, reading it in its local_files mode
- * from a blob URL.
+ * from a blob URL. Add ui=new to see the new (Svelte) interface instead.
  */
 
 import { registerServiceWorker } from "./offline.ts";
@@ -51,8 +51,25 @@ function showMessage(text: string) {
 	el.hidden = false;
 }
 
+/** The toolbar link that switches between the current and the new interface. */
+function offerToggle(useNew: boolean) {
+	const link = $<HTMLAnchorElement>("ui-toggle");
+	const url = new URL(location.href);
+	if (useNew) url.searchParams.delete("ui");
+	else url.searchParams.set("ui", "new");
+	link.href = url.href;
+	link.textContent = useNew ? "Back to the current look" : "Preview the new look";
+	link.hidden = false;
+}
+
 async function draw(map: SharedMap) {
 	document.title = `${map.title} - Open Knowledge Maps`;
+	const useNew = new URLSearchParams(location.search).get("ui") === "new";
+	offerToggle(useNew);
+	if (useNew) {
+		const { drawNew } = await import("./svelte-map.ts");
+		return drawNew($("visualization"), map as unknown as Parameters<typeof drawNew>[1]);
+	}
 	const body = JSON.stringify({ context: map.context, data: JSON.stringify(map.documents) });
 	const file = URL.createObjectURL(new Blob([body], { type: "application/json" }));
 	window.data_config = visConfig(map.context.service, { title: map.title, file });
