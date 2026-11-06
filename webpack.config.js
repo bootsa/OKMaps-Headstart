@@ -5,10 +5,10 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer");
 
-const config = require("./config.js");
-
+// publicPath: the URL the bundle is served from (packages/app sets it).
+// analyzeBundle: opens the bundle analyser.
 module.exports = (env) => {
-  const { publicPath, analyzeBundle } = { ...config, ...env };
+  const { publicPath, analyzeBundle } = { publicPath: "auto", ...env };
 
   // output filename: deployment config
   const outputFilename = "[name].[contenthash].bundle.js";
@@ -43,14 +43,6 @@ module.exports = (env) => {
         type: "var",
       },
       clean: true,
-    },
-
-    devServer: {
-      open: true,
-      static: [
-        path.resolve(__dirname, "dist/"),
-      ],
-      devMiddleware: { publicPath: "/dist/", writeToDisk: true },
     },
 
     resolve: {
@@ -92,11 +84,6 @@ module.exports = (env) => {
           test: /\.tsx?$/,
           use: "ts-loader",
           exclude: /node_modules/,
-        },
-        {
-          test: /\.[j]sx?$/,
-          exclude: /node_modules/,
-          use: "babel-loader",
         },
         {
           test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,

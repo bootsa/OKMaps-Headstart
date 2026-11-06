@@ -7,51 +7,26 @@ on:
 
 jobs:
   test:
-    name: Unit and snapshot tests
+    name: Visualisation tests and build
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
-      - name: Copy config file
-        run: cp config.example.js config.js
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 22
           cache: "npm"
 
-      - name: Clean node_modules and lockfile
-        run: rm -rf node_modules package-lock.json
-
+      # The lockfile was made on macOS and lacks Linux's optional native
+      # packages (npm/cli#4828), so install without it.
       - name: Install project dependencies
-        run: npm install
+        run: rm package-lock.json && npm install --no-audit --no-fund
 
       - name: Run tests
-        run: npm run test
+        run: npm test -- --run
 
-  build:
-    name: Build the project like on production deployment
-    needs: test
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Copy the config file for the vis
-        run: cp config.example.js config.js
-
-      - name: Setup Node.JS
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18
-          cache: "npm"
-
-      - name: Install all project dependencies
-        run: npm ci
-
-      - name: Build the project (prod)
-        run: npx webpack
+      - name: Build the visualisation
+        run: npx webpack --mode=production

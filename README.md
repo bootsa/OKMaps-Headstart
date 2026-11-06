@@ -24,7 +24,7 @@ offline once installed as a web app.
 
 Each package has a README with how to run and test it. To run the app:
 
-    cp config.example.js config.js && npm ci
+    npm ci
     cd packages/app && npm ci && npm run build:vis && npm run dev
 
 The app is published to GitHub Pages by `.github/workflows/pages.yml`:
