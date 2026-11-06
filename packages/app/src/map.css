@@ -1,0 +1,15 @@
+.back {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 1000;
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+  background: #fff;
+  border: 1px solid #d3d9e0;
+  border-radius: 6px;
+  padding: 6px 12px;
+  box-shadow: 0 1px 4px rgb(0 0 0 / 12%);
+}
+.back a { color: #2856b6; text-decoration: none; }
+.message { font-family: "Open Sans", sans-serif; margin: 32px 16px; color: #b42318; }
