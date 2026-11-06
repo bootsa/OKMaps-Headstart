@@ -49,9 +49,9 @@
 	--color-danger: var(--okm-red-dark);
 
 	/* Map */
-	--color-area-fill: var(--okm-blue-lightest);
+	--color-area-fill: var(--okm-white);
 	--color-area-fill-active: var(--okm-blue-light);
-	--color-area-stroke: var(--okm-navy);
+	--color-area-stroke: var(--okm-black);
 	--color-area-title: var(--okm-black);
 	--color-paper: var(--okm-paper);
 	--color-paper-fill: var(--okm-white);

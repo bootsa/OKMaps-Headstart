@@ -6,8 +6,10 @@
  */
 
 import { type Strings, strings } from "../i18n/strings";
+import { layoutMap } from "../views/knowledge-map/layout";
 import { type MapConfig, mapConfig, type Service } from "./config";
-import { listPapers } from "./filter";
+import { listPapers, searchWords } from "./filter";
+import { queryTerms } from "./highlight";
 import { processMap, resizeMap } from "./process";
 import type { Area, MapRecord, Paper, ProcessedMap } from "./types";
 
@@ -40,11 +42,20 @@ export class MapState {
 		this.config = mapConfig((record.context.service as Service) ?? "base", config);
 		this.strings = strings(this.config.language);
 		this.sort = this.config.sortOptions[0];
-		this.map = processMap(record, size, {
+		const map = processMap(record, size, {
 			config: this.config,
 			strings: this.strings,
 		});
+		if (this.config.visType === "overview") layoutMap(map.areas, map.papers, size, this.config);
+		this.map = map;
+		this.queryWords = this.config.highlightQueryTerms ? queryTerms(record.context.query) : [];
 	}
+
+	/** Words of the search query, highlighted when the list search is empty. */
+	readonly queryWords: string[];
+
+	/** Words of the list search, highlighted on the map and in the list. */
+	readonly searchWords: string[] = $derived(searchWords(this.search));
 
 	/** The area zoomed into. */
 	get area(): Area | undefined {

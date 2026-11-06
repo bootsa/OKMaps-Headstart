@@ -188,3 +188,11 @@ export function processPaper(doc: RawDocument, config: MapConfig, s: Strings, _c
 		raw: doc,
 	};
 }
+
+/** A paper's date for display: the year for "2020" or "2020-05", else yyyy-mm-dd (UTC). */
+export function paperDate(date: string): string {
+	if (!date) return "";
+	if (/^\d{4}(-\d{2})?$/.test(date)) return date.slice(0, 4);
+	const d = new Date(date);
+	return Number.isNaN(d.getTime()) ? date : d.toISOString().slice(0, 10);
+}

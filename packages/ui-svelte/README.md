@@ -2,11 +2,15 @@
 
 The new OKMaps interface, in Svelte 5 with plain CSS. It is being written to
 replace `@okmaps/ui` (React, Redux, d3 v3, jQuery, Bootstrap 3, SCSS); until it
-matches that package's behaviour, the app keeps loading the old one.
+matches that package's behaviour, the app keeps loading the old one. Add
+`ui=new` to a map page's address (or use the "Preview the new look" link) to
+see what the new one draws so far.
 
 ```
 src/styles       tokens.css (design tokens), skins.css, base.css, fonts
 src/components   components, each with a .stories.svelte file
+src/data         map processing and the interface state (MapState)
+src/views        one folder per map view: its layout and components
 src/docs         Storybook pages for the foundations (tokens)
 test             Vitest + Testing Library
 ```
