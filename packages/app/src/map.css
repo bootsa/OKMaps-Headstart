@@ -1,4 +1,4 @@
-.back {
+.toolbar {
   position: fixed;
   right: 16px;
   bottom: 16px;
@@ -10,6 +10,25 @@
   border-radius: 6px;
   padding: 6px 12px;
   box-shadow: 0 1px 4px rgb(0 0 0 / 12%);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  max-width: calc(100vw - 32px);
 }
-.back a { color: #2856b6; text-decoration: none; }
+.toolbar button {
+  font: inherit;
+  color: #2856b6;
+  background: #fff;
+  border: 1px solid #2856b6;
+  border-radius: 4px;
+  padding: 2px 10px;
+  cursor: pointer;
+}
+.toolbar button:disabled { color: #667085; border-color: #d3d9e0; cursor: default; }
+.share-panel { display: flex; gap: 4px; flex-basis: 100%; }
+.share-panel[hidden], .toolbar [hidden] { display: none; }
+.share-panel input { flex: 1; min-width: 0; width: 22em; font: inherit; font-size: 13px; padding: 2px 6px; }
+.toolbar a { color: #2856b6; text-decoration: none; }
 .message { font-family: "Open Sans", sans-serif; margin: 32px 16px; color: #b42318; }

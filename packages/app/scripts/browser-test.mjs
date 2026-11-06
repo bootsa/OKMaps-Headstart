@@ -1,13 +1,14 @@
 // End-to-end check of the built app (npm run build:vis && VITE_GATEWAY_URL=https://gateway.test npm run build)
 // in headless Chromium: makes a PubMed, a BASE and an OpenAIRE map from recorded
 // provider answers, checks the visualisation draws them, that they are listed
-// and can be deleted. Screenshots go to test-results/.
+// and can be deleted, and that a share link opens (and a crafted one runs no script). Screenshots go to test-results/.
 import fs from "node:fs";
 import http from "node:http";
 import path from "node:path";
 import { execSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
-import { fakeAnswer } from "../test/fake-net.ts";
+import { fakeAnswer, GATEWAY } from "../test/fake-net.ts";
+import { createGateway, memoryStore } from "../../gateway/src/index.ts";
 
 // Playwright: the global copy (whose browser is installed) if there is one, else the project's.
 const { chromium } = await import(path.join(execSync("npm root -g").toString().trim(), "playwright/index.mjs")).catch(
@@ -38,8 +39,20 @@ const page = await browser.newPage({ viewport: { width: 1280, height: 860 } });
 const errors = [];
 page.on("pageerror", (e) => errors.push(e.message));
 const unknown = new Set();
-await page.route(/^https?:\/\/(?!127\.0\.0\.1)/, async (route) => {
+// Share links go to a real gateway handler with an in-memory store.
+const mapStore = memoryStore();
+const gateway = createGateway({ baseApiKey: "k", allowedOrigins: ["*"], maps: { store: mapStore } });
+async function answer(route) {
   const url = route.request().url();
+  if (url.startsWith(`${GATEWAY}/maps`)) {
+    const r = route.request();
+    const res = await gateway(
+      new Request(url, { method: r.method(), headers: r.headers(), body: r.method() === "POST" ? r.postData() : undefined }),
+      { address: "browser" },
+    );
+    await route.fulfill({ status: res.status, body: await res.text(), headers: Object.fromEntries(res.headers) });
+    return;
+  }
   const answer = fakeAnswer(url);
   if (answer) {
     await route.fulfill({ status: 200, body: answer.body, headers: { "content-type": answer.type, "access-control-allow-origin": "*" } });
@@ -47,7 +60,17 @@ await page.route(/^https?:\/\/(?!127\.0\.0\.1)/, async (route) => {
     unknown.add(new URL(url).hostname);
     await route.abort();
   }
-});
+}
+await page.route(/^https?:\/\/(?!127\.0\.0\.1)/, answer);
+
+async function openShared(p, url, name) {
+  await p.goto(url);
+  await p.waitForSelector("#visualization circle.area", { timeout: 30_000 });
+  await p.waitForTimeout(1500);
+  const areas = await p.$$eval("#visualization circle.area", (c) => c.length);
+  await p.screenshot({ path: path.join(shots, `${name}.png`) });
+  console.log(JSON.stringify({ map: name, areas }));
+}
 
 async function makeMap(fill, name) {
   await page.goto(`${origin}/`);
@@ -81,6 +104,43 @@ await makeMap(async () => {
   await page.check('input[value="openaire"]');
   await page.fill("#project_id", "643410");
 }, "openaire");
+
+// Share the open (OpenAIRE) map, then open the link as someone else would.
+await page.click("#share");
+await page.waitForSelector("#share-panel:not([hidden])");
+const link = await page.inputValue("#share-url");
+console.log(JSON.stringify({ link }));
+if (!/map\.html\?shared=[0-9a-f]{24}$/.test(link)) throw new Error("no share link");
+const other = await browser.newPage({ viewport: { width: 1280, height: 860 } });
+other.on("pageerror", (e) => errors.push(e.message));
+await other.route(/^https?:\/\/(?!127\.0\.0\.1)/, answer);
+await openShared(other, link, "shared");
+await other.click("#save");
+await other.waitForSelector("#save:disabled");
+await other.goto(`${origin}/`);
+await other.waitForSelector("#maps li");
+const savedCopy = await other.$$eval("#maps li a", (as) => as.map((a) => a.textContent));
+console.log(JSON.stringify({ savedFromLink: savedCopy }));
+if (savedCopy.length !== 1) throw new Error("the shared map was not saved");
+await other.click("#maps li a");
+await other.waitForSelector("#visualization circle.area", { timeout: 30_000 });
+
+// A crafted map must not run script, however its titles are encoded.
+const evil = "&lt;img src=x onerror=&quot;window.pwned=1&quot;&gt;";
+const crafted = JSON.stringify({
+  title: evil,
+  context: { id: "x", query: evil, service: "pubmed", timestamp: "2026-11-06 10:00:00", params: "{}" },
+  documents: ["A", "B"].map((a, i) => ({
+    id: `d${i}`, area: `${evil}${a}`, area_uri: i, title: evil, authors: evil, paper_abstract: evil, x: String(i), y: String(-i),
+    year: "2020", published_in: evil, readers: 0, url: "", oa_state: 2, subject_orig: "", relevance: 1, resulttype: [],
+  })),
+});
+const posted = await gateway(new Request(`${GATEWAY}/maps`, { method: "POST", headers: { "content-type": "application/json" }, body: crafted }));
+const evilId = (await posted.json()).id;
+await openShared(other, link.replace(/shared=.*/, `shared=${evilId}`), "shared-crafted");
+if (await other.evaluate(() => window.pwned)) throw new Error("a shared map ran script");
+console.log(JSON.stringify({ craftedMapSafe: true }));
+await other.close();
 
 await page.goto(`${origin}/`);
 await page.waitForSelector("#maps li");

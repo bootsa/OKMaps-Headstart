@@ -9,6 +9,8 @@
  *   GET /openaire/search/{projects|publications|datasets}?...
  *                                        OpenAIRE search API, for browsers it
  *                                        refuses (optional)
+ *   POST /maps                           publish a map (share link); answers its id
+ *   GET /maps/{id}                       a published map
  *   GET /health
  *
  * Responses are the provider's own bodies, unchanged. The handler takes a
@@ -16,6 +18,7 @@
  * or any runtime with fetch (Deno, Bun, Cloudflare Workers).
  */
 import { ClientLimiter, Spacer, realSleep, type Clock, type Sleep } from "./limits.ts";
+import { MAP_ID, mapId, validateMap, type MapStore } from "./maps.ts";
 
 export const BASE_API = "https://api.base-search.net/cgi-bin/BaseHttpSearchInterface.fcgi";
 export const OPENAIRE_API = "https://api.openaire.eu/";
@@ -41,6 +44,14 @@ export interface GatewayConfig {
   repositoriesTtlMs?: number;
   /** Upstream timeout (default 60 s). */
   upstreamTimeoutMs?: number;
+  /** Published maps (share links); the /maps routes are off without it. */
+  maps?: {
+    store: MapStore;
+    /** Largest map accepted, in bytes (default 3 MB). */
+    maxBytes?: number;
+    /** Maps a client may publish per window (default 30 per hour). */
+    publishLimit?: { requests: number; windowMs: number };
+  };
   fetch?: FetchFn;
   now?: Clock;
   sleep?: Sleep;
@@ -76,6 +87,10 @@ export function createGateway(config: GatewayConfig): Handler {
   const timeoutMs = config.upstreamTimeoutMs ?? 60_000;
   const anyOrigin = config.allowedOrigins.includes("*");
   const origins = new Set(config.allowedOrigins);
+
+  const maxMapBytes = config.maps?.maxBytes ?? 3_000_000;
+  const publishLimit = config.maps?.publishLimit ?? { requests: 30, windowMs: 3600_000 };
+  const publishers = new ClientLimiter(publishLimit.requests, publishLimit.windowMs, now);
 
   let repositories: { body: string; type: string; at: number } | null = null;
   let repositoriesLoading: Promise<Response> | null = null;
@@ -153,11 +168,60 @@ export function createGateway(config: GatewayConfig): Handler {
     return upstream(`${base}search/${kind}${url.search}`);
   };
 
-  const route = async (url: URL, client?: ClientInfo): Promise<Response> => {
+  const publishMap = async (req: Request, client?: ClientInfo): Promise<Response> => {
+    if (!config.maps) return error(404, "not found");
+    if (!(req.headers.get("content-type") ?? "").startsWith("application/json")) {
+      return error(415, "send the map as application/json");
+    }
+    const declared = Number(req.headers.get("content-length") ?? 0);
+    if (declared > maxMapBytes) return error(413, "map too large");
+    const wait = publishers.hit(client?.address ?? "unknown");
+    if (wait > 0) return error(429, "too many maps published", { "retry-after": String(Math.ceil(wait / 1000)) });
+    const text = await req.text();
+    if (new TextEncoder().encode(text).length > maxMapBytes) return error(413, "map too large");
+    let parsed: unknown;
+    try {
+      parsed = JSON.parse(text);
+    } catch {
+      return error(400, "body is not JSON");
+    }
+    const checked = validateMap(parsed);
+    if ("error" in checked) return error(400, checked.error);
+    const body = JSON.stringify(checked.map);
+    const id = await mapId(body);
+    try {
+      await config.maps.store.put(id, body);
+    } catch {
+      return error(503, "map could not be stored");
+    }
+    return json(201, { id });
+  };
+
+  const getMap = async (id: string): Promise<Response> => {
+    if (!config.maps || !MAP_ID.test(id)) return error(404, "not found");
+    let body: string | null;
+    try {
+      body = await config.maps.store.get(id);
+    } catch {
+      return error(503, "map could not be read");
+    }
+    if (body === null) return error(404, "not found");
+    return new Response(body, {
+      headers: { "content-type": "application/json", "cache-control": "public, max-age=31536000, immutable" },
+    });
+  };
+
+  const route = async (req: Request, url: URL, client?: ClientInfo): Promise<Response> => {
     const path = url.pathname.replace(/\/+$/, "");
     if (path === "/health") return json(200, { status: "ok" });
     const wait = clients.hit(client?.address ?? "unknown");
     if (wait > 0) return error(429, "too many requests", { "retry-after": String(Math.ceil(wait / 1000)) });
+    if (path === "/maps") {
+      return req.method === "POST" ? publishMap(req, client) : error(405, "method not allowed", { allow: "POST, OPTIONS" });
+    }
+    const m = /^\/maps\/([^/]+)$/.exec(path);
+    if (m) return req.method === "POST" ? error(405, "method not allowed", { allow: "GET, OPTIONS" }) : getMap(m[1]);
+    if (req.method === "POST") return error(405, "method not allowed", { allow: "GET, OPTIONS" });
     if (path === "/base/search") return baseSearch(url);
     if (path === "/base/repositories") return baseRepositories();
     const oa = /^\/openaire\/search\/([a-z]+)$/.exec(path);
@@ -178,10 +242,14 @@ export function createGateway(config: GatewayConfig): Handler {
     else if (req.method === "OPTIONS") {
       res = new Response(null, {
         status: 204,
-        headers: { "access-control-allow-methods": "GET, OPTIONS", "access-control-max-age": "86400" },
+        headers: {
+          "access-control-allow-methods": "GET, POST, OPTIONS",
+          "access-control-allow-headers": "content-type",
+          "access-control-max-age": "86400",
+        },
       });
-    } else if (req.method !== "GET" && req.method !== "HEAD") res = error(405, "method not allowed", { allow: "GET, OPTIONS" });
-    else res = await route(new URL(req.url), client);
+    } else if (!["GET", "HEAD", "POST"].includes(req.method)) res = error(405, "method not allowed", { allow: "GET, POST, OPTIONS" });
+    else res = await route(req, new URL(req.url), client);
     for (const [k, v] of Object.entries(cors)) res.headers.set(k, v);
     return res;
   };

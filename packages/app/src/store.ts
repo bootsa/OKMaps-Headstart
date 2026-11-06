@@ -11,6 +11,8 @@ export interface SavedMap extends MapRecord {
   request: SearchRequest;
   /** Shown in the list of maps. */
   title: string;
+  /** Id of the published copy, once the map has been shared. */
+  sharedId?: string;
 }
 
 export type MapSummary = Pick<SavedMap, "id" | "created" | "title" | "request"> & { documents: number };
