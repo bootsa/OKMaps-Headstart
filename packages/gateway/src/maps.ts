@@ -2,7 +2,7 @@
  * Published maps: what a share link points to. A map is stored once,
  * under an id derived from its content, and never changes.
  */
-import { bucketStorage, memoryStorage, type MapStorage, type ObjectBucket } from "../../storage/src/index.ts";
+import { bucketStorage, memoryStorage, type MapStorage, type ObjectBucket } from "@okmaps/storage";
 
 export type { ObjectBucket };
 

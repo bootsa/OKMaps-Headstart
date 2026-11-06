@@ -2,7 +2,7 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
-import { fileStorage } from "../../storage/src/node.ts";
+import { fileStorage } from "@okmaps/storage/node";
 import { storageMapStore } from "../src/maps.ts";
 import { createGateway } from "../src/gateway.ts";
 import { MAP_ID, memoryStore, type MapStore } from "../src/maps.ts";

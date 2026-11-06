@@ -10,8 +10,8 @@
  *   MAPS_WEBDAV_URL=https://dav.example.org/okmaps/  a WebDAV folder, with
  *     MAPS_WEBDAV_USER and MAPS_WEBDAV_PASSWORD (or MAPS_WEBDAV_TOKEN for a bearer token)
  */
-import { webdavStorage, type MapStorage } from "../../storage/src/index.ts";
-import { fileStorage } from "../../storage/src/node.ts";
+import { webdavStorage, type MapStorage } from "@okmaps/storage";
+import { fileStorage } from "@okmaps/storage/node";
 import { createGateway } from "./gateway.ts";
 import { storageMapStore } from "./maps.ts";
 import { serve } from "./node.ts";

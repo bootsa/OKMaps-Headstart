@@ -1,0 +1,33 @@
+{
+  "name": "@okmaps/frontend",
+  "version": "0.1.0",
+  "description": "OKMaps in the browser: searches a provider, builds the map in a Web Worker, keeps maps in IndexedDB and shows them with the existing visualisation.",
+  "license": "MIT",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build:vis": "node scripts/build-vis.mjs",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "test:browser": "node scripts/browser-test.mjs",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@okmaps/gateway": "workspace:*",
+    "@okmaps/ui": "workspace:*",
+    "@types/node": "^22.10.0",
+    "jose": "^6.2.15",
+    "playwright": "1.63.0",
+    "typescript": "^5.7.2",
+    "vite": "5.4.17",
+    "vitest": "^3.2.4"
+  },
+  "dependencies": {
+    "@inrupt/solid-client-authn-browser": "^5.0.3",
+    "@okmaps/pipeline": "workspace:*",
+    "@okmaps/sources": "workspace:*",
+    "@okmaps/storage": "workspace:*"
+  }
+}

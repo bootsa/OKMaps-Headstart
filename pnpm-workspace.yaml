@@ -1,0 +1,10 @@
+packages:
+  - "apps/*"
+  - "packages/*"
+
+# None of these install scripts is needed (esbuild and @parcel/watcher ship
+# per-platform packages; core-js only prints a message).
+ignoredBuiltDependencies:
+  - "@parcel/watcher"
+  - core-js
+  - esbuild

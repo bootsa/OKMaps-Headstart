@@ -44,7 +44,7 @@ Tested against R outputs in `test/golden`:
   stress (linear model) with SMACOF. On all 21 cases its stress is lower than
   R's, and its Procrustes distance to R's layout is 0.01 to 0.2 on most maps
   (R's own two runs differ by up to 0.97 on the unstable ones).
-- `npm run smoke:browser` builds a map inside a Web Worker in headless
+- `pnpm smoke:browser` builds a map inside a Web Worker in headless
   Chromium and checks it equals the Node result (about 0.3 to 0.5 s per
   120-paper map).
 
