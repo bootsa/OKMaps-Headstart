@@ -332,6 +332,9 @@ importers:
       d3-scale:
         specifier: ^4.0.3
         version: 4.0.3
+      d3-shape:
+        specifier: ^3.2.1
+        version: 3.2.1
     devDependencies:
       '@storybook/addon-a11y':
         specifier: ^10.6.6
@@ -366,6 +369,9 @@ importers:
       '@types/d3-scale':
         specifier: ^4.0.9
         version: 4.0.9
+      '@types/d3-shape':
+        specifier: ^3.2.0
+        version: 3.2.0
       jsdom:
         specifier: ^26.1.0
         version: 26.1.0
@@ -2464,12 +2470,20 @@ packages:
     resolution: {integrity: sha512-IRzGU62DtxhvsnSTWMQIdnoZ6gA+BCWwBon1EJI6SjoN595799b6z/QRBzXfFhE8iupUPp3042yBNo0STPqnzQ==}
     engines: {node: '>=12'}
 
+  d3-path@3.1.1:
+    resolution: {integrity: sha512-jsbgV8zIT38ReB9O7X7gcLndTQRONSqNNd+oGIaTBdUug4r5jFmp0N6RY9R5GWbdUDucn0qoTGyfjapT4tDhcg==}
+    engines: {node: '>=12'}
+
   d3-scale@4.0.3:
     resolution: {integrity: sha512-66cWobCNzcMvlfoaDHCxuIv9TBUWG1BLOWdv9kHHFuCr1JdqAWPvTmsaEYDD5NRMyWZ5+7u0GqiCDfMXMqh3hg==}
     engines: {node: '>=12'}
 
   d3-selection@2.0.0:
     resolution: {integrity: sha512-XoGGqhLUN/W14NmaqcO/bb1nqjDAw5WtSYb2X8wiuQWvSZUsUVYsOSkOybUrNvcBjaywBdYPy03eXHMXjk9nZA==}
+
+  d3-shape@3.2.1:
+    resolution: {integrity: sha512-dm2o+lbKdzg9tY7GEag/dB9hcbodLfwkE/DkvqbELJXaMz0yKzWWhZqhbI7CKubukA7HnRyz0avdtvi7EPxPvw==}
+    engines: {node: '>=12'}
 
   d3-time-format@4.1.1:
     resolution: {integrity: sha512-22XaqjyCjpqgda20erhsOjGmC3vvYwTNYniKAd45W5UWLDF43moeOuV9qYpRqobIlsnK0UhnKZjUUJm3VgORUA==}
@@ -6695,6 +6709,8 @@ snapshots:
     dependencies:
       d3-color: 3.1.1
 
+  d3-path@3.1.1: {}
+
   d3-scale@4.0.3:
     dependencies:
       d3-array: 3.2.5
@@ -6704,6 +6720,10 @@ snapshots:
       d3-time-format: 4.1.1
 
   d3-selection@2.0.0: {}
+
+  d3-shape@3.2.1:
+    dependencies:
+      d3-path: 3.1.1
 
   d3-time-format@4.1.1:
     dependencies:

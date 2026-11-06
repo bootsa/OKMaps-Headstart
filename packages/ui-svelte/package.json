@@ -37,6 +37,7 @@
     "@testing-library/user-event": "^14.6.8",
     "@types/d3-array": "^3.2.2",
     "@types/d3-scale": "^4.0.9",
+    "@types/d3-shape": "^3.2.0",
     "jsdom": "^26.1.0",
     "storybook": "^10.6.6",
     "svelte": "^5.57.3",
@@ -47,6 +48,7 @@
   },
   "dependencies": {
     "d3-array": "^3.2.5",
-    "d3-scale": "^4.0.3"
+    "d3-scale": "^4.0.3",
+    "d3-shape": "^3.2.1"
   }
 }

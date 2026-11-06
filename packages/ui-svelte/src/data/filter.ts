@@ -10,6 +10,8 @@ export interface ListQuery {
   sort: string;
   /** Only this area (its uri), when zoomed in. */
   area?: string | null;
+  /** Only these paper ids (a selected stream). */
+  ids?: string[] | null;
   /** Only this paper (its safeId), when one is selected. */
   paper?: string | null;
 }
@@ -61,6 +63,7 @@ function haystack(p: Paper): string {
   }
   if (p.freeAccess) parts.push("free access");
   if (nonText) parts.push("file");
+  if (p.place?.country) parts.push(p.place.country.toLowerCase());
   return parts.join(" ");
 }
 
@@ -116,6 +119,10 @@ export function listPapers(papers: Paper[], q: ListQuery): Paper[] {
   let out = papers;
   if (q.paper) out = out.filter((p) => p.safeId === q.paper);
   if (q.area != null) out = out.filter((p) => p.areaUri === q.area);
+  if (q.ids) {
+    const ids = new Set(q.ids);
+    out = out.filter((p) => ids.has(p.id));
+  }
   out = out.filter(filterFn(q.filter));
   const words = searchWords(q.search);
   if (words.length)

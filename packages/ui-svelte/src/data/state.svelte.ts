@@ -17,6 +17,7 @@ export class MapState {
     context: {},
     papers: [],
     areas: [],
+    streams: [],
     size: 0,
   });
 
@@ -24,6 +25,8 @@ export class MapState {
   zoomedArea: string | null = $state(null);
   /** safeId of the selected paper. */
   selectedPaper: string | null = $state(null);
+  /** Keyword of the selected stream (streamgraph). */
+  selectedStream: string | null = $state(null);
   /** uri of the area under the pointer. */
   hoveredArea: string | null = $state(null);
   search = $state("");
@@ -31,6 +34,7 @@ export class MapState {
   sort: string = $state("");
   listVisible = $state(true);
 
+  /** `config` overrides the service's settings, e.g. { visType: "geomap" }. */
   constructor(record: MapRecord, size: number, config?: Partial<MapConfig>) {
     this.config = mapConfig(
       (record.context.service as Service) ?? "base",
@@ -66,6 +70,9 @@ export class MapState {
       sort: this.sort,
       area: this.zoomedArea,
       paper: this.selectedPaper,
+      ids:
+        this.map.streams.find((st) => st.key === this.selectedStream)?.docIds ??
+        null,
     }),
   );
 
@@ -96,6 +103,12 @@ export class MapState {
     if (!paper) return;
     this.zoomedArea = paper.areaUri;
     this.selectedPaper = safeId;
+  }
+
+  /** Selects a stream (null for none); the list shows its papers. */
+  selectStream(key: string | null) {
+    this.selectedStream = key;
+    this.selectedPaper = null;
   }
 
   deselectPaper() {

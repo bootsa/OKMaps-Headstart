@@ -4,6 +4,8 @@
 export interface MapRecord {
   context: MapContext;
   documents: RawDocument[];
+  /** Keyword counts per year, for streamgraphs. */
+  streamgraph?: StreamgraphData | string | null;
 }
 
 export interface MapContext {
@@ -30,6 +32,16 @@ export interface Comment {
 export interface Link {
   address: string;
   isDoi: boolean;
+}
+
+/** Where a facility is (AQUANAVI's coverage field), for the geo map. */
+export interface Place {
+  country: string | null;
+  continent: string | null;
+  /** Longitude. */
+  east: number | null;
+  /** Latitude. */
+  north: number | null;
 }
 
 export interface Paper {
@@ -74,6 +86,8 @@ export interface Paper {
   diameter: number;
   width: number;
   height: number;
+  /** Location for the geo map (AQUANAVI), or null. */
+  place: Place | null;
   /** Every other field of the document, untouched. */
   raw: RawDocument;
 }
@@ -90,10 +104,26 @@ export interface Area {
   r: number;
 }
 
+/** A streamgraph's input: keyword counts per year (the pipeline's "streamgraph" output). */
+export interface StreamgraphData {
+  x: string[];
+  subject: Array<{ name: string; y: number[]; ids_overall: string[] }>;
+}
+
+/** One keyword stream, stacked (silhouette) and ready to draw. */
+export interface Stream {
+  key: string;
+  /** Ids of the papers with this keyword. */
+  docIds: string[];
+  points: Array<{ date: Date; value: number; y0: number; y1: number }>;
+}
+
 export interface ProcessedMap {
   context: MapContext;
   papers: Paper[];
   areas: Area[];
+  /** Streamgraph streams (timeline maps only). */
+  streams: Stream[];
   /** Chart size (px) the coordinates are for. */
   size: number;
 }

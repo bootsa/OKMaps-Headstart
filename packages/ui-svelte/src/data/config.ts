@@ -1,13 +1,17 @@
 /**
- * Map settings. Only what the browser app uses: knowledge maps of PubMed,
- * BASE and OpenAIRE searches. Values come from the old visualisation's
+ * Map settings for the services OKMaps draws: PubMed, BASE and OpenAIRE
+ * searches, and AQUANAVI (mesocosm facilities from OAI-PMH through BASE). Values come from the old visualisation's
  * default-config.js and the app's per-service settings (apps/frontend
  * vis-config.ts).
  */
-export type Service = "pubmed" | "base" | "openaire";
+export type Service = "pubmed" | "base" | "openaire" | "aquanavi";
+
+/** Knowledge map, streamgraph (keywords over time) or geo map. */
+export type VisType = "overview" | "timeline" | "geomap";
 
 export interface MapConfig {
   service: Service;
+  visType: VisType;
   language: string;
   /** Title-from-context style ("viper" for OpenAIRE). */
   titleStyle: "default" | "viper";
@@ -44,6 +48,7 @@ const common: Omit<
   MapConfig,
   "service" | "language" | "sortOptions" | "contentBased"
 > = {
+  visType: "overview",
   titleStyle: "default",
   dynamicSizing: false,
   urlPrefix: null,
@@ -92,6 +97,12 @@ const byService: Record<Service, Partial<MapConfig>> = {
     urlPrefix: "https://www.openaire.eu/search/publication?articleId=",
     urlPrefixDatasets: "https://www.openaire.eu/en/search/dataset?datasetId=",
     titleStyle: "viper",
+  },
+  aquanavi: {
+    language: "eng",
+    sortOptions: ["relevance", "title", "authors", "year"],
+    contentBased: true,
+    urlPrefix: null,
   },
 };
 

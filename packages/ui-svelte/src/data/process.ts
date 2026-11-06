@@ -1,5 +1,6 @@
 /**
- * A map record to what the knowledge map draws, for a square chart of
+ * A map record to what the views draw. For a knowledge map (and the list
+ * next to a geo map), for a square chart of
  * `size` px: papers placed by their layout coordinates, areas at the mean
  * of their papers, sized by the summed metric. The force layout that then
  * separates the bubbles is in ../map (it runs once the chart is shown).
@@ -16,6 +17,7 @@ import {
   resizeFactors,
   resizeScale,
 } from "./scale";
+import { parseStreams } from "./streams";
 import type { Area, MapRecord, Paper, ProcessedMap } from "./types";
 
 const GOLDEN_RATIO = 2.6;
@@ -41,6 +43,11 @@ export function processMap(
   const papers = record.documents.map((doc) =>
     processPaper(doc, config, s, record.context),
   );
+  if (config.visType === "timeline") {
+    // Streamgraphs place nothing on a map.
+    const streams = parseStreams(record.streamgraph);
+    return { context: record.context, papers, areas: [], streams, size };
+  }
   separateDuplicates(papers);
 
   const [paperFactor, bubbleFactor] = resizeFactors(
@@ -99,7 +106,7 @@ export function processMap(
     a.r = rScale(a.readers);
   });
 
-  return { context: record.context, papers, areas, size };
+  return { context: record.context, papers, areas, streams: [], size };
 }
 
 /** Papers on the same spot are nudged apart (the old code adds 1e-8 to y). */

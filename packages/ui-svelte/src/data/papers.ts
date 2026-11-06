@@ -14,6 +14,7 @@ import type {
   Link,
   MapContext,
   Paper,
+  Place,
   RawDocument,
 } from "./types";
 
@@ -72,6 +73,31 @@ export function authorNames(
         ? `${firstName} ${lastName}`
         : `${lastName} ${firstName}`,
   );
+}
+
+/**
+ * AQUANAVI's coverage field ("country=Sweden; continent=Europe; east=12.16;
+ * north=58.37; start=2017; end=present") to a place; null without one.
+ */
+export function parsePlace(coverage: unknown): Place | null {
+  if (typeof coverage !== "string" || !coverage.includes("=")) return null;
+  const place: Place = {
+    country: null,
+    continent: null,
+    east: null,
+    north: null,
+  };
+  for (const entry of coverage.split(";")) {
+    const [rawKey, ...rest] = entry.split("=");
+    const key = rawKey.trim().toLowerCase();
+    const value = rest.join("=").trim();
+    if (key === "country" || key === "continent") place[key] = value || null;
+    if (key === "east" || key === "north") {
+      const n = value === "" ? NaN : Number(value);
+      place[key] = Number.isFinite(n) ? n : null;
+    }
+  }
+  return place;
 }
 
 const YEAR = /^\d{3,4}(-\d{2}(-\d{2}(\w?\s*[-:\d]*\w?)?)?)?$/;
@@ -209,6 +235,7 @@ export function processPaper(
     diameter: 0,
     width: 0,
     height: 0,
+    place: config.visType === "geomap" ? parsePlace(doc.coverage) : null,
     raw: doc,
   };
 }

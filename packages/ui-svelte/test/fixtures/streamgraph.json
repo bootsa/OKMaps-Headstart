@@ -1,0 +1,20 @@
+{
+  "x": ["2018", "2019", "2020", "2021"],
+  "subject": [
+    {
+      "name": "plankton",
+      "y": [2, 5, 3, 1],
+      "ids_overall": ["a", "b"]
+    },
+    {
+      "name": "salinity",
+      "y": [0, 1, 4, 6],
+      "ids_overall": ["c"]
+    },
+    {
+      "name": "warming",
+      "y": [3, 3, 2, 2],
+      "ids_overall": ["a", "d"]
+    }
+  ]
+}
