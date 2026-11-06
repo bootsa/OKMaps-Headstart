@@ -7,13 +7,10 @@ expect.extend(matchers);
 
 // jsdom has <dialog> but not its methods.
 HTMLDialogElement.prototype.showModal ??= function (this: HTMLDialogElement) {
-  this.open = true;
+	this.open = true;
 };
-HTMLDialogElement.prototype.close ??= function (
-  this: HTMLDialogElement,
-  value?: string,
-) {
-  if (value !== undefined) this.returnValue = value;
-  this.open = false;
-  this.dispatchEvent(new Event("close"));
+HTMLDialogElement.prototype.close ??= function (this: HTMLDialogElement, value?: string) {
+	if (value !== undefined) this.returnValue = value;
+	this.open = false;
+	this.dispatchEvent(new Event("close"));
 };

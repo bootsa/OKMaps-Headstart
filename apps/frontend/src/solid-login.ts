@@ -9,19 +9,24 @@ let auth: Promise<Auth> | undefined;
 const load = () => (auth ??= import("@inrupt/solid-client-authn-browser"));
 
 export interface SolidSession {
-  webId: string;
-  fetch: FetchFn;
+	webId: string;
+	fetch: FetchFn;
 }
 
 /** Identity providers offered in the form; any other can be typed in. */
-export const KNOWN_ISSUERS = ["https://login.inrupt.com", "https://solidcommunity.net", "https://solidweb.org", "https://teamid.live"];
+export const KNOWN_ISSUERS = [
+	"https://login.inrupt.com",
+	"https://solidcommunity.net",
+	"https://solidweb.org",
+	"https://teamid.live",
+];
 
 /** Sends the browser to the identity provider. It comes back to this page. */
 export async function solidLogin(issuer: string): Promise<void> {
-  const { login } = await load();
-  const back = new URL(location.href);
-  back.hash = "";
-  await login({ oidcIssuer: issuer, redirectUrl: back.href, clientName: "Open Knowledge Maps" });
+	const { login } = await load();
+	const back = new URL(location.href);
+	back.hash = "";
+	await login({ oidcIssuer: issuer, redirectUrl: back.href, clientName: "Open Knowledge Maps" });
 }
 
 let session: Promise<SolidSession | null> | undefined;
@@ -32,24 +37,25 @@ let session: Promise<SolidSession | null> | undefined;
  * Null when nobody is logged in.
  */
 export function solidSession(): Promise<SolidSession | null> {
-  return (session ??= (async () => {
-    const a = await load();
-    // A restored session comes back to the page it logged in from, without
-    // the query the page had; put it back.
-    a.events().on(a.EVENTS.SESSION_RESTORED, (url: string) => {
-      const was = new URL(url);
-      if (was.pathname === location.pathname) history.replaceState(null, "", was.href);
-      else location.replace(was.href);
-    });
-    const info = await a.handleIncomingRedirect({ restorePreviousSession: true });
-    return info?.isLoggedIn && info.webId ? { webId: info.webId, fetch: (u, i) => a.fetch(u, i) } : null;
-  })());
+	// biome-ignore lint/suspicious/noAssignInExpressions: start the login once and share the promise
+	return (session ??= (async () => {
+		const a = await load();
+		// A restored session comes back to the page it logged in from, without
+		// the query the page had; put it back.
+		a.events().on(a.EVENTS.SESSION_RESTORED, (url: string) => {
+			const was = new URL(url);
+			if (was.pathname === location.pathname) history.replaceState(null, "", was.href);
+			else location.replace(was.href);
+		});
+		const info = await a.handleIncomingRedirect({ restorePreviousSession: true });
+		return info?.isLoggedIn && info.webId ? { webId: info.webId, fetch: (u, i) => a.fetch(u, i) } : null;
+	})());
 }
 
 /** Ends the session in this app (not at the identity provider). */
 export async function solidLogout(): Promise<void> {
-  if (!auth) return;
-  const { logout } = await auth;
-  await logout({ logoutType: "app" });
-  session = undefined;
+	if (!auth) return;
+	const { logout } = await auth;
+	await logout({ logoutType: "app" });
+	session = undefined;
 }

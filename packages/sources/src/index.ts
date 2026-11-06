@@ -1,29 +1,35 @@
-export type { SourceRecord, SourceResult } from "./types.js";
-export { SourceError, errorReasons } from "./errors.js";
-export type { FetchFn, HttpOptions } from "./http.js";
-export { searchPubmed, buildPubmedTerm, parsePubmedXml, parseEsummary, toPubmedRecords } from "./pubmed.js";
-export type { PubmedParams, PubmedOptions } from "./pubmed.js";
+export type { BaseOptions, BasePaper, BaseParams, BaseRequest } from "./base/index.js";
 export {
-  searchBase,
-  buildBaseRequest,
-  baseRequestParams,
-  preprocessQuery,
-  cleanSubject,
-  parseBaseRepositories,
-  fetchBaseContentProviders,
+	baseRequestParams,
+	buildBaseRequest,
+	cleanSubject,
+	fetchBaseContentProviders,
+	parseBaseRepositories,
+	preprocessQuery,
+	searchBase,
 } from "./base/index.js";
-export type { BaseOptions, BaseParams, BaseRequest, BasePaper } from "./base/index.js";
-export { parseXml, textOf, findAll, findFirst, childElements } from "./xml.js";
-export type { XmlElement, XmlNode } from "./xml.js";
-export {
-  searchOpenaire,
-  getOpenaireProject,
-  parseOpenaireXml,
-  parseOpenaireProject,
-  toOpenaireRecords,
-  cleanOpenaireSubject,
-  OPENAIRE_BASE,
-} from "./openaire.js";
-export type { OpenaireParams, OpenaireOptions, OpenairePaper, OpenaireProject, OpenaireOrganisation } from "./openaire.js";
-export { addCitationCounts, fetchCitationCounts, CROSSREF_BASE } from "./crossref.js";
 export type { CrossrefOptions } from "./crossref.js";
+export { addCitationCounts, CROSSREF_BASE, fetchCitationCounts } from "./crossref.js";
+export { errorReasons, SourceError } from "./errors.js";
+export type { FetchFn, HttpOptions } from "./http.js";
+export type {
+	OpenaireOptions,
+	OpenaireOrganisation,
+	OpenairePaper,
+	OpenaireParams,
+	OpenaireProject,
+} from "./openaire.js";
+export {
+	cleanOpenaireSubject,
+	getOpenaireProject,
+	OPENAIRE_BASE,
+	parseOpenaireProject,
+	parseOpenaireXml,
+	searchOpenaire,
+	toOpenaireRecords,
+} from "./openaire.js";
+export type { PubmedOptions, PubmedParams } from "./pubmed.js";
+export { buildPubmedTerm, parseEsummary, parsePubmedXml, searchPubmed, toPubmedRecords } from "./pubmed.js";
+export type { SourceRecord, SourceResult } from "./types.js";
+export type { XmlElement, XmlNode } from "./xml.js";
+export { childElements, findAll, findFirst, parseXml, textOf } from "./xml.js";

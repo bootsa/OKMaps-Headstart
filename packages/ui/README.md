@@ -27,5 +27,4 @@ pnpm build        # production bundle in dist/ (dist/headstart.php lists its tag
 pnpm dev          # development build, rebuilt on change
 pnpm test         # Vitest (TZ=Europe/Vienna, which one test needs)
 pnpm typecheck
-pnpm eslint:check # not clean yet, and not in CI
 ```
