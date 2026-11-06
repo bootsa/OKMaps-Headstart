@@ -42,19 +42,22 @@ Deliberate differences:
 ## BASE
 
 ```ts
-import { searchBase } from "@okmaps/sources";
+import { fetchBaseContentProviders, searchBase } from "@okmaps/sources";
+const contentProviders = await fetchBaseContentProviders("https://gateway.example/base/repositories");
 const { papers, content } = await searchBase(
   { q: "digital education", from: "2020-01-01", to: "2024-12-31", document_types: ["121"],
     sorting: "most-relevant", limit: 120, list_size: 100 },
-  { endpoint: "https://gateway.example/base", contentProviders }, // contentProviders optional
+  { endpoint: "https://gateway.example/base/search", contentProviders }, // contentProviders optional
 );
 ```
 
 `endpoint` is a gateway URL that forwards the query string to BASE's
 `PerformSearch` interface (adding the API key, from a registered IP) and
-returns BASE's XML unchanged. `contentProviders` maps BASE provider names to
-internal names (the list `run_base_contentproviders.R` fetches); without it,
-volume, issue, page and ISSN are not parsed out of `published_in`.
+returns BASE's XML unchanged; `packages/gateway` is that gateway.
+`contentProviders` maps BASE provider names to internal names (the list
+`run_base_contentproviders.R` fetches, which the gateway serves at
+`/base/repositories`); without it, volume, issue, page and ISSN are not
+parsed out of `published_in`.
 
 The port covers the whole chain, and each part is compared with the code it
 replaces:
