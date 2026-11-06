@@ -1,0 +1,1266 @@
+{
+  "papers": [
+    {
+      "id": "bbaebfd5a133fce25d2c4aca27270f954eb2fe7bfea43bd339910f738434f216",
+      "safe_id": "bbaebfd5a133fce25d2c4aca27270f954eb2fe7bfea43bd339910f738434f216",
+      "x": -98.604,
+      "y": 0.194,
+      "diameter": 27.692,
+      "width": 20.609,
+      "height": 27.478,
+      "oa": true,
+      "outlink": "https://zenodo.org/record/32543",
+      "list_link": {
+        "address": "https://zenodo.org/record/32543",
+        "isDoi": false
+      },
+      "authors_string": "David Nicolas",
+      "title": "Mereological Essentialism, Composition, and Stuff: A Reply to Kristie Miller",
+      "year": "2009-08-04",
+      "internal_readers": 1
+    },
+    {
+      "id": "944425d2fef87163acab42c2816fb03206991ac716199fcc1cf48e93ea31b8ae",
+      "safe_id": "944425d2fef87163acab42c2816fb03206991ac716199fcc1cf48e93ea31b8ae",
+      "x": 553.568,
+      "y": 339.998,
+      "diameter": 27.692,
+      "width": 20.609,
+      "height": 27.478,
+      "oa": true,
+      "outlink": "http://journals.usamvcluj.ro/index.php/horticulture/article/view/2076",
+      "list_link": {
+        "address": "http://journals.usamvcluj.ro/index.php/horticulture/article/view/2076",
+        "isDoi": false
+      },
+      "authors_string": "Georgeta Făniţă",
+      "title": "THE SITUATION AND TENDENCIES OF THE FOOD-STUFF CONSUMPTION OF THE ROMANIAN POPULATION",
+      "year": "2008-11-07",
+      "internal_readers": 1
+    },
+    {
+      "id": "c6e272174a29830137f26f955903e93d56123209846a5a4d7115785cf88a7d82",
+      "safe_id": "c6e272174a29830137f26f955903e93d56123209846a5a4d7115785cf88a7d82",
+      "x": -98.604,
+      "y": 0.194,
+      "diameter": 27.692,
+      "width": 20.609,
+      "height": 27.478,
+      "oa": true,
+      "outlink": "https://jeannicod.ccsd.cnrs.fr/ijn_00420383",
+      "list_link": {
+        "address": "https://jeannicod.ccsd.cnrs.fr/ijn_00420383",
+        "isDoi": false
+      },
+      "authors_string": "David NICOLAS",
+      "title": "Mereological essentialism, composition, and stuff: a reply to Kristie Miller",
+      "year": "2009",
+      "internal_readers": 1
+    },
+    {
+      "id": "14873543fcad3c5eb7001520808bb66b132b8ffdbfccf688f494e93594fb956d",
+      "safe_id": "14873543fcad3c5eb7001520808bb66b132b8ffdbfccf688f494e93594fb956d",
+      "x": -98.604,
+      "y": 0.194,
+      "diameter": 27.692,
+      "width": 20.609,
+      "height": 27.478,
+      "oa": true,
+      "outlink": "https://jeannicod.ccsd.cnrs.fr/ijn_00420383",
+      "list_link": {
+        "address": "https://jeannicod.ccsd.cnrs.fr/ijn_00420383",
+        "isDoi": false
+      },
+      "authors_string": "David NICOLAS",
+      "title": "Mereological essentialism, composition, and stuff: a reply to Kristie Miller",
+      "year": "2009",
+      "internal_readers": 1
+    },
+    {
+      "id": "09842ec86f36a9d2487e7061fcf7084c03c0e4f1ee5c3ccdb2c5b5d8a5e76889",
+      "safe_id": "09842ec86f36a9d2487e7061fcf7084c03c0e4f1ee5c3ccdb2c5b5d8a5e76889",
+      "x": -98.604,
+      "y": 0.194,
+      "diameter": 27.692,
+      "width": 20.609,
+      "height": 27.478,
+      "oa": true,
+      "outlink": "https://jeannicod.ccsd.cnrs.fr/ijn_00420383",
+      "list_link": {
+        "address": "https://jeannicod.ccsd.cnrs.fr/ijn_00420383",
+        "isDoi": false
+      },
+      "authors_string": "David NICOLAS",
+      "title": "Mereological essentialism, composition, and stuff: a reply to Kristie Miller",
+      "year": "2009",
+      "internal_readers": 1
+    },
+    {
+      "id": "2e86fc3b135d561c72c5ee74caacb079e57df3755675da2888ca3f0f92b9611d",
+      "safe_id": "2e86fc3b135d561c72c5ee74caacb079e57df3755675da2888ca3f0f92b9611d",
+      "x": -98.604,
+      "y": 0.194,
+      "diameter": 27.692,
+      "width": 20.609,
+      "height": 27.478,
+      "oa": true,
+      "outlink": "https://jeannicod.ccsd.cnrs.fr/ijn_00420383",
+      "list_link": {
+        "address": "https://jeannicod.ccsd.cnrs.fr/ijn_00420383",
+        "isDoi": false
+      },
+      "authors_string": "David NICOLAS",
+      "title": "Mereological essentialism, composition, and stuff: a reply to Kristie Miller",
+      "year": "2009",
+      "internal_readers": 1
+    },
+    {
+      "id": "f02c53742c92e2a830bef3ae70d6559a0c7403753545285644becb9d68c28dd4",
+      "safe_id": "f02c53742c92e2a830bef3ae70d6559a0c7403753545285644becb9d68c28dd4",
+      "x": -258.453,
+      "y": 5,
+      "diameter": 27.692,
+      "width": 20.609,
+      "height": 27.478,
+      "oa": false,
+      "outlink": "http://ena.lp.edu.ua:8080/handle/ntb/9912",
+      "list_link": {
+        "address": "http://ena.lp.edu.ua:8080/handle/ntb/9912",
+        "isDoi": false
+      },
+      "authors_string": "?. ?. ?????, ?. ?. ?????????, ?. ?. ????????",
+      "title": "??????? ?? ???????? ??????? ??????????? ????????? ?? ???????????? ????????????",
+      "year": "2000",
+      "internal_readers": 1
+    },
+    {
+      "id": "3fc75fabf1018e3accff6c06a95751c64012131b149a54c293c6210eadfc8a67",
+      "safe_id": "3fc75fabf1018e3accff6c06a95751c64012131b149a54c293c6210eadfc8a67",
+      "x": -85.826,
+      "y": -274.347,
+      "diameter": 27.692,
+      "width": 20.609,
+      "height": 27.478,
+      "oa": false,
+      "outlink": "https://www.repository.cam.ac.uk/handle/1810/273313",
+      "list_link": {
+        "address": "https://www.repository.cam.ac.uk/handle/1810/273313",
+        "isDoi": false
+      },
+      "authors_string": "Lee Pretlove",
+      "title": "The science of managing our digital stuff",
+      "year": "2018-01-02",
+      "internal_readers": 1
+    },
+    {
+      "id": "1c53c23fe84cf67781932a88bc96d988ca4f3cb2913e666200f8ae50adc2344c",
+      "safe_id": "1c53c23fe84cf67781932a88bc96d988ca4f3cb2913e666200f8ae50adc2344c",
+      "x": 351.037,
+      "y": 492.72,
+      "diameter": 27.692,
+      "width": 20.609,
+      "height": 27.478,
+      "oa": false,
+      "outlink": "http://usir.salford.ac.uk/id/eprint/12773/",
+      "list_link": {
+        "address": "http://usir.salford.ac.uk/id/eprint/12773/",
+        "isDoi": false
+      },
+      "authors_string": "PJ Dwyer, N Ellison",
+      "title": "'We nicked stuff from all over the place': policy transfer or muddling through?",
+      "year": "2009",
+      "internal_readers": 1
+    },
+    {
+      "id": "18f722494f5a868a030bb97d4e25263477e064f774c3c7b336387e9b2d802c2b",
+      "safe_id": "18f722494f5a868a030bb97d4e25263477e064f774c3c7b336387e9b2d802c2b",
+      "x": 589.032,
+      "y": 230.429,
+      "diameter": 27.692,
+      "width": 20.609,
+      "height": 27.478,
+      "oa": true,
+      "outlink": "http://icatt.org.ua/proc/article/view/ICATT.2003.1238883",
+      "list_link": {
+        "address": "http://icatt.org.ua/proc/article/view/ICATT.2003.1238883",
+        "isDoi": false
+      },
+      "authors_string": "V. V. Zhirnov, A. I. Dokhov, S. V. Solonskaya, V. I. Strelchenko",
+      "title": "Dielectric characteristics of food-stuff in the process of their thermal treatment with microwave field",
+      "year": "2003-09-28",
+      "internal_readers": 1
+    },
+    {
+      "id": "b7255477dcdea1c12425cb7f5c63d21b96cda2b1b7cc88450c2c442060a58513",
+      "safe_id": "b7255477dcdea1c12425cb7f5c63d21b96cda2b1b7cc88450c2c442060a58513",
+      "x": 200.995,
+      "y": 39.592,
+      "diameter": 27.692,
+      "width": 20.609,
+      "height": 27.478,
+      "oa": false,
+      "outlink": "https://philpapers.org/rec/NEMIMO",
+      "list_link": {
+        "address": "https://philpapers.org/rec/NEMIMO",
+        "isDoi": false
+      },
+      "authors_string": "Mitra Zarea Nemati",
+      "title": "Investigating marketing of children's food stuff and methods of advertising in Iran",
+      "year": "2017",
+      "internal_readers": 1
+    },
+    {
+      "id": "60822a22ab3f64a634a81a5ed297609734e5f07125780c9dcf587f1bfbad1e17",
+      "safe_id": "60822a22ab3f64a634a81a5ed297609734e5f07125780c9dcf587f1bfbad1e17",
+      "x": -433.818,
+      "y": 33.999,
+      "diameter": 27.692,
+      "width": 20.609,
+      "height": 27.478,
+      "oa": true,
+      "outlink": "https://mediarep.org/handle/doc/4117",
+      "list_link": {
+        "address": "https://mediarep.org/handle/doc/4117",
+        "isDoi": false
+      },
+      "authors_string": "Wim Staat",
+      "title": "THE RIGHT STUFF: From Western to melodrama and comedy",
+      "year": "2016",
+      "internal_readers": 1
+    },
+    {
+      "id": "39e8586a342c8f24b2ed685962bb972e47349816d71bbc9cd838aa8b4edbdf3f",
+      "safe_id": "39e8586a342c8f24b2ed685962bb972e47349816d71bbc9cd838aa8b4edbdf3f",
+      "x": 223.893,
+      "y": -393.73,
+      "diameter": 27.692,
+      "width": 20.609,
+      "height": 27.478,
+      "oa": true,
+      "outlink": "https://ualresearchonline.arts.ac.uk/id/eprint/16128/",
+      "list_link": {
+        "address": "https://ualresearchonline.arts.ac.uk/id/eprint/16128/",
+        "isDoi": false
+      },
+      "authors_string": "Anja-Lisa Hirscher, Ramia Mazé",
+      "title": "Stuff Matters in Participation: Infrastructuring a co-sewing cafe",
+      "year": "2019",
+      "internal_readers": 1
+    },
+    {
+      "id": "f0632bba84f71a88b6292d93ce501adc887a007e311dd709a1386c0785d4bb7b",
+      "safe_id": "f0632bba84f71a88b6292d93ce501adc887a007e311dd709a1386c0785d4bb7b",
+      "x": -332.428,
+      "y": 159.724,
+      "diameter": 27.692,
+      "width": 20.609,
+      "height": 27.478,
+      "oa": true,
+      "outlink": "https://hdl.handle.net/20.500.12451/1316",
+      "list_link": {
+        "address": "https://hdl.handle.net/20.500.12451/1316",
+        "isDoi": false
+      },
+      "authors_string": "İzzet Erdem, Belma Keklik",
+      "title": "Sigara kullanımı hastane çalışanlarının kişisel imajlarını nasıl etkiliyor? ; How smoking affects personal ımage of the hospital staff?",
+      "year": "2015",
+      "internal_readers": 1
+    },
+    {
+      "id": "c58c78fdec97894cec9bce8f5dd02121e61effde51392f80cdf569a392f28d0c",
+      "safe_id": "c58c78fdec97894cec9bce8f5dd02121e61effde51392f80cdf569a392f28d0c",
+      "x": -404.044,
+      "y": 4.366,
+      "diameter": 27.692,
+      "width": 20.609,
+      "height": 27.478,
+      "oa": true,
+      "outlink": "http://journals.ssau.ru/index.php/hpp/article/view/3395",
+      "list_link": {
+        "address": "http://journals.ssau.ru/index.php/hpp/article/view/3395",
+        "isDoi": false
+      },
+      "authors_string": "Огородников А.В.",
+      "title": "THE SYSTEM OF FORMATION OF READINESS TO RISK OF CADETS-FUTURE OPERATIONS STUFF ; Система формирования готовности к риску курсантов-будущих оперативных сотрудников",
+      "year": "2017-02-14",
+      "internal_readers": 1
+    },
+    {
+      "id": "948d5cfe5b0005bde97c01aa6fcf57ddb9944feac268f701471692a78705abb8",
+      "safe_id": "948d5cfe5b0005bde97c01aa6fcf57ddb9944feac268f701471692a78705abb8",
+      "x": -224.726,
+      "y": 400.388,
+      "diameter": 27.692,
+      "width": 20.609,
+      "height": 27.478,
+      "oa": false,
+      "outlink": "http://hdl.handle.net/20.500.11937/76094",
+      "list_link": {
+        "address": "http://hdl.handle.net/20.500.11937/76094",
+        "isDoi": false
+      },
+      "authors_string": "Kantha Dayaram, Desmond Ayentimi, John Burgess",
+      "title": "Union suppression and union substitution strategies of multinational enterprises in Ghana",
+      "year": "2019",
+      "internal_readers": 1
+    },
+    {
+      "id": "5713e5f4302705e98618a134093673883697977d41b8eed9e2cb00df63d3903f",
+      "safe_id": "5713e5f4302705e98618a134093673883697977d41b8eed9e2cb00df63d3903f",
+      "x": -227.431,
+      "y": 407.118,
+      "diameter": 27.692,
+      "width": 20.609,
+      "height": 27.478,
+      "oa": false,
+      "outlink": "http://researchbank.rmit.edu.au/view/rmit:55366",
+      "list_link": {
+        "address": "http://researchbank.rmit.edu.au/view/rmit:55366",
+        "isDoi": false
+      },
+      "authors_string": "D Ayentimi, J Burgess, K Dayaram",
+      "title": "Union suppression and union substitution strategies of multinational enterprises in Ghana",
+      "year": "2019",
+      "internal_readers": 1
+    },
+    {
+      "id": "396cbd5302450cfbbebd5ab853c7a66814d4fae6541846652b5604c0691afd5c",
+      "safe_id": "396cbd5302450cfbbebd5ab853c7a66814d4fae6541846652b5604c0691afd5c",
+      "x": 595,
+      "y": 2.492,
+      "diameter": 27.692,
+      "width": 20.609,
+      "height": 27.478,
+      "oa": false,
+      "outlink": "https://journal.untar.ac.id/index.php/jiksi/article/view/1119",
+      "list_link": {
+        "address": "https://journal.untar.ac.id/index.php/jiksi/article/view/1119",
+        "isDoi": false
+      },
+      "authors_string": "Gladys Nathashya Tansen, Bagus Mulyawan",
+      "title": "Implementasi HTML 5 dan Image Editor untuk Desain Suvenir pada E-Commerce Souvenir Stuff Berbasis Web dan Mobile",
+      "year": "2017-12-14",
+      "internal_readers": 1
+    },
+    {
+      "id": "196af33fb4548664d1e51c552500c247e4515256ce8fba4623243bb03bbbfad1",
+      "safe_id": "196af33fb4548664d1e51c552500c247e4515256ce8fba4623243bb03bbbfad1",
+      "x": -195.523,
+      "y": -419.949,
+      "diameter": 27.692,
+      "width": 20.609,
+      "height": 27.478,
+      "oa": true,
+      "outlink": "https://e-journal.usd.ac.id/index.php/ABDIMAS/article/view/1762",
+      "list_link": {
+        "address": "https://e-journal.usd.ac.id/index.php/ABDIMAS/article/view/1762",
+        "isDoi": false
+      },
+      "authors_string": "V. Ariyono, Widagdo Purbowaskito",
+      "title": "PERANCANGAN DAN IMPLEMENTASI LEMARI PENYIMPANAN ALAT PERMAINAN EDUKATIF DI TK INDRIYASANA, BABADAN, WEDOMARTANI, SLEMAN, DIY",
+      "year": "2019-03-05",
+      "internal_readers": 1
+    },
+    {
+      "id": "9ab3484de20035b25d5dc072eb486c3479692baf8e391dea31466ecda49a7bd2",
+      "safe_id": "9ab3484de20035b25d5dc072eb486c3479692baf8e391dea31466ecda49a7bd2",
+      "x": -208.016,
+      "y": 209.005,
+      "diameter": 27.692,
+      "width": 20.609,
+      "height": 27.478,
+      "oa": false,
+      "outlink": "https://www.wpcjournal.com/article/view/16347",
+      "list_link": {
+        "address": "https://www.wpcjournal.com/article/view/16347",
+        "isDoi": false
+      },
+      "authors_string": "James W. Loewen",
+      "title": "\"Do Stuff\"",
+      "year": "2017-02-15",
+      "internal_readers": 1
+    },
+    {
+      "id": "9ca5e74255672e15455e20cb81b22d1aca502b2615518b4894d2f02ee074116e",
+      "safe_id": "9ca5e74255672e15455e20cb81b22d1aca502b2615518b4894d2f02ee074116e",
+      "x": 223.472,
+      "y": 482.606,
+      "diameter": 27.692,
+      "width": 20.609,
+      "height": 27.478,
+      "oa": false,
+      "outlink": "https://philpapers.org/rec/DARRAP-2",
+      "list_link": {
+        "address": "https://philpapers.org/rec/DARRAP-2",
+        "isDoi": false
+      },
+      "authors_string": "Howard Darmstadter",
+      "title": "Relativism and Progress",
+      "year": "2007",
+      "internal_readers": 1
+    },
+    {
+      "id": "c626601e820b098fef66b39faa59185f396e69a904cd06a96a83e09a6eacdefd",
+      "safe_id": "c626601e820b098fef66b39faa59185f396e69a904cd06a96a83e09a6eacdefd",
+      "x": 475.566,
+      "y": 135.3,
+      "diameter": 27.692,
+      "width": 20.609,
+      "height": 27.478,
+      "oa": false,
+      "outlink": "http://hdl.handle.net/1828/10979",
+      "list_link": {
+        "address": "http://hdl.handle.net/1828/10979",
+        "isDoi": false
+      },
+      "authors_string": "Trevor Hancock",
+      "title": "Beyond Science and Technology: Creating Planetary Health Needs Not Just ‘Head Stuff’, but Social Engagement and ‘Heart, Gut and Spirit’ Stuff",
+      "year": "2019",
+      "internal_readers": 1
+    },
+    {
+      "id": "336344cf0ca9ac971e01db27b4d5e07a743c0dd42958c07bf011155a4e6cb09f",
+      "safe_id": "336344cf0ca9ac971e01db27b4d5e07a743c0dd42958c07bf011155a4e6cb09f",
+      "x": 201.249,
+      "y": 39.661,
+      "diameter": 27.692,
+      "width": 20.609,
+      "height": 27.478,
+      "oa": true,
+      "outlink": "https://zenodo.org/record/3573622",
+      "list_link": {
+        "address": "https://zenodo.org/record/3573622",
+        "isDoi": false
+      },
+      "authors_string": "Mitra Zarea Nemati",
+      "title": "Investigating marketing of children's food stuff and methods of advertising in Iran",
+      "year": "2017-05-01",
+      "internal_readers": 1
+    },
+    {
+      "id": "c1074ac6b9193eb3742b75bf1c4cd75469a4831f3396013cf2b2e9242f31559b",
+      "safe_id": "c1074ac6b9193eb3742b75bf1c4cd75469a4831f3396013cf2b2e9242f31559b",
+      "x": -318.389,
+      "y": -321.906,
+      "diameter": 27.692,
+      "width": 20.609,
+      "height": 27.478,
+      "oa": true,
+      "outlink": "https://jjss.co.in/journal/index.php/hs/article/view/56",
+      "list_link": {
+        "address": "https://jjss.co.in/journal/index.php/hs/article/view/56",
+        "isDoi": false
+      },
+      "authors_string": "Neetu Singh, Ritu Pandey, Archana Singh, Tara Rana",
+      "title": "DYE THE FABRICS USING NATURAL DYE STUFF",
+      "year": "2017-06-29",
+      "internal_readers": 1
+    },
+    {
+      "id": "a0c0c4828945d26d2411928740012002ee9a9b4b70dc7a440495ad5ccf6bf040",
+      "safe_id": "a0c0c4828945d26d2411928740012002ee9a9b4b70dc7a440495ad5ccf6bf040",
+      "x": -227.083,
+      "y": 411.999,
+      "diameter": 27.692,
+      "width": 20.609,
+      "height": 27.478,
+      "oa": false,
+      "outlink": "https://eprints.utas.edu.au/32899/",
+      "list_link": {
+        "address": "https://eprints.utas.edu.au/32899/",
+        "isDoi": false
+      },
+      "authors_string": "DT Ayentimi, J Burgess, K Dayaram",
+      "title": "Union suppression and union substitution strategies of multinational enterprises in Ghana",
+      "year": "2019",
+      "internal_readers": 1
+    },
+    {
+      "id": "eeae2e3e2dc7a0a9c81038376f7c45992f541081530613781cc23ba6d3c68bbe",
+      "safe_id": "eeae2e3e2dc7a0a9c81038376f7c45992f541081530613781cc23ba6d3c68bbe",
+      "x": -476.529,
+      "y": 200.923,
+      "diameter": 27.692,
+      "width": 20.609,
+      "height": 27.478,
+      "oa": false,
+      "outlink": "https://dergipark.org.tr/tr/pub/yyusbed/issue/43698/536073",
+      "list_link": {
+        "address": "https://dergipark.org.tr/tr/pub/yyusbed/issue/43698/536073",
+        "isDoi": false
+      },
+      "authors_string": "Aydın GÖRMEZ, Fatma KARAMAN",
+      "title": "CHILCOT RAPORU VE STUFF HAPPENS ESERINDE \"TARİHİN METİNSELLİĞİ VE METNİN TARİHSELLİĞİ\"",
+      "year": "2018-06-28T00:00:00Z",
+      "internal_readers": 1
+    },
+    {
+      "id": "b25b1b18cf65407308bb69c0b2ec0adcf6e9f9ddc0b746786d67f8ced95d5035",
+      "safe_id": "b25b1b18cf65407308bb69c0b2ec0adcf6e9f9ddc0b746786d67f8ced95d5035",
+      "x": -85.948,
+      "y": -274.775,
+      "diameter": 27.692,
+      "width": 20.609,
+      "height": 27.478,
+      "oa": false,
+      "outlink": "https://doi.org/10.17863/CAM.20337",
+      "list_link": {
+        "address": "https://doi.org/10.17863/CAM.20337",
+        "isDoi": true
+      },
+      "authors_string": "Lee Pretlove",
+      "title": "The science of managing our digital stuff",
+      "year": "2018",
+      "internal_readers": 1
+    },
+    {
+      "id": "5b5c5f536158061f78f4c2c80c4279018970269d9e05b39a68f7f8932cd3b0ba",
+      "safe_id": "5b5c5f536158061f78f4c2c80c4279018970269d9e05b39a68f7f8932cd3b0ba",
+      "x": -228.643,
+      "y": 415.528,
+      "diameter": 27.692,
+      "width": 20.609,
+      "height": 27.478,
+      "oa": false,
+      "outlink": "https://doi.org/10.1111/irj.12264",
+      "list_link": {
+        "address": "https://doi.org/10.1111/irj.12264",
+        "isDoi": true
+      },
+      "authors_string": "DT Ayentimi, J Burgess, K Dayaram",
+      "title": "Union suppression and union substitution strategies of multinational enterprises in Ghana",
+      "year": "2019",
+      "internal_readers": 1
+    },
+    {
+      "id": "8a370059618fb0a5a76f017cfa78d51d7d9e95ad719726298fb8556096c28c1a",
+      "safe_id": "8a370059618fb0a5a76f017cfa78d51d7d9e95ad719726298fb8556096c28c1a",
+      "x": 567.978,
+      "y": -131.229,
+      "diameter": 27.692,
+      "width": 20.609,
+      "height": 27.478,
+      "oa": false,
+      "outlink": "http://eprints.lse.ac.uk/91812/",
+      "list_link": {
+        "address": "http://eprints.lse.ac.uk/91812/",
+        "isDoi": false
+      },
+      "authors_string": "Mathijs Pelkmans, Damira Umetbaeva",
+      "title": "Stuff of boundaries? Kyrgyz–Russian marriages and the actualization of ethnic difference",
+      "year": "2018-12-12",
+      "internal_readers": 1
+    },
+    {
+      "id": "1c775470c3e102d38d472d521b39447c4d9a490bd029efb6a1dd989a82a4d15b",
+      "safe_id": "1c775470c3e102d38d472d521b39447c4d9a490bd029efb6a1dd989a82a4d15b",
+      "x": 72.622,
+      "y": -149.974,
+      "diameter": 27.692,
+      "width": 20.609,
+      "height": 27.478,
+      "oa": false,
+      "outlink": "http://ir.lib.pccu.edu.tw//handle/987654321/28805",
+      "list_link": {
+        "address": "http://ir.lib.pccu.edu.tw//handle/987654321/28805",
+        "isDoi": false
+      },
+      "authors_string": "鍾延春, 許嘉彰, 王信易",
+      "title": "難生物分解性廢水處理技術與回收再利用 ; Environmental Biochemistry of Bye Stuff and Paper Industry",
+      "year": "1996-03",
+      "internal_readers": 1
+    },
+    {
+      "id": "47351f8f6c34bd2a517dfc0daf9631022f3b805cf404328932e67da364777f46",
+      "safe_id": "47351f8f6c34bd2a517dfc0daf9631022f3b805cf404328932e67da364777f46",
+      "x": 44.252,
+      "y": 395.331,
+      "diameter": 27.692,
+      "width": 20.609,
+      "height": 27.478,
+      "oa": false,
+      "outlink": "http://psasir.upm.edu.my/55420/",
+      "list_link": {
+        "address": "http://psasir.upm.edu.my/55420/",
+        "isDoi": false
+      },
+      "authors_string": "Elaff Ganim Salih, Hardev Kaur, Mohamad Fleih Hassan",
+      "title": "David Hares stuff happens a dramatic journey of American war on Iraq",
+      "year": "2016",
+      "internal_readers": 1
+    },
+    {
+      "id": "c7a007b9ac1c14d46c6e4cdf695076edfb723be25de4e6f2b04103839ec95e75",
+      "safe_id": "c7a007b9ac1c14d46c6e4cdf695076edfb723be25de4e6f2b04103839ec95e75",
+      "x": 460.421,
+      "y": -226.599,
+      "diameter": 27.692,
+      "width": 20.609,
+      "height": 27.478,
+      "oa": true,
+      "outlink": "https://kclpure.kcl.ac.uk/portal/en/publications/alternative-proteins-and-the-nonstuff-of-meat(4d057075-f854-4a4d-9730-c4bf21fef3b2).html",
+      "list_link": {
+        "address": "https://kclpure.kcl.ac.uk/portal/en/publications/alternative-proteins-and-the-nonstuff-of-meat(4d057075-f854-4a4d-9730-c4bf21fef3b2).html",
+        "isDoi": false
+      },
+      "authors_string": "Alexandra Sexton",
+      "title": "Alternative Proteins and the (Non)Stuff of \"Meat\"",
+      "year": "2016",
+      "internal_readers": 1
+    },
+    {
+      "id": "bb5badf5324e0b548799564e12c397ddaa076c03339d4dfcbebd4924387a3b68",
+      "safe_id": "bb5badf5324e0b548799564e12c397ddaa076c03339d4dfcbebd4924387a3b68",
+      "x": 47.86,
+      "y": -473.508,
+      "diameter": 27.692,
+      "width": 20.609,
+      "height": 27.478,
+      "oa": true,
+      "outlink": "http://repository.uwl.ac.uk/id/eprint/6076/",
+      "list_link": {
+        "address": "http://repository.uwl.ac.uk/id/eprint/6076/",
+        "isDoi": false
+      },
+      "authors_string": "Andy Quinn, Ivan Sikora",
+      "title": "The right stuff ‘v’ the right (safe) thing",
+      "year": "2017-07-13",
+      "internal_readers": 1
+    },
+    {
+      "id": "92b6d6c6ac1ce8e761ea3a8c4a0138c4391911573c42eb72a1df818f3c19b10d",
+      "safe_id": "92b6d6c6ac1ce8e761ea3a8c4a0138c4391911573c42eb72a1df818f3c19b10d",
+      "x": 42.733,
+      "y": -32.743,
+      "diameter": 27.692,
+      "width": 20.609,
+      "height": 27.478,
+      "oa": false,
+      "outlink": "http://dx.doi.org/10.1177/0075424217701182",
+      "list_link": {
+        "address": "https://dx.doi.org/10.1177/0075424217701182",
+        "isDoi": true
+      },
+      "authors_string": "Derek Denis",
+      "title": "The Development of And Stuff in Canadian English: A Longitudinal Study of Apparent Grammaticalization",
+      "year": "2017",
+      "internal_readers": 1
+    },
+    {
+      "id": "ba3aa74362f15e9f53d73893752f0cc33c032dd1af4e7c4c8eff2a0ea05380c3",
+      "safe_id": "ba3aa74362f15e9f53d73893752f0cc33c032dd1af4e7c4c8eff2a0ea05380c3",
+      "x": 248.692,
+      "y": -113.482,
+      "diameter": 27.692,
+      "width": 20.609,
+      "height": 27.478,
+      "oa": true,
+      "outlink": "http://nrs.harvard.edu/urn-3:HUL.InstRepos:4317739",
+      "list_link": {
+        "address": "http://nrs.harvard.edu/urn-3:HUL.InstRepos:4317739",
+        "isDoi": false
+      },
+      "authors_string": "Howard Georgi, Yevgeny Kats",
+      "title": "Unparticle Self-Interactions",
+      "year": "2010",
+      "internal_readers": 1
+    },
+    {
+      "id": "080ca0728c80dee430ee7734ae613e1d0ee682ae15d09800c4250a27b793131e",
+      "safe_id": "080ca0728c80dee430ee7734ae613e1d0ee682ae15d09800c4250a27b793131e",
+      "x": -367.509,
+      "y": 280.01,
+      "diameter": 27.692,
+      "width": 20.609,
+      "height": 27.478,
+      "oa": true,
+      "outlink": "http://repository.sspu.sumy.ua/handle/123456789/4888",
+      "list_link": {
+        "address": "http://repository.sspu.sumy.ua/handle/123456789/4888",
+        "isDoi": false
+      },
+      "authors_string": "Марина Олексіївна Гупал, Maryna Oleksiivna Hupal",
+      "title": "Сприятливий соціально-психологічний клімат у педагогічному колективі та шляхи його формування ; Favourable Social-Psychological Climate in a Teaching Stuff and Ways of its Forming",
+      "year": "2011",
+      "internal_readers": 1
+    },
+    {
+      "id": "8868b493b3ca743a43dc30529bda01c336a5c7bc63577aed47deebca17d2f197",
+      "safe_id": "8868b493b3ca743a43dc30529bda01c336a5c7bc63577aed47deebca17d2f197",
+      "x": 420.271,
+      "y": 342.651,
+      "diameter": 27.692,
+      "width": 20.609,
+      "height": 27.478,
+      "oa": false,
+      "outlink": "https://kclpure.kcl.ac.uk/portal/en/publications/genomic-stuff(f2980ad6-690a-43bc-ac1c-317775c39838).html",
+      "list_link": {
+        "address": "https://kclpure.kcl.ac.uk/portal/en/publications/genomic-stuff(f2980ad6-690a-43bc-ac1c-317775c39838).html",
+        "isDoi": false
+      },
+      "authors_string": "G. Pálsson, Barbara Prainsack",
+      "title": "Genomic stuff:Governing the (im)matter of life",
+      "year": "2011-08-01",
+      "internal_readers": 1
+    },
+    {
+      "id": "98a866bc1f328f0b4bcaa1aed142fda692b782c5ca208aeaff1e8a484a9de75a",
+      "safe_id": "98a866bc1f328f0b4bcaa1aed142fda692b782c5ca208aeaff1e8a484a9de75a",
+      "x": 77.299,
+      "y": 173.543,
+      "diameter": 27.692,
+      "width": 20.609,
+      "height": 27.478,
+      "oa": true,
+      "outlink": "https://doi.org/10.5281/zenodo.244251",
+      "list_link": {
+        "address": "https://doi.org/10.5281/zenodo.244251",
+        "isDoi": true
+      },
+      "authors_string": "Osmanova Z.",
+      "title": "The Competency Model In Evaluation And Management Of The Staff Enterprise",
+      "year": "2017",
+      "internal_readers": 1
+    },
+    {
+      "id": "506c372dba65452b3e3b70fb780cf7dff867d03a0d713fde364d9cc6c4ed59d9",
+      "safe_id": "506c372dba65452b3e3b70fb780cf7dff867d03a0d713fde364d9cc6c4ed59d9",
+      "x": -49.888,
+      "y": 341.708,
+      "diameter": 27.692,
+      "width": 20.609,
+      "height": 27.478,
+      "oa": false,
+      "outlink": "https://cris.maastrichtuniversity.nl/portal/en/publications/interrupting-long-periods-of-sitting-good-stuff(33147bbe-951e-42f0-8bba-7adf9d1c7504).html",
+      "list_link": {
+        "address": "https://cris.maastrichtuniversity.nl/portal/en/publications/interrupting-long-periods-of-sitting-good-stuff(33147bbe-951e-42f0-8bba-7adf9d1c7504).html",
+        "isDoi": false
+      },
+      "authors_string": "G.M. Rutten, H.H. Savelberg, S. J. Biddle, S.P. Kremers",
+      "title": "Interrupting long periods of sitting: Good STUFF",
+      "year": "2013-01-02",
+      "internal_readers": 1
+    },
+    {
+      "id": "aef90adac1fcf5749967853e586d7084350db74d0886d1d878de7727635d27ba",
+      "safe_id": "aef90adac1fcf5749967853e586d7084350db74d0886d1d878de7727635d27ba",
+      "x": 349.407,
+      "y": -393.625,
+      "diameter": 27.692,
+      "width": 20.609,
+      "height": 27.478,
+      "oa": false,
+      "outlink": "https://dergipark.org.tr/tr/pub/cbayarfbe/issue/55133/654782",
+      "list_link": {
+        "address": "https://dergipark.org.tr/tr/pub/cbayarfbe/issue/55133/654782",
+        "isDoi": false
+      },
+      "authors_string": "Serhat ARAS, İhsan Oguz TANZER, Türkan İKİZCELİ",
+      "title": "Comparison of Dose Distribution Effects for Various Bolus Materials in Electron Conformal Radiotherapy",
+      "year": "2020-06-24T00:00:00Z",
+      "internal_readers": 1
+    },
+    {
+      "id": "f64b456b8b6daa463441d399b7f4ccb97ac7db885ddf77a36ef73c4434edd7e2",
+      "safe_id": "f64b456b8b6daa463441d399b7f4ccb97ac7db885ddf77a36ef73c4434edd7e2",
+      "x": 223.959,
+      "y": -394.849,
+      "diameter": 27.692,
+      "width": 20.609,
+      "height": 27.478,
+      "oa": true,
+      "outlink": "https://aaltodoc.aalto.fi/handle/123456789/39743",
+      "list_link": {
+        "address": "https://aaltodoc.aalto.fi/handle/123456789/39743",
+        "isDoi": false
+      },
+      "authors_string": "Anja-Lisa Hirscher, Ramia Maze",
+      "title": "Stuff Matters in Participation: Infrastructuring a Co-Sewing Café",
+      "year": "2019",
+      "internal_readers": 1
+    },
+    {
+      "id": "4a77e92cfca91427a18127826aaf8b815538e9cda35fd14b38f273e5ed87c555",
+      "safe_id": "4a77e92cfca91427a18127826aaf8b815538e9cda35fd14b38f273e5ed87c555",
+      "x": 460.928,
+      "y": -227.079,
+      "diameter": 27.692,
+      "width": 20.609,
+      "height": 27.478,
+      "oa": false,
+      "outlink": "http://dx.doi.org/10.1525/gfc.2016.16.3.66",
+      "list_link": {
+        "address": "https://dx.doi.org/10.1525/gfc.2016.16.3.66",
+        "isDoi": true
+      },
+      "authors_string": "Alexandra Sexton",
+      "title": "Alternative Proteins and the (Non)Stuff of “Meat”",
+      "year": "2016",
+      "internal_readers": 1
+    },
+    {
+      "id": "79cecc136db402fb219f9c817649c21469ee7a3d47ba5bb6202aa761ed9892af",
+      "safe_id": "79cecc136db402fb219f9c817649c21469ee7a3d47ba5bb6202aa761ed9892af",
+      "x": 158.604,
+      "y": -295.447,
+      "diameter": 27.692,
+      "width": 20.609,
+      "height": 27.478,
+      "oa": true,
+      "outlink": "http://revistaseletronicas.pucrs.br/ojs/index.php/oficinadohistoriador/article/view/36502",
+      "list_link": {
+        "address": "http://revistaseletronicas.pucrs.br/ojs/index.php/oficinadohistoriador/article/view/36502",
+        "isDoi": false
+      },
+      "authors_string": "Klaus Hilbert",
+      "title": "Material culture studies: on things and stuff in Archaeology ; Estudos de cultura material: sobre coisas e substâncias na Arqueologia",
+      "year": "2020-06-13",
+      "internal_readers": 1
+    },
+    {
+      "id": "1940cef3851ab0039a055ff04d4a878e1601a0c6df3fb2694b4505a5b5fc24c2",
+      "safe_id": "1940cef3851ab0039a055ff04d4a878e1601a0c6df3fb2694b4505a5b5fc24c2",
+      "x": 77.474,
+      "y": 173.479,
+      "diameter": 27.692,
+      "width": 20.609,
+      "height": 27.478,
+      "oa": true,
+      "outlink": "https://zenodo.org/record/244251",
+      "list_link": {
+        "address": "https://zenodo.org/record/244251",
+        "isDoi": false
+      },
+      "authors_string": "Osmanova Z.",
+      "title": "The competency model in evaluation and management of the staff enterprise",
+      "year": "2017-01-15",
+      "internal_readers": 1
+    },
+    {
+      "id": "bca10c098c0773ba1dee9a9069b0d252aa950bbcceb84070916526fd2fe6b312",
+      "safe_id": "bca10c098c0773ba1dee9a9069b0d252aa950bbcceb84070916526fd2fe6b312",
+      "x": -198.983,
+      "y": -129.051,
+      "diameter": 27.692,
+      "width": 20.609,
+      "height": 27.478,
+      "oa": true,
+      "outlink": "http://ru.tic.unam.mx/handle/123456789/963",
+      "list_link": {
+        "address": "http://ru.tic.unam.mx/handle/123456789/963",
+        "isDoi": false
+      },
+      "authors_string": "Verónica Rozano Ladrón de Guevara, Carolina Quiroz Santiago, Juan Carlos Acosta Pulido",
+      "title": "Hortalizas, las llaves de la energía ; Garden stuff: the energy’s",
+      "year": "2005-09-10",
+      "internal_readers": 1
+    },
+    {
+      "id": "f5f3435d161c4ff5c4f7390b7d3612f03c45d430dfdcc004f4f7cb11081dde1b",
+      "safe_id": "f5f3435d161c4ff5c4f7390b7d3612f03c45d430dfdcc004f4f7cb11081dde1b",
+      "x": -374.663,
+      "y": -151.284,
+      "diameter": 27.692,
+      "width": 20.609,
+      "height": 27.478,
+      "oa": false,
+      "outlink": "http://dx.doi.org/10.2307/458575",
+      "list_link": {
+        "address": "https://dx.doi.org/10.2307/458575",
+        "isDoi": true
+      },
+      "authors_string": "Marianne Thalmann",
+      "title": "Hans Breitmann",
+      "year": "1939",
+      "internal_readers": 1
+    },
+    {
+      "id": "cef8fa4087e43350fb3418676998dbacabba0d36a95f83a904fb91f3f123f351",
+      "safe_id": "cef8fa4087e43350fb3418676998dbacabba0d36a95f83a904fb91f3f123f351",
+      "x": 5,
+      "y": -417.281,
+      "diameter": 27.692,
+      "width": 20.609,
+      "height": 27.478,
+      "oa": false,
+      "outlink": "https://epubs.scu.edu.au/educ_pubs/1293",
+      "list_link": {
+        "address": "https://epubs.scu.edu.au/educ_pubs/1293",
+        "isDoi": false
+      },
+      "authors_string": "Keith R Skamp",
+      "title": "Teaching chemistry in primary science: what does the research suggest?",
+      "year": "2011-01-01T08:00:00Z",
+      "internal_readers": 1
+    },
+    {
+      "id": "d6ded41e6ce0182b59fb54196aeaf7f8e80c0af99b7859c1533294418b5552fa",
+      "safe_id": "d6ded41e6ce0182b59fb54196aeaf7f8e80c0af99b7859c1533294418b5552fa",
+      "x": -480.203,
+      "y": -116.179,
+      "diameter": 27.692,
+      "width": 20.609,
+      "height": 27.478,
+      "oa": true,
+      "outlink": "http://traduire.revues.org/438",
+      "list_link": {
+        "address": "http://traduire.revues.org/438",
+        "isDoi": false
+      },
+      "authors_string": "Julie de Faramond",
+      "title": "Entretien avec William Nadylam",
+      "year": "2014-04-22",
+      "internal_readers": 1
+    },
+    {
+      "id": "974e9394b51208b9b9ff9014a7d9796102ab6627d326855a2e15c44df63b1364",
+      "safe_id": "974e9394b51208b9b9ff9014a7d9796102ab6627d326855a2e15c44df63b1364",
+      "x": -205.436,
+      "y": -323.395,
+      "diameter": 27.692,
+      "width": 20.609,
+      "height": 27.478,
+      "oa": false,
+      "outlink": "http://dx.doi.org/10.1017/s0533245100022380",
+      "list_link": {
+        "address": "https://dx.doi.org/10.1017/s0533245100022380",
+        "isDoi": true
+      },
+      "authors_string": "",
+      "title": "II. Physics",
+      "year": "1999",
+      "internal_readers": 1
+    },
+    {
+      "id": "9a40b8c453180826c82c3f961d11bd469fdea4dd9a6644f07082258d745ea1f0",
+      "safe_id": "9a40b8c453180826c82c3f961d11bd469fdea4dd9a6644f07082258d745ea1f0",
+      "x": 209.217,
+      "y": 366.466,
+      "diameter": 27.692,
+      "width": 20.609,
+      "height": 27.478,
+      "oa": false,
+      "outlink": "http://ena.lp.edu.ua:8080/handle/ntb/295",
+      "list_link": {
+        "address": "http://ena.lp.edu.ua:8080/handle/ntb/295",
+        "isDoi": false
+      },
+      "authors_string": "Овчиннікова Т. В.",
+      "title": "Управління структурними змінами в колективах агроформувань відповідно до зовнішнього середовища та стратегії діяльності (за матеріалами ПАФ \"Рудківці\" Жидачівського району Львівської області)",
+      "year": "2007",
+      "internal_readers": 1
+    },
+    {
+      "id": "94e90395fca91a60343b189e34e5532c13047d06463c5219603c2031b48edd51",
+      "safe_id": "94e90395fca91a60343b189e34e5532c13047d06463c5219603c2031b48edd51",
+      "x": -55.45,
+      "y": 524.956,
+      "diameter": 27.692,
+      "width": 20.609,
+      "height": 27.478,
+      "oa": true,
+      "outlink": "http://dspace.kntu.kr.ua/jspui/handle/123456789/591",
+      "list_link": {
+        "address": "http://dspace.kntu.kr.ua/jspui/handle/123456789/591",
+        "isDoi": false
+      },
+      "authors_string": "О. В. Лопушинська, О. Lopushinska",
+      "title": "Концептуальні підходи до оцінки конкурентоспроможності персоналу підприємства ; Conceptual approaches to assessing the competitiveness of stuff",
+      "year": "2011",
+      "internal_readers": 1
+    },
+    {
+      "id": "d5cab195517e03c82f448dd257c7fe9d2f256737bc8d0f9a26b5c61ebc7a8f7c",
+      "safe_id": "d5cab195517e03c82f448dd257c7fe9d2f256737bc8d0f9a26b5c61ebc7a8f7c",
+      "x": 65.692,
+      "y": 595,
+      "diameter": 27.692,
+      "width": 20.609,
+      "height": 27.478,
+      "oa": false,
+      "outlink": "http://uir.ulster.ac.uk/24891/",
+      "list_link": {
+        "address": "http://uir.ulster.ac.uk/24891/",
+        "isDoi": false
+      },
+      "authors_string": "Greta Jones, Farhat Manzoor, James McKenna",
+      "title": "'How could these people do this sort of stuff and then we have to look after them?' Ethical dilemmas of nursing in the Northern Ireland conflict",
+      "year": "2007",
+      "internal_readers": 1
+    },
+    {
+      "id": "d56b1d26da6da0f5ccbf3803f0d0667155c089b5f0f863b801150162cf5ae179",
+      "safe_id": "d56b1d26da6da0f5ccbf3803f0d0667155c089b5f0f863b801150162cf5ae179",
+      "x": 414.677,
+      "y": 114.695,
+      "diameter": 27.692,
+      "width": 20.609,
+      "height": 27.478,
+      "oa": false,
+      "outlink": "https://doi.org/10.1109/MTS.2016.2527078",
+      "list_link": {
+        "address": "https://doi.org/10.1109/MTS.2016.2527078",
+        "isDoi": true
+      },
+      "authors_string": "Emmeline Taylor, Katina Michael",
+      "title": "Smart Toys that are the Stuff of Nightmares",
+      "year": "2016-03-10",
+      "internal_readers": 1
+    },
+    {
+      "id": "b0c0e4e5060516f626d65c6c3e48ec6c6daacaa4d974f82c4a465b9a2f74b17d",
+      "safe_id": "b0c0e4e5060516f626d65c6c3e48ec6c6daacaa4d974f82c4a465b9a2f74b17d",
+      "x": 378.17,
+      "y": -271.521,
+      "diameter": 27.692,
+      "width": 20.609,
+      "height": 27.478,
+      "oa": false,
+      "outlink": "https://er.knutd.edu.ua/handle/123456789/443",
+      "list_link": {
+        "address": "https://er.knutd.edu.ua/handle/123456789/443",
+        "isDoi": false
+      },
+      "authors_string": "Ivan Gryshchenko, Anatoliy Danylkovych",
+      "title": "On the methodology of optimizing the raw stuff resources of producing leather materials",
+      "year": "2012",
+      "internal_readers": 1
+    },
+    {
+      "id": "3ecbbcdb182383f4186ddcf43f078e5ff08931acc6c6dc78817664259b7e3064",
+      "safe_id": "3ecbbcdb182383f4186ddcf43f078e5ff08931acc6c6dc78817664259b7e3064",
+      "x": 199.905,
+      "y": -504.24,
+      "diameter": 27.692,
+      "width": 20.609,
+      "height": 27.478,
+      "oa": false,
+      "outlink": "http://gala.gre.ac.uk/id/eprint/10350/",
+      "list_link": {
+        "address": "http://gala.gre.ac.uk/id/eprint/10350/",
+        "isDoi": false
+      },
+      "authors_string": "Rachel Armstrong",
+      "title": "How protocells can make 'stuff' much more interesting",
+      "year": "2011-03-17",
+      "internal_readers": 1
+    },
+    {
+      "id": "bea70f9b6d25868d94fdc66e98a1c3fc8758e36c72c57c6c8fc7396616e55690",
+      "safe_id": "bea70f9b6d25868d94fdc66e98a1c3fc8758e36c72c57c6c8fc7396616e55690",
+      "x": 451.615,
+      "y": -27.002,
+      "diameter": 27.692,
+      "width": 20.609,
+      "height": 27.478,
+      "oa": true,
+      "outlink": "http://hdl.handle.net/11311/1010736",
+      "list_link": {
+        "address": "http://hdl.handle.net/11311/1010736",
+        "isDoi": false
+      },
+      "authors_string": "Pier Paolo Tamburelli, Francesca Pellicciari",
+      "title": "Baldessari als Erzieher",
+      "year": "2011",
+      "internal_readers": 1
+    },
+    {
+      "id": "777fc02306ca3e1744ccef0446dd7cd82e7839a86251bd272810368177b3efaa",
+      "safe_id": "777fc02306ca3e1744ccef0446dd7cd82e7839a86251bd272810368177b3efaa",
+      "x": -297.738,
+      "y": -203.625,
+      "diameter": 27.692,
+      "width": 20.609,
+      "height": 27.478,
+      "oa": true,
+      "outlink": "https://doaj.org/article/2ac5f7668df44b27bccf56e763128304",
+      "list_link": {
+        "address": "https://doaj.org/article/2ac5f7668df44b27bccf56e763128304",
+        "isDoi": false
+      },
+      "authors_string": "Alina Petra Marinescu",
+      "title": "When stuff gets covered in fluff in order to build up a paradoxical existence",
+      "year": "2012-01-01T00:00:00Z",
+      "internal_readers": 1
+    },
+    {
+      "id": "b6c06d1e51cc87d9446fb22ece84427793e09affe0c069649777ab41a527dc0e",
+      "safe_id": "b6c06d1e51cc87d9446fb22ece84427793e09affe0c069649777ab41a527dc0e",
+      "x": 123.453,
+      "y": 518.675,
+      "diameter": 27.692,
+      "width": 20.609,
+      "height": 27.478,
+      "oa": false,
+      "outlink": "http://ena.lp.edu.ua:8080/handle/ntb/35857",
+      "list_link": {
+        "address": "http://ena.lp.edu.ua:8080/handle/ntb/35857",
+        "isDoi": false
+      },
+      "authors_string": "?. ?. ??????????",
+      "title": "????????????? ??????????? ?? ??????????? ????????? ??????",
+      "year": "2006",
+      "internal_readers": 1
+    },
+    {
+      "id": "cb1bd69201cec094a0982d20d16074d14d8d48df609dacb7b871d5161dbc5dd3",
+      "safe_id": "cb1bd69201cec094a0982d20d16074d14d8d48df609dacb7b871d5161dbc5dd3",
+      "x": -76.788,
+      "y": -469.695,
+      "diameter": 27.692,
+      "width": 20.609,
+      "height": 27.478,
+      "oa": false,
+      "outlink": "https://riviste.unimi.it/index.php/Lebenswelt/article/view/10366",
+      "list_link": {
+        "address": "https://riviste.unimi.it/index.php/Lebenswelt/article/view/10366",
+        "isDoi": false
+      },
+      "authors_string": "Alice Barale",
+      "title": "Stuff that matters. Mimesis and (the end of) magic in Walter Benjamin",
+      "year": "2018-07-15",
+      "internal_readers": 1
+    },
+    {
+      "id": "53dfa672270626760aa3ba0ba8b761adbeec70f5d71456f8c80b178698ed66de",
+      "safe_id": "53dfa672270626760aa3ba0ba8b761adbeec70f5d71456f8c80b178698ed66de",
+      "x": 276.907,
+      "y": 281.181,
+      "diameter": 27.692,
+      "width": 20.609,
+      "height": 27.478,
+      "oa": false,
+      "outlink": "https://www.banglajol.info/index.php/BJMM/article/view/51678",
+      "list_link": {
+        "address": "https://www.banglajol.info/index.php/BJMM/article/view/51678",
+        "isDoi": false
+      },
+      "authors_string": "Rahima Akter, Shikha Paul, Akhtarun Naher, Moshiur Rahman, Sharmin Sultana, Dipika Sarkar",
+      "title": "Nasal Carriage of Methicillin Resistant Staphylococcus aureus Among Health Care Workers At Tertiary Care Hospital In Dhaka.",
+      "year": "2017-07-25",
+      "internal_readers": 1
+    }
+  ],
+  "areas": [
+    {
+      "area_uri": "1",
+      "title": "Mereological essentialism, Kristie Miller, Matter",
+      "x": 161.452,
+      "y": 303.581,
+      "r": 72.193,
+      "n": 5
+    },
+    {
+      "area_uri": "2",
+      "title": "Consumption, Dielectric characteristics, Farmstead",
+      "x": 504.231,
+      "y": 158.609,
+      "r": 46.154,
+      "n": 2
+    },
+    {
+      "area_uri": "3",
+      "title": "Dye stuff, Natural dye, Cadets-future operations",
+      "x": 123.822,
+      "y": 318.309,
+      "r": 101.538,
+      "n": 10
+    },
+    {
+      "area_uri": "4",
+      "title": "Digital stuff, Managing our digital, Science of managing",
+      "x": 167.959,
+      "y": 443.332,
+      "r": 46.154,
+      "n": 2
+    },
+    {
+      "area_uri": "5",
+      "title": "Nicked stuff, Policy transfer",
+      "x": 300.674,
+      "y": 339.229,
+      "r": 64.714,
+      "n": 4
+    },
+    {
+      "area_uri": "6",
+      "title": "Advertising in Iran, Advertising methods, Children's food stuff",
+      "x": 314.817,
+      "y": 283.524,
+      "r": 46.154,
+      "n": 2
+    },
+    {
+      "area_uri": "7",
+      "title": "Comedy of remarriage, Cupboard, Education",
+      "x": 162.802,
+      "y": 243.323,
+      "r": 85.173,
+      "n": 7
+    },
+    {
+      "area_uri": "8",
+      "title": "Design practice, Design studies, Infrastructuring a co-sewing",
+      "x": 326.485,
+      "y": 504.231,
+      "r": 46.154,
+      "n": 2
+    },
+    {
+      "area_uri": "9",
+      "title": "David Hares, Hares stuff, Sigara kullanımı",
+      "x": 112.844,
+      "y": 209.99,
+      "r": 72.193,
+      "n": 5
+    },
+    {
+      "area_uri": "10",
+      "title": "Union substitution strategies, Multinational enterprises, Union suppression",
+      "x": 95.769,
+      "y": 95.769,
+      "r": 64.714,
+      "n": 4
+    },
+    {
+      "area_uri": "11",
+      "title": "Desain Suvenir, Souvenir stuff, Stuff Berbasis",
+      "x": 479.674,
+      "y": 309.913,
+      "r": 46.154,
+      "n": 2
+    },
+    {
+      "area_uri": "12",
+      "title": "Ethical dilemmas, Ireland conflict, Planetary health",
+      "x": 323.225,
+      "y": 242.167,
+      "r": 85.173,
+      "n": 7
+    },
+    {
+      "area_uri": "13",
+      "title": "(non)stuff, Alternative proteins, Meat",
+      "x": 447.626,
+      "y": 419.059,
+      "r": 46.154,
+      "n": 2
+    },
+    {
+      "area_uri": "14",
+      "title": "Competency model, Disadvantages, Competence approach",
+      "x": 251.504,
+      "y": 215.425,
+      "r": 46.154,
+      "n": 2
+    },
+    {
+      "area_uri": "15",
+      "title": "Arqueologia, Radiotherapy,Superflab,paraffin,Super stuff, Substâncias",
+      "x": 350.839,
+      "y": 489.948,
+      "r": 64.714,
+      "n": 4
+    }
+  ]
+}
