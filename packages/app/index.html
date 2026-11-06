@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Open Knowledge Maps</title>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <main>
+      <h1>Open Knowledge Maps</h1>
+      <p class="lead">Get an overview of a research topic. The map is made in your browser and saved here.</p>
+
+      <form id="search">
+        <fieldset class="services">
+          <legend>Source</legend>
+          <label><input type="radio" name="service" value="pubmed" checked /> PubMed</label>
+          <label><input type="radio" name="service" value="base" /> BASE</label>
+          <label><input type="radio" name="service" value="openaire" /> OpenAIRE project</label>
+        </fieldset>
+
+        <div data-services="pubmed base">
+          <label for="q">Search terms</label>
+          <input id="q" name="q" type="search" required placeholder="e.g. climate change" />
+        </div>
+        <div class="row" data-services="pubmed base">
+          <div><label for="from">From</label><input id="from" name="from" type="date" required /></div>
+          <div><label for="to">To</label><input id="to" name="to" type="date" required /></div>
+          <div>
+            <label for="sorting">Sort by</label>
+            <select id="sorting" name="sorting">
+              <option value="most-relevant">Most relevant</option>
+              <option value="most-recent">Most recent</option>
+            </select>
+          </div>
+        </div>
+        <fieldset data-services="base" class="types">
+          <legend>Document types</legend>
+          <label><input type="checkbox" name="document_types" value="121" checked /> Journal articles</label>
+          <label><input type="checkbox" name="document_types" value="11" /> Books</label>
+          <label><input type="checkbox" name="document_types" value="13" /> Conference objects</label>
+          <label><input type="checkbox" name="document_types" value="14" /> Reports</label>
+          <label><input type="checkbox" name="document_types" value="18" /> Theses</label>
+          <label><input type="checkbox" name="document_types" value="7" /> Datasets</label>
+        </fieldset>
+        <div class="row" data-services="openaire">
+          <div><label for="project_id">Grant number</label><input id="project_id" name="project_id" required placeholder="e.g. 643410" /></div>
+          <div>
+            <label for="funder">Funder</label>
+            <select id="funder" name="funder">
+              <option value="EC">European Commission</option>
+              <option value="WT">Wellcome Trust</option>
+              <option value="NSF">NSF</option>
+              <option value="FCT">FCT</option>
+              <option value="ARC">ARC</option>
+              <option value="NHMRC">NHMRC</option>
+              <option value="SNSF">SNSF</option>
+              <option value="NWO">NWO</option>
+            </select>
+          </div>
+        </div>
+
+        <button id="submit" type="submit">Make map</button>
+        <p id="status" class="status" role="status" aria-live="polite"></p>
+      </form>
+
+      <section>
+        <h2>Your maps</h2>
+        <p id="no-maps">Maps you make are kept in this browser and listed here.</p>
+        <ul id="maps"></ul>
+      </section>
+    </main>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
