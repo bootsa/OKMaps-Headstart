@@ -26,7 +26,7 @@ Failures throw `SourceError` with `reasons`, the same error codes the R
 clients return (`detect_error` in `utils.R`), e.g. `"not enough results"`,
 `"timeframe too short"`, `"API error: PubMed not reachable"`.
 
-Parity: `test/golden/pubmed_golden.R` runs the parsing part of `pubmed.R`
+Parity: `test/golden/r/pubmed_golden.R` runs the parsing part of `pubmed.R`
 on `test/fixtures/pubmed_efetch.xml` and the test compares every field and the
 clustering text. The fixture covers structured abstracts, inline markup,
 entities, collective and partial author names, `MedlineDate` years, missing
@@ -55,5 +55,5 @@ Regenerate the PubMed golden (needs R with xml2, data.table, jsonlite,
 logging, stringi, dplyr):
 
 ```
-Rscript test/golden/pubmed_golden.R test/fixtures/pubmed_efetch.xml > test/golden/pubmed_efetch.json
+Rscript test/golden/r/pubmed_golden.R test/fixtures/pubmed_efetch.xml > test/golden/pubmed_efetch.json
 ```
