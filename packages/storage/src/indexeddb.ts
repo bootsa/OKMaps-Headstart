@@ -7,8 +7,18 @@ export function indexedDbStorage(dbName = "okmaps-storage", factory: IDBFactory 
     (db ??= new Promise((resolve, reject) => {
       const req = factory.open(dbName, 1);
       req.onupgradeneeded = () => req.result.createObjectStore("docs");
-      req.onsuccess = () => resolve(req.result);
-      req.onerror = () => reject(req.error);
+      req.onsuccess = () => {
+        // Let another tab or page delete or upgrade the database: close, and reopen on next use.
+        req.result.onversionchange = () => {
+          req.result.close();
+          db = null;
+        };
+        resolve(req.result);
+      };
+      req.onerror = () => {
+        db = null;
+        reject(req.error);
+      };
     }));
   const run = async <T>(mode: IDBTransactionMode, fn: (s: IDBObjectStore) => IDBRequest<T>): Promise<T> => {
     const tx = (await open()).transaction("docs", mode);

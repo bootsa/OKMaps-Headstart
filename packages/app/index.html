@@ -82,6 +82,7 @@
               <legend>Keep my maps in</legend>
               <label><input type="radio" name="kind" value="browser" checked /> This browser</label>
               <label><input type="radio" name="kind" value="webdav" /> A WebDAV folder (Nextcloud, ownCloud, …)</label>
+              <label><input type="radio" name="kind" value="solid" /> A Solid Pod</label>
             </fieldset>
             <div data-kinds="webdav">
               <label for="dav-url">Folder URL</label>
@@ -91,6 +92,14 @@
                 <div><label for="dav-password">Password or app password</label><input id="dav-password" name="password" type="password" autocomplete="current-password" /></div>
               </div>
               <p class="hint">The folder's server must allow this site (CORS). The password is kept in this browser only.</p>
+            </div>
+            <div data-kinds="solid">
+              <label for="solid-issuer">Where you log in (your identity provider)</label>
+              <input id="solid-issuer" name="issuer" type="url" required list="solid-issuers" placeholder="https://login.inrupt.com" />
+              <datalist id="solid-issuers"></datalist>
+              <label for="solid-container">Folder in your Pod (optional)</label>
+              <input id="solid-container" name="container" type="url" placeholder="Leave empty for okmaps/ at the top of your Pod" />
+              <p class="hint">You will be sent to log in and then brought back here.</p>
             </div>
             <label class="check"><input type="checkbox" name="copy" checked /> Copy the maps I have now</label>
             <button id="storage-save" type="submit">Use this</button>

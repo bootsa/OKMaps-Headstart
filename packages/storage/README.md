@@ -23,7 +23,7 @@ storage's folder (`..`, leading `/`) are refused.
 |---|---|---|---|
 | `indexedDbStorage()` | this browser | browser | the app's default; works offline |
 | `webdavStorage({ url, username, password })` | a WebDAV folder (Nextcloud, ownCloud, Apache, nginx, rclone, …) | both | from a browser the server must allow the site (CORS) for `GET PUT DELETE MKCOL PROPFIND` and the `Authorization`, `Depth` and `Content-Type` headers; missing folders are created |
-| `solidStorage({ container, fetch })` | a Solid Pod container | both | pass the authenticated `fetch` of a Solid-OIDC client; the app has no Solid login yet |
+| `solidStorage({ container, fetch })` | a Solid Pod container | both | pass the authenticated `fetch` of a Solid-OIDC client; `findPod(webId)` finds the Pod a WebID names |
 | `bucketStorage(bucket, root)` | an R2 bucket binding, or anything with the same `get/put/delete/list` | Workers, Node | |
 | `fileStorage(dir)` (from `@okmaps/storage/node`) | files in a folder | Node | atomic writes |
 | `memoryStorage()` | memory | both | tests |

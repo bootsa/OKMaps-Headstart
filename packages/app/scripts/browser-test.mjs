@@ -11,6 +11,7 @@ import { fileURLToPath } from "node:url";
 import { fakeAnswer, GATEWAY } from "../test/fake-net.ts";
 import { createGateway, memoryStore } from "../../gateway/src/index.ts";
 import { fakeWebdav } from "../../storage/test/fakes.ts";
+import { fakeSolidWorld, ISSUER } from "../test/fake-solid.ts";
 
 // Playwright: the global copy (whose browser is installed) if there is one, else the project's.
 const { chromium } = await import(path.join(execSync("npm root -g").toString().trim(), "playwright/index.mjs")).catch(
@@ -55,8 +56,15 @@ const gateway = createGateway({ baseApiKey: "k", allowedOrigins: ["*"], maps: { 
 // A WebDAV server at https://dav.test/dav/ (user "me", password "secret").
 const dav = fakeWebdav("https://dav.test");
 const davCors = { "access-control-allow-origin": "*", "access-control-allow-headers": "authorization, content-type, depth", "access-control-allow-methods": "GET, PUT, DELETE, MKCOL, PROPFIND" };
+// A Solid identity provider (https://idp.test) and Pod (https://pod.test/me/).
+const solid = await fakeSolidWorld();
 async function answer(route) {
   const url = route.request().url();
+  if (/^https:\/\/(idp|pod)\.test\//.test(url)) {
+    const r = route.request();
+    const res = await solid.answer(r.method(), url, r.headers(), r.postData() ?? undefined);
+    return route.fulfill({ status: res.status, headers: res.headers, body: res.body ?? "" });
+  }
   if (url.startsWith("https://dav.test/")) {
     const r = route.request();
     if (r.method() === "OPTIONS") return route.fulfill({ status: 204, headers: davCors });
@@ -172,7 +180,7 @@ await page.waitForFunction(() => document.querySelectorAll("#maps li").length ==
 
 // Keep the maps in a WebDAV folder instead, copying the ones made so far.
 async function useStorage(fill) {
-  await page.click("#storage-settings summary");
+  await page.evaluate(() => (document.querySelector("#storage-settings").open = true));
   await fill();
   await page.click("#storage-save");
   await page.waitForFunction(() => /now kept|could not/.test(document.querySelector("#storage-status").textContent));
@@ -202,6 +210,48 @@ await page.goto(home);
 // Back to this browser (nothing to copy: the maps are there already).
 await useStorage(async () => {
   await page.check('#storage input[value="browser"]');
+});
+await page.waitForSelector("#maps li");
+
+// Keep them in a Solid Pod: log in at the identity provider, come back, and
+// the maps are copied to okmaps/ at the top of the Pod the WebID names.
+await page.evaluate(() => (document.querySelector("#storage-settings").open = true));
+await page.check('#storage input[value="solid"]');
+await page.fill("#solid-issuer", ISSUER);
+await page.click("#storage-save");
+await page.waitForFunction(() => /now kept|could not/.test(document.querySelector("#storage-status")?.textContent ?? ""), null, { timeout: 30_000 });
+const solidStatus = await page.textContent("#storage-status");
+console.log(JSON.stringify({ solid: solidStatus, idp: solid.log }));
+if (!/now kept in Solid Pod \(https:\/\/pod\.test\/me\/okmaps\/\)/.test(solidStatus)) throw new Error("the Pod was not used after logging in");
+await page.waitForSelector("#maps li");
+const onPod = await page.$$eval("#maps li a", (as) => as.map((a) => a.textContent));
+const podFiles = [...solid.pod.tree.keys()].filter((k) => k.startsWith("/me/okmaps/maps/") && k.endsWith(".json"));
+if (JSON.stringify(onPod) !== JSON.stringify(onDav) || podFiles.length !== onPod.length) throw new Error(`maps were not copied to the Pod: ${JSON.stringify({ onPod, podFiles })}`);
+// The map page reads Pod maps from a copy in this browser, made on the way.
+await page.click("#maps li a");
+await page.waitForSelector("#visualization circle.area", { timeout: 30_000 });
+const podMapUrl = page.url();
+// Without that copy (a bookmark, say), the main page logs in again silently,
+// fetches the map and comes back.
+await page.evaluate(() => new Promise((r) => { const q = indexedDB.deleteDatabase("okmaps-pod-copy"); q.onsuccess = q.onerror = q.onblocked = r; }));
+const authsBefore = solid.log.filter((l) => l === "GET /auth").length;
+await page.goto(podMapUrl);
+await page.waitForURL((u) => u.href === podMapUrl, { timeout: 30_000 });
+await page.waitForSelector("#visualization circle.area", { timeout: 30_000 });
+console.log(JSON.stringify({ podMapWithoutCopy: page.url() === podMapUrl, silentLogins: solid.log.filter((l) => l === "GET /auth").length - authsBefore }));
+// Sharing saves the published id with the map; the map page cannot write to
+// the Pod, so the main page sends it there next time.
+await page.click("#share");
+await page.waitForSelector("#share-panel:not([hidden])");
+const podMapId = new URL(podMapUrl).searchParams.get("id");
+await page.goto(home);
+await page.waitForSelector("#maps li");
+await page.waitForFunction(async () => !(await new Promise((r) => { const q = indexedDB.open("okmaps-pod-copy"); q.onsuccess = () => { const g = q.result.transaction("docs").objectStore("docs").get("unsent.json"); g.onsuccess = () => { q.result.close(); r(g.result); }; }; })));
+if (!JSON.parse(solid.pod.tree.get(`/me/okmaps/maps/${podMapId}.json`)).sharedId) throw new Error("the map page's change did not reach the Pod");
+console.log(JSON.stringify({ listedFromPod: await page.$$eval("#maps li a", (as) => as.map((a) => a.textContent)), label: await page.textContent("#storage-label") }));
+await useStorage(async () => {
+  await page.check('#storage input[value="browser"]');
+  await page.uncheck('#storage input[name="copy"]');
 });
 await page.waitForSelector("#maps li");
 

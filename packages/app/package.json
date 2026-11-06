@@ -16,8 +16,12 @@
   },
   "devDependencies": {
     "@types/node": "^22.10.0",
+    "jose": "^6.2.15",
     "typescript": "^5.7.2",
     "vite": "5.4.17",
     "vitest": "^3.2.4"
+  },
+  "dependencies": {
+    "@inrupt/solid-client-authn-browser": "^5.0.3"
   }
 }

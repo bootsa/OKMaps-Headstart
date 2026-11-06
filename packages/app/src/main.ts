@@ -5,15 +5,21 @@ import { errorMessage } from "./messages.ts";
 import type { SearchRequest, Service, Stage, MapRecord } from "./search.ts";
 import { settings } from "./settings.ts";
 import { registerServiceWorker } from "./offline.ts";
+import { KNOWN_ISSUERS } from "./solid-login.ts";
 import {
   chooseStorage,
   currentStorage,
   deleteMap,
+  finishSolidLogin,
+  getMap,
   listMaps,
+  LoggedOut,
   moveOldMaps,
   readChoice,
   requestPersistence,
   saveMap,
+  solidLoginAgain,
+  startSolidLogin,
   type MapSummary,
   type StorageChoice,
 } from "./store.ts";
@@ -122,6 +128,13 @@ function renderMaps(maps: MapSummary[]) {
     const a = document.createElement("a");
     a.href = `map.html?id=${encodeURIComponent(m.id)}`;
     a.textContent = m.title;
+    // The map page reads Pod maps from the copy in this browser: make it first.
+    a.onclick = async (e) => {
+      if (readChoice().kind !== "solid") return;
+      e.preventDefault();
+      await getMap(m.id).catch(() => undefined);
+      location.href = a.href;
+    };
     const meta = document.createElement("span");
     meta.className = "meta";
     meta.textContent = `${SERVICES[m.service as Service]} · ${m.documents} documents · ${new Date(m.created).toLocaleString()}`;
@@ -139,12 +152,21 @@ function renderMaps(maps: MapSummary[]) {
   }
 }
 async function showMaps() {
-  $("storage-label").textContent = currentStorage().label;
+  const label = await currentStorage().then((st) => st.label, () => "your storage");
+  $("storage-label").textContent = label;
   try {
     renderMaps(await listMaps());
   } catch (err) {
     renderMaps([]);
-    $<HTMLParagraphElement>("no-maps").textContent = `Your maps could not be read from ${currentStorage().label}: ${err instanceof Error ? err.message : err}`;
+    const note = $<HTMLParagraphElement>("no-maps");
+    note.textContent = `Your maps could not be read from ${label}: ${err instanceof Error ? err.message : err}.`;
+    if (err instanceof LoggedOut) {
+      const again = document.createElement("button");
+      again.type = "button";
+      again.textContent = "Log in again";
+      again.onclick = () => solidLoginAgain(err.issuer);
+      note.append(" ", again);
+    }
   }
 }
 
@@ -167,33 +189,76 @@ function showStorageFields() {
     $<HTMLInputElement>("dav-user").value = choice.username ?? "";
     $<HTMLInputElement>("dav-password").value = choice.password ?? "";
   }
+  if (choice.kind === "solid") {
+    $<HTMLInputElement>("solid-issuer").value = choice.issuer;
+    $<HTMLInputElement>("solid-container").value = choice.container;
+  }
+  $("solid-issuers").append(...KNOWN_ISSUERS.map((i) => Object.assign(document.createElement("option"), { value: i })));
+}
+function storageProblem(err: unknown): string {
+  // A network error from a browser usually means the server does not allow this site (CORS).
+  return err instanceof TypeError ? "it could not be reached, or it does not allow this site (CORS)" : err instanceof Error ? err.message : String(err);
 }
 showStorageFields();
 storageForm.addEventListener("change", showStorageFields);
 storageForm.addEventListener("submit", async (e) => {
   e.preventDefault();
   const f = new FormData(storageForm);
-  const choice: StorageChoice =
-    f.get("kind") === "webdav"
-      ? { kind: "webdav", url: String(f.get("url")).trim(), username: String(f.get("username") ?? ""), password: String(f.get("password") ?? "") }
-      : { kind: "browser" };
+  const field = (k: string) => String(f.get(k) ?? "").trim();
+  const copy = f.get("copy") === "on";
   const button = $<HTMLButtonElement>("storage-save");
   button.disabled = true;
   storageStatus.className = "status";
   storageStatus.textContent = "Checking…";
   try {
-    const copied = await chooseStorage(choice, f.get("copy") === "on");
-    storageStatus.textContent = `Your maps are now kept in ${currentStorage().label}${copied ? `; ${copied} copied there` : ""}.`;
+    if (f.get("kind") === "solid") {
+      storageStatus.textContent = "Sending you to log in…";
+      await startSolidLogin(field("issuer"), field("container"), copy);
+      return;
+    }
+    const choice: StorageChoice =
+      f.get("kind") === "webdav" ? { kind: "webdav", url: field("url"), username: field("username"), password: String(f.get("password") ?? "") } : { kind: "browser" };
+    const copied = await chooseStorage(choice, copy);
+    storageStatus.textContent = `Your maps are now kept in ${(await currentStorage()).label}${copied ? `; ${copied} copied there` : ""}.`;
     await showMaps();
   } catch (err) {
     storageStatus.className = "status error";
-    // A network error from a browser usually means the server does not allow this site (CORS).
-    const why = err instanceof TypeError ? "it could not be reached, or it does not allow this site (CORS)" : err instanceof Error ? err.message : String(err);
-    storageStatus.textContent = `That storage could not be used: ${why}. Your maps stay where they were.`;
+    storageStatus.textContent = `That storage could not be used: ${storageProblem(err)}. Your maps stay where they were.`;
   } finally {
     button.disabled = false;
   }
 });
 
-moveOldMaps().catch(() => 0).finally(showMaps);
+/** Back from logging in to a Pod: switch to it. */
+async function afterSolidLogin() {
+  try {
+    const done = await finishSolidLogin();
+    if (!done) return;
+    ($<HTMLDetailsElement>("storage-settings")).open = true;
+    storageStatus.className = "status";
+    storageStatus.textContent = `Your maps are now kept in ${(await currentStorage()).label}${done.copied ? `; ${done.copied} copied there` : ""}.`;
+  } catch (err) {
+    ($<HTMLDetailsElement>("storage-settings")).open = true;
+    storageStatus.className = "status error";
+    storageStatus.textContent = `Your Pod could not be used: ${storageProblem(err)}. Your maps stay where they were.`;
+  }
+}
+
+/** ?open=<id>: the map page asks for a Pod map it has no copy of. */
+async function openRequested() {
+  // Logging in to the Pod may pass through the identity provider, which
+  // comes back here and puts the query back afterwards.
+  await currentStorage().catch(() => undefined);
+  const id = new URLSearchParams(location.search).get("open");
+  if (!id) return;
+  const map = await getMap(id).catch(() => undefined);
+  history.replaceState(null, "", location.pathname);
+  if (map) location.replace(`map.html?id=${encodeURIComponent(id)}`);
+}
+
+afterSolidLogin()
+  .then(openRequested)
+  .then(() => moveOldMaps())
+  .catch(() => 0)
+  .finally(showMaps);
 registerServiceWorker();

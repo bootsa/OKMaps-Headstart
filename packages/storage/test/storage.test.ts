@@ -9,6 +9,7 @@ import {
   memoryStorage,
   parseMultistatus,
   solidStorage,
+  findPod,
   webdavStorage,
   type MapStorage,
 } from "../src/index.ts";
@@ -130,5 +131,25 @@ describe("Solid", () => {
     expect(containedDocuments(full, "https://pod.example/okmaps/")).toEqual(["index.json"]);
     const otherPrefix = `@prefix l: <http://www.w3.org/ns/ldp#>.\n<> l:contains <x.json>.`;
     expect(containedDocuments(otherPrefix, "https://pod.example/c/")).toEqual(["x.json"]);
+  });
+
+  it("finds the Pod from the WebID profile", async () => {
+    const profile = `@prefix pim: <http://www.w3.org/ns/pim/space#>.\n<#me> pim:storage </alice/>.`;
+    const fetch = async (u: string) => (u === "https://pod.example/alice/profile/card#me" ? new Response(profile) : new Response(null, { status: 404 }));
+    expect(await findPod("https://pod.example/alice/profile/card#me", fetch)).toBe("https://pod.example/alice/");
+  });
+
+  it("falls back to the container that says it is a storage", async () => {
+    const seen: string[] = [];
+    const fetch = async (u: string, init?: RequestInit) => {
+      seen.push(`${init?.method ?? "GET"} ${u}`);
+      if (u.endsWith("#me")) return new Response("<#me> a <http://xmlns.com/foaf/0.1/Person>.");
+      const link = u === "https://id.example/bob/" ? '<http://www.w3.org/ns/pim/space#Storage>; rel="type"' : '<http://www.w3.org/ns/ldp#Container>; rel="type"';
+      return new Response(null, { headers: { link } });
+    };
+    expect(await findPod("https://id.example/bob/profile/card#me", fetch)).toBe("https://id.example/bob/");
+    expect(seen).toEqual(["GET https://id.example/bob/profile/card#me", "HEAD https://id.example/bob/profile/", "HEAD https://id.example/bob/"]);
+    const none = async () => new Response(null, { status: 404 });
+    expect(await findPod("https://id.example/x/card#me", none)).toBeNull();
   });
 });
