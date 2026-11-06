@@ -20,6 +20,7 @@ offline once installed as a web app.
 | `packages/storage` | where maps are kept: one interface, an adaptor per storage system |
 | `packages/gateway` | the small server some providers need (BASE's registered IP and key) and the store for share links |
 | `packages/ui` | the map visualisation (React, d3, SCSS; webpack builds it and the app loads it) |
+| `packages/ui-svelte` | the new interface in Svelte 5 and plain CSS, with its Storybook; it will replace `packages/ui` |
 | `legacy/` | the old R and Python code, kept only to regenerate test goldens and run the parity checks |
 
 It is a [pnpm](https://pnpm.io/) workspace (Node 22.18 or newer; `corepack enable`

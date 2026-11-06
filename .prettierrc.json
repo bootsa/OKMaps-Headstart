@@ -12,5 +12,14 @@
   "arrowParens": "always",
   "proseWrap": "always",
   "endOfLine": "lf",
-  "embeddedLanguageFormatting": "auto"
+  "embeddedLanguageFormatting": "auto",
+  "plugins": ["prettier-plugin-svelte"],
+  "overrides": [
+    {
+      "files": "*.svelte",
+      "options": {
+        "parser": "svelte"
+      }
+    }
+  ]
 }

@@ -1,0 +1,60 @@
+/* Skins, from the old SCSS $skin switch: set data-skin on the map's root (or
+   <html>) to apply one. They only override semantic tokens. */
+[data-skin="viper"] {
+  --color-accent-strong: #444;
+  --color-area-stroke: #444;
+  --color-area-title: #444;
+  --color-border: #f9f9f9;
+  --color-surface-muted: #f8f8f8;
+  --color-highlight-search: #f8f8f8;
+}
+
+[data-skin="cris_vis"] {
+  --font-sans: "PT Sans", Helvetica, sans-serif;
+  --color-accent-strong: #2c316e;
+  --color-area-stroke: #2c316e;
+  --color-area-title: #2c316e;
+  --color-heading: #2c316e;
+  --color-action: #5f5c8c; /* old #7a77a5, darkened for AA contrast */
+  --color-highlight-search: #f4f4f6;
+}
+
+[data-skin="linkedcat"] {
+  --font-sans: Lato, Helvetica, sans-serif;
+  --color-area-stroke: #333;
+  --color-link: #0047bb;
+  --color-journal: #0047bb;
+  --color-heading: #0047bb;
+  --color-action: #0047bb;
+  --color-open-access: #0047bb;
+  --color-surface-muted: #f1f1f1;
+  --color-paper: #cbcbcb;
+  --color-highlight-search: #dadada;
+}
+
+[data-skin="covis"] {
+  --font-sans: Lato, Helvetica, sans-serif;
+  --color-area-stroke: #333;
+  --color-accent: #1e6662;
+  --color-link: #1e6662;
+  --color-journal: #1e6662;
+  --color-heading: #1e6662;
+  --color-action: #1e6662;
+  --color-open-access: #1e6662;
+  --color-surface-muted: #f1f1f1;
+  --color-paper: #cbcbcb;
+  --color-highlight-search: #dadada;
+}
+
+[data-skin="triple"] {
+  --font-sans: Lato, Helvetica, sans-serif;
+  --color-area-stroke: #666;
+  --color-accent: #622166;
+  --color-link: #622166;
+  --color-journal: #622166;
+  --color-heading: #622166;
+  --color-action: #622166;
+  --color-surface-muted: #f1f1f1;
+  --color-paper: #cbcbcb;
+  --color-highlight-search: #eaeaea;
+}

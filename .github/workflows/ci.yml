@@ -27,6 +27,9 @@ jobs:
       - name: Tests (every package)
         run: pnpm test
 
+      - name: Build Storybook
+        run: pnpm --filter @okmaps/ui-svelte build-storybook
+
   browser:
     name: Build and browser test
     runs-on: ubuntu-latest
