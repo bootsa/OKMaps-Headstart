@@ -1,7 +1,8 @@
 // End-to-end check of the built app (npm run build:vis && VITE_GATEWAY_URL=https://gateway.test npm run build)
 // in headless Chromium: makes a PubMed, a BASE and an OpenAIRE map from recorded
 // provider answers, checks the visualisation draws them, that they are listed
-// and can be deleted, and that a share link opens (and a crafted one runs no script). Screenshots go to test-results/.
+// and can be deleted, that a share link opens (and a crafted one runs no script),
+// and that saved maps open offline. Screenshots go to test-results/.
 import fs from "node:fs";
 import http from "node:http";
 import path from "node:path";
@@ -158,6 +159,24 @@ await page.route("https://api.openaire.eu/search/projects**", (r) => r.fulfill({
 await page.click("#submit");
 await page.waitForSelector(".status.error");
 console.log(JSON.stringify({ error: await page.textContent("#status") }));
+
+// Offline: once the service worker has stored the app, saved maps open without a network.
+await page.goto(`${origin}/`);
+const cached = await page.evaluate(async () => {
+  await navigator.serviceWorker.ready;
+  const keys = await caches.keys();
+  return { controlled: !!navigator.serviceWorker.controller, caches: keys, files: (await (await caches.open(keys[0])).keys()).length };
+});
+console.log(JSON.stringify({ serviceWorker: cached }));
+await page.context().setOffline(true);
+await page.reload();
+await page.waitForSelector("#maps li");
+await page.click("#maps li a");
+await page.waitForSelector("#visualization circle.area", { timeout: 30_000 });
+const offlineAreas = await page.$$eval("#visualization circle.area", (c) => c.length);
+await page.screenshot({ path: path.join(shots, "offline.png") });
+console.log(JSON.stringify({ offlineMap: { areas: offlineAreas } }));
+await page.context().setOffline(false);
 
 await browser.close();
 server.close();
