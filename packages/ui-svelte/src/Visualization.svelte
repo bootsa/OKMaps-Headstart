@@ -29,7 +29,7 @@
 
 <svelte:window bind:innerWidth bind:innerHeight />
 
-<div class="okm-visualization" style:--map-size="{size}px">
+<div class="okm-visualization">
 	<div class="map" bind:clientWidth={width}>
 		<KnowledgeMap state={map} />
 	</div>
@@ -44,16 +44,11 @@
 		align-items: start;
 
 		> :global(.okm-list) {
-			max-height: var(--map-size);
 			border: 1px solid var(--color-border);
 		}
 
 		@media (orientation: portrait) {
 			grid-template-columns: minmax(0, 1fr);
-
-			> :global(.okm-list) {
-				max-height: none;
-			}
 		}
 	}
 

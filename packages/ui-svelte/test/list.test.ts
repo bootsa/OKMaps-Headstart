@@ -93,6 +93,26 @@ describe("List", () => {
 		expect(state.zoomedArea).toBeNull();
 	});
 
+	it("names the zoomed area in the header, next to the way back", async () => {
+		const { state, container } = draw();
+		expect(screen.queryByRole("button", { name: "← Back to overview" })).toBeNull();
+		state.zoomIn(state.map.areas[1].uri);
+		flushSync();
+		expect(container.querySelector(".header .heading")?.textContent).toBe(state.map.areas[1].title);
+		expect(count(container)).toBe(state.map.areas[1].papers.length);
+		await fireEvent.click(screen.getByRole("button", { name: "← Back to overview" }));
+		expect(container.querySelector(".header .heading")?.textContent).toBe("Overview");
+	});
+
+	it("switches between fitting the screen and full height", async () => {
+		const { state, container } = draw();
+		expect(container.querySelector(".okm-list")).toHaveClass("fit");
+		await fireEvent.click(screen.getByRole("button", { name: /Full height/ }));
+		expect(state.listFit).toBe(false);
+		expect(container.querySelector(".okm-list")).not.toHaveClass("fit");
+		expect(screen.getByRole("button", { name: /Fit to screen/ })).toHaveAttribute("aria-pressed", "true");
+	});
+
 	it("zooms into an area from its name", async () => {
 		const { state, container } = draw();
 		const paper = state.map.papers[0];

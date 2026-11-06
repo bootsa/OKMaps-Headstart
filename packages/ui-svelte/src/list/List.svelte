@@ -38,7 +38,8 @@
 		map.search = "";
 	}
 
-	const heading = $derived(map.zoomedArea === null ? "Overview" : t(s, "area"));
+	// The zoomed area's name: the map hides it while zoomed in.
+	const heading = $derived(map.area?.title ?? "Overview");
 	const docsLabel = $derived.by(() => {
 		const label =
 			map.filter === "open_access" ? "open access resource" : map.filter === "dataset" ? "dataset" : "resource";
@@ -53,18 +54,25 @@
 	const options = (ids: string[]) => ids.map((id) => ({ id, label: capitalize(t(s, id)) }));
 </script>
 
-<section class="okm-list" aria-label="Resources">
-	<button
-		type="button"
-		class="toggle"
-		aria-expanded={map.listVisible}
-		title={map.listVisible ? "Hide list" : "Show list"}
-		onclick={() => (map.listVisible = !map.listVisible)}
-	>
-		<span class="chevron" aria-hidden="true">▾</span>
-		<span>{heading} (<span class="count">{papers.length}</span> {docsLabel})</span>
-		<span class="chevron" aria-hidden="true">▾</span>
-	</button>
+<section class="okm-list" class:fit={map.listFit} aria-label="Resources">
+	<div class="header">
+		<button
+			type="button"
+			class="toggle"
+			aria-expanded={map.listVisible}
+			title={map.listVisible ? "Hide list" : "Show list"}
+			onclick={() => (map.listVisible = !map.listVisible)}
+		>
+			<span class="chevron" aria-hidden="true">▾</span>
+			<span class="title">
+				<span class="heading">{heading}</span>
+				<span class="docs">(<span class="count">{papers.length}</span> {docsLabel})</span>
+			</span>
+		</button>
+		{#if map.zoomedArea !== null}
+			<Button variant="secondary" size="sm" onclick={() => map.zoomOut()}>{t(s, "backlink")}</Button>
+		{/if}
+	</div>
 
 	{#if map.listVisible}
 		<div class="controls">
@@ -102,11 +110,27 @@
 					</label>
 				{/if}
 			</div>
-			{#if map.selectedPaper}
-				<Button variant="secondary" size="sm" onclick={() => map.deselectPaper()}>{t(s, "backlink_list")}</Button>
-			{:else if map.zoomedArea !== null}
-				<Button variant="secondary" size="sm" onclick={() => map.zoomOut()}>{t(s, "backlink")}</Button>
-			{/if}
+			<div class="row">
+				{#if map.selectedPaper}
+					<Button variant="secondary" size="sm" onclick={() => map.deselectPaper()}>{t(s, "backlink_list")}</Button>
+				{/if}
+				<button
+					type="button"
+					class="fit-toggle"
+					aria-pressed={!map.listFit}
+					title={map.listFit ? "Show the whole list; the page scrolls" : "Fit the list to the screen; the list scrolls"}
+					onclick={() => (map.listFit = !map.listFit)}
+				>
+					<svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">
+						{#if map.listFit}
+							<path d="M7 1v12M3 9l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" />
+						{:else}
+							<path d="M7 13V1M3 5l4-4 4 4" fill="none" stroke="currentColor" stroke-width="1.6" />
+						{/if}
+					</svg>
+					{map.listFit ? "Full height" : "Fit to screen"}
+				</button>
+			</div>
 		</div>
 
 		<div class="entries">
@@ -130,18 +154,49 @@
 		font-family: var(--font-sans);
 	}
 
+	.okm-list.fit {
+		box-sizing: border-box;
+		position: sticky;
+		top: 0;
+		max-height: 100dvh;
+	}
+
+	.header {
+		display: flex;
+		align-items: flex-start;
+		gap: var(--space-2);
+		padding: var(--space-2) var(--space-4) 0;
+		background: var(--color-surface-muted);
+	}
+
 	.toggle {
 		display: flex;
-		align-items: center;
-		justify-content: space-between;
+		flex: 1;
+		align-items: baseline;
 		gap: var(--space-2);
-		padding: var(--space-2) var(--space-4);
+		min-width: 0;
+		padding: var(--space-1) 0;
 		border: 0;
-		background: var(--color-surface-muted);
+		background: none;
 		color: var(--color-text);
 		font: inherit;
 		font-size: var(--font-size-sm);
+		text-align: start;
 		cursor: pointer;
+
+		.heading {
+			font-weight: var(--font-weight-semibold);
+			overflow-wrap: anywhere;
+		}
+
+		.title {
+			min-width: 0;
+		}
+
+		.docs {
+			white-space: nowrap;
+			color: var(--color-text-muted);
+		}
 
 		&:focus-visible {
 			outline: 2px solid var(--color-focus);
@@ -190,6 +245,32 @@
 		color: var(--color-text-muted);
 		font-size: var(--font-size-lg);
 		cursor: pointer;
+	}
+
+	.row {
+		display: flex;
+		align-self: stretch;
+		align-items: center;
+		gap: var(--space-2);
+	}
+
+	.fit-toggle {
+		display: inline-flex;
+		align-items: center;
+		gap: var(--space-1);
+		margin-left: auto;
+		padding: 2px var(--space-2);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-pill);
+		background: var(--color-surface);
+		color: var(--color-text);
+		font: inherit;
+		font-size: var(--font-size-xs);
+		cursor: pointer;
+
+		&:focus-visible {
+			outline: 2px solid var(--color-focus);
+		}
 	}
 
 	.selects {

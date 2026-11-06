@@ -36,6 +36,8 @@ export class MapState {
 	filter = $state("all");
 	sort: string = $state("");
 	listVisible = $state(true);
+	/** The list fits the screen and scrolls inside (true), or runs its full height and the page scrolls. */
+	listFit = $state(true);
 
 	/** `config` overrides the service's settings, e.g. { visType: "geomap" }. */
 	constructor(record: MapRecord, size: number, config?: Partial<MapConfig>) {
