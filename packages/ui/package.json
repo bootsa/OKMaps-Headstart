@@ -9,9 +9,7 @@
     "dev": "webpack --progress --watch --mode=development",
     "test": "TZ=Europe/Vienna vitest run",
     "test:watch": "TZ=Europe/Vienna vitest",
-    "typecheck": "tsc --noEmit",
-    "eslint:check": "eslint .",
-    "eslint:fix": "eslint . --fix"
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@citation-js/core": "^0.7.18",
@@ -41,9 +39,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.27.1",
-    "@babel/eslint-parser": "^7.27.5",
     "@babel/preset-react": "^7.27.1",
-    "@eslint/js": "^9.29.0",
     "@rollup/plugin-inject": "^5.0.5",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^14.3.1",
@@ -60,17 +56,10 @@
     "@types/react-bootstrap": "^0.32.37",
     "@types/react-dom": "^18.3.1",
     "@types/redux-mock-store": "^1.5.0",
-    "@typescript-eslint/eslint-plugin": "^8.34.1",
-    "@typescript-eslint/parser": "^8.34.1",
     "@vitejs/plugin-react": "^4.4.1",
     "bootstrap-sass": "^3.3.6",
     "copy-webpack-plugin": "^13.0.1",
     "css-loader": "^7.1.2",
-    "eslint": "^9.29.0",
-    "eslint-plugin-react": "^7.37.5",
-    "eslint-plugin-react-hooks": "^5.2.0",
-    "eslint-plugin-simple-import-sort": "^12.1.1",
-    "globals": "^15.15.0",
     "html-webpack-plugin": "^5.5.0",
     "jsdom": "^26.1.0",
     "mini-css-extract-plugin": "^2.3.0",

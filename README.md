@@ -30,11 +30,17 @@ how to run and test it. From the repository root:
     pnpm install
     pnpm test            # every package's tests
     pnpm typecheck
+    pnpm lint            # Biome: lint and format check (pnpm lint:fix to apply)
     pnpm build           # the visualisation, then the app into apps/frontend/dist
     pnpm dev             # the app with hot reload (after pnpm build)
     pnpm test:browser    # the built app in headless Chromium
 
 Run one package's scripts with `pnpm --filter @okmaps/<name> <script>`.
+
+[Biome](https://biomejs.dev/) lints and formats the code (`biome.json`). It
+leaves out `packages/ui` and `legacy/`, which are on their way out. In
+`.svelte` files it uses Biome's experimental full Svelte support, and
+`svelte-check` stays in charge of types and accessibility warnings.
 
 The app is published to GitHub Pages by `.github/workflows/pages.yml`:
 `latest/` follows `main`, and each release stays available at its own path

@@ -18,11 +18,11 @@
     "test": "pnpm -r --workspace-concurrency=1 test",
     "typecheck": "pnpm -r typecheck",
     "test:browser": "pnpm --filter @okmaps/frontend test:browser",
-    "prettier:check": "prettier . --check",
-    "prettier:fix": "prettier . --write"
+    "lint": "biome check .",
+    "lint:fix": "biome check --write .",
+    "format": "biome format --write ."
   },
   "devDependencies": {
-    "prettier": "^3.5.3",
-    "prettier-plugin-svelte": "^3.5.2"
+    "@biomejs/biome": "2.6.2"
   }
 }
