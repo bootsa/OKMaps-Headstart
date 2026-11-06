@@ -1,5 +1,18 @@
 # Changelog
 
+## [7.1.0](https://github.com/bootsa/OKMaps-Headstart/compare/v7.0.0...v7.1.0) (2026-11-06)
+
+
+### Features
+
+* add the Svelte 5 interface package with design tokens and Storybook ([d01fdc7](https://github.com/bootsa/OKMaps-Headstart/commit/d01fdc74e11f4d0b3c10c0f96192230937a8b135))
+* add the Svelte 5 interface package with design tokens and Storybook ([929015c](https://github.com/bootsa/OKMaps-Headstart/commit/929015c0904c1230d57e43163368772314f936ea))
+
+
+### Bug Fixes
+
+* register jest-dom matchers on the ui-svelte package's own vitest ([7fab2fe](https://github.com/bootsa/OKMaps-Headstart/commit/7fab2fe6ab3cdf7900b13dd21be1b2029bab3655))
+
 ## [7.0.0](https://github.com/bootsa/OKMaps-Headstart/compare/v6.0.0...v7.0.0) (2026-11-06)
 
 
