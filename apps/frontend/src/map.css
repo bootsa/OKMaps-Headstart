@@ -57,3 +57,7 @@
 	margin: 32px 16px;
 	color: #b42318;
 }
+/* The new (Svelte) interface, map.html?ui=new: room for the toolbar below. */
+.okm-page {
+	padding: 8px 16px 64px;
+}

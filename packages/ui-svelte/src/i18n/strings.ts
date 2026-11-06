@@ -11,6 +11,12 @@ const languages = {
 		showMore: "Show more",
 		showLess: "Show less",
 		search_placeholder: "Search within visualization...",
+		// Filter and sort labels (the old eng strings had none, so BASE maps showed the keys).
+		relevance: "relevance",
+		all: "any",
+		open_access: "Open Access",
+		publication: "papers",
+		dataset: "datasets",
 		intro_label: "More information",
 		readers: "readers",
 		year: "date",
