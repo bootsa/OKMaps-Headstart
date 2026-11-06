@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.1.5](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.4...v7.1.5) (2026-11-06)
+
+
+### Features
+
+* **ui-svelte:** readable papers on the knowledge map ([08ced64](https://github.com/bootsa/OKMaps-Headstart/commit/08ced6480904753d9af0cad014b0c86d69b152fb))
+* **ui-svelte:** readable papers on the knowledge map ([c6d41ba](https://github.com/bootsa/OKMaps-Headstart/commit/c6d41bad74471d5d93f1fdd2abd4edcb36a0c033))
+
 ## [7.1.4](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.3...v7.1.4) (2026-11-06)
 
 
