@@ -1,0 +1,61 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - "**"
+
+jobs:
+  test:
+    name: Type check and tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Type check
+        run: pnpm typecheck
+
+      - name: Tests (every package)
+        run: pnpm test
+
+  browser:
+    name: Build and browser test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Install Chromium
+        run: pnpm --filter @okmaps/frontend exec playwright install --with-deps chromium
+
+      - name: Build the visualisation and the app
+        run: pnpm build
+        env:
+          VITE_GATEWAY_URL: https://gateway.test
+
+      - name: Browser test
+        run: pnpm test:browser
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: browser-test-screenshots
+          path: apps/frontend/test-results/
+          if-no-files-found: ignore

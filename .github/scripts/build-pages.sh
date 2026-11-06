@@ -27,22 +27,35 @@ root=$(git rev-parse --show-toplevel)
 work=$(mktemp -d)
 mkdir -p "$site"
 
+# Where the browser app is in a checkout: apps/frontend, or packages/app before the monorepo.
+app_dir() { # <checkout>
+  if [ -d "$1/apps/frontend" ]; then echo apps/frontend; else echo packages/app; fi
+}
+
 build() { # <git ref> <folder> <version label>
   local ref=$1 dir=$2 label=$3 tree="$work/$2"
   echo "::group::Build $label ($ref) into /$dir/"
   git -C "$root" worktree add --detach "$tree" "$ref" >/dev/null
+  local app
+  app=$(app_dir "$tree")
   (
     cd "$tree"
-    # Releases up to v7.0.0 read the visualisation settings from config.js.
-    if [ -f config.example.js ]; then cp config.example.js config.js; fi
-    npm ci --no-audit --no-fund
-    cd packages/app
-    npm ci --no-audit --no-fund
     export APP_BASE="/$repo_name/$dir/" VITE_APP_VERSION="$label"
-    npm run build:vis
-    npm run build
+    if [ -f pnpm-lock.yaml ]; then
+      # The pnpm workspace (apps/frontend and packages/*).
+      pnpm install --frozen-lockfile
+      pnpm build
+    else
+      # Releases up to v7.0.0: npm, with vis/ in the root and the app in packages/app.
+      if [ -f config.example.js ]; then cp config.example.js config.js; fi
+      npm ci --no-audit --no-fund
+      cd packages/app
+      npm ci --no-audit --no-fund
+      npm run build:vis
+      npm run build
+    fi
   )
-  cp -r "$tree/packages/app/dist" "$site/$dir"
+  cp -r "$tree/$app/dist" "$site/$dir"
   git -C "$root" worktree remove --force "$tree"
   echo "::endgroup::"
 }
@@ -58,7 +71,8 @@ cache=${PAGES_CACHE:+$(realpath -m "$PAGES_CACHE")}
 versions=()
 reused=0
 for tag in $(git -C "$root" tag --list 'v*' --sort=-version:refname | head -n "${PAGES_MAX_VERSIONS:-20}"); do
-  if git -C "$root" cat-file -e "$tag:packages/app/scripts/build-vis.mjs" 2>/dev/null; then
+  if git -C "$root" cat-file -e "$tag:apps/frontend/scripts/build-vis.mjs" 2>/dev/null ||
+    git -C "$root" cat-file -e "$tag:packages/app/scripts/build-vis.mjs" 2>/dev/null; then
     commit=$(git -C "$root" rev-parse "$tag^{commit}")
     if [ -n "$cache" ] && [ "$(cat "$cache/$tag/.stamp" 2>/dev/null)" = "$commit|$stamp" ]; then
       echo "Reusing the build of $tag"
