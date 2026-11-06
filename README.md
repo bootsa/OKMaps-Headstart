@@ -27,7 +27,19 @@ Each package has a README with how to run and test it. To run the app:
     cp config.example.js config.js && npm ci
     cd packages/app && npm ci && npm run build:vis && npm run dev
 
-The app is published to GitHub Pages by `.github/workflows/pages.yml`.
+The app is published to GitHub Pages by `.github/workflows/pages.yml`:
+`latest/` follows `main`, and each release stays available at its own path
+(`v7.0.0/`, …), listed on `versions.html`.
+
+### Releases
+
+Releases are made by release-please (`.github/workflows/release.yml`). It
+keeps a release PR open with the next version number and changelog, worked
+out from commit messages in the [Conventional Commits](https://www.conventionalcommits.org/)
+form: `feat: …` (new feature, minor version), `fix: …` (patch), `feat!: …`
+(breaking change, major version); other types such as `docs:` or `chore:`
+are not released on their own. Merging the release PR updates the version in
+`package.json` and `CHANGELOG.md`, tags the release and publishes it.
 
 The earlier server (PHP, R and Python workers, Postgres, Redis, Docker
 setup) is on the [`legacy-server`](https://github.com/bootsa/OKMaps-Headstart/tree/legacy-server) branch.
