@@ -83,6 +83,7 @@
               <label><input type="radio" name="kind" value="browser" checked /> This browser</label>
               <label><input type="radio" name="kind" value="webdav" /> A WebDAV folder (Nextcloud, ownCloud, …)</label>
               <label><input type="radio" name="kind" value="solid" /> A Solid Pod</label>
+              <label><input type="radio" name="kind" value="atomic" /> An Atomic Data server</label>
             </fieldset>
             <div data-kinds="webdav">
               <label for="dav-url">Folder URL</label>
@@ -100,6 +101,13 @@
               <label for="solid-container">Folder in your Pod (optional)</label>
               <input id="solid-container" name="container" type="url" placeholder="Leave empty for okmaps/ at the top of your Pod" />
               <p class="hint">You will be sent to log in and then brought back here.</p>
+            </div>
+            <div data-kinds="atomic">
+              <label for="atomic-parent">Folder or Drive URL</label>
+              <input id="atomic-parent" name="parent" type="url" required placeholder="https://atomic.example.org/drive/okmaps" />
+              <label for="atomic-secret">Agent secret</label>
+              <input id="atomic-secret" name="secret" type="password" required autocomplete="off" />
+              <p class="hint">Your secret is under User settings in the Atomic data browser. It is kept in this browser only. The server must allow this site (CORS).</p>
             </div>
             <label class="check"><input type="checkbox" name="copy" checked /> Copy the maps I have now</label>
             <button id="storage-save" type="submit">Use this</button>

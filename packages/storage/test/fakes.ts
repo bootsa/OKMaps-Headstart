@@ -3,6 +3,7 @@
  * behaving as the real ones do in the ways the adaptors depend on
  * (409 for a missing parent folder, containers created on PUT, …).
  */
+import { createPublicKey, verify as cryptoVerify } from "node:crypto";
 import type { FetchFn, ObjectBucket } from "../src/index.ts";
 
 type Tree = Map<string, string | null>; // path -> body, or null for a folder
@@ -99,4 +100,98 @@ export function fakeBucket(): ObjectBucket {
       return { objects: page.map((key) => ({ key })), truncated, cursor: truncated ? String(start + 2) : undefined };
     },
   };
+}
+
+/**
+ * An Atomic Data server (atomic-server 0.41 as @tomic/lib talks to it):
+ * signed requests (x-atomic-* headers, Ed25519 over "<url> <timestamp>"),
+ * /upload creating File resources, /query collections with nested members,
+ * downloads, and /commit taking destroy Commits. Signatures are checked with
+ * Node's own Ed25519, over the canonical JSON the server would rebuild.
+ * Only the agent `agent` may read or write.
+ */
+export function fakeAtomic(origin: string, agent: { subject: string; publicKey: string }) {
+  type Res = Record<string, unknown>;
+  const resources = new Map<string, Res>();
+  const blobs = new Map<string, string>();
+  const log: string[] = [];
+  let n = 0;
+  const pub = createPublicKey({ key: Buffer.concat([Buffer.from("302a300506032b6570032100", "hex"), Buffer.from(agent.publicKey, "base64")]), format: "der", type: "spki" });
+  const verify = (message: string, sig: string) => cryptoVerify(null, Buffer.from(message), pub, Buffer.from(sig, "base64"));
+  const sorted = (v: unknown): unknown =>
+    Array.isArray(v) ? v.map(sorted) : v && typeof v === "object" ? Object.fromEntries(Object.keys(v).sort().map((k) => [k, sorted((v as Res)[k])])) : v;
+  const json = (body: unknown, status = 200) => new Response(JSON.stringify(body), { status, headers: { "content-type": "application/ad+json" } });
+  const authorised = (url: string, h: Headers) => {
+    const t = Number(h.get("x-atomic-timestamp"));
+    return (
+      h.get("x-atomic-agent") === agent.subject &&
+      h.get("x-atomic-public-key") === agent.publicKey &&
+      Math.abs(Date.now() - t) < 60_000 &&
+      verify(`${url} ${t}`, h.get("x-atomic-signature") ?? "")
+    );
+  };
+  const fetch: FetchFn = async (input, init = {}) => {
+    const url = new URL(input);
+    const method = init.method ?? "GET";
+    const headers = new Headers(init.headers);
+    log.push(`${method} ${url.pathname}`);
+    if (url.pathname === "/commit" && method === "POST") {
+      const commit = JSON.parse(String(init.body)) as Res;
+      const { "https://atomicdata.dev/properties/signature": sig, ...unsigned } = commit;
+      if (commit["https://atomicdata.dev/properties/signer"] !== agent.subject || !verify(JSON.stringify(sorted(unsigned)), String(sig))) {
+        return new Response("invalid signature", { status: 400 });
+      }
+      const subject = String(commit["https://atomicdata.dev/properties/subject"]);
+      const target = resources.get(subject);
+      if (!target) return new Response("not found", { status: 404 });
+      if (commit["https://atomicdata.dev/properties/previousCommit"] !== target["https://atomicdata.dev/properties/lastCommit"]) {
+        return new Response("previousCommit does not match lastCommit", { status: 400 });
+      }
+      if (commit["https://atomicdata.dev/properties/destroy"] !== true) return new Response("only destroy is simulated", { status: 400 });
+      resources.delete(subject);
+      return json({ ...commit, "@id": `${origin}/commits/${++n}` });
+    }
+    if (!authorised(url.href, headers)) return new Response("unauthorised", { status: 401 });
+    if (url.pathname === "/upload" && method === "POST") {
+      const parentSubject = url.searchParams.get("parent")!;
+      const created: Res[] = [];
+      for (const file of (init.body as FormData).getAll("assets") as File[]) {
+        const id = `${++n}`;
+        const subject = `${origin}/files/${id}`;
+        blobs.set(id, await file.text());
+        const r: Res = {
+          "@id": subject,
+          "https://atomicdata.dev/properties/isA": ["https://atomicdata.dev/classes/File"],
+          "https://atomicdata.dev/properties/parent": parentSubject,
+          "https://atomicdata.dev/properties/filename": file.name,
+          "https://atomicdata.dev/properties/downloadURL": `${origin}/download/files/${id}`,
+          "https://atomicdata.dev/properties/lastCommit": `${origin}/commits/${++n}`,
+        };
+        resources.set(subject, r);
+        created.push(r);
+      }
+      return json(created);
+    }
+    if (url.pathname === "/query") {
+      const members = [...resources.values()].filter((r) => r[url.searchParams.get("property")!] === url.searchParams.get("value"));
+      const size = Number(url.searchParams.get("page_size") ?? 30);
+      const page = Number(url.searchParams.get("current_page") ?? 0);
+      const nested = url.searchParams.get("include_nested") === "true";
+      const slice = members.slice(page * size, (page + 1) * size);
+      return json({
+        "@id": url.href,
+        "https://atomicdata.dev/properties/collection/members": nested ? slice : slice.map((r) => r["@id"]),
+        "https://atomicdata.dev/properties/collection/totalPages": Math.max(1, Math.ceil(members.length / size)),
+      });
+    }
+    if (url.pathname.startsWith("/download/files/")) {
+      const body = blobs.get(url.pathname.slice("/download/files/".length));
+      return body === undefined || ![...resources.values()].some((r) => r["https://atomicdata.dev/properties/downloadURL"] === url.href)
+        ? new Response("not found", { status: 404 })
+        : new Response(body);
+    }
+    const r = resources.get(url.href);
+    return r ? json(r) : new Response("not found", { status: 404 });
+  };
+  return { fetch, resources, log };
 }

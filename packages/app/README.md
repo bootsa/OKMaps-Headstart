@@ -109,6 +109,10 @@ next time. A map with no copy yet (a bookmark) goes through the start page,
 which logs in, fetches it and comes back. The browser test runs this against
 a simulated provider and Pod (`test/fake-solid.ts`).
 
+An Atomic Data server works with a Folder or Drive URL and the agent's
+secret (from User settings in the Atomic data browser), which is kept in the
+browser's localStorage like the WebDAV password.
+
 ## Share links
 
 On a saved map, Share publishes it to the gateway once and shows the link

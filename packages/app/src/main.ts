@@ -189,6 +189,10 @@ function showStorageFields() {
     $<HTMLInputElement>("dav-user").value = choice.username ?? "";
     $<HTMLInputElement>("dav-password").value = choice.password ?? "";
   }
+  if (choice.kind === "atomic") {
+    $<HTMLInputElement>("atomic-parent").value = choice.parent;
+    $<HTMLInputElement>("atomic-secret").value = choice.secret;
+  }
   if (choice.kind === "solid") {
     $<HTMLInputElement>("solid-issuer").value = choice.issuer;
     $<HTMLInputElement>("solid-container").value = choice.container;
@@ -216,8 +220,13 @@ storageForm.addEventListener("submit", async (e) => {
       await startSolidLogin(field("issuer"), field("container"), copy);
       return;
     }
+    const kind = f.get("kind");
     const choice: StorageChoice =
-      f.get("kind") === "webdav" ? { kind: "webdav", url: field("url"), username: field("username"), password: String(f.get("password") ?? "") } : { kind: "browser" };
+      kind === "webdav"
+        ? { kind: "webdav", url: field("url"), username: field("username"), password: String(f.get("password") ?? "") }
+        : kind === "atomic"
+          ? { kind: "atomic", parent: field("parent"), secret: field("secret") }
+          : { kind: "browser" };
     const copied = await chooseStorage(choice, copy);
     storageStatus.textContent = `Your maps are now kept in ${(await currentStorage()).label}${copied ? `; ${copied} copied there` : ""}.`;
     await showMaps();

@@ -10,7 +10,7 @@ import { execSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { fakeAnswer, GATEWAY } from "../test/fake-net.ts";
 import { createGateway, memoryStore } from "../../gateway/src/index.ts";
-import { fakeWebdav } from "../../storage/test/fakes.ts";
+import { fakeAtomic, fakeWebdav } from "../../storage/test/fakes.ts";
 import { fakeSolidWorld, ISSUER } from "../test/fake-solid.ts";
 
 // Playwright: the global copy (whose browser is installed) if there is one, else the project's.
@@ -56,10 +56,25 @@ const gateway = createGateway({ baseApiKey: "k", allowedOrigins: ["*"], maps: { 
 // A WebDAV server at https://dav.test/dav/ (user "me", password "secret").
 const dav = fakeWebdav("https://dav.test");
 const davCors = { "access-control-allow-origin": "*", "access-control-allow-headers": "authorization, content-type, depth", "access-control-allow-methods": "GET, PUT, DELETE, MKCOL, PROPFIND" };
+// An Atomic Data server at https://atomic.test, with one agent.
+const atomicKey = crypto.getRandomValues(new Uint8Array(32));
+const atomicAgent = { subject: "https://atomic.test/agents/me", privateKey: Buffer.from(atomicKey).toString("base64") };
+const { ed25519 } = await import("../../storage/src/index.ts");
+const atomic = fakeAtomic("https://atomic.test", { subject: atomicAgent.subject, publicKey: (await ed25519(atomicAgent.privateKey)).publicKey });
+const atomicCors = { "access-control-allow-origin": "*", "access-control-allow-headers": "*", "access-control-allow-methods": "GET, POST, OPTIONS" };
 // A Solid identity provider (https://idp.test) and Pod (https://pod.test/me/).
 const solid = await fakeSolidWorld();
 async function answer(route) {
   const url = route.request().url();
+  if (url.startsWith("https://atomic.test/")) {
+    const r = route.request();
+    if (r.method() === "OPTIONS") return route.fulfill({ status: 204, headers: atomicCors });
+    const raw = r.postDataBuffer();
+    // The fake reads uploads as FormData, as a server framework would hand them over.
+    const body = raw && r.method() === "POST" && url.includes("/upload") ? await new Request(url, { method: "POST", headers: r.headers(), body: raw }).formData() : raw?.toString();
+    const res = await atomic.fetch(url, { method: r.method(), headers: r.headers(), body });
+    return route.fulfill({ status: res.status, body: await res.text(), headers: { ...atomicCors, "content-type": res.headers.get("content-type") ?? "text/plain" } });
+  }
   if (/^https:\/\/(idp|pod)\.test\//.test(url)) {
     const r = route.request();
     const res = await solid.answer(r.method(), url, r.headers(), r.postData() ?? undefined);
@@ -249,6 +264,29 @@ await page.waitForSelector("#maps li");
 await page.waitForFunction(async () => !(await new Promise((r) => { const q = indexedDB.open("okmaps-pod-copy"); q.onsuccess = () => { const g = q.result.transaction("docs").objectStore("docs").get("unsent.json"); g.onsuccess = () => { q.result.close(); r(g.result); }; }; })));
 if (!JSON.parse(solid.pod.tree.get(`/me/okmaps/maps/${podMapId}.json`)).sharedId) throw new Error("the map page's change did not reach the Pod");
 console.log(JSON.stringify({ listedFromPod: await page.$$eval("#maps li a", (as) => as.map((a) => a.textContent)), label: await page.textContent("#storage-label") }));
+await useStorage(async () => {
+  await page.check('#storage input[value="browser"]');
+  await page.uncheck('#storage input[name="copy"]');
+});
+await page.waitForSelector("#maps li");
+
+// An Atomic Data server: requests and commits signed with the agent's key.
+const atomicStatus = await useStorage(async () => {
+  await page.check('#storage input[value="atomic"]');
+  await page.check('#storage input[name="copy"]');
+  await page.fill("#atomic-parent", "https://atomic.test/drive/okmaps");
+  await page.fill("#atomic-secret", Buffer.from(JSON.stringify(atomicAgent)).toString("base64"));
+});
+console.log(JSON.stringify({ atomic: atomicStatus }));
+if (!/now kept in Atomic Data/.test(atomicStatus)) throw new Error("the Atomic Data server was not used");
+await page.reload();
+await page.waitForSelector("#maps li");
+const onAtomic = await page.$$eval("#maps li a", (as) => as.map((a) => a.textContent));
+if (JSON.stringify(onAtomic) !== JSON.stringify(onDav)) throw new Error(`maps were not copied to Atomic Data: ${JSON.stringify(onAtomic)}`);
+await page.click("#maps li a");
+await page.waitForSelector("#visualization circle.area", { timeout: 30_000 });
+console.log(JSON.stringify({ listedFromAtomic: onAtomic, atomicFiles: atomic.resources.size }));
+await page.goto(home);
 await useStorage(async () => {
   await page.check('#storage input[value="browser"]');
   await page.uncheck('#storage input[name="copy"]');

@@ -24,6 +24,7 @@ storage's folder (`..`, leading `/`) are refused.
 | `indexedDbStorage()` | this browser | browser | the app's default; works offline |
 | `webdavStorage({ url, username, password })` | a WebDAV folder (Nextcloud, ownCloud, Apache, nginx, rclone, …) | both | from a browser the server must allow the site (CORS) for `GET PUT DELETE MKCOL PROPFIND` and the `Authorization`, `Depth` and `Content-Type` headers; missing folders are created |
 | `solidStorage({ container, fetch })` | a Solid Pod container | both | pass the authenticated `fetch` of a Solid-OIDC client; `findPod(webId)` finds the Pod a WebID names |
+| `atomicStorage({ parent, agent })` | an Atomic Data server (atomic-server 0.40/0.41) | both | each document is a File under `parent` (a Drive or Folder), uploaded through `/upload` and read from its download URL; replacing uploads the new file and destroys the old one with a signed Commit. `agentFromSecret(secret)` reads the secret the data browser shows. Requests are signed with Ed25519 through WebCrypto, as `@tomic/lib` signs them; from a browser the server must allow the site (CORS) |
 | `bucketStorage(bucket, root)` | an R2 bucket binding, or anything with the same `get/put/delete/list` | Workers, Node | |
 | `fileStorage(dir)` (from `@okmaps/storage/node`) | files in a folder | Node | atomic writes |
 | `memoryStorage()` | memory | both | tests |
@@ -34,8 +35,7 @@ date, service, number of documents), so listing doesn't load every map. When
 the index is missing or out of step, for example after another device wrote
 to the same folder, it is rebuilt from the maps.
 
-Adding a storage means writing those four methods. Planned or possible:
-Atomic Data servers, S3 (signed requests), Google Drive / Dropbox (OAuth),
+Adding a storage means writing those four methods. Planned or possible: S3 (signed requests), Google Drive / Dropbox (OAuth),
 remoteStorage.
 
 ## Tests
@@ -49,4 +49,15 @@ keys, hold a `MapLibrary`). WebDAV and Solid run against in-memory stand-ins
 for the servers (`test/fakes.ts`) that answer as real servers do where the
 adaptors depend on it (409 for a missing folder, containers created on PUT,
 Turtle listings, multistatus answers in the styles of Nextcloud and Apache).
-They have not yet been run against real servers.
+The Atomic Data stand-in checks every request signature and Commit signature
+with Node's own Ed25519, and the signer is checked against RFC 8032's test
+vector. None of them has yet been run against a real server.
+
+To check the Atomic Data adaptor against a real server (it writes and then
+removes a few small test documents under the folder you give):
+
+```
+ATOMIC_PARENT=https://atomic.example.org/drive/okmaps-test \
+ATOMIC_SECRET=<agent secret from the data browser's User settings> \
+node --experimental-strip-types packages/storage/scripts/check-atomic.ts
+```

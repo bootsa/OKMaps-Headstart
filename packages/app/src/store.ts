@@ -1,9 +1,12 @@
 /**
  * The maps a person keeps, on the storage they chose (packages/storage):
- * this browser (IndexedDB, the default), a WebDAV folder or a Solid Pod. Each map is one
+ * this browser (IndexedDB, the default), a WebDAV folder, a Solid Pod or an
+ * Atomic Data server. Each map is one
  * document: the request that made it and what the visualisation reads.
  */
 import {
+  agentFromSecret,
+  atomicStorage,
   findPod,
   indexedDbStorage,
   MapLibrary,
@@ -32,7 +35,8 @@ export interface SavedMap extends MapRecord {
 export type StorageChoice =
   | { kind: "browser" }
   | { kind: "webdav"; url: string; username?: string; password?: string }
-  | { kind: "solid"; issuer: string; container: string };
+  | { kind: "solid"; issuer: string; container: string }
+  | { kind: "atomic"; parent: string; secret: string };
 
 const CHOICE_KEY = "okmaps-storage";
 /** A Pod chosen before logging in, waiting for the login to come back. */
@@ -45,6 +49,7 @@ export function readChoice(): StorageChoice {
     const v = JSON.parse(localStorage.getItem(CHOICE_KEY) ?? "null");
     if (v?.kind === "webdav" && str(v.url)) return v;
     if (v?.kind === "solid" && str(v.issuer) && str(v.container)) return v;
+    if (v?.kind === "atomic" && str(v.parent) && str(v.secret)) return v;
   } catch {
     // unreadable or blocked: fall back to the browser
   }
@@ -111,6 +116,9 @@ function podLibrary(remote: MapLibrary<SavedMap>, online: boolean): Library {
 async function open(choice: StorageChoice): Promise<Library> {
   if (choice.kind === "webdav") {
     return new MapLibrary<SavedMap>(webdavStorage({ url: choice.url, username: choice.username || undefined, password: choice.password }));
+  }
+  if (choice.kind === "atomic") {
+    return new MapLibrary<SavedMap>(atomicStorage({ parent: choice.parent, agent: agentFromSecret(choice.secret) }));
   }
   if (choice.kind === "solid") {
     const session = podLogin ? await solidSession() : null;

@@ -3,7 +3,11 @@ import os from "node:os";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
 import {
+  agentFromSecret,
+  atomicStorage,
   bucketStorage,
+  ed25519,
+  stableStringify,
   containedDocuments,
   MapLibrary,
   memoryStorage,
@@ -14,7 +18,13 @@ import {
   type MapStorage,
 } from "../src/index.ts";
 import { fileStorage } from "../src/node.ts";
-import { fakeBucket, fakeSolid, fakeWebdav } from "./fakes.ts";
+import { fakeAtomic, fakeBucket, fakeSolid, fakeWebdav } from "./fakes.ts";
+
+// RFC 8032 test 1: an Ed25519 seed, its public key, and the signature of "".
+const RFC_SEED = Buffer.from("9d61b19deffd5a60ba844af492ec2cc44449c5697b326919703bac031cae7f60", "hex").toString("base64");
+const RFC_PUBLIC = Buffer.from("d75a980182b10ab7d54bfed3c964073a0ee172f3daa62325af021a68f707511a", "hex").toString("base64");
+const RFC_SIG_EMPTY = "e5564300c360ac729086e2cc806e828a84877f1eb8e5d974d873e065224901555fb8821590a33bacc61e39701cf9b46bd25bf5f0595bbe24655141438e7a100b";
+const ATOMIC_AGENT = { subject: `${"https://store.example"}/agents/me`, privateKey: RFC_SEED };
 
 const ORIGIN = "https://store.example";
 
@@ -24,6 +34,10 @@ const adaptors: Array<[string, () => MapStorage]> = [
   ["bucket", () => bucketStorage(fakeBucket(), "okmaps/")],
   ["webdav", () => webdavStorage({ url: `${ORIGIN}/dav/`, username: "me", password: "secret", fetch: fakeWebdav(ORIGIN).fetch })],
   ["solid", () => solidStorage({ container: `${ORIGIN}/pod/okmaps`, fetch: fakeSolid(ORIGIN).fetch })],
+  [
+    "atomic",
+    () => atomicStorage({ parent: `${ORIGIN}/drive/okmaps`, agent: ATOMIC_AGENT, fetch: fakeAtomic(ORIGIN, { subject: ATOMIC_AGENT.subject, publicKey: RFC_PUBLIC }).fetch }),
+  ],
 ];
 
 describe.each(adaptors)("%s storage", (_name, make) => {
@@ -151,5 +165,34 @@ describe("Solid", () => {
     expect(seen).toEqual(["GET https://id.example/bob/profile/card#me", "HEAD https://id.example/bob/profile/", "HEAD https://id.example/bob/"]);
     const none = async () => new Response(null, { status: 404 });
     expect(await findPod("https://id.example/x/card#me", none)).toBeNull();
+  });
+});
+
+describe("Atomic Data", () => {
+  it("signs with Ed25519 as RFC 8032 does", async () => {
+    const k = await ed25519(RFC_SEED);
+    expect(k.publicKey).toBe(RFC_PUBLIC);
+    expect(Buffer.from(await k.sign(""), "base64").toString("hex")).toBe(RFC_SIG_EMPTY);
+  });
+
+  it("serialises like fast-json-stable-stringify", () => {
+    expect(stableStringify({ b: [1, { d: 1, c: undefined }], a: "x", e: true })).toBe('{"a":"x","b":[1,{"d":1}],"e":true}');
+  });
+
+  it("reads the agent secret the data browser shows", () => {
+    const secret = btoa(JSON.stringify({ privateKey: RFC_SEED, subject: "https://a.example/agents/x" }));
+    expect(agentFromSecret(secret)).toEqual({ privateKey: RFC_SEED, subject: "https://a.example/agents/x" });
+    expect(() => agentFromSecret("nope")).toThrow(/not an Atomic Data agent secret/);
+  });
+
+  it("is refused with another agent's key, and replaces files rather than piling them up", async () => {
+    const server = fakeAtomic(ORIGIN, { subject: ATOMIC_AGENT.subject, publicKey: RFC_PUBLIC });
+    const other = atomicStorage({ parent: `${ORIGIN}/drive/okmaps`, agent: { ...ATOMIC_AGENT, privateKey: Buffer.alloc(32, 7).toString("base64") }, fetch: server.fetch });
+    await expect(other.put("a.json", "{}")).rejects.toThrow(/401/);
+    const s = atomicStorage({ parent: `${ORIGIN}/drive/okmaps/`, agent: ATOMIC_AGENT, fetch: server.fetch });
+    await s.put("maps/a.json", "1");
+    await s.put("maps/a.json", "2");
+    expect(server.resources.size).toBe(1);
+    expect([...server.resources.values()][0]["https://atomicdata.dev/properties/filename"]).toBe("maps%2Fa.json");
   });
 });
