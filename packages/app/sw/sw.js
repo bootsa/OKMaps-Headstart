@@ -15,7 +15,10 @@
  */
 const VERSION = "__VERSION__";
 const PRECACHE = __PRECACHE__;
-const CACHE = `okmaps-${VERSION}`;
+// One cache per scope: several versions of the app can live side by side on
+// one site (latest/, v1.2.0/, …), each with its own service worker.
+const PREFIX = `okmaps-${new URL(self.registration.scope).pathname}`;
+const CACHE = `${PREFIX}${VERSION}`;
 
 self.addEventListener("install", (event) => {
   event.waitUntil(caches.open(CACHE).then((cache) => cache.addAll(PRECACHE)));
@@ -25,7 +28,8 @@ self.addEventListener("activate", (event) => {
   event.waitUntil(
     caches
       .keys()
-      .then((keys) => Promise.all(keys.filter((k) => k.startsWith("okmaps-") && k !== CACHE).map((k) => caches.delete(k))))
+      // This scope's older caches, and those from before caches were per scope.
+      .then((keys) => Promise.all(keys.filter((k) => (k.startsWith(PREFIX) && k !== CACHE) || /^okmaps-[0-9a-f]+$/.test(k)).map((k) => caches.delete(k))))
       .then(() => self.clients.claim()),
   );
 });
