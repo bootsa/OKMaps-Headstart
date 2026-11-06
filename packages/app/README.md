@@ -55,7 +55,10 @@ GitHub release) rebuilds the site with that version beside the others.
 | `/<repository>/versions.html`, `versions.json` | the list |
 
 Each version is a separate build (`.github/scripts/build-pages.sh`) with its
-own base path, service worker and cache. Maps and the storage choice are kept
+own base path, service worker and cache. A release is built once and then
+kept in the Actions cache, so a deploy builds only `latest` and new
+releases; it is rebuilt if the cache entry is gone or `GATEWAY_URL` /
+`CROSSREF_MAILTO` change. Maps and the storage choice are kept
 per site, so every version sees the same maps. Each version's start page
 shows its version with a link to the others.
 

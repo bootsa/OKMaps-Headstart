@@ -10,9 +10,15 @@
 # Maps and the storage choice live in the browser per site (origin), so all
 # versions see the same maps.
 #
+# A release never changes, so its build is kept in PAGES_CACHE (a folder the
+# workflow keeps between runs with actions/cache) and reused while the
+# settings it was built with (stamp) are the same. Only latest and new or
+# changed releases are built.
+#
 # Usage: build-pages.sh <repository name> <output folder>
 # Env: VITE_GATEWAY_URL, VITE_CROSSREF_MAILTO (passed to every build),
-#      PAGES_MAX_VERSIONS (newest tags to build, default 20).
+#      PAGES_MAX_VERSIONS (newest tags to publish, default 20),
+#      PAGES_CACHE (folder of earlier release builds; optional).
 set -euo pipefail
 
 repo_name=$1
@@ -43,11 +49,28 @@ build() { # <git ref> <folder> <version label>
 default_branch=${DEFAULT_BRANCH:-main}
 build "${LATEST_REF:-origin/$default_branch}" latest latest
 
+# What a release build depends on besides its tag.
+stamp="$repo_name|${VITE_GATEWAY_URL:-}|${VITE_CROSSREF_MAILTO:-}"
+cache=${PAGES_CACHE:+$(realpath -m "$PAGES_CACHE")}
+
 # Release tags, newest first, that contain the browser app's build.
 versions=()
+reused=0
 for tag in $(git -C "$root" tag --list 'v*' --sort=-version:refname | head -n "${PAGES_MAX_VERSIONS:-20}"); do
   if git -C "$root" cat-file -e "$tag:packages/app/scripts/build-vis.mjs" 2>/dev/null; then
-    build "$tag" "$tag" "$tag"
+    commit=$(git -C "$root" rev-parse "$tag^{commit}")
+    if [ -n "$cache" ] && [ "$(cat "$cache/$tag/.stamp" 2>/dev/null)" = "$commit|$stamp" ]; then
+      echo "Reusing the build of $tag"
+      cp -r "$cache/$tag/site" "$site/$tag"
+      reused=$((reused + 1))
+    else
+      build "$tag" "$tag" "$tag"
+      if [ -n "$cache" ]; then
+        rm -rf "${cache:?}/$tag" && mkdir -p "$cache/$tag"
+        cp -r "$site/$tag" "$cache/$tag/site"
+        echo "$commit|$stamp" >"$cache/$tag/.stamp"
+      fi
+    fi
     versions+=("$tag")
   else
     echo "Skipping $tag: it has no browser app."
@@ -85,4 +108,11 @@ HTML
 page "Open Knowledge Maps" '<meta http-equiv="refresh" content="0; url=latest/" />' >"$site/index.html"
 page "Open Knowledge Maps: versions" "" >"$site/versions.html"
 touch "$site/.nojekyll"
-echo "Built latest and ${#versions[@]} release(s): ${versions[*]:-none}"
+# Drop cached builds of releases no longer published.
+if [ -n "$cache" ] && [ -d "$cache" ]; then
+  for dir in "$cache"/*/; do
+    name=$(basename "$dir")
+    [[ " ${versions[*]:-} " == *" $name "* ]] || rm -rf "${cache:?}/$name"
+  done
+fi
+echo "Published latest and ${#versions[@]} release(s) (${reused} reused): ${versions[*]:-none}"
