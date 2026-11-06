@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.1.3](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.2...v7.1.3) (2026-11-06)
+
+
+### Features
+
+* **ui-svelte:** draw the knowledge map in Svelte, with an old/new toggle ([4bf0ef3](https://github.com/bootsa/OKMaps-Headstart/commit/4bf0ef390604ea0cfb78f1192bf0d34e5e89186d))
+* **ui-svelte:** draw the knowledge map in Svelte, with an old/new toggle ([d8dc9b5](https://github.com/bootsa/OKMaps-Headstart/commit/d8dc9b523e616931cbe500a22bf841af1af55fce))
+
 ## [7.1.2](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.0...v7.1.2) (2026-11-06)
 
 
