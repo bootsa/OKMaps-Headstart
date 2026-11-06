@@ -1,5 +1,16 @@
 # Changelog
 
+## [7.0.0](https://github.com/bootsa/OKMaps-Headstart/compare/v6.0.0...v7.0.0) (2026-11-06)
+
+
+### ⚠ BREAKING CHANGES
+
+* the old server, its API and its map ids are no longer part of this repository.
+
+### Features
+
+* the browser app replaces the server ([e2958ce](https://github.com/bootsa/OKMaps-Headstart/commit/e2958ce1c546a754868d6db2c1356178c6b63d3a))
+
 ## 2022-07-20
 
 ### Changes
