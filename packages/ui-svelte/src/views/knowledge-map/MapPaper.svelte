@@ -1,26 +1,30 @@
 <!--
   @component
-  One paper on the knowledge map: a sheet with a folded corner (a rounded
-  card for datasets and media) showing its title, year, authors, journal
-  and a metric. All metadata is rendered as text.
+  One paper on the knowledge map: a small document icon (a rounded card for
+  datasets and media; a dot inside for open access). Zoomed in, its title
+  sits beside the icon at a readable size; the full details show in a
+  popup on hover or focus (PaperPopup). All metadata is rendered as text.
 -->
 <script lang="ts">
 	import Highlight from "../../components/Highlight.svelte";
 	import { paperDate } from "../../data/papers";
 	import type { Paper } from "../../data/types";
-	import { cutAuthors, DOGEAR, dogEarPath, paperPath, type Rect, roundedPath } from "./geometry";
+	import { dogEarPath, paperPath, type Rect, roundedPath } from "./geometry";
 
 	interface Props {
 		paper: Paper;
-		rect: Rect;
-		/** The map is zoomed into an area (larger text, hover enlarges). */
+		/** The icon's box. */
+		icon: Rect;
+		/** The map is zoomed into an area: show the title beside the icon. */
 		zoom?: boolean;
 		selected?: boolean;
 		hovered?: boolean;
 		/** Dataset, media or software: drawn as a rounded card. */
 		rounded?: boolean;
-		/** Metrics to show; the first one unless hovered. */
-		stats?: Array<{ value: number | string; label: string }>;
+		/** Width of the title beside the icon, in px. */
+		labelWidth?: number;
+		/** Chart size: the title goes left of the icon when it would not fit on the right. */
+		size?: number;
 		search?: string[];
 		query?: string[];
 		onclick?: (e: MouseEvent | KeyboardEvent) => void;
@@ -30,12 +34,13 @@
 
 	let {
 		paper,
-		rect,
+		icon,
 		zoom = false,
 		selected = false,
 		hovered = false,
 		rounded = false,
-		stats = [],
+		labelWidth = 150,
+		size = Number.POSITIVE_INFINITY,
 		search = [],
 		query = [],
 		onclick,
@@ -43,8 +48,9 @@
 		onpointerleave,
 	}: Props = $props();
 
-	const shown = $derived(hovered ? stats : stats.slice(0, 1));
-	const authors = $derived(paper.authorsList.length > 15 ? cutAuthors(paper.authorsList, 15) : paper.authorsString);
+	const date = $derived(paper.year ? ` (${paperDate(paper.year)})` : "");
+	const dot = $derived(Math.max(1.5, icon.w * 0.18));
+	const left = $derived(icon.x + icon.w + 6 + labelWidth > size);
 
 	function onkeydown(e: KeyboardEvent) {
 		if (e.key === "Enter" || e.key === " ") {
@@ -61,6 +67,7 @@
 	class:zoom
 	class:hovered
 	class:selected
+	class:oa={paper.oa}
 	role={zoom ? "button" : "presentation"}
 	tabindex={zoom ? 0 : undefined}
 	aria-pressed={zoom ? selected : undefined}
@@ -74,55 +81,53 @@
 	{#if !zoom}
 		<title>{paper.area}</title>
 	{/if}
-	<path class="sheet" d={rounded ? roundedPath(rect) : paperPath(rect)} />
+	<path class="sheet" d={rounded ? roundedPath({ ...icon, r: Math.min(icon.w, icon.h) / 4 }) : paperPath(icon)} />
 	{#if !rounded}
-		<path class="dogear" d={dogEarPath(rect)} />
+		<path class="dogear" d={dogEarPath(icon)} />
 	{/if}
-	<foreignObject x={rect.x} y={rect.y} width={Math.max(0, rect.w)} height={Math.max(0, rect.h)}>
-		<div class="holder" style:width="{rect.w}px" style:height="{rect.h}px">
-			<div class="metadata" style:width="{(1 - DOGEAR) * rect.w}px">
-				<p class="title">
-					<Highlight text={paper.title} {search} {query} />
-					{#if paper.year}
-						<Highlight text="({paperDate(paper.year)})" {search} {query} />
-					{/if}
-				</p>
-				<p class="authors"><Highlight text={authors} {search} /></p>
-				{#if paper.publishedIn}
-					<p class="in">in <Highlight text={paper.publishedIn} {search} /></p>
+	{#if paper.oa}
+		<circle class="oa-dot" cx={icon.x + icon.w / 2} cy={icon.y + icon.h * 0.6} r={dot} />
+	{/if}
+	{#if zoom}
+		<foreignObject
+			x={left ? icon.x - 6 - labelWidth : icon.x + icon.w + 6}
+			y={icon.y + icon.h / 2 - 17}
+			width={labelWidth}
+			height="34"
+		>
+			<div class="label" class:left>
+				<Highlight text={paper.title} {search} {query} />
+				{#if date}
+					<Highlight text={date} {search} {query} />
 				{/if}
 			</div>
-			{#each shown as stat (stat.label)}
-				<p class="stat"><strong>{stat.value}</strong> {stat.label}</p>
-			{/each}
-		</div>
-	</foreignObject>
+		</foreignObject>
+	{/if}
 </g>
 
 <style>
 	.okm-paper {
-		--paper-font-size: 3px;
 		cursor: zoom-in;
 		outline: none;
 
 		&.zoom {
-			--paper-font-size: 12px;
 			cursor: pointer;
-		}
-
-		&.hovered {
-			--paper-font-size: 14px;
 		}
 	}
 
 	.sheet {
 		fill: var(--color-paper-fill);
-		stroke: var(--color-paper);
+		stroke: var(--color-text-muted);
 		stroke-width: 1px;
 
+		.okm-paper:not(.zoom) & {
+			stroke: var(--color-paper);
+		}
+
+		.hovered &,
 		.selected & {
 			stroke: var(--color-text);
-			stroke-width: 3px;
+			stroke-width: 2px;
 		}
 
 		.okm-paper:focus-visible & {
@@ -133,43 +138,45 @@
 
 	.dogear {
 		fill: var(--color-paper);
-		stroke: var(--color-paper);
+		stroke: var(--color-text-muted);
+		stroke-width: 1px;
+
+		.okm-paper:not(.zoom) & {
+			stroke: var(--color-paper);
+		}
 	}
 
-	.holder {
-		display: flex;
-		flex-direction: column;
+	.oa-dot {
+		fill: var(--color-open-access);
+	}
+
+	.label {
+		display: -webkit-box;
 		box-sizing: border-box;
-		padding: 2% 3%;
+		width: fit-content;
+		max-height: 34px;
+		padding: 1px 3px;
 		overflow: hidden;
+		border-radius: var(--radius-sm);
+		/* Keeps a title legible where it crosses a neighbour. */
+		background: rgb(255 255 255 / 0.85);
 		color: var(--color-text);
-		font-size: var(--paper-font-size);
-		line-height: 1.2;
+		font-size: 12px;
+		line-height: 16px;
+		overflow-wrap: anywhere;
 		pointer-events: none;
-	}
+		-webkit-box-orient: vertical;
+		-webkit-line-clamp: 2;
+		line-clamp: 2;
 
-	.metadata {
-		flex: 1;
-		min-height: 0;
-		overflow: hidden;
-	}
+		&.left {
+			margin-left: auto;
+			text-align: right;
+		}
 
-	p {
-		margin: 0 0 0.25em;
-		overflow-wrap: break-word;
-		hyphens: auto;
-	}
-
-	.title {
-		font-weight: var(--font-weight-bold);
-	}
-
-	.in {
-		font-style: italic;
-	}
-
-	.stat {
-		margin: 0;
-		white-space: nowrap;
+		.hovered &,
+		.selected & {
+			font-weight: var(--font-weight-bold);
+		}
 	}
 </style>
