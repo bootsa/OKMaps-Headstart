@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<response xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.openaire.eu/schema/0.2/oaf-0.2.xsd">
+  <header>
+    <query>(oaftype exact result) and (resulttypeid exact dataset) and (relprojectid exact "corda__h2020::abc")</query>
+    <locale>en_US</locale>
+    <size>1000</size>
+    <page>1</page>
+    <total>2</total>
+    <fields/>
+  </header>
+  <results>
+    <result>
+      <header>
+        <dri:objIdentifier xmlns:dri="http://www.driver-repository.eu/namespace/dri">r37b0ad08687::4a4a4a4a5b5b5b5b6c6c6c6c7d7d7d7d</dri:objIdentifier>
+        <dri:dateOfCollection xmlns:dri="http://www.driver-repository.eu/namespace/dri">2020-01-30T10:00:00Z</dri:dateOfCollection>
+        <status>under curation</status>
+      </header>
+      <metadata>
+        <oaf:entity xmlns:oaf="http://namespace.openaire.eu/oaf" xsi:schemaLocation="http://namespace.openaire.eu/oaf http://namespace.openaire.eu/oaf">
+          <oaf:result>
+          <collectedfrom name="Zenodo" id="opendoar____::2659"/>
+          <originalId>oai:zenodo.org:7d7d</originalId>
+          <pid classid="doi" classname="Digital Object Identifier" schemeid="dnet:pid_types" schemename="dnet:pid_types">10.5281/zenodo.7654321</pid>
+          <pid classid="handle" classname="Handle" schemeid="dnet:pid_types" schemename="dnet:pid_types">11234/7d7d</pid>
+          <title classid="main title" classname="main title" schemeid="dnet:dataCite_title" schemename="dnet:dataCite_title">Survey data on open access uptake (2015–2019)</title>
+          <bestaccessright classid="OPEN" classname="Open Access" schemeid="dnet:access_modes" schemename="dnet:access_modes"/>
+          <creator rank="1">Bardi, Alessia</creator>
+          <dateofacceptance>2019-05-01</dateofacceptance>
+          <description>Raw survey responses.</description>
+          <subject classid="keyword" classname="keyword" schemeid="dnet:subject_classification_typologies" schemename="dnet:subject_classification_typologies">open access; survey</subject>
+          <language classid="eng" classname="English" schemeid="dnet:languages" schemename="dnet:languages"/>
+          <publisher>Zenodo</publisher>
+          <resulttype classid="dataset" classname="dataset" schemeid="dnet:result_typologies" schemename="dnet:result_typologies"/>
+          <fulltext>https://zenodo.org/record/7654321/files/data.csv</fulltext>
+          <rels><rel inferred="false" trust="0.9" inferenceprovenance="" provenanceaction="sysimport:crosswalk:repository"><to class="isProducedBy" scheme="dnet:result_project_relations" type="project">corda__h2020::abc</to><code>643410</code><acronym>OpenAIRE2020</acronym><title>Open Access Infrastructure for Research in Europe 2020</title><funding><funder id="ec__________::EC" shortname="EC" name="European Commission" jurisdiction="EU"/></funding></rel></rels>
+          <children><instance id="opendoar____::2659"><accessright classid="OPEN" classname="Open Access" schemeid="dnet:access_modes" schemename="dnet:access_modes"/><hostedby name="Zenodo" id="opendoar____::2659"/><webresource><url>https://zenodo.org/record/7654321</url></webresource></instance></children>
+          </oaf:result>
+        </oaf:entity>
+      </metadata>
+    </result>
+    <result>
+      <header>
+        <dri:objIdentifier xmlns:dri="http://www.driver-repository.eu/namespace/dri">r37b0ad08687::8e8e8e8e9f9f9f9fa0a0a0a0b1b1b1b1</dri:objIdentifier>
+        <dri:dateOfCollection xmlns:dri="http://www.driver-repository.eu/namespace/dri">2020-01-30T10:00:00Z</dri:dateOfCollection>
+        <status>under curation</status>
+      </header>
+      <metadata>
+        <oaf:entity xmlns:oaf="http://namespace.openaire.eu/oaf" xsi:schemaLocation="http://namespace.openaire.eu/oaf http://namespace.openaire.eu/oaf">
+          <oaf:result>
+          <collectedfrom name="Zenodo" id="opendoar____::2659"/>
+          <originalId>oai:zenodo.org:b1b1</originalId>
+          <pid classid="handle" classname="Handle" schemeid="dnet:pid_types" schemename="dnet:pid_types">11234/b1b1</pid>
+          <title classid="main title" classname="main title" schemeid="dnet:dataCite_title" schemename="dnet:dataCite_title">Interview transcripts</title>
+          <bestaccessright classid="CLOSED" classname="Closed Access" schemeid="dnet:access_modes" schemename="dnet:access_modes"/>
+          <creator rank="1">Manghi, Paolo</creator>
+          <dateofacceptance>2019-05-01</dateofacceptance>
+          <language classid="eng" classname="English" schemeid="dnet:languages" schemename="dnet:languages"/>
+          <publisher>Zenodo</publisher>
+          <resulttype classid="dataset" classname="dataset" schemeid="dnet:result_typologies" schemename="dnet:result_typologies"/>
+          <rels><rel inferred="false" trust="0.9" inferenceprovenance="" provenanceaction="sysimport:crosswalk:repository"><to class="isProducedBy" scheme="dnet:result_project_relations" type="project">corda__h2020::abc</to><code>643410</code><acronym>OpenAIRE2020</acronym><title>Open Access Infrastructure for Research in Europe 2020</title><funding><funder id="ec__________::EC" shortname="EC" name="European Commission" jurisdiction="EU"/></funding></rel></rels>
+          </oaf:result>
+        </oaf:entity>
+      </metadata>
+    </result>
+  </results>
+</response>

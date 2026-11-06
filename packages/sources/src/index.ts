@@ -7,3 +7,15 @@ export { searchBase, buildBaseRequest, baseRequestParams, preprocessQuery, clean
 export type { BaseOptions, BaseParams, BaseRequest, BasePaper } from "./base/index.js";
 export { parseXml, textOf, findAll, findFirst, childElements } from "./xml.js";
 export type { XmlElement, XmlNode } from "./xml.js";
+export {
+  searchOpenaire,
+  getOpenaireProject,
+  parseOpenaireXml,
+  parseOpenaireProject,
+  toOpenaireRecords,
+  cleanOpenaireSubject,
+  OPENAIRE_BASE,
+} from "./openaire.js";
+export type { OpenaireParams, OpenaireOptions, OpenairePaper, OpenaireProject, OpenaireOrganisation } from "./openaire.js";
+export { addCitationCounts, fetchCitationCounts, CROSSREF_BASE } from "./crossref.js";
+export type { CrossrefOptions } from "./crossref.js";
