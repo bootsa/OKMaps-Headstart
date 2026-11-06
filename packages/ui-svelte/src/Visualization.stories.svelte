@@ -10,6 +10,14 @@
 		component: Visualization,
 		parameters: { layout: "fullscreen" },
 	});
+
+	// Built here, not passed as an arg: Storybook copies args, and a copy of
+	// the state no longer updates the page.
+	const state = new MapState(base as unknown as MapRecord, 600);
 </script>
 
-<Story name="Knowledge map with list" args={{ state: new MapState(base as unknown as MapRecord, 600), height: 640 }} />
+<Story name="Knowledge map with list">
+	{#snippet template()}
+		<Visualization {state} />
+	{/snippet}
+</Story>

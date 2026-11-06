@@ -60,7 +60,8 @@
 	}
 </script>
 
-<!-- Overview papers are not focusable: their bubble is (role is set per zoom). -->
+<!-- Overview papers are not focusable: their bubble is (role is set per zoom).
+     Chromium makes an SVG element with focus listeners focusable, so they go too. -->
 <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
 <g
 	class="okm-paper"
@@ -75,8 +76,7 @@
 	{onkeydown}
 	{onpointerenter}
 	{onpointerleave}
-	onfocus={onpointerenter}
-	onblur={onpointerleave}
+	{...zoom ? { onfocus: onpointerenter, onblur: onpointerleave } : {}}
 >
 	{#if !zoom}
 		<title>{paper.area}</title>
