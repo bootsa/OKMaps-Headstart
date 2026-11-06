@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.1.6](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.5...v7.1.6) (2026-11-06)
+
+
+### Features
+
+* **ui-svelte:** name the zoomed area in the list header and add a height toggle ([380aeed](https://github.com/bootsa/OKMaps-Headstart/commit/380aeedbc3ecdc3f37567a21645e11722cc713ba))
+* **ui-svelte:** name the zoomed area in the list header and add a height toggle ([0b5cc33](https://github.com/bootsa/OKMaps-Headstart/commit/0b5cc3337dcba124767e122a54721177eef1b737))
+
 ## [7.1.5](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.4...v7.1.5) (2026-11-06)
 
 
