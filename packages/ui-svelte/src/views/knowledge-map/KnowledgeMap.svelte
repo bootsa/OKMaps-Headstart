@@ -14,8 +14,9 @@
 	import type { Area, Paper } from "../../data/types";
 	import { t } from "../../i18n/strings";
 	import Bubble from "./Bubble.svelte";
-	import { enlarge, type Geometry, mapGeometry } from "./geometry";
+	import { type Geometry, iconRect, mapGeometry } from "./geometry";
 	import MapPaper from "./MapPaper.svelte";
+	import PaperPopup from "./PaperPopup.svelte";
 
 	interface Props {
 		state: MapState;
@@ -43,6 +44,12 @@
 	});
 
 	let hoveredPaper: string | null = $state(null);
+	const hovered = $derived(map.map.papers.find((p) => p.safeId === hoveredPaper));
+	// A new zoom starts without a popup.
+	$effect(() => {
+		void map.zoomedArea;
+		hoveredPaper = null;
+	});
 
 	const zoom = $derived(map.zoomedArea !== null);
 	const shown = $derived(map.map.papers.filter((p) => map.matching.has(p.safeId)));
@@ -108,7 +115,8 @@
 		{#if rect}
 			<MapPaper
 				{paper}
-				rect={zoom && hoveredPaper === paper.safeId ? enlarge(rect, size) : rect}
+				icon={iconRect(rect, zoom)}
+				{size}
 				{zoom}
 				selected={map.selectedPaper === paper.safeId}
 				hovered={zoom && hoveredPaper === paper.safeId}
@@ -152,6 +160,15 @@
 	{#each activePapers as paper (paper.safeId)}
 		{@render paperShape(paper)}
 	{/each}
+	{#if zoom && !moving && hovered && geometry.current.papers[hovered.safeId]}
+		<PaperPopup
+			paper={hovered}
+			icon={iconRect(geometry.current.papers[hovered.safeId], true)}
+			{size}
+			search={map.searchWords}
+			query={map.queryWords}
+		/>
+	{/if}
 </svg>
 
 <style>
