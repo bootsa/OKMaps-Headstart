@@ -86,6 +86,17 @@ Rscript packages/app/test/parity/legacy_maps.R packages/app/test/parity/legacy
 python3 packages/app/test/parity/legacy_finish.py packages/app/test/parity/legacy
 ```
 
+## Where maps are kept
+
+By default maps are kept in the browser (IndexedDB). Under "Where your maps
+are kept" on the start page a person can choose a WebDAV folder instead
+(Nextcloud, ownCloud, or any WebDAV server that allows the site through
+CORS), and copy the maps they have there. The choice, and the WebDAV
+password, are kept in that browser's localStorage. Maps then follow the
+person to any browser that uses the same folder. The storage adaptors are in
+`packages/storage`. Maps made before this choice existed are moved into the
+new browser storage once.
+
 ## Share links
 
 On a saved map, Share publishes it to the gateway once and shows the link

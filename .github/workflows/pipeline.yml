@@ -9,6 +9,7 @@ on:
       - "packages/sources/**"
       - "packages/gateway/**"
       - "packages/app/**"
+      - "packages/storage/**"
       - "server/workers/tests/knowncases/**"
       - ".github/workflows/pipeline.yml"
 
@@ -19,7 +20,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        package: [pipeline, sources, gateway, app]
+        package: [pipeline, sources, gateway, app, storage]
     defaults:
       run:
         working-directory: packages/${{ matrix.package }}

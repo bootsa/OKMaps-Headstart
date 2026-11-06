@@ -70,8 +70,33 @@
 
       <section>
         <h2>Your maps</h2>
-        <p id="no-maps">Maps you make are kept in this browser and listed here.</p>
+        <p id="no-maps">Maps you make are kept and listed here.</p>
         <ul id="maps"></ul>
+      </section>
+
+      <section>
+        <details id="storage-settings">
+          <summary>Where your maps are kept: <span id="storage-label">this browser</span></summary>
+          <form id="storage">
+            <fieldset class="services">
+              <legend>Keep my maps in</legend>
+              <label><input type="radio" name="kind" value="browser" checked /> This browser</label>
+              <label><input type="radio" name="kind" value="webdav" /> A WebDAV folder (Nextcloud, ownCloud, …)</label>
+            </fieldset>
+            <div data-kinds="webdav">
+              <label for="dav-url">Folder URL</label>
+              <input id="dav-url" name="url" type="url" required placeholder="https://cloud.example.org/remote.php/dav/files/me/okmaps/" />
+              <div class="row">
+                <div><label for="dav-user">User name</label><input id="dav-user" name="username" autocomplete="username" /></div>
+                <div><label for="dav-password">Password or app password</label><input id="dav-password" name="password" type="password" autocomplete="current-password" /></div>
+              </div>
+              <p class="hint">The folder's server must allow this site (CORS). The password is kept in this browser only.</p>
+            </div>
+            <label class="check"><input type="checkbox" name="copy" checked /> Copy the maps I have now</label>
+            <button id="storage-save" type="submit">Use this</button>
+            <p id="storage-status" class="status" role="status" aria-live="polite"></p>
+          </form>
+        </details>
       </section>
     </main>
     <script type="module" src="/src/main.ts"></script>

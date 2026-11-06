@@ -2,7 +2,8 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
-import { fileStore } from "../src/file-store.ts";
+import { fileStorage } from "../../storage/src/node.ts";
+import { storageMapStore } from "../src/maps.ts";
 import { createGateway } from "../src/gateway.ts";
 import { MAP_ID, memoryStore, type MapStore } from "../src/maps.ts";
 
@@ -84,7 +85,7 @@ describe("published maps", () => {
 
   it("can be kept as files", async () => {
     const dir = fs.mkdtempSync(path.join(os.tmpdir(), "okmaps-maps-"));
-    const { post, get } = setup(fileStore(path.join(dir, "maps")));
+    const { post, get } = setup(storageMapStore(fileStorage(path.join(dir, "maps"))));
     const { id } = await (await post(map)).json();
     expect(fs.readdirSync(path.join(dir, "maps"))).toEqual([`${id}.json`]);
     expect(await (await get(id)).json()).toEqual(map);

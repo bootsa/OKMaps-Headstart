@@ -10,6 +10,7 @@ import { execSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { fakeAnswer, GATEWAY } from "../test/fake-net.ts";
 import { createGateway, memoryStore } from "../../gateway/src/index.ts";
+import { fakeWebdav } from "../../storage/test/fakes.ts";
 
 // Playwright: the global copy (whose browser is installed) if there is one, else the project's.
 const { chromium } = await import(path.join(execSync("npm root -g").toString().trim(), "playwright/index.mjs")).catch(
@@ -51,8 +52,17 @@ const unknown = new Set();
 // Share links go to a real gateway handler with an in-memory store.
 const mapStore = memoryStore();
 const gateway = createGateway({ baseApiKey: "k", allowedOrigins: ["*"], maps: { store: mapStore } });
+// A WebDAV server at https://dav.test/dav/ (user "me", password "secret").
+const dav = fakeWebdav("https://dav.test");
+const davCors = { "access-control-allow-origin": "*", "access-control-allow-headers": "authorization, content-type, depth", "access-control-allow-methods": "GET, PUT, DELETE, MKCOL, PROPFIND" };
 async function answer(route) {
   const url = route.request().url();
+  if (url.startsWith("https://dav.test/")) {
+    const r = route.request();
+    if (r.method() === "OPTIONS") return route.fulfill({ status: 204, headers: davCors });
+    const res = await dav.fetch(url, { method: r.method(), headers: r.headers(), body: r.postData() ?? undefined });
+    return route.fulfill({ status: res.status, body: await res.text(), headers: { ...davCors, "content-type": res.headers.get("content-type") ?? "text/plain" } });
+  }
   if (url.startsWith(`${GATEWAY}/maps`)) {
     const r = route.request();
     const res = await gateway(
@@ -159,6 +169,41 @@ if (listed.length !== 3) throw new Error("expected 3 saved maps");
 await page.screenshot({ path: path.join(shots, "home.png") });
 await page.click("#maps li .delete");
 await page.waitForFunction(() => document.querySelectorAll("#maps li").length === 2);
+
+// Keep the maps in a WebDAV folder instead, copying the ones made so far.
+async function useStorage(fill) {
+  await page.click("#storage-settings summary");
+  await fill();
+  await page.click("#storage-save");
+  await page.waitForFunction(() => /now kept|could not/.test(document.querySelector("#storage-status").textContent));
+  return page.textContent("#storage-status");
+}
+const wrongPassword = await useStorage(async () => {
+  await page.check('#storage input[value="webdav"]');
+  await page.fill("#dav-url", "https://dav.test/dav/okmaps/");
+  await page.fill("#dav-user", "me");
+  await page.fill("#dav-password", "wrong");
+});
+console.log(JSON.stringify({ wrongPassword }));
+if (!/could not be used/.test(wrongPassword)) throw new Error("a refused WebDAV login was not reported");
+await page.fill("#dav-password", "secret");
+await page.click("#storage-save");
+await page.waitForFunction(() => /now kept/.test(document.querySelector("#storage-status").textContent));
+console.log(JSON.stringify({ webdav: await page.textContent("#storage-status") }));
+await page.reload();
+await page.waitForSelector("#maps li");
+const onDav = await page.$$eval("#maps li a", (as) => as.map((a) => a.textContent));
+const davFiles = [...dav.tree.keys()].filter((k) => k.startsWith("/dav/okmaps/"));
+console.log(JSON.stringify({ listedFromWebdav: onDav, label: await page.textContent("#storage-label"), davFiles: davFiles.length }));
+if (JSON.stringify(onDav) !== JSON.stringify(listed.slice(1)) || !davFiles.includes("/dav/okmaps/index.json")) throw new Error("maps were not moved to WebDAV");
+await page.click("#maps li a");
+await page.waitForSelector("#visualization circle.area", { timeout: 30_000 });
+await page.goto(home);
+// Back to this browser (nothing to copy: the maps are there already).
+await useStorage(async () => {
+  await page.check('#storage input[value="browser"]');
+});
+await page.waitForSelector("#maps li");
 
 // A failing search shows the reason, not a crash.
 await page.check('input[value="openaire"]');

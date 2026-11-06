@@ -20,7 +20,7 @@ fieldset { border: 0; padding: 0; margin: 0 0 16px; }
 legend, label { font-weight: 600; font-size: 0.9rem; }
 .services label, .types label { font-weight: 400; margin-right: 16px; display: inline-flex; gap: 6px; align-items: center; }
 form > div { margin-bottom: 16px; }
-input[type="search"], input[type="date"], input:not([type]), select {
+input[type="search"], input[type="date"], input[type="url"], input[type="password"], input:not([type]), select {
   display: block; width: 100%; box-sizing: border-box; margin-top: 4px; padding: 8px 10px;
   font: inherit; border: 1px solid var(--border); border-radius: 6px; background: #fff;
 }
@@ -39,3 +39,8 @@ button:disabled { opacity: 0.6; cursor: progress; }
 #maps .meta { color: var(--muted); font-size: 0.85rem; }
 #maps .delete { font: inherit; font-size: 0.85rem; background: none; border: 1px solid var(--border); border-radius: 4px; padding: 2px 8px; cursor: pointer; }
 [hidden] { display: none !important; }
+details > summary { cursor: pointer; font-weight: 600; }
+#storage { margin-top: 12px; }
+.hint { font-size: 0.85em; color: #555; margin: 4px 0 12px; }
+label.check { display: flex; gap: 6px; align-items: center; margin: 8px 0; font-weight: normal; }
+label.check input { width: auto; }

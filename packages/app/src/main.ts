@@ -5,7 +5,18 @@ import { errorMessage } from "./messages.ts";
 import type { SearchRequest, Service, Stage, MapRecord } from "./search.ts";
 import { settings } from "./settings.ts";
 import { registerServiceWorker } from "./offline.ts";
-import { deleteMap, listMaps, requestPersistence, saveMap, type MapSummary } from "./store.ts";
+import {
+  chooseStorage,
+  currentStorage,
+  deleteMap,
+  listMaps,
+  moveOldMaps,
+  readChoice,
+  requestPersistence,
+  saveMap,
+  type MapSummary,
+  type StorageChoice,
+} from "./store.ts";
 
 const $ = <T extends HTMLElement>(id: string) => document.getElementById(id) as T;
 const form = $<HTMLFormElement>("search");
@@ -113,7 +124,7 @@ function renderMaps(maps: MapSummary[]) {
     a.textContent = m.title;
     const meta = document.createElement("span");
     meta.className = "meta";
-    meta.textContent = `${SERVICES[m.request.service]} · ${m.documents} documents · ${new Date(m.created).toLocaleString()}`;
+    meta.textContent = `${SERVICES[m.service as Service]} · ${m.documents} documents · ${new Date(m.created).toLocaleString()}`;
     const del = document.createElement("button");
     del.type = "button";
     del.className = "delete";
@@ -121,11 +132,68 @@ function renderMaps(maps: MapSummary[]) {
     del.setAttribute("aria-label", `Delete map ${m.title}`);
     del.onclick = async () => {
       await deleteMap(m.id);
-      renderMaps(await listMaps());
+      await showMaps();
     };
     li.append(a, meta, del);
     list.append(li);
   }
 }
-listMaps().then(renderMaps, () => ($<HTMLParagraphElement>("no-maps").textContent = "Saved maps can't be read in this browser."));
+async function showMaps() {
+  $("storage-label").textContent = currentStorage().label;
+  try {
+    renderMaps(await listMaps());
+  } catch (err) {
+    renderMaps([]);
+    $<HTMLParagraphElement>("no-maps").textContent = `Your maps could not be read from ${currentStorage().label}: ${err instanceof Error ? err.message : err}`;
+  }
+}
+
+// Where maps are kept.
+const storageForm = $<HTMLFormElement>("storage");
+const storageStatus = $<HTMLParagraphElement>("storage-status");
+function showStorageFields() {
+  const kind = new FormData(storageForm).get("kind");
+  for (const el of storageForm.querySelectorAll<HTMLElement>("[data-kinds]")) {
+    const on = el.dataset.kinds!.split(" ").includes(String(kind));
+    el.hidden = !on;
+    for (const input of el.querySelectorAll("input")) input.disabled = !on;
+  }
+}
+{
+  const choice = readChoice();
+  storageForm.querySelector<HTMLInputElement>(`input[name="kind"][value="${choice.kind}"]`)!.checked = true;
+  if (choice.kind === "webdav") {
+    $<HTMLInputElement>("dav-url").value = choice.url;
+    $<HTMLInputElement>("dav-user").value = choice.username ?? "";
+    $<HTMLInputElement>("dav-password").value = choice.password ?? "";
+  }
+}
+showStorageFields();
+storageForm.addEventListener("change", showStorageFields);
+storageForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const f = new FormData(storageForm);
+  const choice: StorageChoice =
+    f.get("kind") === "webdav"
+      ? { kind: "webdav", url: String(f.get("url")).trim(), username: String(f.get("username") ?? ""), password: String(f.get("password") ?? "") }
+      : { kind: "browser" };
+  const button = $<HTMLButtonElement>("storage-save");
+  button.disabled = true;
+  storageStatus.className = "status";
+  storageStatus.textContent = "Checking…";
+  try {
+    const copied = await chooseStorage(choice, f.get("copy") === "on");
+    storageStatus.textContent = `Your maps are now kept in ${currentStorage().label}${copied ? `; ${copied} copied there` : ""}.`;
+    await showMaps();
+  } catch (err) {
+    storageStatus.className = "status error";
+    // A network error from a browser usually means the server does not allow this site (CORS).
+    const why = err instanceof TypeError ? "it could not be reached, or it does not allow this site (CORS)" : err instanceof Error ? err.message : String(err);
+    storageStatus.textContent = `That storage could not be used: ${why}. Your maps stay where they were.`;
+  } finally {
+    button.disabled = false;
+  }
+});
+
+moveOldMaps().catch(() => 0).finally(showMaps);
 registerServiceWorker();
