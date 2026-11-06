@@ -33,7 +33,8 @@ build() { # <git ref> <folder> <version label>
   git -C "$root" worktree add --detach "$tree" "$ref" >/dev/null
   (
     cd "$tree"
-    cp config.example.js config.js
+    # Releases up to v7.0.0 read the visualisation settings from config.js.
+    if [ -f config.example.js ]; then cp config.example.js config.js; fi
     npm ci --no-audit --no-fund
     cd packages/app
     npm ci --no-audit --no-fund

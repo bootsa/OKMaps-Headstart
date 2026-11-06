@@ -1,12 +1,5 @@
-# Folders that should not be checked by Prettier
 .github/
-.pytest_cache/
-.vscode/
-api_cache/
 dist/
-doc/
 legacy/
 node_modules/
-
-# Exact files that should not be checked by Prettier
 CHANGELOG.md
