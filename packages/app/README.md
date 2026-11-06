@@ -52,6 +52,28 @@ profile and saves it there, and opens a crafted map whose titles hold markup
 to check that no script runs. Last, it goes offline and opens a saved map.
 Screenshots go to `test-results/`.
 
+### Parity with the current server
+
+`test/parity/parity.test.ts` (part of `npm test`) compares the maps the app
+makes from the recorded provider answers with the maps today's server makes
+from the same answers. The server's maps (`test/parity/legacy/*.json.gz`) are
+made by running the server's own code: the R and Python source stages (as
+recorded in `packages/sources/test/golden`), the PubMed citation merge,
+`vis_layout()`, and the pandas and PHP steps before vis/ reads the data.
+It checks the documents, every field, which papers share an area, the area
+titles, and the layout (against R's own run-to-run variation), and writes a
+summary to `test-results/parity.md`. Intended differences are listed in the
+test with their reasons.
+
+To remake the server's maps (needs R with the packages listed in
+`packages/pipeline/test/golden/r/generate_goldens.R`, and pandas), from the
+repository root:
+
+```
+Rscript packages/app/test/parity/legacy_maps.R packages/app/test/parity/legacy
+python3 packages/app/test/parity/legacy_finish.py packages/app/test/parity/legacy
+```
+
 ## Share links
 
 On a saved map, Share publishes it to the gateway once and shows the link
