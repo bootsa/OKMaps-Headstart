@@ -41,7 +41,7 @@ remoteStorage.
 ## Tests
 
 ```
-npm ci && npm run typecheck && npm test
+pnpm install && pnpm typecheck && pnpm test
 ```
 
 Every adaptor runs the same tests (store, list, replace, delete, refuse bad

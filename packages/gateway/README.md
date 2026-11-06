@@ -89,7 +89,7 @@ them; a shared store would be needed then.
 ## Tests
 
 ```
-npm ci && npm run typecheck && npm test
+pnpm install && pnpm typecheck && pnpm test
 ```
 
 `test/node.test.ts` runs the gateway on a real Node server and runs the BASE

@@ -14,18 +14,26 @@ offline once installed as a web app.
 
 | Folder | What |
 |---|---|
-| `packages/app` | the browser app (Vite): search, map list, storage choice, share links, offline |
+| `apps/frontend` | the browser app (Vite): search, map list, storage choice, share links, offline |
 | `packages/pipeline` | turns records into a map: clustering, layout, area titles (a TypeScript port of the R scripts) |
 | `packages/sources` | the providers: PubMed, BASE, OpenAIRE, Crossref citation counts |
 | `packages/storage` | where maps are kept: one interface, an adaptor per storage system |
 | `packages/gateway` | the small server some providers need (BASE's registered IP and key) and the store for share links |
-| `vis/` | the map visualisation (webpack; the app builds and loads it) |
+| `packages/ui` | the map visualisation (React, d3, SCSS; webpack builds it and the app loads it) |
 | `legacy/` | the old R and Python code, kept only to regenerate test goldens and run the parity checks |
 
-Each package has a README with how to run and test it. To run the app:
+It is a [pnpm](https://pnpm.io/) workspace (Node 22.18 or newer; `corepack enable`
+gives you the pnpm version in `package.json`). Each package has a README with
+how to run and test it. From the repository root:
 
-    npm ci
-    cd packages/app && npm ci && npm run build:vis && npm run dev
+    pnpm install
+    pnpm test            # every package's tests
+    pnpm typecheck
+    pnpm build           # the visualisation, then the app into apps/frontend/dist
+    pnpm dev             # the app with hot reload (after pnpm build)
+    pnpm test:browser    # the built app in headless Chromium
+
+Run one package's scripts with `pnpm --filter @okmaps/<name> <script>`.
 
 The app is published to GitHub Pages by `.github/workflows/pages.yml`:
 `latest/` follows `main`, and each release stays available at its own path
@@ -46,7 +54,7 @@ setup) is on the [`legacy-server`](https://github.com/bootsa/OKMaps-Headstart/tr
 
 ### Visualisation tests
 
-    npm ci && npm test
+    pnpm --filter @okmaps/ui test
 
 ## Contributors
 

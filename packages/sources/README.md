@@ -139,7 +139,7 @@ default `NOBLANKS`, so `textOf` equals R's `xml_text`.
 ## Tests
 
 ```
-npm ci && npm run typecheck && npm test
+pnpm install && pnpm typecheck && pnpm test
 ```
 
 Regenerating the goldens needs R with xml2, data.table, jsonlite, logging,

@@ -9,7 +9,7 @@ import { expect, it } from "vitest";
 import { searchBase } from "../src/base/index.js";
 import { parsePubmedXml, toPubmedRecords } from "../src/pubmed.js";
 import { parseOpenaireXml, toOpenaireRecords } from "../src/openaire.js";
-import { buildOverviewMap, loadDefaultResources } from "../../pipeline/src/index.js";
+import { buildOverviewMap, loadDefaultResources } from "@okmaps/pipeline";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 

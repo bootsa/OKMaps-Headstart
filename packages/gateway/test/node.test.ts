@@ -10,7 +10,7 @@ import { fileURLToPath } from "node:url";
 import { afterAll, beforeAll, expect, it } from "vitest";
 import { createGateway } from "../src/gateway.ts";
 import { serve } from "../src/node.ts";
-import { fetchBaseContentProviders, searchBase } from "../../sources/src/index.js";
+import { fetchBaseContentProviders, searchBase } from "@okmaps/sources";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const repositoriesXml = fs.readFileSync(path.join(here, "repositories.xml"), "utf8");
