@@ -150,8 +150,10 @@ describe("access", () => {
     );
     expect(pre.status).toBe(204);
     expect(pre.headers.get("access-control-allow-origin")).toBe("https://maps.example.org");
-    expect(pre.headers.get("access-control-allow-methods")).toBe("GET, OPTIONS");
+    expect(pre.headers.get("access-control-allow-methods")).toBe("GET, POST, OPTIONS");
+    expect(pre.headers.get("access-control-allow-headers")).toBe("content-type");
     expect((await handler(new Request("https://gw.example/base/search", { method: "POST" }))).status).toBe(405);
+    expect((await handler(new Request("https://gw.example/base/search", { method: "DELETE" }))).status).toBe(405);
   });
 
   it("allows any origin with *", async () => {

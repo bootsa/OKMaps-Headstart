@@ -1,14 +1,16 @@
 # @okmaps/gateway
 
-The small server the browser version of OKMaps needs. It holds no data and
-keeps no state beyond a cache: it only forwards requests the browser can't
-make itself.
+The small server the browser version of OKMaps needs. It forwards requests
+the browser can't make itself and, if turned on, keeps the maps people
+publish as share links. It holds nothing else.
 
 | Route | Forwards to | Why the browser can't call it directly |
 |---|---|---|
 | `GET /base/search?...` | BASE `PerformSearch` | BASE answers only registered IP addresses and needs the API key |
 | `GET /base/repositories` | BASE `ListRepositories` | same; cached for a day (the content provider names used to parse journal fields) |
 | `GET /openaire/search/{projects,publications,datasets}?...` | OpenAIRE search API | only needed if OpenAIRE refuses browser requests; `OPENAIRE=off` turns it off |
+| `POST /maps` | | publishes a map (share link); answers `201 {"id": ...}` |
+| `GET /maps/{id}` | | a published map |
 | `GET /health` | | |
 
 Bodies come back unchanged, so `@okmaps/sources` parses them exactly as it
@@ -35,6 +37,28 @@ The handler (`createGateway`) takes a Fetch API `Request` and returns a
 `Response`, so it also runs on Deno, Bun or Cloudflare Workers with a
 three-line entry file. The machine it runs on needs an IP address BASE has
 registered.
+
+## Published maps
+
+A share link is `map.html?shared=<id>`. The browser sends the map
+(`{title, context, documents}`, the record the visualisation reads) to
+`POST /maps`; the gateway checks its shape, keeps only those three fields
+and stores it under an id made from its content (the first 96 bits of its
+SHA-256, 24 hex characters). The same map published twice gets the same id.
+Published maps never change, so `GET /maps/{id}` is cacheable for a year.
+There is no listing and no delete route.
+
+Publishing is off unless a store is given:
+
+- `MAPS_DIR=/var/lib/okmaps/maps` with `src/server.ts` keeps one JSON file per map.
+- `bucketStore(env.MAPS)` keeps them in a Cloudflare R2 bucket (or anything
+  with the same `get`/`put`), as `maps/<id>.json`.
+- `memoryStore()` for tests.
+
+Maps are at most 3 MB and 1000 documents, and a client may publish 30 per
+hour. The browser app treats a shared map as untrusted: the visualisation
+puts area titles into the page as HTML, so the app replaces `<`, `>` and `&`
+in every field before drawing it.
 
 ## Limits
 

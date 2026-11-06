@@ -8,7 +8,15 @@
     <link rel="stylesheet" href="/src/map.css" />
   </head>
   <body class="vis">
-    <nav class="back"><a href="./">← Search and your maps</a></nav>
+    <nav class="toolbar">
+      <div id="share-panel" class="share-panel" hidden>
+        <input id="share-url" readonly aria-label="Share link" />
+        <button id="copy" type="button">Copy</button>
+      </div>
+      <button id="share" type="button" hidden>Share</button>
+      <button id="save" type="button" hidden>Save to my maps</button>
+      <a href="./">← Search and your maps</a>
+    </nav>
     <p id="message" class="message" hidden></p>
     <div class="overflow-vis">
       <div id="visualization" style="background-color: white"></div>
