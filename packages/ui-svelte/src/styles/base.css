@@ -1,0 +1,38 @@
+/* Base rules, scoped to the map's root so the stylesheet can sit on a host
+   page without restyling it. */
+.okmaps {
+  font-family: var(--font-sans);
+  font-size: var(--font-size-md);
+  line-height: var(--line-height-normal);
+  color: var(--color-text);
+  background: var(--color-surface);
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  a {
+    color: var(--color-link);
+    text-underline-offset: 0.15em;
+
+    &:hover {
+      color: var(--color-accent);
+    }
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-focus);
+    outline-offset: 2px;
+  }
+}
+
+.okmaps-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}

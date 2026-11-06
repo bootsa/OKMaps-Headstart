@@ -3,6 +3,7 @@
 #
 #   <site>/latest/     the default branch
 #   <site>/v1.2.0/     each tag v* (a release) that has the browser app
+#   <site>/storybook/  the design system (Storybook) of the default branch
 #   <site>/index.html  sends visitors to latest/
 #   <site>/versions.html, versions.json   the list of versions
 #
@@ -56,6 +57,10 @@ build() { # <git ref> <folder> <version label>
     fi
   )
   cp -r "$tree/$app/dist" "$site/$dir"
+  if [ "$dir" = latest ] && [ -d "$tree/packages/ui-svelte" ]; then
+    (cd "$tree" && pnpm --filter @okmaps/ui-svelte build-storybook)
+    cp -r "$tree/packages/ui-svelte/storybook-static" "$site/storybook"
+  fi
   git -C "$root" worktree remove --force "$tree"
   echo "::endgroup::"
 }
@@ -100,6 +105,8 @@ done
 } >"$site/versions.json"
 
 items='<li><a href="latest/">latest</a> (the newest code)</li>'
+storybook=""
+[ -d "$site/storybook" ] && storybook='<p>The interface and its design system: <a href="storybook/">Storybook</a>.</p>'
 for v in "${versions[@]}"; do items+="<li><a href=\"$v/\">$v</a></li>"; done
 page() { # <title> <extra head>
   cat <<HTML
@@ -116,6 +123,7 @@ $2
 <h1>Open Knowledge Maps: versions</h1>
 <ul>$items</ul>
 <p>Every version keeps your maps in the same place, so you can switch between them.</p>
+$storybook
 </body>
 </html>
 HTML

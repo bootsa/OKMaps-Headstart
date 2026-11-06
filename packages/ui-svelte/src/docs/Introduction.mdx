@@ -1,0 +1,42 @@
+import { Meta } from "@storybook/addon-docs/blocks";
+
+<Meta title="Introduction" />
+
+# OKMaps design system
+
+The components of the new OKMaps interface, written in Svelte 5, with plain CSS
+and no preprocessor or CSS framework.
+
+## Using it
+
+Import the stylesheet once and put the interface inside an element with the
+`okmaps` class:
+
+```js
+import "@okmaps/ui-svelte/styles.css";
+```
+
+```html
+<div class="okmaps" data-skin="covis">…</div>
+```
+
+## Tokens
+
+All colours, sizes, spacing and motion are CSS custom properties in
+`src/styles/tokens.css`. Components only read the semantic tokens
+(`--color-accent`, `--color-area-stroke`, …), never the palette directly.
+
+A **skin** (`data-skin="viper"`, `cris_vis`, `linkedcat`, `covis`, `triple`)
+overrides semantic tokens only, which replaces the old SCSS `$skin` switch. Use
+the paintbrush in the toolbar to see each one.
+
+## Layers
+
+The styles sit in cascade layers (`okmaps.tokens`, `okmaps.base`,
+`okmaps.components`), so a host page can override any of them without
+`!important`. Base rules are scoped to `.okmaps` and do not touch the host page.
+
+## Motion
+
+`--duration-fast` and `--duration-zoom` drop to zero when the reader asks for
+reduced motion.

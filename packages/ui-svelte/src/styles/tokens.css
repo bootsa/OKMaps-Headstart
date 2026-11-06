@@ -1,0 +1,103 @@
+/* Design tokens. Primitive colours first, then the semantic tokens the
+   components use. A skin (skins.css) overrides the semantic ones. */
+:root {
+  /* Palette */
+  --okm-white: #fff;
+  --okm-black: #333;
+  --okm-navy: #2c3e52;
+  --okm-mint: #1f997c;
+  /* The old mint and grey fail WCAG AA as text on white; these darker
+     versions pass (5.3:1) and are what text and buttons use. */
+  --okm-mint-dark: #167a63;
+  --okm-mint-light: #51c9ae;
+  --okm-gray: #808b8d;
+  --okm-gray-light: #e1e5e6;
+  --okm-clouds: #f4f4f6;
+  --okm-blue-lightest: #f1f6fa;
+  --okm-blue-light: #d2e4f0;
+  --okm-blue-medium: #4d7199;
+  --okm-red-dark: #a70805;
+  --okm-green-author: #216500;
+  --okm-steel: #818181;
+  --okm-steel-dark: #6b6b6b;
+  --okm-paper: #cacfd3;
+  --okm-tag-low: #2c316e;
+  --okm-tag-high: #dc2260;
+
+  /* Text */
+  --color-text: var(--okm-black);
+  --color-text-muted: var(--okm-steel-dark);
+  --color-text-inverse: var(--okm-white);
+  --color-heading: var(--okm-black);
+  --color-link: var(--okm-black);
+  --color-journal: var(--okm-navy);
+
+  /* Surfaces */
+  --color-surface: var(--okm-white);
+  --color-surface-muted: var(--okm-clouds);
+  --color-border: var(--okm-gray-light);
+  --color-highlight: #d4e1de;
+  --color-highlight-search: #eff3f4;
+
+  /* Brand and actions */
+  --color-accent: var(--okm-mint-dark);
+  --color-accent-strong: var(--okm-navy);
+  --color-action: var(--okm-steel-dark);
+  --color-action-text: var(--okm-white);
+  --color-open-access: var(--okm-mint-dark);
+  --color-focus: var(--okm-mint-light);
+  --color-danger: var(--okm-red-dark);
+
+  /* Map */
+  --color-area-fill: var(--okm-blue-lightest);
+  --color-area-fill-active: var(--okm-blue-light);
+  --color-area-stroke: var(--okm-navy);
+  --color-area-title: var(--okm-black);
+  --color-paper: var(--okm-paper);
+  --color-paper-fill: var(--okm-white);
+  --color-tag-low: var(--okm-tag-low);
+  --color-tag-high: var(--okm-tag-high);
+
+  /* Typography */
+  --font-sans: "Open Sans", "Helvetica Neue", Helvetica, sans-serif;
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.5rem;
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.5;
+
+  /* Spacing (4px steps) */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+
+  /* Shape and depth */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-pill: 999px;
+  --shadow-raised:
+    0 2px 2px 0 rgb(0 0 0 / 0.14), 0 3px 1px -2px rgb(0 0 0 / 0.12),
+    0 1px 5px 0 rgb(0 0 0 / 0.2);
+  --shadow-overlay: 0 10px 30px rgb(0 0 0 / 0.25);
+
+  /* Motion */
+  --duration-fast: 150ms;
+  --duration-zoom: 500ms;
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-fast: 0ms;
+    --duration-zoom: 0ms;
+  }
+}
