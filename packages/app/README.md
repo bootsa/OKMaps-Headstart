@@ -44,6 +44,21 @@ Pages on every push to `main` that touches the app, its packages or vis/
 Settings > Pages > Source to "GitHub Actions". The site is then at
 `https://<owner>.github.io/<repository>/`.
 
+Every release is kept: pushing a tag `v*` (for example by publishing a
+GitHub release) rebuilds the site with that version beside the others.
+
+| Path | What |
+|---|---|
+| `/<repository>/` | sends visitors to `latest/` |
+| `/<repository>/latest/` | the default branch |
+| `/<repository>/v1.2.0/` | each release tag (the newest 20; repository variable `PAGES_MAX_VERSIONS`) |
+| `/<repository>/versions.html`, `versions.json` | the list |
+
+Each version is a separate build (`.github/scripts/build-pages.sh`) with its
+own base path, service worker and cache. Maps and the storage choice are kept
+per site, so every version sees the same maps. Each version's start page
+shows its version with a link to the others.
+
 Set the repository variable `GATEWAY_URL` to a running gateway to turn on
 BASE searches and share links; without it they are off and the site says
 so. `CROSSREF_MAILTO` sets the contact address sent to Crossref.

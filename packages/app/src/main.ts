@@ -36,6 +36,14 @@ const STAGES: Record<Stage, string> = {
 };
 const SERVICES: Record<Service, string> = { pubmed: "PubMed", base: "BASE", openaire: "OpenAIRE" };
 
+// The Pages build publishes several versions side by side (../versions.html).
+if (import.meta.env.VITE_APP_VERSION) {
+  const v = $<HTMLParagraphElement>("version");
+  const other = Object.assign(document.createElement("a"), { href: `${import.meta.env.BASE_URL}../versions.html`, textContent: "other versions" });
+  v.append(`Version ${import.meta.env.VITE_APP_VERSION} · `, other);
+  v.hidden = false;
+}
+
 const today = new Date().toISOString().slice(0, 10);
 $<HTMLInputElement>("to").value = today;
 

@@ -1,7 +1,11 @@
 name: GitHub Pages
 
 # Builds the browser app (packages/app) with the visualisation and publishes
-# it to GitHub Pages at https://<owner>.github.io/<repository>/.
+# it to GitHub Pages at https://<owner>.github.io/<repository>/:
+#   latest/   the default branch
+#   v1.2.0/   each release tag v* (newest 20; repository variable PAGES_MAX_VERSIONS)
+# The site root sends visitors to latest/ and versions.html lists them all.
+# See .github/scripts/build-pages.sh.
 # Repository variables (Settings > Secrets and variables > Actions > Variables):
 #   GATEWAY_URL      the gateway's URL; without it BASE searches and share links are off
 #   CROSSREF_MAILTO  contact address for Crossref's polite pool (optional)
@@ -9,6 +13,8 @@ name: GitHub Pages
 on:
   push:
     branches: [main]
+    # A new release tag adds its version (path filters do not apply to tags).
+    tags: ["v*"]
     paths:
       - "packages/**"
       - "vis/**"
@@ -30,10 +36,12 @@ concurrency:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      APP_BASE: /${{ github.event.repository.name }}/
     steps:
       - uses: actions/checkout@v4
+        with:
+          # The default branch and every tag, whatever triggered the run.
+          ref: ${{ github.event.repository.default_branch }}
+          fetch-depth: 0
 
       - uses: actions/setup-node@v4
         with:
@@ -43,31 +51,17 @@ jobs:
             package-lock.json
             packages/app/package-lock.json
 
-      - name: Install the visualisation's dependencies
-        run: |
-          cp config.example.js config.js
-          npm ci
-
-      - name: Install the app's dependencies
-        working-directory: packages/app
-        run: npm ci
-
-      - name: Build the visualisation
-        working-directory: packages/app
-        run: npm run build:vis
-
-      - name: Build the app
-        working-directory: packages/app
+      - name: Build latest and every release
         env:
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
           VITE_GATEWAY_URL: ${{ vars.GATEWAY_URL }}
           VITE_CROSSREF_MAILTO: ${{ vars.CROSSREF_MAILTO }}
-        run: |
-          npm run build
-          touch dist/.nojekyll
+          PAGES_MAX_VERSIONS: ${{ vars.PAGES_MAX_VERSIONS }}
+        run: .github/scripts/build-pages.sh "${{ github.event.repository.name }}" _site
 
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: packages/app/dist
+          path: _site
 
   deploy:
     needs: build
