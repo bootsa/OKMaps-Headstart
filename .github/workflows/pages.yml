@@ -24,6 +24,8 @@ on:
       - "webpack.config.js"
       - ".github/workflows/pages.yml"
   workflow_dispatch:
+  # Called by release.yml when release-please has made a release.
+  workflow_call:
 
 permissions:
   contents: read

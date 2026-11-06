@@ -1,0 +1,42 @@
+name: Release
+
+# release-please keeps a release PR open that collects the changes merged to
+# main (from Conventional Commit messages: feat:, fix:, feat!: …), with the
+# next version number and CHANGELOG entry. Merging that PR tags the release
+# (v1.2.3), creates the GitHub release and publishes it to GitHub Pages next
+# to the earlier ones (pages.yml).
+#
+# Needs Settings > Actions > General > "Allow GitHub Actions to create and
+# approve pull requests".
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    outputs:
+      release_created: ${{ steps.release.outputs.release_created }}
+      tag: ${{ steps.release.outputs.tag_name }}
+    steps:
+      - id: release
+        uses: googleapis/release-please-action@v4
+        with:
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json
+
+  # A tag pushed by this workflow's token does not start other workflows, so
+  # the new release is published to Pages from here.
+  pages:
+    needs: release-please
+    if: needs.release-please.outputs.release_created == 'true'
+    uses: ./.github/workflows/pages.yml
+    permissions:
+      contents: read
+      pages: write
+      id-token: write

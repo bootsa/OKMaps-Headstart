@@ -46,6 +46,10 @@ Settings > Pages > Source to "GitHub Actions". The site is then at
 
 Every release is kept: pushing a tag `v*` (for example by publishing a
 GitHub release) rebuilds the site with that version beside the others.
+Releases are made with release-please (`.github/workflows/release.yml`): it
+keeps a release PR open with the next version and changelog, worked out from
+Conventional Commit messages (`feat:`, `fix:`, `feat!:` for a breaking
+change); merging it tags the release and publishes it.
 
 | Path | What |
 |---|---|
