@@ -7,6 +7,7 @@
  */
 import { domDecode, fetchSharedMap, neutralise, publishMap, shareUrl, type SharedMap } from "./share.ts";
 import { settings } from "./settings.ts";
+import { registerServiceWorker } from "./offline.ts";
 import { getMap, saveMap, type SavedMap } from "./store.ts";
 import { visConfig } from "./vis-config.ts";
 
@@ -137,3 +138,4 @@ async function main() {
 }
 
 main().catch((err) => showMessage(`The map could not be shown: ${err instanceof Error ? err.message : err}`));
+registerServiceWorker();

@@ -4,6 +4,7 @@
 import { errorMessage } from "./messages.ts";
 import type { SearchRequest, Service, Stage, MapRecord } from "./search.ts";
 import { settings } from "./settings.ts";
+import { registerServiceWorker } from "./offline.ts";
 import { deleteMap, listMaps, requestPersistence, saveMap, type MapSummary } from "./store.ts";
 
 const $ = <T extends HTMLElement>(id: string) => document.getElementById(id) as T;
@@ -121,3 +122,4 @@ function renderMaps(maps: MapSummary[]) {
   }
 }
 listMaps().then(renderMaps, () => ($<HTMLParagraphElement>("no-maps").textContent = "Saved maps can't be read in this browser."));
+registerServiceWorker();

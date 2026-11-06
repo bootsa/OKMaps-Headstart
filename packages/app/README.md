@@ -17,6 +17,8 @@ src/search.ts   search -> citations -> layout -> the record vis/ reads
 src/worker.ts   runs search.ts off the main thread
 src/store.ts    IndexedDB
 src/share.ts    publishing and opening share links
+src/offline.ts  registers the service worker
+sw/sw.js        the service worker; scripts/sw-plugin.ts fills in its file list at build time
 src/vis-config.ts  vis/ settings per service
 ```
 
@@ -47,7 +49,8 @@ headless Chromium (Playwright): it fills in the form, waits for the
 visualisation to draw the map, checks the saved-maps list and deletion, and
 an error message. It then shares a map, opens the link in a second browser
 profile and saves it there, and opens a crafted map whose titles hold markup
-to check that no script runs. Screenshots go to `test-results/`.
+to check that no script runs. Last, it goes offline and opens a saved map.
+Screenshots go to `test-results/`.
 
 ## Share links
 
@@ -55,6 +58,19 @@ On a saved map, Share publishes it to the gateway once and shows the link
 (the id is kept with the saved map). Anyone opening the link sees the map and
 can save their own copy. A published map is fixed: changes made later to the
 saved map are not seen through an old link.
+
+## Installing and offline use
+
+The built site is a Progressive Web App: browsers offer to install it, and
+saved maps open without a network. At install the service worker stores the
+pages, the app's scripts and the visualisation's scripts and styles (about
+11 MB, 3 MB compressed); fonts and images are stored the first time they are
+used. Requests to the gateway and the providers always go to the network, so
+making a map or opening a share link needs a connection. A new build is
+picked up once every open tab of the old one is closed. Nothing of this runs
+under `npm run dev`.
+
+Service workers need HTTPS (or `localhost`).
 
 ## Not there yet
 
