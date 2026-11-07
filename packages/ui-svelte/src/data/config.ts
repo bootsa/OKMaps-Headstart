@@ -6,8 +6,11 @@
  */
 export type Service = "pubmed" | "base" | "openaire" | "aquanavi" | (string & {});
 
-/** Knowledge map, streamgraph (keywords over time) or geo map. */
-export type VisType = "overview" | "timeline" | "geomap";
+/**
+ * The view that draws the map: knowledge map ("overview"), streamgraph
+ * ("timeline"), geo map, or any view registered with registerView.
+ */
+export type VisType = "overview" | "timeline" | "geomap" | (string & {});
 
 export interface MapConfig {
 	service: Service;

@@ -18,11 +18,6 @@
 	import Header from "./header/Header.svelte";
 	import List from "./list/List.svelte";
 	import { activePlugins } from "./plugins";
-	import Geomap from "./views/geomap/Geomap.svelte";
-	import KnowledgeMap from "./views/knowledge-map/KnowledgeMap.svelte";
-	import { savedTheme } from "./views/knowledge-map/themes";
-	import ThemePicker from "./views/knowledge-map/themes/ThemePicker.svelte";
-	import Streamgraph from "./views/streamgraph/Streamgraph.svelte";
 
 	interface Props {
 		state: MapState;
@@ -38,9 +33,10 @@
 	const DOCK_WIDTH = 900;
 
 	untrack(() => {
-		map.theme = savedTheme();
+		map.view.start?.(map);
 		map.listFit = true;
 	});
+	const view = $derived(map.view);
 
 	let innerHeight = $state(800);
 	let width = $state(0);
@@ -76,21 +72,17 @@
 <div class="okm-visualization" class:docked bind:clientWidth={width} style:height="{total}px">
 	<div class="head" bind:clientHeight={headerHeight}><Header state={map} /></div>
 	<div class="stage">
-		<div class="map" style:--okm-overlay-bottom={map.config.visType === "geomap" ? "2.25rem" : null}>
-			{#if map.config.visType === "timeline"}
-				<Streamgraph state={map} width={mapWidth} height={stageHeight} />
-			{:else if map.config.visType === "geomap"}
-				<Geomap state={map} width={mapWidth} height={stageHeight} />
-			{:else}
-				<KnowledgeMap state={map} />
-			{/if}
+		<div class="map" style:--okm-overlay-bottom={view.overlayInset ?? null}>
+			<view.component state={map} width={mapWidth} height={stageHeight} />
 			{#each overlays as overlay, i (i)}
 				<overlay.component state={map} {...overlay.props} />
 			{/each}
 			<div class="settings">
 				<SettingsMenu>
 					<ScalePicker state={map} />
-					<ThemePicker state={map} />
+					{#each view.settings ?? [] as Setting, i (i)}
+						<Setting state={map} />
+					{/each}
 					<SchemeToggle />
 					{#if menu}
 						<div class="menu" {@attach (el) => el.append(menu)}></div>

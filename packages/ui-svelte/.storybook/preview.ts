@@ -1,5 +1,9 @@
 import type { Preview } from "@storybook/svelte-vite";
 import "../src/styles/index.css";
+import { registerCoreViews } from "../src/views/core";
+
+// Every view this package ships, before any story builds a map.
+registerCoreViews();
 
 const preview: Preview = {
 	globalTypes: {
