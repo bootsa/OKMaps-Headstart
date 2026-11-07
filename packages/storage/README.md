@@ -35,6 +35,19 @@ date, service, number of documents), so listing doesn't load every map. When
 the index is missing or out of step, for example after another device wrote
 to the same folder, it is rebuilt from the maps.
 
+`MapTree` adds folders on any storage: a folder is a `MapLibrary` under a key
+prefix, `folders.json` names its subfolders (which live under
+`folders/<name>/`), and the top folder is the storage's root, so maps saved
+before folders existed stay where they are. Renaming copies a folder's
+documents, since storages have no rename.
+
+`MapStore` is one place a person keeps maps, as the app's settings list it:
+a named instance of a store type, with `list/get/save/delete` by folder path
+and, where the type allows folders, `createFolder/renameFolder/deleteFolder`.
+`treeStore(info, storage, { folders })` makes one on any storage, and
+`moveMap(from, to, id)` moves a map between folders or stores (saved there
+first, then removed here).
+
 Adding a storage means writing those four methods. Planned or possible: S3 (signed requests), Google Drive / Dropbox (OAuth),
 remoteStorage.
 
