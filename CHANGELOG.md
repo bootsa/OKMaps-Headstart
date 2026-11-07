@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.1.12](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.11...v7.1.12) (2026-11-07)
+
+
+### Features
+
+* **ui-svelte:** make the map full page, with the list in a pull-out drawer and the display settings behind a button ([e3fcf9d](https://github.com/bootsa/OKMaps-Headstart/commit/e3fcf9d336b99eda23bf64bfd56b9ac64bafc707))
+* **ui-svelte:** make the map full page, with the list in a pull-out drawer and the display settings behind a button ([fe734a5](https://github.com/bootsa/OKMaps-Headstart/commit/fe734a5536cc1d3910319e94fc4962e249d08b6e))
+
 ## [7.1.11](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.9...v7.1.11) (2026-11-07)
 
 
