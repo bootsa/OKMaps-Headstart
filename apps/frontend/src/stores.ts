@@ -157,6 +157,7 @@ export const solidStoreType: StoreType = {
 		// The browser is on its way to the identity provider.
 		return new Promise<never>(() => {});
 	},
+	reconnect: (s) => solidLogin(s.config.issuer),
 	async resume() {
 		let pending: StoreInstance | null = null;
 		try {

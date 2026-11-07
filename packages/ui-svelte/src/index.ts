@@ -34,6 +34,7 @@ export type {
 	Stream,
 	StreamgraphData,
 } from "./data/types";
+export * from "./explorer";
 export {
 	type ContextItem,
 	contextItems,

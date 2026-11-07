@@ -81,7 +81,7 @@ export function punctuationSegments(input: string | null | undefined): string[] 
 	text = text.replace(/\u2011/g, "-");
 	text = text.replace(/[\u2019\u2018\u02bc]/g, "'");
 	text = text.replace(/\uff1a/g, ":");
-	text = text.replace(new RegExp(`(?<=[^\\t\\n\\v\\f\\r -])--(?=[^\\t\\n\\v\\f\\r -])`, "gu"), "-");
+	text = text.replace(/(?<=[^\t\n\v\f\r -])--(?=[^\t\n\v\f\r -])/gu, "-");
 	text = text.replace(/(?<![\p{L}\p{N}])(?:\p{L}\.){2,}/gu, (m) => m.split(".").join("\x01"));
 	for (const { re, placeholder } of COLON_KEEP) text = text.replace(re, placeholder);
 	text = text.replace(/(?<=[\p{L}\p{N}])\(([\p{L}\p{N}]+)\)/gu, "\x04$1\x05");
