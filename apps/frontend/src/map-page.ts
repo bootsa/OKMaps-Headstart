@@ -1,11 +1,13 @@
 /**
  * map.html?store=...&path=...&id=...  a saved map (path: its folder; no store: the default one)
+ * map.html?draft=...   a map made without saving it (src/drafts.ts)
  * map.html?shared=...  a published map (share link)
  *
  * The map is drawn by @okmaps/ui-svelte (svelte-map.ts).
  */
 
 import type { MapStore } from "@okmaps/storage";
+import { deleteDraft, getDraft, saveDraft } from "./drafts.ts";
 import { registerServiceWorker } from "./offline.ts";
 import { settings } from "./settings.ts";
 import { domDecode, fetchSharedMap, neutralise, publishMap, type SharedMap, shareUrl } from "./share.ts";
@@ -47,25 +49,53 @@ async function publishOnce(saved: SavedMap, store: MapStore<SavedMap>, path: str
 	return saved.sharedId;
 }
 
-/** Save button on a shared map: keeps a copy where new maps are saved. */
-function offerSave(map: SharedMap, sharedId: string) {
+/**
+ * Save, for a shared map or a draft: a choice of store (and the folder new
+ * maps go to) and a button. `saved` gets where it went.
+ */
+function offerSave(make: () => SavedMap, saved?: (store: string, path: string[], map: SavedMap) => void) {
+	const sets = appSettings();
+	if (!sets.stores.length) return;
+	const select = $<HTMLSelectElement>("save-to");
 	const button = $<HTMLButtonElement>("save");
 	const target = saveTarget();
-	if (!target) return;
-	button.hidden = false;
-	button.onclick = async () => {
-		const id = crypto.randomUUID();
-		const store = await storeById(target.store.id);
-		await store.save(target.path, {
-			...map,
-			id,
-			context: { ...map.context, id },
-			created: new Date().toISOString(),
-			request: requestOf(map),
-			sharedId,
+	const options = sets.stores.map((s) => ({ value: JSON.stringify([s.id]), label: s.name }));
+	if (target?.path.length)
+		options.unshift({
+			value: JSON.stringify([target.store.id, ...target.path]),
+			label: [target.store.name, ...target.path].join(" / "),
 		});
-		button.textContent = `Saved to ${target.store.name}`;
+	select.replaceChildren(...options.map((o) => new Option(o.label, o.value)));
+	if (target && !target.path.length) select.value = JSON.stringify([target.store.id]);
+	$("save-panel").hidden = false;
+	button.onclick = async () => {
+		const [store, ...path] = JSON.parse(select.value) as string[];
+		const name = sets.store(store)?.name ?? store;
 		button.disabled = true;
+		select.disabled = true;
+		try {
+			const map = make();
+			await (await storeById(store)).save(path, map);
+			button.textContent = `Saved to ${[name, ...path].join(" / ")}`;
+			saved?.(store, path, map);
+		} catch (err) {
+			showMessage(`The map could not be saved to ${name}: ${err instanceof Error ? err.message : err}`);
+			button.disabled = false;
+			select.disabled = false;
+		}
+	};
+}
+
+/** A copy of a shared map, to keep. */
+function copyOf(map: SharedMap, sharedId: string): SavedMap {
+	const id = crypto.randomUUID();
+	return {
+		...map,
+		id,
+		context: { ...map.context, id },
+		created: new Date().toISOString(),
+		request: requestOf(map),
+		sharedId,
 	};
 }
 
@@ -90,8 +120,23 @@ async function main() {
 		const map = await fetchSharedMap(settings.gatewayUrl, shared);
 		if (!map) return showMessage("This shared map does not exist.");
 		const safe = neutralise(map, domDecode);
-		offerSave(safe, shared);
+		offerSave(() => copyOf(safe, shared));
 		return draw(safe, async () => shared);
+	}
+	const draftId = params.get("draft");
+	if (draftId) {
+		const draft = await getDraft(draftId);
+		if (!draft) return showMessage("This map was not saved, and it is gone from this browser now.");
+		const drafts = { save: async (_path: string[], m: SavedMap) => saveDraft(m) } as unknown as MapStore<SavedMap>;
+		offerSave(
+			() => draft,
+			(store, path, map) => {
+				// Saved: the page's address becomes the saved map's.
+				history.replaceState(null, "", mapUrl(store, path, map.id));
+				void deleteDraft(map.id);
+			},
+		);
+		return draw(draft, settings.gatewayUrl ? () => publishOnce(draft, drafts, []) : undefined);
 	}
 	const address = mapAddress(params);
 	withoutPodLogin();
@@ -107,6 +152,17 @@ async function main() {
 	if (!found) return showMessage("This map is not in any of your stores.");
 	const { map, store, path } = found;
 	return draw(map, settings.gatewayUrl ? () => publishOnce(map, store, path) : undefined);
+}
+
+// A message from the start page (e.g. the chosen store could not be written).
+try {
+	const left = sessionStorage.getItem("okmaps-message");
+	if (left) {
+		sessionStorage.removeItem("okmaps-message");
+		showMessage(left);
+	}
+} catch {
+	// no session storage: no message
 }
 
 main().catch((err) => showMessage(`The map could not be shown: ${err instanceof Error ? err.message : err}`));

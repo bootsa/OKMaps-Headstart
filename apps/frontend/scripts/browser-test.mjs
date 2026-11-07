@@ -302,7 +302,7 @@ await other.route(/^https?:\/\/(?!127\.0\.0\.1)/, answer);
 await openShared(other, link, "shared");
 await other.click(".okm-settings .fab"); // the page's links are in the settings panel
 await other.click("#save");
-await other.waitForSelector("#save:disabled");
+await other.waitForSelector('#save:text-matches("Saved to")');
 await other.goto(home);
 await other.waitForSelector(MAP);
 const savedCopy = await listedMaps(other);
@@ -442,6 +442,8 @@ if (podFiles.length !== 1) throw new Error(`the map was not kept in the Pod: ${J
 // and comes back.
 const podCopy = `okmaps-pod-copy-${await storeId("My Pod")}`;
 await page.goto(home);
+// After the start page's own silent login, so nothing navigates while the copy is deleted.
+await page.waitForSelector(`body[data-maps] ${MAP}`, { timeout: 30_000 });
 await page.evaluate(
 	(name) =>
 		new Promise((r) => {
@@ -535,6 +537,30 @@ await page.waitForSelector(MAP);
 		.map(([, v]) => JSON.parse(v).title);
 	console.log(JSON.stringify({ explorer: { top: await listedMaps(page), onDav: davTitles } }));
 	if (!davTitles.includes("ecology")) throw new Error("the map was not moved to the WebDAV store");
+}
+// A map made without saving it opens as a draft, and is saved from the map page.
+{
+	await page.goto(home);
+	await page.waitForSelector("body[data-maps]");
+	await page.check('input[value="openaire"]');
+	await page.fill("#project_id", "643410");
+	await page.selectOption("#save_to", "none");
+	await page.click("#submit");
+	await page.waitForURL(/map\.html\?draft=/, { timeout: 60_000 });
+	await page.waitForSelector("#visualization .okm-bubble", { timeout: 30_000 });
+	await page.click(".okm-settings .fab");
+	await page.selectOption("#save-to", { label: "My cloud" });
+	await page.click("#save");
+	await page.waitForURL(/map\.html\?store=/);
+	const saved = await page.textContent("#save");
+	const davMaps = [...dav.tree.keys()].filter((k) => /^\/dav\/okmaps\/maps\/.*\.json$/.test(k)).length;
+	console.log(JSON.stringify({ draft: { saved, davMaps } }));
+	if (davMaps !== 3 || !/Saved to My cloud/.test(saved)) throw new Error("the draft was not saved");
+	await page.reload();
+	await page.waitForSelector("#visualization .okm-bubble", { timeout: 30_000 });
+	// The form remembers "don't save"; choose this browser again.
+	await page.goto(home);
+	await page.selectOption("#save_to", { label: "This browser" });
 }
 await page.setViewportSize({ width: 412, height: 860 });
 await page.goto(home);

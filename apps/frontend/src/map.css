@@ -22,6 +22,21 @@ body {
 	padding: 4px 12px;
 	cursor: pointer;
 }
+.toolbar .save {
+	display: inline-flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 6px;
+}
+.toolbar select {
+	font: inherit;
+	max-width: 14rem;
+	padding: 3px 6px;
+	border: 1px solid #d3d9e0;
+	border-radius: 6px;
+	background: #fff;
+	color: inherit;
+}
 .toolbar button:disabled {
 	color: #667085;
 	border-color: #d3d9e0;
@@ -43,6 +58,11 @@ html[data-scheme="dark"] body {
 	background: #1a1e21;
 }
 html[data-scheme="dark"] .toolbar button {
+	background: #24292d;
+	border-color: #3a4247;
+	color: #e3e6e8;
+}
+html[data-scheme="dark"] .toolbar select {
 	background: #24292d;
 	border-color: #3a4247;
 	color: #e3e6e8;

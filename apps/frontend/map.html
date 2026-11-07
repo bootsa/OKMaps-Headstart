@@ -13,7 +13,11 @@
   </head>
   <body>
     <nav class="toolbar">
-      <button id="save" type="button" hidden>Save to my maps</button>
+      <span id="save-panel" class="save" hidden>
+        <label for="save-to">Save to</label>
+        <select id="save-to"></select>
+        <button id="save" type="button">Save</button>
+      </span>
       <a href="./">← Search and your maps</a>
     </nav>
     <p id="message" class="message" hidden></p>

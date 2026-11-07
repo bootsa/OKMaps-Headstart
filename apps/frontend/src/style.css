@@ -103,36 +103,6 @@ button:disabled {
 .status.error {
 	color: var(--error);
 }
-#maps {
-	list-style: none;
-	padding: 0;
-}
-#maps li {
-	display: flex;
-	flex-wrap: wrap;
-	align-items: baseline;
-	gap: 4px 12px;
-	padding: 10px 0;
-	border-bottom: 1px solid var(--border);
-}
-#maps a {
-	color: var(--accent);
-	font-weight: 600;
-	flex: 1 1 auto;
-}
-#maps .meta {
-	color: var(--muted);
-	font-size: 0.85rem;
-}
-#maps .delete {
-	font: inherit;
-	font-size: 0.85rem;
-	background: none;
-	border: 1px solid var(--border);
-	border-radius: 4px;
-	padding: 2px 8px;
-	cursor: pointer;
-}
 [hidden] {
 	display: none !important;
 }
