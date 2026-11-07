@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.1.13](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.12...v7.1.13) (2026-11-07)
+
+
+### Features
+
+* **ui-svelte:** add Share, Embed and FAQs buttons, and a notice when a map's data has been updated ([243d8bf](https://github.com/bootsa/OKMaps-Headstart/commit/243d8bfaf1243118af2cde50ce0e91fdb56f0582))
+* **ui-svelte:** add Share, Embed and FAQs buttons, and a notice when a map's data has been updated ([4a81c21](https://github.com/bootsa/OKMaps-Headstart/commit/4a81c21ad89f1056d0f6c49da34daecbdacf33d4))
+
 ## [7.1.12](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.11...v7.1.12) (2026-11-07)
 
 
