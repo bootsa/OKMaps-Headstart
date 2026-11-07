@@ -82,6 +82,9 @@ describe("streamgraph view", () => {
 		expect(map.selectedPaper).not.toBeNull();
 		expect(map.zoomedArea).toBeNull();
 		expect(map.selectedStream).toBe("salinity");
+		expect(container.querySelectorAll(".okm-entry")).toHaveLength(1);
+		map.deselectPaper();
+		flushSync();
 		expect(container.querySelectorAll(".okm-entry")).toHaveLength(3);
 	});
 
