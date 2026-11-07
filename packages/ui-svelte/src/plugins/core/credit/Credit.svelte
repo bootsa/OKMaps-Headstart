@@ -62,7 +62,7 @@
 	.okm-credit {
 		position: absolute;
 		left: var(--space-4);
-		bottom: var(--space-4);
+		bottom: var(--okm-overlay-bottom, var(--space-4));
 		z-index: 1;
 		display: flex;
 		flex-wrap: wrap;

@@ -2,8 +2,9 @@
   @component
   One paper in the list: access tags, title, authors, journal, link,
   abstract, keywords and its area. Everything from the map is rendered as
-  text. The title selects the paper (and zooms to its area); the area name
-  zooms in.
+  text. The title selects the paper (and zooms to its area on a knowledge
+  map); the area name zooms in. Geo maps show the place instead of
+  authors and area.
 -->
 <script lang="ts">
 	import Button from "../components/Button.svelte";
@@ -34,6 +35,15 @@
 	const title = $derived(paper.title || t(s, "default_paper_title"));
 	const authors = $derived(authorsLine(paper.authorsList, selected) || t(s, "default_authors"));
 	const actions = $derived(paperActions(map, paper));
+	const geo = $derived(map.config.visType === "geomap");
+	const allTypes = $derived(["base", "orcid", "aquanavi"].includes(map.config.service));
+
+	/** On a geo map, hovering a title lights up its pin. */
+	function hover(on: boolean) {
+		if (!geo) return;
+		if (on) map.hoveredPaper = paper.safeId;
+		else if (map.hoveredPaper === paper.safeId) map.hoveredPaper = null;
+	}
 	const metrics = $derived(paperMetrics(map, paper));
 	const showCitations = $derived(!map.config.contentBased && !metrics.length);
 	const unit = $derived(map.config.scaleBy ? t(s, scaleUnit(map.config.scaleBy)) : t(s, "readers"));
@@ -58,14 +68,23 @@
 	{/if}
 
 	<h2 class="title">
-		<button type="button" title={title + date} aria-pressed={selected} onclick={() => map.selectPaper(paper.safeId)}>
+		<button
+			type="button"
+			title={title + date}
+			aria-pressed={selected}
+			onclick={() => map.selectPaper(paper.safeId)}
+			onpointerenter={() => hover(true)}
+			onpointerleave={() => hover(false)}
+		>
 			<Highlight text={selected ? title : shortTitle(title, date.length)} {search} {query} />
 			{#if date}
 				<Highlight text={date} {search} {query} />
 			{/if}
 		</button>
 	</h2>
-	<p class="authors"><Highlight text={authors} {search} {query} /></p>
+	{#if !geo}
+		<p class="authors"><Highlight text={authors} {search} {query} /></p>
+	{/if}
 	{#if paper.publishedIn}
 		<p class="source" class:short={!selected}><Highlight text={paper.publishedIn} {search} {query} /></p>
 	{/if}
@@ -93,13 +112,19 @@
 		</p>
 	{/each}
 
+	{#if selected && geo}
+		<p class="row">
+			<span class="label">{t(s, "location")}:</span>
+			<Highlight text={paper.place?.country || t(s, "location_fallback")} {search} {query} />
+		</p>
+	{/if}
 	{#if selected && map.config.showKeywords && paper.keywords}
 		<p class="row">
 			<span class="label">{t(s, "keywords")}:</span>
 			<Highlight text={paper.keywords} {search} {query} />
 		</p>
 	{/if}
-	{#if selected && base && paper.resultType.length}
+	{#if selected && allTypes && paper.resultType.length}
 		<p class="row">
 			<span class="label">{t(s, "documenttypes_label")}:</span>
 			<Highlight text={paper.resultType.join(", ")} {search} />
@@ -141,7 +166,7 @@
 		</div>
 	{/if}
 
-	{#if map.config.visType !== "timeline"}
+	{#if map.config.visType === "overview"}
 		<p class="row area">
 			<span class="label">{t(s, "area")}:</span>
 			<button

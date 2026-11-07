@@ -33,6 +33,8 @@ export class MapState {
 	selectedPaper: string | null = $state(null);
 	/** Keyword of the selected stream (streamgraph). */
 	selectedStream: string | null = $state(null);
+	/** safeId of the paper under the pointer in the list (geo maps light up its pin). */
+	hoveredPaper: string | null = $state(null);
 	/** uri of the area under the pointer. */
 	hoveredArea: string | null = $state(null);
 	search = $state("");

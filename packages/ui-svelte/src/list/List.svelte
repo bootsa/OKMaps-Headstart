@@ -125,7 +125,9 @@
 			</div>
 			<div class="row">
 				{#if map.selectedPaper}
-					<Button variant="secondary" size="sm" onclick={() => map.deselectPaper()}>{t(s, "backlink_list")}</Button>
+					<Button variant="secondary" size="sm" onclick={() => map.deselectPaper()}
+						>{t(s, map.config.visType === "overview" ? "backlink_list" : "backlink_list_streamgraph")}</Button
+					>
 				{/if}
 				{#if fitToggle}
 					<button

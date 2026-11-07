@@ -19,6 +19,9 @@ export interface MapConfig {
 	titleStyle: "default" | "viper";
 	/** No reader counts: papers are sized equally and sorted by relevance. */
 	contentBased: boolean;
+	/** Geo maps: a zoom control and a tile layer switcher (old geomap.featuresConfiguration). */
+	geomapZoomControl: boolean;
+	geomapLayerSwitcher: boolean;
 	/** Colours of the streams, in turn (old streamgraph_colors). */
 	streamgraphColors: string[];
 	/** What the papers are sized by (old scale_by): a metric such as "citation_count", or "content_based". */
@@ -111,6 +114,8 @@ const common: Omit<MapConfig, "service" | "language" | "sortOptions" | "contentB
 	infoType: null,
 	scaleBy: null,
 	scaleOptions: [],
+	geomapZoomControl: true,
+	geomapLayerSwitcher: true,
 	streamgraphColors: [
 		"#28a2a3",
 		"#671A54",
