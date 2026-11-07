@@ -35,7 +35,7 @@
 	const title = $derived(paper.title || t(s, "default_paper_title"));
 	const authors = $derived(authorsLine(paper.authorsList, selected) || t(s, "default_authors"));
 	const actions = $derived(paperActions(map, paper));
-	const geo = $derived(map.config.visType === "geomap");
+	const geo = $derived(!!map.view.places);
 	const allTypes = $derived(["base", "orcid", "aquanavi"].includes(map.config.service));
 
 	/** On a geo map, hovering a title lights up its pin. */
@@ -166,7 +166,7 @@
 		</div>
 	{/if}
 
-	{#if map.config.visType === "overview"}
+	{#if map.view.areas}
 		<p class="row area">
 			<span class="label">{t(s, "area")}:</span>
 			<button

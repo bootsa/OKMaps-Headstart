@@ -151,7 +151,7 @@ export class MapState {
 	selectPaper(safeId: string) {
 		const paper = this.map.papers.find((p) => p.safeId === safeId);
 		if (!paper) return;
-		if (this.view.zoomsToArea) this.zoomedArea = paper.areaUri;
+		if (this.view.areas) this.zoomedArea = paper.areaUri;
 		this.selectedPaper = safeId;
 	}
 

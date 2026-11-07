@@ -35,12 +35,12 @@ export function mapCitation(map: MapState, href: string, year = new Date().getFu
 	const custom = map.config.customTitle ?? (typeof ctx.custom_title === "string" ? ctx.custom_title : null);
 	if (custom) query = custom;
 	const link = pageLink(href);
-	if (map.config.visType === "geomap")
-		return `Open Knowledge Maps ${year}. Geo Map of ${query}. Retrieved from ${link}.`;
+	const cite = map.view.citation;
+	if (cite.text) return cite.text(query, year, link);
 	const date = citationDate(ctx.timestamp);
 	const text = fill(t(map.strings, "citation_template"), {
 		year: String(year),
-		type: map.config.visType === "timeline" ? "Streamgraph" : "Knowledge Map",
+		type: cite.type,
 		query,
 		source: link,
 		date,
@@ -50,6 +50,6 @@ export function mapCitation(map: MapState, href: string, year = new Date().getFu
 
 /** The modal's title and the line above the citation. */
 export function citationLabels(map: MapState): { title: string; instruction: string } {
-	const kind = map.config.visType === "geomap" ? "geomap" : map.config.visType === "timeline" ? "sg" : "km";
+	const { kind } = map.view.citation;
 	return { title: t(map.strings, `cite_title_${kind}`), instruction: t(map.strings, `cite_vis_${kind}`) };
 }

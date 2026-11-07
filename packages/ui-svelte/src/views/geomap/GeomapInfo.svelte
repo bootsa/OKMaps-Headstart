@@ -4,8 +4,8 @@
   overview of, the query behind a custom title, and the software.
 -->
 <script lang="ts">
-	import type { MapState } from "../../../data/state.svelte";
-	import AboutSoftware from "./AboutSoftware.svelte";
+	import type { MapState } from "../../data/state.svelte";
+	import AboutSoftware from "../../plugins/core/info/AboutSoftware.svelte";
 
 	let { state: map }: { state: MapState } = $props();
 

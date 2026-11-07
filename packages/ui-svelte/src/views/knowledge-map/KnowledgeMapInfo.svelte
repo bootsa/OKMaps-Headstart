@@ -5,9 +5,9 @@
 -->
 <script lang="ts">
 	import type { Snippet } from "svelte";
-	import type { MapState } from "../../../data/state.svelte";
-	import { contextParams } from "../../../header/context";
-	import AboutSoftware from "./AboutSoftware.svelte";
+	import type { MapState } from "../../data/state.svelte";
+	import { contextParams } from "../../header/context";
+	import AboutSoftware from "../../plugins/core/info/AboutSoftware.svelte";
 
 	interface Props {
 		state: MapState;

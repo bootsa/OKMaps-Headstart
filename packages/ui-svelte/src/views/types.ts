@@ -8,7 +8,7 @@
  * into the frontend-agnostic pipeline later; the presentation half adds
  * the component and what the view contributes to the interface around it.
  */
-import type { Component } from "svelte";
+import type { Component, Snippet } from "svelte";
 import type { MapConfig } from "../data/config";
 import type { MapState } from "../data/state.svelte";
 import type { MapRecord, Paper, ProcessedMap } from "../data/types";
@@ -60,6 +60,42 @@ export interface MapView extends ViewProcessor {
 	 * attribution).
 	 */
 	overlayInset?: string;
-	/** Selecting a paper zooms into its area (views that have areas). */
-	zoomsToArea?: boolean;
+	/**
+	 * The view draws the papers' areas: selecting a paper zooms into its
+	 * area, and list entries name their area.
+	 */
+	areas?: boolean;
+	/** List entries show a place instead of authors; hovering one lights up its pin. */
+	places?: boolean;
+	/**
+	 * The view shows resources over time: the resource count is not capped
+	 * at the search's 100, and "most recent" maps give only an end date.
+	 */
+	overTime?: boolean;
+	/** The search on the start page can make maps of this view (the credit's "Create a map" button). */
+	creatable?: boolean;
+	/** Keys of strings (i18n/strings.ts) for the view's wording. */
+	strings: {
+		/** "Knowledge Map of", before the query in the title. */
+		heading: string;
+		/** The heading of a map of one person's works. */
+		authorHeading?: string;
+		/** The list's button back from a selected paper. */
+		backlink: string;
+		/** Explains "most relevant resources" in the context line (default most_relevant_tooltip). */
+		mostRelevantTooltip?: string;
+		/** Explains the time span in the context line (none by default). */
+		timespanTooltip?: string;
+	};
+	/** How "Cite this map" names the view. */
+	citation: {
+		/** Picks the strings cite_title_<kind> and cite_vis_<kind>. */
+		kind: string;
+		/** Fills ${type} in the citation template, e.g. "Knowledge Map". */
+		type: string;
+		/** A citation of its own instead of the template. */
+		text?(query: string, year: number, link: string): string;
+	};
+	/** The view's part of the "More information" page; `source` is the data source part. */
+	info?: Component<{ state: MapState; source?: Snippet }>;
 }
