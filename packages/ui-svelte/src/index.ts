@@ -6,6 +6,7 @@ export { default as Dialog } from "./components/Dialog.svelte";
 export { default as Highlight } from "./components/Highlight.svelte";
 export { default as SchemeToggle } from "./components/SchemeToggle.svelte";
 export { default as Tag } from "./components/Tag.svelte";
+export { default as Tooltip } from "./components/Tooltip.svelte";
 export {
 	type MapConfig,
 	mapConfig,
@@ -29,8 +30,20 @@ export type {
 	Stream,
 	StreamgraphData,
 } from "./data/types";
+export {
+	type ContextItem,
+	contextItems,
+	contextParams,
+	type MapTitle,
+	mapTitle,
+	metadataQuality,
+	modifier,
+	timespan,
+} from "./header/context";
+export { default as Header } from "./header/Header.svelte";
 export { type Strings, strings, t } from "./i18n/strings";
 export { authorsLine, List, ListEntry, shortTitle } from "./list";
+export { activePlugins, type OkmPlugin, registerPlugin, unregisterPlugin } from "./plugins";
 export { applyScheme, initialScheme, type Scheme } from "./scheme";
 export { default as Visualization } from "./Visualization.svelte";
 export {

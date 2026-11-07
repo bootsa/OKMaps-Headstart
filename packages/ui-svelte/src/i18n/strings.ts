@@ -23,6 +23,9 @@ const languages = {
 		authors: "authors",
 		title: "title",
 		default_title: 'Overview of <span id="num_articles"></span> documents',
+		// default_title as plain text (the old map filled in the span).
+		default_title_text: "Overview of documents",
+		timestamp_label: "Last updated",
 		overview_label: "Knowledge Map of",
 		streamgraph_label: "Streamgraph of",
 		overview_authors_label: "Knowledge Map of the works of",
