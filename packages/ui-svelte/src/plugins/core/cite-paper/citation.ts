@@ -1,3 +1,4 @@
+/// <reference path="./citation-js.d.ts" />
 /**
  * Paper citations in APA, MLA, Chicago and ACM, as in the old map
  * (useCitationStyle.ts). citation-js and the styles load on first use, so
