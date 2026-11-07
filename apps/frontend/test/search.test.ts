@@ -1,9 +1,10 @@
 import { loadDefaultResources } from "@okmaps/pipeline";
 import { describe, expect, it } from "vitest";
 import { buildMap, type SearchRequest, type Stage, timestamp, visTypeOf } from "../src/search.ts";
-import { fakeFetch, GATEWAY } from "./fake-net.ts";
+import { fakeFetch, GATEWAY, PLACES } from "./fake-net.ts";
 
-const settings = { gatewayUrl: GATEWAY, fetch: fakeFetch, crossrefMailto: "maps@example.org" };
+const places = [{ id: "aquanavi", label: "AQUANAVI", preset: "aquanavi" as const, url: PLACES }];
+const settings = { gatewayUrl: GATEWAY, fetch: fakeFetch, crossrefMailto: "maps@example.org", places };
 const NOW = new Date(2026, 10, 6, 9, 5, 3);
 
 async function make(request: SearchRequest) {
@@ -96,6 +97,35 @@ describe("buildMap", () => {
 		const params = JSON.parse(map.context.params);
 		expect(params).toMatchObject({ project_id: "643410", funder: "EC", acronym: "OpenAIRE2020" });
 		expect(params.organisations).toHaveLength(3);
+	});
+
+	it("makes a geo map of a place source's whole table", async () => {
+		const { memoryTableCache } = await import("@okmaps/sources");
+		const placeCache = memoryTableCache();
+		const map = await buildMap(
+			{ service: "places", source: "aquanavi", title: "" },
+			{ ...settings, placeCache },
+			loadDefaultResources,
+			() => {},
+			NOW,
+		);
+		expect(visTypeOf(map)).toBe("geomap");
+		expect(map.context).toMatchObject({ service: "aquanavi", query: "aquatic mesocosm facilities" });
+		expect(map.documents).toHaveLength(98);
+		expect(String(map.documents[0].coverage)).toMatch(/east=12\.1613; north=58\.3712/);
+		// The cached table is used when the source is down.
+		const offline = await buildMap(
+			{ service: "places", source: "aquanavi", title: "Mesocosms" },
+			{ ...settings, placeCache, fetch: async () => new Response("down", { status: 503 }) },
+			loadDefaultResources,
+		);
+		expect(offline.documents).toHaveLength(98);
+		expect(JSON.parse(offline.context.params)).toEqual({
+			vis_type: "geomap",
+			source: "aquanavi",
+			custom_title: "Mesocosms",
+		});
+		expect(offline.context.query).toBe("Mesocosms");
 	});
 
 	it("reports provider errors with their reasons", async () => {

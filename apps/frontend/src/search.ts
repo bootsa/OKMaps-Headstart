@@ -20,14 +20,21 @@ import {
 	type SourceResult,
 	searchBase,
 	searchOpenaire,
+	searchPlaces,
 	searchPubmed,
+	type TableCache,
 } from "@okmaps/sources";
-import { type VisType, visTypeOf } from "./vis-type.ts";
+import { placeSource } from "./place-source.ts";
+import type { PlaceSourceConfig } from "./places.ts";
+import { visTypeOf } from "./vis-type.ts";
 
 export type { VisType } from "./vis-type.ts";
 export { visTypeOf } from "./vis-type.ts";
 
-export type Service = "pubmed" | "base" | "openaire";
+export type Service = "pubmed" | "base" | "openaire" | "places";
+
+/** The views a search can ask for; place sources make geo maps. */
+type SearchView = "overview" | "timeline";
 
 export interface PubmedRequest {
 	service: "pubmed";
@@ -36,7 +43,7 @@ export interface PubmedRequest {
 	to: string;
 	sorting: "most-relevant" | "most-recent";
 	article_types?: string[];
-	vis_type?: VisType;
+	vis_type?: SearchView;
 }
 
 export interface BaseSearchRequest {
@@ -47,7 +54,7 @@ export interface BaseSearchRequest {
 	sorting: "most-relevant" | "most-recent";
 	/** BASE dctypenorm codes; 121 is journal article. */
 	document_types: string[];
-	vis_type?: VisType;
+	vis_type?: SearchView;
 }
 
 export interface OpenaireRequest {
@@ -56,7 +63,16 @@ export interface OpenaireRequest {
 	funder: string;
 }
 
-export type SearchRequest = PubmedRequest | BaseSearchRequest | OpenaireRequest;
+/** A geo map of every place in a place source (src/places.ts). */
+export interface PlacesRequest {
+	service: "places";
+	/** The place source's id. */
+	source: string;
+	/** Map title (default: the source's). */
+	title?: string;
+}
+
+export type SearchRequest = PubmedRequest | BaseSearchRequest | OpenaireRequest | PlacesRequest;
 
 export interface SearchSettings {
 	/** Gateway base URL (packages/gateway), for BASE and the OpenAIRE fallback. */
@@ -67,6 +83,10 @@ export interface SearchSettings {
 	crossrefMailto?: string;
 	/** NCBI API key (raises PubMed's rate limit). */
 	pubmedApiKey?: string;
+	/** The place sources offered for geo maps. */
+	places?: PlaceSourceConfig[];
+	/** Where place tables are cached (the worker passes IndexedDB). */
+	placeCache?: TableCache;
 	fetch?: FetchFn;
 }
 
@@ -75,7 +95,8 @@ export interface SearchSettings {
  * shape). A streamgraph has `vis_type: "timeline"` in its params.
  */
 export interface MapRecord {
-	context: { id: string; query: string; service: Service; timestamp: string; params: string };
+	/** `service` is the provider, or a place source's id ("aquanavi"). */
+	context: { id: string; query: string; service: string; timestamp: string; params: string };
 	documents: Record<string, unknown>[];
 	/** Keyword counts per year (streamgraphs); the map page recomputes them when missing. */
 	streamgraph?: StreamgraphData;
@@ -95,7 +116,7 @@ export function timestamp(d: Date): string {
 const gateway = (s: SearchSettings, path: string) => `${s.gatewayUrl.replace(/\/$/, "")}${path}`;
 
 async function fetchSource(
-	req: SearchRequest,
+	req: Exclude<SearchRequest, PlacesRequest>,
 	s: SearchSettings,
 ): Promise<{ result: SourceResult; query: string; params: Record<string, unknown> }> {
 	const http = { fetch: s.fetch };
@@ -151,6 +172,7 @@ export async function buildMap(
 	now = new Date(),
 ): Promise<MapRecord> {
 	onStage("searching");
+	if (req.service === "places") return buildPlaceMap(req, settings, now);
 	const { result, query, params } = await fetchSource(req, settings);
 	let papers = result.papers;
 	if (req.service === "pubmed") {
@@ -181,4 +203,28 @@ export async function buildMap(
 		taxonomySeparator: ";",
 	});
 	return { context, documents: toLegacyRecords(map) };
+}
+
+/** A geo map: every place of the source, drawn where it is (no layout, as on the old server). */
+async function buildPlaceMap(req: PlacesRequest, settings: SearchSettings, now: Date): Promise<MapRecord> {
+	const config = settings.places?.find((p) => p.id === req.source);
+	if (!config) throw new Error(`unknown place source: ${req.source}`);
+	const result = await searchPlaces(
+		placeSource(config),
+		{ q: req.title || undefined },
+		{ fetch: settings.fetch, cache: settings.placeCache },
+	);
+	if (result.papers.length === 0) throw Object.assign(new Error("no places"), { reasons: ["not enough results"] });
+	const params: Record<string, unknown> = { vis_type: "geomap", source: config.id };
+	if (req.title) params.custom_title = req.title;
+	return {
+		context: {
+			id: crypto.randomUUID(),
+			query: result.query,
+			service: config.id,
+			timestamp: timestamp(now),
+			params: JSON.stringify(params),
+		},
+		documents: result.papers as unknown as Record<string, unknown>[],
+	};
 }

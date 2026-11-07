@@ -105,6 +105,31 @@ Rscript apps/frontend/test/parity/legacy_maps.R apps/frontend/test/parity/legacy
 python3 apps/frontend/test/parity/legacy_finish.py apps/frontend/test/parity/legacy
 ```
 
+## Streamgraphs and geo maps
+
+"Map type" on the start page makes a streamgraph instead of a knowledge map
+from a PubMed or BASE search: the keyword counts per year from the
+pipeline's streamgraph step (`@okmaps/pipeline/streamgraph`), with the
+records that appear in them. The map keeps `vis_type: "timeline"` in its
+params, and the map page draws each map with the view its params name.
+
+Geo maps come from place sources (`@okmaps/sources`, "Places"): a table of
+places and a mapping of its columns. The site offers each place source as a
+source choice; a geo map shows every place in the table. The default is the
+AQUANAVI mesocosm facility table bundled at `public/data/aquanavi.csv`; a
+build names its own in `VITE_PLACE_SOURCES`, a JSON list such as
+
+```
+[{"preset":"aquanavi","url":"https://example.org/aquanavi.csv"},
+ {"id":"stations","label":"Field stations","url":"https://example.org/stations.json",
+  "mapping":{"title":"name","url":"website","latitude":"lat","longitude":"lon","keywords":"topics",
+             "description":[{"column":"about","label":"About"}]}}]
+```
+
+The worker keeps the last table of each source in IndexedDB
+(`okmaps-place-tables`) and uses it for a day, and when the source can't be
+reached after that.
+
 ## Where maps are kept
 
 By default maps are kept in the browser (IndexedDB). Under "Where your maps

@@ -60,7 +60,7 @@ describe("published maps", () => {
 		expect(await bad("not json")).toEqual([400, "body is not JSON"]);
 		expect(await bad(map, { "content-type": "text/plain" })).toEqual([415, "send the map as application/json"]);
 		expect(await bad({ ...map, documents: [] })).toEqual([400, "documents must be a list of 1 to 1000 records"]);
-		expect(await bad({ ...map, context: { ...map.context, service: "evil" } })).toEqual([400, "unknown service"]);
+		expect(await bad({ ...map, context: { ...map.context, service: "<evil>" } })).toEqual([400, "unknown service"]);
 		expect(await bad({ ...map, documents: [{ id: "1", area: "a", x: "x", y: 1 }] })).toEqual([
 			400,
 			"each document needs x and y",
@@ -81,6 +81,16 @@ describe("published maps", () => {
 		expect(await (await get((await res.json()).id)).json()).toEqual(timeline);
 		const overview = { ...timeline, context: map.context };
 		expect((await post(overview)).status).toBe(400);
+	});
+
+	it("take geo maps from place sources", async () => {
+		const { post } = setup();
+		const geomap = {
+			...map,
+			context: { ...map.context, service: "aquanavi", params: JSON.stringify({ vis_type: "geomap" }) },
+			documents: [{ id: "f1", title: "Station", coverage: "east=1; north=2" }],
+		};
+		expect((await post(geomap)).status).toBe(201);
 	});
 
 	it("refuse large maps and too many publications", async () => {

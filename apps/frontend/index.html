@@ -22,6 +22,7 @@
           <label><input type="radio" name="service" value="pubmed" checked /> PubMed</label>
           <label><input type="radio" name="service" value="base" /> BASE</label>
           <label><input type="radio" name="service" value="openaire" /> OpenAIRE project</label>
+          <!-- One "Places" choice per place source (src/places.ts), added by main.ts. -->
         </fieldset>
 
         <div data-services="pubmed base">
@@ -70,6 +71,12 @@
               <option value="NWO">NWO</option>
             </select>
           </div>
+        </div>
+
+        <div data-services="places">
+          <label for="place_title">Map title (optional)</label>
+          <input id="place_title" name="place_title" placeholder="e.g. aquatic mesocosm facilities" />
+          <p class="hint">A geo map of every place in this source.</p>
         </div>
 
         <button id="submit" type="submit">Make map</button>

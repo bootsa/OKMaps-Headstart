@@ -13,6 +13,8 @@ const fixtures = path.resolve(here, "../../../packages/sources/test/fixtures");
 const read = (p: string) => fs.readFileSync(path.join(fixtures, p), "utf8");
 
 export const GATEWAY = "https://gateway.test";
+/** Where the Node tests read the AQUANAVI facility table. */
+export const PLACES = "https://data.test/aquanavi.csv";
 
 const efetch = read("pubmed_efetch.xml");
 const pmids = [...efetch.matchAll(/<PMID[^>]*>(\d+)<\/PMID>/g)].map((m) => m[1]);
@@ -59,6 +61,7 @@ export function fakeAnswer(url: string): { body: string; type: string } | null {
 			JSON.stringify({ message: { items: dois.map((d, i) => ({ DOI: d, "is-referenced-by-count": 10 + i })) } }),
 		);
 	}
+	if (url === PLACES) return { body: read("places/aquanavi.csv"), type: "text/csv" };
 	if (url.startsWith(`${GATEWAY}/base/search`)) return xml(base);
 	if (url.startsWith(`${GATEWAY}/base/repositories`)) return xml(repositories);
 	if (u.hostname === "api.openaire.eu") {

@@ -59,6 +59,8 @@ function offerSave(map: SharedMap, sharedId: string) {
 /** The search a shared map came from, as far as its context tells. */
 function requestOf(map: SharedMap): SavedMap["request"] {
 	const p = JSON.parse(map.context.params || "{}");
+	if (p.vis_type === "geomap")
+		return { service: "places", source: p.source ?? map.context.service, title: p.custom_title ?? "" };
 	if (map.context.service === "openaire")
 		return { service: "openaire", project_id: p.project_id ?? "", funder: p.funder ?? "" };
 	const common = { q: map.context.query, from: p.from ?? "", to: p.to ?? "", sorting: p.sorting ?? "most-relevant" };

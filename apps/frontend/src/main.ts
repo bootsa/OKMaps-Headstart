@@ -3,6 +3,7 @@
  */
 import { errorMessage } from "./messages.ts";
 import { registerServiceWorker } from "./offline.ts";
+import { placeSettings } from "./places.ts";
 import type { MapRecord, SearchRequest, Service, Stage } from "./search.ts";
 import { settings } from "./settings.ts";
 import { KNOWN_ISSUERS } from "./solid-login.ts";
@@ -34,7 +35,13 @@ const STAGES: Record<Stage, string> = {
 	citations: "Getting citation counts…",
 	layout: "Laying out the map…",
 };
-const SERVICES: Record<Service, string> = { pubmed: "PubMed", base: "BASE", openaire: "OpenAIRE" };
+const places = placeSettings();
+const SERVICES: Record<string, string> = {
+	pubmed: "PubMed",
+	base: "BASE",
+	openaire: "OpenAIRE",
+	...Object.fromEntries(places.map((p) => [p.id, p.label])),
+};
 
 // The Pages build publishes several versions side by side (../versions.html).
 if (import.meta.env.VITE_APP_VERSION) {
@@ -50,8 +57,26 @@ if (import.meta.env.VITE_APP_VERSION) {
 const today = new Date().toISOString().slice(0, 10);
 $<HTMLInputElement>("to").value = today;
 
+// A source choice per place source; its value is "place:<id>".
+{
+	const fieldset = form.querySelector("fieldset.services")!;
+	for (const p of places) {
+		const label = document.createElement("label");
+		const input = Object.assign(document.createElement("input"), {
+			type: "radio",
+			name: "service",
+			value: `place:${p.id}`,
+		});
+		label.append(input, ` ${p.label}`);
+		fieldset.append(label);
+	}
+}
+
+const choice = () => String(new FormData(form).get("service") ?? "pubmed");
+
 function currentService(): Service {
-	return (new FormData(form).get("service") as Service) ?? "pubmed";
+	const c = choice();
+	return c.startsWith("place:") ? "places" : (c as Service);
 }
 
 /** Shows the fields of the chosen service and its default start date. */
@@ -83,6 +108,7 @@ function readRequest(): SearchRequest {
 	const s = (k: string) => String(f.get(k) ?? "").trim();
 	const service = currentService();
 	if (service === "openaire") return { service, project_id: s("project_id"), funder: s("funder") };
+	if (service === "places") return { service, source: choice().slice("place:".length), title: s("place_title") };
 	const common = {
 		q: s("q"),
 		from: s("from"),
@@ -96,7 +122,12 @@ function readRequest(): SearchRequest {
 }
 
 function titleOf(req: SearchRequest): string {
-	return req.service === "openaire" ? `Project ${req.project_id} (${req.funder})` : req.q;
+	if (req.service === "openaire") return `Project ${req.project_id} (${req.funder})`;
+	if (req.service === "places") {
+		const p = places.find((x) => x.id === req.source);
+		return req.title || p?.title || p?.label || req.source;
+	}
+	return req.q;
 }
 
 function runWorker(request: SearchRequest): Promise<MapRecord> {
@@ -109,7 +140,7 @@ function runWorker(request: SearchRequest): Promise<MapRecord> {
 			else if (msg.type === "error") reject(Object.assign(new Error(msg.message), { reasons: msg.reasons }));
 		};
 		worker.onerror = (e) => reject(new Error(e.message));
-		worker.postMessage({ request, settings });
+		worker.postMessage({ request, settings: { ...settings, places } });
 	}).finally(() => worker.terminate());
 }
 
@@ -151,7 +182,7 @@ function renderMaps(maps: MapSummary[]) {
 		};
 		const meta = document.createElement("span");
 		meta.className = "meta";
-		meta.textContent = `${SERVICES[m.service as Service]} · ${m.documents} documents · ${new Date(m.created).toLocaleString()}`;
+		meta.textContent = `${SERVICES[m.service] ?? m.service} · ${m.documents} documents · ${new Date(m.created).toLocaleString()}`;
 		const del = document.createElement("button");
 		del.type = "button";
 		del.className = "delete";
