@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.1.31](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.30...v7.1.31) (2026-11-07)
+
+
+### Features
+
+* build the search form from the enabled sources, and choose where to keep the map or save it later from the map page ([b700c73](https://github.com/bootsa/OKMaps-Headstart/commit/b700c735dde6e4b31182d64e1d8a535559c3a0be))
+* build the search form from the enabled sources, and choose where to keep the map or save it later from the map page ([a9d151a](https://github.com/bootsa/OKMaps-Headstart/commit/a9d151ac6f0aa102595084e3e28905ce6aaa1e0b))
+
 ## [7.1.30](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.29...v7.1.30) (2026-11-07)
 
 
