@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.1.9](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.8...v7.1.9) (2026-11-07)
+
+
+### Features
+
+* **ui-svelte:** add the map title and context line, and a plugin registry ([4e1c6d5](https://github.com/bootsa/OKMaps-Headstart/commit/4e1c6d56669867b8edc839c0962fa1efafae068d))
+* **ui-svelte:** add the map title and context line, and a plugin registry ([237a5ae](https://github.com/bootsa/OKMaps-Headstart/commit/237a5ae8a053c1c7d9efee79f58fd7ce26ee1de1))
+
 ## [7.1.8](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.7...v7.1.8) (2026-11-07)
 
 
