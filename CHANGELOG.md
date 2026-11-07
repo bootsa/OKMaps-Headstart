@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.1.30](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.29...v7.1.30) (2026-11-07)
+
+
+### Features
+
+* add a drawer with your maps in every store, with folders, deleting and moving maps by drag and drop ([2f3f84d](https://github.com/bootsa/OKMaps-Headstart/commit/2f3f84dec8c5666fae89b70251f871fa1107ca19))
+* add a drawer with your maps in every store, with folders, deleting and moving maps by drag and drop ([9d7b952](https://github.com/bootsa/OKMaps-Headstart/commit/9d7b952b27ae7ed377c79db8e3d9d37e9d55de45))
+
 ## [7.1.29](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.28...v7.1.29) (2026-11-07)
 
 
