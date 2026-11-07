@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.1.16](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.15...v7.1.16) (2026-11-07)
+
+
+### Features
+
+* **ui-svelte:** credit the map's maker under the map and link to creating a new map ([b7924f6](https://github.com/bootsa/OKMaps-Headstart/commit/b7924f69c676196d03ac5c661162645e0320f51a))
+* **ui-svelte:** credit the map's maker under the map and link to creating a new map ([d3daf92](https://github.com/bootsa/OKMaps-Headstart/commit/d3daf924dcbf526fa0d417ad7f549f974a701767))
+
 ## [7.1.15](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.14...v7.1.15) (2026-11-07)
 
 
