@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.1.28](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.27...v7.1.28) (2026-11-07)
+
+
+### Features
+
+* **storage:** keep maps in folders on any storage, and move them between stores ([e896085](https://github.com/bootsa/OKMaps-Headstart/commit/e896085d5fbab976ab7d99a504ed4c3690ed32f3))
+* **storage:** keep maps in folders on any storage, and move them between stores ([1ab3e4f](https://github.com/bootsa/OKMaps-Headstart/commit/1ab3e4fa516a0217bb8fb3a336a8b6704c31434f))
+
 ## [7.1.27](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.26...v7.1.27) (2026-11-07)
 
 
