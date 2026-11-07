@@ -42,7 +42,56 @@ export interface MapConfig {
 	citePapers: boolean;
 	showKeywords: boolean;
 	highlightQueryTerms: boolean;
+	/** A fixed title for the map (old config title). */
+	presetTitle: string;
+	/** Title the map after its search (old create_title_from_context). */
+	createTitleFromContext: boolean;
+	customTitle: string | null;
+	/** A map of an author's works (old is_authorview). */
+	isAuthorview: boolean;
+	/** Show the context line below the title. */
+	showContext: boolean;
+	/** Add "(n open access)" to the number of resources. */
+	showOaNumber: boolean;
+	showTimestamp: boolean;
+	showDataSource: boolean;
+	/** Display names of the services. */
+	serviceNames: Record<string, string>;
+	/** A search returns at most this many resources. */
+	maxDocuments: number;
+	/** Names of document type codes in the search parameters (BASE's dctypenorm). */
+	documentTypeNames: Record<string, string>;
 }
+
+/** BASE's document type codes (dctypenorm), as in packages/sources. */
+const BASE_DOCUMENT_TYPES: Record<string, string> = {
+	"4": "Audio",
+	"11": "Book",
+	"111": "Book part",
+	"13": "Conference object",
+	"16": "Course material",
+	"7": "Dataset",
+	"5": "Image/video",
+	"12": "Journal/newspaper",
+	"121": "Journal/newspaper article",
+	"122": "Journal/newspaper other content",
+	"17": "Lecture",
+	"19": "Manuscript",
+	"3": "Map",
+	"52": "Moving image/video",
+	"2": "Musical notation",
+	F: "Other/Unknown material",
+	"1A": "Patent",
+	"14": "Report",
+	"15": "Review",
+	"6": "Software",
+	"51": "Still image",
+	"1": "Text",
+	"18": "Thesis",
+	"181": "Thesis: bachelor",
+	"183": "Thesis: doctoral and postdoctoral",
+	"182": "Thesis: master",
+};
 
 const common: Omit<MapConfig, "service" | "language" | "sortOptions" | "contentBased"> = {
 	visType: "overview",
@@ -68,6 +117,27 @@ const common: Omit<MapConfig, "service" | "language" | "sortOptions" | "contentB
 	citePapers: false,
 	showKeywords: true,
 	highlightQueryTerms: true,
+	presetTitle: "",
+	createTitleFromContext: true,
+	customTitle: null,
+	isAuthorview: false,
+	showContext: true,
+	showOaNumber: false,
+	showTimestamp: false,
+	showDataSource: false,
+	serviceNames: {
+		plos: "PLOS",
+		base: "BASE",
+		pubmed: "PubMed",
+		doaj: "DOAJ",
+		openaire: "OpenAIRE",
+		triple_km: "GoTriple",
+		triple_sg: "GoTriple",
+		orcid: "ORCID",
+		aquanavi: "AQUANAVI",
+	},
+	maxDocuments: 100,
+	documentTypeNames: BASE_DOCUMENT_TYPES,
 };
 
 const byService: Record<Service, Partial<MapConfig>> = {

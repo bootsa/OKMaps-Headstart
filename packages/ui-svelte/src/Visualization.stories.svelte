@@ -13,7 +13,17 @@
 
 	// Built here, not passed as an arg: Storybook copies args, and a copy of
 	// the state no longer updates the page.
-	const state = new MapState(base as unknown as MapRecord, 600);
+	const record = base as unknown as MapRecord;
+	const state = new MapState(
+		{
+			...record,
+			context: {
+				...record.context,
+				params: { from: "2000-01-01", to: "2026-11-07", sorting: "most-relevant", document_types: ["121", "F"] },
+			},
+		},
+		600,
+	);
 </script>
 
 <Story name="Knowledge map with list">

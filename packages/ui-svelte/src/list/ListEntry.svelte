@@ -52,14 +52,14 @@
 		</div>
 	{/if}
 
-	<h3 class="title">
+	<h2 class="title">
 		<button type="button" title={title + date} aria-pressed={selected} onclick={() => map.selectPaper(paper.safeId)}>
 			<Highlight text={selected ? title : shortTitle(title, date.length)} {search} {query} />
 			{#if date}
 				<Highlight text={date} {search} {query} />
 			{/if}
 		</button>
-	</h3>
+	</h2>
 	<p class="authors"><Highlight text={authors} {search} {query} /></p>
 	{#if paper.publishedIn}
 		<p class="source" class:short={!selected}><Highlight text={paper.publishedIn} {search} {query} /></p>
