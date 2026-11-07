@@ -104,3 +104,23 @@ describe("streamgraph view", () => {
 		expect(screen.getByRole("dialog").textContent).toContain("BASE provides access");
 	});
 });
+
+describe("streamgraph without precomputed streams", () => {
+	it("runs the pipeline's streamgraph step on the documents", async () => {
+		const { buildStreamgraph, streamgraphDocuments } = await import("@okmaps/pipeline/streamgraph");
+		// The fixture keeps only the provider's keywords; a search result has `subject` too.
+		const documents = record.documents.map((d: Record<string, unknown>) => ({ ...d, subject: d.subject_orig }));
+		const map = new MapState({ ...record, documents, streamgraph: null }, 600, { visType: "timeline" });
+		const expected = buildStreamgraph(documents, { query: record.context.query });
+		expect(map.map.streams?.map((s) => s.key)).toEqual(expected.subject.map((s) => s.name));
+		expect(map.map.papers.map((p) => p.id)).toEqual(streamgraphDocuments(documents, expected).map((d) => d.id));
+		expect(map.map.streams?.length).toBeGreaterThan(0);
+	});
+
+	it("draws no streams when the documents give none", () => {
+		const docs = record.documents.map((d: Record<string, unknown>) => ({ ...d, subject: "" }));
+		const map = new MapState({ ...record, documents: docs, streamgraph: null }, 600, { visType: "timeline" });
+		expect(map.map.streams).toEqual([]);
+		expect(map.map.papers.length).toBe(docs.length);
+	});
+});
