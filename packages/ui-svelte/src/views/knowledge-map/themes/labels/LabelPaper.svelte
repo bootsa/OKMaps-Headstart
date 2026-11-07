@@ -6,48 +6,28 @@
   popup on hover or focus (PaperPopup). All metadata is rendered as text.
 -->
 <script lang="ts">
-	import Highlight from "../../components/Highlight.svelte";
-	import { paperDate } from "../../data/papers";
-	import type { Paper } from "../../data/types";
-	import { dogEarPath, paperPath, type Rect, roundedPath } from "./geometry";
-
-	interface Props {
-		paper: Paper;
-		/** The icon's box. */
-		icon: Rect;
-		/** The map is zoomed into an area: show the title beside the icon. */
-		zoom?: boolean;
-		selected?: boolean;
-		hovered?: boolean;
-		/** Dataset, media or software: drawn as a rounded card. */
-		rounded?: boolean;
-		/** Width of the title beside the icon, in px. */
-		labelWidth?: number;
-		/** Chart size: the title goes left of the icon when it would not fit on the right. */
-		size?: number;
-		search?: string[];
-		query?: string[];
-		onclick?: (e: MouseEvent | KeyboardEvent) => void;
-		onpointerenter?: () => void;
-		onpointerleave?: () => void;
-	}
+	import Highlight from "../../../../components/Highlight.svelte";
+	import { paperDate } from "../../../../data/papers";
+	import { dogEarPath, iconRect, paperPath, roundedPath, labelWidth as titleWidth } from "../../geometry";
+	import type { PaperProps } from "../types";
 
 	let {
 		paper,
-		icon,
+		rect,
+		size,
 		zoom = false,
 		selected = false,
 		hovered = false,
 		rounded = false,
-		labelWidth = 150,
-		size = Number.POSITIVE_INFINITY,
 		search = [],
 		query = [],
 		onclick,
 		onpointerenter,
 		onpointerleave,
-	}: Props = $props();
+	}: PaperProps = $props();
 
+	const icon = $derived(iconRect(rect, zoom));
+	const labelWidth = $derived(titleWidth(size));
 	const date = $derived(paper.year ? ` (${paperDate(paper.year)})` : "");
 	const dot = $derived(Math.max(1.5, icon.w * 0.18));
 	const left = $derived(icon.x + icon.w + 6 + labelWidth > size);
@@ -159,7 +139,7 @@
 		overflow: hidden;
 		border-radius: var(--radius-sm);
 		/* Keeps a title legible where it crosses a neighbour. */
-		background: rgb(255 255 255 / 0.85);
+		background: var(--color-backdrop);
 		color: var(--color-text);
 		font-size: 12px;
 		line-height: 16px;

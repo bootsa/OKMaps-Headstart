@@ -38,6 +38,8 @@ export class MapState {
 	listVisible = $state(true);
 	/** The list fits the screen and scrolls inside (true), or runs its full height and the page scrolls. */
 	listFit = $state(true);
+	/** The map theme's id (views/knowledge-map/themes). */
+	theme: string = $state("labels");
 
 	/** `config` overrides the service's settings, e.g. { visType: "geomap" }. */
 	constructor(record: MapRecord, size: number, config?: Partial<MapConfig>) {

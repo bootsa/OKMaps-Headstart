@@ -30,7 +30,21 @@ export interface Geometry {
 	papers: Record<string, Rect>;
 }
 
-export function mapGeometry(areas: Area[], papers: Paper[], size: number, zoomed?: Area): Geometry {
+/** What a theme adds to the zoomed-in positions (see themes/types.ts). */
+export interface Placement {
+	/** Share of the area's radius inside its outline (1 for a circle). */
+	inset?: number;
+	/** Moves the zoomed-in papers within the area. */
+	placePapers?(rects: Rect[], circle: Circle, size: number): void;
+}
+
+export function mapGeometry(
+	areas: Area[],
+	papers: Paper[],
+	size: number,
+	zoomed?: Area,
+	placement: Placement = {},
+): Geometry {
 	const geometry: Geometry = { areas: {}, papers: {} };
 	if (!zoomed) {
 		for (const a of areas) geometry.areas[a.uri] = { x: a.x, y: a.y, r: a.r };
@@ -44,10 +58,11 @@ export function mapGeometry(areas: Area[], papers: Paper[], size: number, zoomed
 	const k = (size / 2 / zoomed.r) * ZOOM_FACTOR;
 	for (const a of areas) geometry.areas[a.uri] = { x: bx(a.x), y: by(a.y), r: a.r * k };
 	for (const p of papers) geometry.papers[p.safeId] = { x: px(p.x), y: py(p.y), w: p.width * k, h: p.height * k };
-	declutter(
+	const area = geometry.areas[zoomed.uri];
+	placement.placePapers?.(
 		zoomed.papers.map((p) => geometry.papers[p.safeId]).filter(Boolean),
-		geometry.areas[zoomed.uri],
-		labelWidth(size),
+		{ ...area, r: area.r * (placement.inset ?? 1) },
+		size,
 	);
 	return geometry;
 }
@@ -222,6 +237,12 @@ function inRows<B extends RowBox>(boxes: B[], c: Circle, middle: (b: B) => { x: 
 			b.cy += y - m.y;
 		});
 	});
+}
+
+/** A paper grown by `factor` (from its top-left corner), at most half the chart high. */
+export function enlarge(rect: Rect, size: number, factor = 2): Rect {
+	const k = Math.max(1, Math.min(factor, size / 2 / rect.h));
+	return { x: rect.x, y: rect.y, w: rect.w * k, h: rect.h * k };
 }
 
 /** A paper with its top-right corner folded. */

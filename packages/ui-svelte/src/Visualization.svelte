@@ -5,9 +5,13 @@
   list sits below and the map takes the full width.
 -->
 <script lang="ts">
+	import { untrack } from "svelte";
+	import SchemeToggle from "./components/SchemeToggle.svelte";
 	import type { MapState } from "./data/state.svelte";
 	import List from "./list/List.svelte";
 	import KnowledgeMap from "./views/knowledge-map/KnowledgeMap.svelte";
+	import { savedTheme } from "./views/knowledge-map/themes";
+	import ThemePicker from "./views/knowledge-map/themes/ThemePicker.svelte";
 
 	interface Props {
 		state: MapState;
@@ -16,6 +20,10 @@
 	}
 
 	let { state: map, height }: Props = $props();
+
+	untrack(() => {
+		map.theme = savedTheme();
+	});
 
 	let width = $state(0);
 	let innerWidth = $state(1000);
@@ -32,6 +40,10 @@
 <div class="okm-visualization">
 	<div class="map" bind:clientWidth={width}>
 		<KnowledgeMap state={map} />
+		<div class="toolbar">
+			<ThemePicker state={map} />
+			<SchemeToggle />
+		</div>
 	</div>
 	<List state={map} />
 </div>
@@ -53,6 +65,20 @@
 	}
 
 	.map {
+		position: relative;
 		min-width: 0;
+	}
+
+	.toolbar {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-2);
+		align-items: center;
+		position: absolute;
+		top: var(--space-2);
+		right: var(--space-2);
+		padding: 2px var(--space-2);
+		border-radius: var(--radius-sm);
+		background: var(--color-backdrop);
 	}
 </style>

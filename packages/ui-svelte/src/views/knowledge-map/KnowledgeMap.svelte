@@ -1,6 +1,7 @@
 <!--
   @component
-  The knowledge map: areas as bubbles with their papers. Hover a bubble to
+  The knowledge map: areas as bubbles with their papers, drawn by the map
+  theme the state names (themes/). Hover a bubble to
   see its papers, click it to zoom in, click a paper to select it. Click the
   background or double-click the zoomed bubble to zoom out. Bubbles and
   papers move between the overview and the zoomed positions over 750 ms
@@ -13,10 +14,8 @@
 	import type { MapState } from "../../data/state.svelte";
 	import type { Area, Paper } from "../../data/types";
 	import { t } from "../../i18n/strings";
-	import Bubble from "./Bubble.svelte";
-	import { type Geometry, iconRect, labelWidth, mapGeometry } from "./geometry";
-	import MapPaper from "./MapPaper.svelte";
-	import PaperPopup from "./PaperPopup.svelte";
+	import { type Geometry, mapGeometry } from "./geometry";
+	import { getTheme } from "./themes";
 
 	interface Props {
 		state: MapState;
@@ -27,16 +26,28 @@
 	let { state: map, duration = 750 }: Props = $props();
 
 	const size = $derived(map.map.size);
-	const target: Geometry = $derived(mapGeometry(map.map.areas, map.map.papers, size, map.area));
+	const theme = $derived(getTheme(map.theme));
+	const AreaShape = $derived(theme.Area);
+	const PaperShape = $derived(theme.Paper);
+	const Popup = $derived(theme.Popup);
+	const target: Geometry = $derived(
+		mapGeometry(map.map.areas, map.map.papers, size, map.area, {
+			inset: theme.shape.inset,
+			placePapers: theme.placePapers,
+		}),
+	);
 
 	// The geometry drawn: the target, tweened when zooming.
 	const geometry = new Tween<Geometry>({ areas: {}, papers: {} }, { easing: cubicInOut });
 	let moving = $state(false);
 	let lastSize = 0;
+	let lastTheme = "";
 	$effect(() => {
 		const next = target;
-		const animate = lastSize === size && !prefersReducedMotion.current;
+		// Zooming animates; a new size or theme just redraws.
+		const animate = lastSize === size && lastTheme === theme.id && !prefersReducedMotion.current;
 		lastSize = size;
+		lastTheme = theme.id;
 		moving = animate;
 		geometry.set(next, { duration: animate ? duration : 0 }).then(() => {
 			if (geometry.target === next) moving = false;
@@ -113,11 +124,10 @@
 	{#snippet paperShape(paper: Paper)}
 		{@const rect = geometry.current.papers[paper.safeId]}
 		{#if rect}
-			<MapPaper
+			<PaperShape
 				{paper}
-				icon={iconRect(rect, zoom)}
+				{rect}
 				{size}
-				labelWidth={labelWidth(size)}
 				{zoom}
 				selected={map.selectedPaper === paper.safeId}
 				hovered={zoom && hoveredPaper === paper.safeId}
@@ -140,9 +150,10 @@
 	{#each areas as area (area.uri)}
 		{@const circle = geometry.current.areas[area.uri]}
 		{#if circle}
-			<Bubble
+			<AreaShape
 				title={area.title}
 				{circle}
+				shape={theme.shape}
 				hovered={map.hoveredArea === area.uri}
 				zoomed={map.zoomedArea === area.uri}
 				dimmed={zoom && map.zoomedArea !== area.uri}
@@ -161,10 +172,10 @@
 	{#each activePapers as paper (paper.safeId)}
 		{@render paperShape(paper)}
 	{/each}
-	{#if zoom && !moving && hovered && geometry.current.papers[hovered.safeId]}
-		<PaperPopup
+	{#if Popup && zoom && !moving && hovered && geometry.current.papers[hovered.safeId]}
+		<Popup
 			paper={hovered}
-			icon={iconRect(geometry.current.papers[hovered.safeId], true)}
+			rect={geometry.current.papers[hovered.safeId]}
 			{size}
 			search={map.searchWords}
 			query={map.queryWords}
