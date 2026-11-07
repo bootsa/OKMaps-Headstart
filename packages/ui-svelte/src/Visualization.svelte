@@ -11,6 +11,7 @@
 	import { untrack } from "svelte";
 	import { fly } from "svelte/transition";
 	import ModalHost from "./components/ModalHost.svelte";
+	import ScalePicker from "./components/ScalePicker.svelte";
 	import SchemeToggle from "./components/SchemeToggle.svelte";
 	import SettingsMenu from "./components/SettingsMenu.svelte";
 	import type { MapState } from "./data/state.svelte";
@@ -80,6 +81,7 @@
 			{/each}
 			<div class="settings">
 				<SettingsMenu>
+					<ScalePicker state={map} />
 					<ThemePicker state={map} />
 					<SchemeToggle />
 					{#if menu}

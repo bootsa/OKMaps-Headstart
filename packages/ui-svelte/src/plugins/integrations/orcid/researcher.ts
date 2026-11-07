@@ -3,6 +3,7 @@
  * researcher's details and metrics, from the map's `author` record (old
  * Heading.tsx, Employment.tsx, OrcidMetrics.tsx and the researcher modals).
  */
+import { outsideReferences, socialMentions } from "../../../data/papers";
 import type { MapState } from "../../../data/state.svelte";
 import type { Paper } from "../../../data/types";
 import type { ContextItem, MapTitle } from "../../../header/context";
@@ -52,29 +53,13 @@ export function employmentItems(map: MapState): ContextItem[] {
 	return items;
 }
 
-const SOCIAL = ["fbwalls", "feeds", "gplus", "rdts", "qna", "tweeters", "videos"];
-const REFERENCES = ["wikipedia", "msm", "policies", "patents"];
-
-/** Sum of the cited_by_<x>_count fields, or "n/a" when the paper has none of them. */
-export function citedBySum(raw: Rec, kinds: string[]): number | "n/a" {
-	let sum: number | null = null;
-	for (const kind of kinds) {
-		const v = raw[`cited_by_${kind}_count`];
-		if (typeof v !== "string" && typeof v !== "number") continue;
-		const n = Number(v);
-		if (v === "" || Number.isNaN(n)) continue;
-		sum = (sum ?? 0) + n;
-	}
-	return sum ?? "n/a";
-}
-
 /** Citations, social media mentions and references outside academia (old OrcidMetrics). */
 export function orcidMetrics(map: MapState, paper: Paper): PaperMetric[] {
 	const s = map.strings;
 	return [
 		{ id: "citations", value: paper.citations, label: t(s, "citations_count_label") },
-		{ id: "social", value: citedBySum(paper.raw, SOCIAL), label: t(s, "social_media_count_label") },
-		{ id: "references", value: citedBySum(paper.raw, REFERENCES), label: t(s, "references_count_label") },
+		{ id: "social", value: socialMentions(paper.raw), label: t(s, "social_media_count_label") },
+		{ id: "references", value: outsideReferences(paper.raw), label: t(s, "references_count_label") },
 	];
 }
 

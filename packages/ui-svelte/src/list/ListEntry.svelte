@@ -9,7 +9,7 @@
 	import Button from "../components/Button.svelte";
 	import Highlight from "../components/Highlight.svelte";
 	import Tag from "../components/Tag.svelte";
-	import { paperDate } from "../data/papers";
+	import { paperDate, scaleUnit } from "../data/papers";
 	import type { MapState } from "../data/state.svelte";
 	import type { Paper } from "../data/types";
 	import { t } from "../i18n/strings";
@@ -36,6 +36,7 @@
 	const actions = $derived(paperActions(map, paper));
 	const metrics = $derived(paperMetrics(map, paper));
 	const showCitations = $derived(!map.config.contentBased && !metrics.length);
+	const unit = $derived(map.config.scaleBy ? t(s, scaleUnit(map.config.scaleBy)) : t(s, "readers"));
 </script>
 
 <article class="okm-entry" class:selected id="entry-{paper.safeId}">
@@ -105,7 +106,7 @@
 		</p>
 	{/if}
 	{#if showCitations}
-		<p class="row"><strong>{paper.readers}</strong> {t(s, "readers")}</p>
+		<p class="row"><strong>{paper.readers}</strong> {unit}</p>
 	{/if}
 	{#if metrics.length}
 		<p class="row metrics">

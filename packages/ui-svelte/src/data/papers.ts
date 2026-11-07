@@ -83,6 +83,57 @@ function metric(doc: RawDocument, field: string): number | "n/a" {
 	return Number.isNaN(n) ? "n/a" : n;
 }
 
+const SOCIAL = ["fbwalls", "feeds", "gplus", "rdts", "qna", "tweeters", "videos"];
+const REFERENCES = ["wikipedia", "msm", "policies", "patents"];
+
+/** Sum of the cited_by_<kind>_count fields, or "n/a" when the document has none of them. */
+export function citedBySum(doc: RawDocument, kinds: string[]): number | "n/a" {
+	let sum: number | null = null;
+	for (const kind of kinds) {
+		const v = doc[`cited_by_${kind}_count`];
+		if (typeof v !== "string" && typeof v !== "number") continue;
+		const n = Number(v);
+		if (v === "" || Number.isNaN(n)) continue;
+		sum = (sum ?? 0) + n;
+	}
+	return sum ?? "n/a";
+}
+
+/** Social media mentions (Altmetric): Facebook, blogs, Google+, Reddit, Q&A, X, videos. */
+export const socialMentions = (doc: RawDocument) => citedBySum(doc, SOCIAL);
+/** References outside academia (Altmetric): Wikipedia, news, policies, patents. */
+export const outsideReferences = (doc: RawDocument) => citedBySum(doc, REFERENCES);
+
+/** The unit a "Scale map by" choice counts in, also the list's label for it (old scale_base_unit). */
+const SCALE_UNITS: Record<string, string> = {
+	citations: "citations",
+	references: "references",
+	cited_by_accounts_count: "social",
+	citation_count: "citations",
+	cited_by_tweeters_count: "tweets",
+	"readers.mendeley": "readers",
+};
+
+export const scaleUnit = (scaleBy: string): string => SCALE_UNITS[scaleBy] ?? scaleBy;
+
+/** The number a paper is sized by when the map is scaled by `scaleBy`. */
+export function scaleMetric(doc: RawDocument, scaleBy: string): number | "n/a" {
+	switch (scaleUnit(scaleBy)) {
+		case "citations":
+			return metric(doc, "citation_count");
+		case "social":
+			return socialMentions(doc);
+		case "references":
+			return outsideReferences(doc);
+		case "tweets":
+			return metric(doc, "cited_by_tweeters_count");
+		case "readers":
+			return metric(doc, "readers");
+		default:
+			return metric(doc, scaleBy);
+	}
+}
+
 function listLink(doc: RawDocument, config: MapConfig): Link | null {
 	if (!config.doiOutlink) return null;
 	const doi = str(doc.doi);
@@ -140,7 +191,8 @@ export function processPaper(doc: RawDocument, config: MapConfig, s: Strings, _c
 			)
 		: [];
 
-	const readersMetric = metric(doc, "readers");
+	const scaled = config.scaleBy && config.scaleBy !== "content_based";
+	const readersMetric = scaled ? scaleMetric(doc, config.scaleBy as string) : metric(doc, "readers");
 	const readers = readersMetric === "n/a" ? 0 : readersMetric;
 	const internalReaders = config.contentBased ? 1 : readers + 1;
 

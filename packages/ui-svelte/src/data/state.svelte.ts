@@ -14,7 +14,8 @@ import { processMap, resizeMap } from "./process";
 import type { Area, MapRecord, Paper, ProcessedMap } from "./types";
 
 export class MapState {
-	readonly config: MapConfig;
+	/** The map's settings; scale() changes what the papers are sized by. */
+	config: MapConfig = $state.raw({} as MapConfig);
 	readonly strings: Strings;
 	/** The researcher of an author map (record.author), else empty. */
 	readonly author: Record<string, unknown>;
@@ -55,17 +56,38 @@ export class MapState {
 
 	/** `config` overrides the service's settings, e.g. { visType: "geomap" }. */
 	constructor(record: MapRecord, size: number, config?: Partial<MapConfig>) {
+		this.#record = record;
 		this.config = mapConfig((record.context.service as Service) ?? "base", config);
 		this.strings = strings(this.config.language);
 		this.author = record.author && typeof record.author === "object" ? record.author : {};
 		this.sort = this.config.sortOptions[0];
-		const map = processMap(record, size, {
-			config: this.config,
-			strings: this.strings,
-		});
-		if (this.config.visType === "overview") layoutMap(map.areas, map.papers, size, this.config);
-		this.map = map;
+		this.map = this.#process(size);
 		this.queryWords = this.config.highlightQueryTerms ? queryTerms(record.context.query) : [];
+	}
+
+	readonly #record: MapRecord;
+
+	#process(size: number): ProcessedMap {
+		const map = processMap(this.#record, size, { config: this.config, strings: this.strings });
+		if (this.config.visType === "overview") layoutMap(map.areas, map.papers, size, this.config);
+		return map;
+	}
+
+	/** The "Scale map by" choice in effect (old toolbar scaleValue). */
+	get scaleBy(): string | null {
+		return this.config.scaleBy ?? this.config.scaleOptions[0] ?? null;
+	}
+
+	/**
+	 * Sizes the papers by another metric ("content_based" for equal sizes)
+	 * and lays the map out again, back at the overview (old rescaleMap).
+	 */
+	scale(scaleBy: string) {
+		if (scaleBy === this.scaleBy) return;
+		this.config = { ...this.config, scaleBy, contentBased: scaleBy === "content_based", dynamicSizing: false };
+		this.zoomedArea = null;
+		this.selectedPaper = null;
+		this.map = this.#process(this.map.size);
 	}
 
 	/** Words of the search query, highlighted when the list search is empty. */
