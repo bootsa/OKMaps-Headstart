@@ -116,3 +116,4 @@ export {
 	registerTheme,
 	ThemePicker,
 } from "./views/knowledge-map";
+export { type LabelBox, labelBox, Streamgraph, separateLabels } from "./views/streamgraph";

@@ -43,7 +43,7 @@
 	}
 
 	// The zoomed area's name: the map hides it while zoomed in.
-	const heading = $derived(map.area?.title ?? "Overview");
+	const heading = $derived(map.selectedStream ?? map.area?.title ?? "Overview");
 	const docsLabel = $derived.by(() => {
 		const label =
 			map.filter === "open_access" ? "open access resource" : map.filter === "dataset" ? "dataset" : "resource";
@@ -75,6 +75,10 @@
 		</button>
 		{#if map.zoomedArea !== null}
 			<Button variant="secondary" size="sm" onclick={() => map.zoomOut()}>{t(s, "backlink")}</Button>
+		{:else if map.selectedStream !== null}
+			<Button variant="secondary" size="sm" onclick={() => map.selectStream(null)}
+				>{t(s, "backlink_list_streamgraph_stream_selected")}</Button
+			>
 		{/if}
 		{#if onclose}
 			<button type="button" class="close" aria-label="Close the list" title="Close the list" onclick={onclose}>
