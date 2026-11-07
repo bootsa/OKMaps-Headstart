@@ -5,6 +5,7 @@
  */
 import "@okmaps/ui-svelte/styles.css";
 import {
+	creditPlugin,
 	embedPlugin,
 	type MapRecord,
 	MapState,
@@ -29,6 +30,13 @@ export function drawNew(target: HTMLElement, record: MapRecord, options: DrawOpt
 		registerPlugin(sharePlugin({ link: options.shareLink, hashtags: "okmaps,openscience,dataviz" }));
 		registerPlugin(embedPlugin({ link: options.shareLink }));
 	}
+	registerPlugin(
+		creditPlugin({
+			faqs: "https://openknowledgemaps.org/faq",
+			create: embedded ? undefined : new URL("./", location.href).href,
+			link: options.shareLink,
+		}),
+	);
 	document.body.classList.add("okm-new");
 	document.body.classList.toggle("okm-embedded", embedded);
 	target.classList.add("okmaps", "okm-page");
