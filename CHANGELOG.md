@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.1.8](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.7...v7.1.8) (2026-11-07)
+
+
+### Features
+
+* **ui-svelte:** switchable map styles (original, labels, octagons) and dark mode ([86caecf](https://github.com/bootsa/OKMaps-Headstart/commit/86caecf136cafb5667c9d2c66a539ec11fe4a58c))
+* **ui-svelte:** switchable map styles (original, labels, octagons) and dark mode ([08ec8d4](https://github.com/bootsa/OKMaps-Headstart/commit/08ec8d437442f51c62dc54c15c3911525bd92800))
+
 ## [7.1.7](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.6...v7.1.7) (2026-11-07)
 
 
