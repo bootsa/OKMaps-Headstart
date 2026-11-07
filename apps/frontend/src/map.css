@@ -1,52 +1,31 @@
+/* The page around the map: @okmaps/ui-svelte fills it and puts the
+   toolbar (save, back to search) in its settings panel. */
+body {
+	margin: 0;
+}
 .toolbar {
-	position: fixed;
-	right: 16px;
-	bottom: 16px;
-	z-index: 1000;
-	font-family: "Open Sans", sans-serif;
-	font-size: 14px;
-	background: #fff;
-	border: 1px solid #d3d9e0;
-	border-radius: 6px;
-	padding: 6px 12px;
-	box-shadow: 0 1px 4px rgb(0 0 0 / 12%);
 	display: flex;
-	flex-wrap: wrap;
-	align-items: center;
-	justify-content: flex-end;
+	flex-direction: column;
+	align-items: stretch;
 	gap: 8px;
-	max-width: calc(100vw - 32px);
+	font-size: 14px;
+}
+.toolbar [hidden] {
+	display: none;
 }
 .toolbar button {
 	font: inherit;
 	color: #2856b6;
 	background: #fff;
 	border: 1px solid #2856b6;
-	border-radius: 4px;
-	padding: 2px 10px;
+	border-radius: 999px;
+	padding: 4px 12px;
 	cursor: pointer;
 }
 .toolbar button:disabled {
 	color: #667085;
 	border-color: #d3d9e0;
 	cursor: default;
-}
-.share-panel {
-	display: flex;
-	gap: 4px;
-	flex-basis: 100%;
-}
-.share-panel[hidden],
-.toolbar [hidden] {
-	display: none;
-}
-.share-panel input {
-	flex: 1;
-	min-width: 0;
-	width: 22em;
-	font: inherit;
-	font-size: 13px;
-	padding: 2px 6px;
 }
 .toolbar a {
 	color: #2856b6;
@@ -57,33 +36,12 @@
 	margin: 32px 16px;
 	color: #b42318;
 }
-/* The new (Svelte) interface, map.html?ui=new: the whole page, with the
-   toolbar inside its settings panel. */
-body.okm-new {
-	margin: 0;
-}
-.okm-new .toolbar {
-	position: static;
-	max-width: none;
-	padding: 0;
-	border: 0;
-	box-shadow: none;
-	background: none;
-	flex-direction: column;
-	align-items: stretch;
-	font-family: inherit;
-}
-.okm-new .toolbar button {
-	padding: 4px 12px;
-	border-radius: 999px;
-}
 
-/* Dark mode, set by the new interface's switch (data-scheme on <html>). */
+/* Dark mode, set by the map's switch (data-scheme on <html>). */
 html[data-scheme="dark"],
 html[data-scheme="dark"] body {
 	background: #1a1e21;
 }
-html[data-scheme="dark"] .toolbar,
 html[data-scheme="dark"] .toolbar button {
 	background: #24292d;
 	border-color: #3a4247;
@@ -91,9 +49,6 @@ html[data-scheme="dark"] .toolbar button {
 }
 html[data-scheme="dark"] .toolbar a {
 	color: #9fbcdc;
-}
-html[data-scheme="dark"] .okm-new .toolbar {
-	background: none;
 }
 /* An embedded map (?embed=true) shows no page links. */
 .okm-embedded .toolbar {

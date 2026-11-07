@@ -2,48 +2,16 @@
  * map.html?id=...      a map saved in this browser
  * map.html?shared=...  a published map (share link)
  *
- * The existing visualisation draws it, reading it in its local_files mode
- * from a blob URL. Add ui=new to see the new (Svelte) interface instead.
+ * The map is drawn by @okmaps/ui-svelte (svelte-map.ts).
  */
 
 import { registerServiceWorker } from "./offline.ts";
 import { settings } from "./settings.ts";
 import { domDecode, fetchSharedMap, neutralise, publishMap, type SharedMap, shareUrl } from "./share.ts";
 import { getMap, readChoice, type SavedMap, saveMap, withoutPodLogin } from "./store.ts";
-import { visConfig } from "./vis-config.ts";
-
-declare global {
-	interface Window {
-		data_config?: Record<string, unknown>;
-		headstart?: { start: (config?: Record<string, unknown>) => void };
-	}
-}
+import { drawMap } from "./svelte-map.ts";
 
 const $ = <T extends HTMLElement>(id: string) => document.getElementById(id) as T;
-
-/** Adds the visualisation's built scripts and styles (written by scripts/build-vis.mjs) in order. */
-async function loadVis(): Promise<void> {
-	const base = `${import.meta.env.BASE_URL}vis/`;
-	const tags = (await (await fetch(`${base}tags.json`)).json()) as { scripts: string[]; styles: string[] };
-	for (const href of tags.styles) {
-		const link = document.createElement("link");
-		link.rel = "stylesheet";
-		link.href = base + href;
-		document.head.append(link);
-	}
-	let last: Promise<unknown> = Promise.resolve();
-	for (const src of tags.scripts) {
-		const s = document.createElement("script");
-		s.src = base + src;
-		s.async = false;
-		last = new Promise((resolve, reject) => {
-			s.onload = resolve;
-			s.onerror = () => reject(new Error(`could not load ${src}`));
-		});
-		document.body.append(s);
-	}
-	await last;
-}
 
 function showMessage(text: string) {
 	const el = $("message");
@@ -51,42 +19,14 @@ function showMessage(text: string) {
 	el.hidden = false;
 }
 
-/** The toolbar link that switches between the current and the new interface. */
-function offerToggle(useNew: boolean) {
-	const link = $<HTMLAnchorElement>("ui-toggle");
-	const url = new URL(location.href);
-	if (useNew) url.searchParams.delete("ui");
-	else url.searchParams.set("ui", "new");
-	link.href = url.href;
-	link.textContent = useNew ? "Back to the current look" : "Preview the new look";
-	link.hidden = false;
-}
-
-const useNew = new URLSearchParams(location.search).get("ui") === "new";
-
 /**
  * Draws the map. `sharedId` gives the map's share link (publishing it on
- * first use), for the new interface's Share and Embed buttons.
+ * first use), for the Share and Embed buttons.
  */
-async function draw(map: SharedMap, sharedId?: () => Promise<string>) {
+function draw(map: SharedMap, sharedId?: () => Promise<string>) {
 	document.title = `${map.title} - Open Knowledge Maps`;
-	offerToggle(useNew);
-	if (useNew) {
-		const { drawNew } = await import("./svelte-map.ts");
-		const shareLink = sharedId
-			? async () => {
-					const url = new URL(shareUrl(await sharedId()));
-					url.searchParams.set("ui", "new");
-					return url.href;
-				}
-			: undefined;
-		return drawNew($("visualization"), map as unknown as Parameters<typeof drawNew>[1], { shareLink });
-	}
-	const body = JSON.stringify({ context: map.context, data: JSON.stringify(map.documents) });
-	const file = URL.createObjectURL(new Blob([body], { type: "application/json" }));
-	window.data_config = visConfig(map.context.service, { title: map.title, file });
-	await loadVis();
-	window.headstart!.start();
+	const shareLink = sharedId ? async () => shareUrl(await sharedId()) : undefined;
+	drawMap($("visualization"), map as unknown as Parameters<typeof drawMap>[1], { shareLink });
 }
 
 /** The map's share id, publishing it to the gateway the first time. */
@@ -95,36 +35,6 @@ async function publishOnce(saved: SavedMap): Promise<string> {
 	saved.sharedId = await publishMap(settings.gatewayUrl, saved);
 	await saveMap(saved);
 	return saved.sharedId;
-}
-
-/** Share button (current look): publishes the map once and shows its link. */
-function offerShare(saved: SavedMap) {
-	const button = $<HTMLButtonElement>("share");
-	const panel = $("share-panel");
-	const input = $<HTMLInputElement>("share-url");
-	const show = (id: string) => {
-		input.value = shareUrl(id);
-		panel.hidden = false;
-		input.select();
-	};
-	button.hidden = false;
-	button.onclick = async () => {
-		if (saved.sharedId) return show(saved.sharedId);
-		button.disabled = true;
-		button.textContent = "Sharing…";
-		try {
-			show(await publishOnce(saved));
-		} catch (err) {
-			showMessage(`The map could not be shared: ${err instanceof Error ? err.message : err}`);
-		} finally {
-			button.disabled = false;
-			button.textContent = "Share";
-		}
-	};
-	$<HTMLButtonElement>("copy").onclick = async () => {
-		await navigator.clipboard?.writeText(input.value).catch(() => input.select());
-		$("copy").textContent = "Copied";
-	};
 }
 
 /** Save button on a shared map: keeps a copy in this browser. */
@@ -177,10 +87,7 @@ async function main() {
 		return;
 	}
 	if (!saved) return showMessage("This map is not saved in this browser.");
-	if (!settings.gatewayUrl) return draw(saved);
-	// The new look has its own Share and Embed buttons.
-	if (!useNew) offerShare(saved);
-	return draw(saved, () => publishOnce(saved));
+	return draw(saved, settings.gatewayUrl ? () => publishOnce(saved) : undefined);
 }
 
 main().catch((err) => showMessage(`The map could not be shown: ${err instanceof Error ? err.message : err}`));

@@ -51,7 +51,7 @@ jobs:
       - name: Install Chromium
         run: pnpm --filter @okmaps/frontend exec playwright install --with-deps chromium
 
-      - name: Build the visualisation and the app
+      - name: Build the app
         run: pnpm build
         env:
           VITE_GATEWAY_URL: https://gateway.test

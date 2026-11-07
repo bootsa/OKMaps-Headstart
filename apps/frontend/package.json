@@ -1,12 +1,11 @@
 {
 	"name": "@okmaps/frontend",
 	"version": "0.1.0",
-	"description": "OKMaps in the browser: searches a provider, builds the map in a Web Worker, keeps maps in IndexedDB and shows them with the existing visualisation.",
+	"description": "OKMaps in the browser: searches a provider, builds the map in a Web Worker, keeps maps in IndexedDB and shows them with @okmaps/ui-svelte.",
 	"license": "MIT",
 	"type": "module",
 	"private": true,
 	"scripts": {
-		"build:vis": "node scripts/build-vis.mjs",
 		"dev": "vite",
 		"build": "vite build",
 		"preview": "vite preview",
@@ -16,7 +15,6 @@
 	},
 	"devDependencies": {
 		"@okmaps/gateway": "workspace:*",
-		"@okmaps/ui": "workspace:*",
 		"@okmaps/ui-svelte": "workspace:*",
 		"@sveltejs/vite-plugin-svelte": "^7.3.1",
 		"@types/node": "^22.10.0",
