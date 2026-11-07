@@ -28,6 +28,32 @@ export {
 	searchOpenaire,
 	toOpenaireRecords,
 } from "./openaire.js";
+export {
+	AQUANAVI_MAPPING,
+	aquanaviSource,
+	type CacheOptions,
+	cachedTable,
+	csvTable,
+	type DescriptionSection,
+	getPlaceSource,
+	jsonTable,
+	memoryTableCache,
+	type PlaceMapping,
+	type PlaceOptions,
+	type PlaceRecord,
+	type PlaceResult,
+	type PlaceSource,
+	parseCsv,
+	placeSources,
+	type Row,
+	registerPlaceSource,
+	searchPlaces,
+	staticTable,
+	type TableCache,
+	type TableLoader,
+	toPlaceRecords,
+	unregisterPlaceSource,
+} from "./places/index.js";
 export type { PubmedOptions, PubmedParams } from "./pubmed.js";
 export { buildPubmedTerm, parseEsummary, parsePubmedXml, searchPubmed, toPubmedRecords } from "./pubmed.js";
 export type { SourceRecord, SourceResult } from "./types.js";

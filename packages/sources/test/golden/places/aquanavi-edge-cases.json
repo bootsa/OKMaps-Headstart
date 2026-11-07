@@ -1,0 +1,268 @@
+[
+ {
+  "id": "48c7a9dda93c4c3e14f8c5daf41bf06b3f741b30808305f1f59d56b469accc5d",
+  "title": "[TEST CASE] Country: information unavailable",
+  "identifier": "48c7a9dda93c4c3e14f8c5daf41bf06b3f741b30808305f1f59d56b469accc5d",
+  "link": "test 1",
+  "type": "physical object",
+  "resulttype": [
+   "Other/Unknown material"
+  ],
+  "authors": "",
+  "year": "",
+  "language": "",
+  "oa_state": "",
+  "published_in": "",
+  "relation": "['http://mesocosm.org/wp-content/uploads/2017/05/aquatronS.jpg', 'http://mesocosm.org/wp-content/uploads/2017/05/Aquatron-empty_400.jpg', 'http://mesocosm.org/wp-content/uploads/2017/05/halifax_pool_calltoaction.image_.jpg', 'http://mesocosm.org/wp-content/uploads/2017/05/aquatron_400.jpg', 'http://mesocosm.org/wp-content/uploads/2017/05/featureslide.image_400.jpg', 'http://mesocosm.org/wp-content/uploads/2017/05/aquatron1_400.jpg']",
+  "paper_abstract": "Facility description: description not available\n \nEquipment: These world-class facilities are backed by our mechanical system, which can provide high quality, temperature controlled seawater and freshwater year round, as well as a professional team of both biologists and mechanical operators who are available to run the systems and help researchers. 16 wet labs\n \nControlled parameters: temperature, stratification, light, etc\n \nGrand challenges: description not available\n \nResearch topics: Animal behaviour, ballast water, flood containment, invasive species",
+  "subject_orig": "",
+  "coverage": "country= ; continent=North-America; east=-63.5944334; north=44.6356125; start=; end="
+ },
+ {
+  "id": "b27263c1d3bc0b52b1d43f678b41ccbc54f8942844f91fef259d05895e2dbfc6",
+  "title": "[TEST CASE] Abstract: no information at all",
+  "identifier": "b27263c1d3bc0b52b1d43f678b41ccbc54f8942844f91fef259d05895e2dbfc6",
+  "link": "test 11",
+  "type": "physical object",
+  "resulttype": [
+   "Other/Unknown material"
+  ],
+  "authors": "",
+  "year": "",
+  "language": "",
+  "oa_state": "",
+  "published_in": "",
+  "relation": "['http://mesocosm.org/wp-content/uploads/2017/03/Pristine-nature-reserve-for-experimental-set-ups-300x194.jpg', 'http://mesocosm.org/wp-content/uploads/2017/03/SYKE-MRC-field-mesocosm-work-300x282.jpg']",
+  "paper_abstract": "",
+  "subject_orig": "",
+  "coverage": "country=Finland; continent=Europe; east=23.2440297; north=59.8431619; start=2023; end=present"
+ },
+ {
+  "id": "4243277be36bf7166a517b1c78a321fe15169f16d114cb5e92e5fc79b45f7f16",
+  "title": "[TEST CASE] Abstract: all information available",
+  "identifier": "4243277be36bf7166a517b1c78a321fe15169f16d114cb5e92e5fc79b45f7f16",
+  "link": "test 12",
+  "type": "physical object",
+  "resulttype": [
+   "Other/Unknown material"
+  ],
+  "authors": "",
+  "year": "",
+  "language": "",
+  "oa_state": "",
+  "published_in": "",
+  "relation": "['http://mesocosm.org/wp-content/uploads/2017/03/Pristine-nature-reserve-for-experimental-set-ups-300x194.jpg', 'http://mesocosm.org/wp-content/uploads/2017/03/SYKE-MRC-field-mesocosm-work-300x282.jpg']",
+  "paper_abstract": "Facility description: pelagic – marine – outdoor A large nature reserve surrounding TZS is dedicated to research, providing access to a pristine environment for field mesocosms. Research vessels and technical services support sampling and maintenance; a hovercraft allows winter-studies. Aquarium facilities with natural or artificial light are available for flow-through experiments at up to 100 000 m3 daily water capacity. A marine laboratory provides analytical services\n \nEquipment: Wet labs, outdoor aquarium facility, climatic chambers, bio-optical instrumentation (spectrophotometry, spectrofluorometry), masspectrometry, carbon analyzers, microscopes with digital imaging, isotope lab, chemistry lab, CTD, meters for light, turbidity and oxygen, field sampling equipment, research vessels, hovercraft\n \nControlled parameters: Temperature, light, pH, pCO2, nutrient levels, community composition, turbidity\n \nGrand challenges: Invasive species; eutrophication; climate change\n \nResearch topics: Biodiversity, stoichiometry, benthic ecology, plankton ecology, seagrass ecology, ice studies, reproductive evolution in fishes",
+  "subject_orig": "",
+  "coverage": "country=Finland; continent=Europe; east=23.243950439574757; north=59.84319837651236; start=2024; end=present"
+ },
+ {
+  "id": "ec91f24f83cdfc63a2bf738cfb9e05c76e5ddf2877cc6b1491b6e491a06b5b2f",
+  "title": "[TEST CASE] Abstract: only \"Description of Facility\" data available",
+  "identifier": "ec91f24f83cdfc63a2bf738cfb9e05c76e5ddf2877cc6b1491b6e491a06b5b2f",
+  "link": "test 13",
+  "type": "physical object",
+  "resulttype": [
+   "Other/Unknown material"
+  ],
+  "authors": "",
+  "year": "",
+  "language": "",
+  "oa_state": "",
+  "published_in": "",
+  "relation": "['http://mesocosm.org/wp-content/uploads/2017/03/Pristine-nature-reserve-for-experimental-set-ups-300x194.jpg', 'http://mesocosm.org/wp-content/uploads/2017/03/SYKE-MRC-field-mesocosm-work-300x282.jpg']",
+  "paper_abstract": "Facility description: pelagic – marine – outdoor A large nature reserve surrounding TZS is dedicated to research, providing access to a pristine environment for field mesocosms. Research vessels and technical services support sampling and maintenance; a hovercraft allows winter-studies. Aquarium facilities with natural or artificial light are available for flow-through experiments at up to 100 000 m3 daily water capacity. A marine laboratory provides analytical services\n \nEquipment: description not available\n \nControlled Parameters: description not available\n \nGrand challenges: description not available\n \nResearch topics: description not available",
+  "subject_orig": "",
+  "coverage": "country=Finland; continent=Europe; east=23.244042990026088; north=59.843085824799715; start=2025; end=present"
+ },
+ {
+  "id": "28bfc7f1a313fa5aba0cbb8b2ea4627e27244ee89f118e7d042c994537c48363",
+  "title": "[TEST CASE] Abstract: only \"Equipment\" data available",
+  "identifier": "28bfc7f1a313fa5aba0cbb8b2ea4627e27244ee89f118e7d042c994537c48363",
+  "link": "test 14",
+  "type": "physical object",
+  "resulttype": [
+   "Other/Unknown material"
+  ],
+  "authors": "",
+  "year": "",
+  "language": "",
+  "oa_state": "",
+  "published_in": "",
+  "relation": "['http://mesocosm.org/wp-content/uploads/2017/03/Pristine-nature-reserve-for-experimental-set-ups-300x194.jpg', 'http://mesocosm.org/wp-content/uploads/2017/03/SYKE-MRC-field-mesocosm-work-300x282.jpg']",
+  "paper_abstract": "Facility description: description not available\n \nEquipment: Wet labs, outdoor aquarium facility, climatic chambers, bio-optical instrumentation (spectrophotometry, spectrofluorometry), masspectrometry, carbon analyzers, microscopes with digital imaging, isotope lab, chemistry lab, CTD, meters for light, turbidity and oxygen, field sampling equipment, research vessels, hovercraft\n \nControlled Parameters: description not available\n \nGrand challenges: description not available\n \nResearch topics: description not available",
+  "subject_orig": "",
+  "coverage": "country=Finland; continent=Europe; east=23.244142978937408; north=59.84323612614262; start=2026; end=present"
+ },
+ {
+  "id": "a2985be05092b30a0f31bd06d1e609c806e54d9ac956e5e482d5b62bdf25110d",
+  "title": "[TEST CASE] Abstract: only \"Controlled Parameters\" data available",
+  "identifier": "a2985be05092b30a0f31bd06d1e609c806e54d9ac956e5e482d5b62bdf25110d",
+  "link": "test 15",
+  "type": "physical object",
+  "resulttype": [
+   "Other/Unknown material"
+  ],
+  "authors": "",
+  "year": "",
+  "language": "",
+  "oa_state": "",
+  "published_in": "",
+  "relation": "['http://mesocosm.org/wp-content/uploads/2017/03/Pristine-nature-reserve-for-experimental-set-ups-300x194.jpg', 'http://mesocosm.org/wp-content/uploads/2017/03/SYKE-MRC-field-mesocosm-work-300x282.jpg']",
+  "paper_abstract": "Facility description: description not available\n \nEquipment: description not available\n \nControlled parameters: Temperature, light, pH, pCO2, nutrient levels, community composition, turbidity\n \nGrand challenges: description not available\n \nResearch topics: description not available",
+  "subject_orig": "",
+  "coverage": "country=Finland; continent=Europe; east=23.24381800457344; north=59.84314308833054; start=2027; end=present"
+ },
+ {
+  "id": "49cd16ecec11b1faf580541b6100aad50513845040ae5dbe8dbcd3703b9ab51c",
+  "title": "[TEST CASE] Abstract: only \"Primary interests\" data available",
+  "identifier": "49cd16ecec11b1faf580541b6100aad50513845040ae5dbe8dbcd3703b9ab51c",
+  "link": "test 16",
+  "type": "physical object",
+  "resulttype": [
+   "Other/Unknown material"
+  ],
+  "authors": "",
+  "year": "",
+  "language": "",
+  "oa_state": "",
+  "published_in": "",
+  "relation": "['http://mesocosm.org/wp-content/uploads/2017/03/Pristine-nature-reserve-for-experimental-set-ups-300x194.jpg', 'http://mesocosm.org/wp-content/uploads/2017/03/SYKE-MRC-field-mesocosm-work-300x282.jpg']",
+  "paper_abstract": "Facility description: description not available\n \nEquipment: description not available\n \nControlled Parameters: description not available\n \nGrand challenges: Invasive species; eutrophication; climate change\n \nResearch topics: description not available",
+  "subject_orig": "",
+  "coverage": "country=Finland; continent=Europe; east=23.24423250240825; north=59.84309709127299; start=2027; end=present"
+ },
+ {
+  "id": "7aabb64bea48ee9cf7022d367787377a3a4c6955daf97340b92656010485e8d5",
+  "title": "[TEST CASE] Abstract: only \"Research topics\" data available",
+  "identifier": "7aabb64bea48ee9cf7022d367787377a3a4c6955daf97340b92656010485e8d5",
+  "link": "test 17",
+  "type": "physical object",
+  "resulttype": [
+   "Other/Unknown material"
+  ],
+  "authors": "",
+  "year": "",
+  "language": "",
+  "oa_state": "",
+  "published_in": "",
+  "relation": "['http://mesocosm.org/wp-content/uploads/2017/03/Pristine-nature-reserve-for-experimental-set-ups-300x194.jpg', 'http://mesocosm.org/wp-content/uploads/2017/03/SYKE-MRC-field-mesocosm-work-300x282.jpg']",
+  "paper_abstract": "Facility description: description not available\n \nEquipment: description not available\n \nControlled Parameters: description not available\n \nGrand challenges: description not available\n \nResearch topics: Environmental fate of pollutants (e.g. sorption transient storage and longitudinal dispersion) Assessment of adverse effects of pollutants on macroinvertebrates following pulse exposures Evaluation and establishment of aquatic-terrestrial model ecosystems to assess aquatic insect emergence-related pollutant transfer or effect translation from aquatic to adjacent terrestrial systems",
+  "subject_orig": "",
+  "coverage": "country=Finland; continent=Europe; east=23.24396134675932; north=59.84328963762287; start=2027; end=present"
+ },
+ {
+  "id": "15dac23c2f9d31f59b4d6d87e473977c0c55e2e1d9a05188d83e5c8ad6e8d8ca",
+  "title": "[TEST CASE] Non-latin characters: Greek",
+  "identifier": "15dac23c2f9d31f59b4d6d87e473977c0c55e2e1d9a05188d83e5c8ad6e8d8ca",
+  "link": "https://example.org/gr",
+  "type": "physical object",
+  "resulttype": [
+   "Other/Unknown material"
+  ],
+  "authors": "",
+  "year": "",
+  "language": "",
+  "oa_state": "",
+  "published_in": "",
+  "relation": "photo1.jpg",
+  "paper_abstract": "Facility description: Το κέντρο χρησιμοποιεί μεσόκοσμους για τη μελέτη των υδάτινων οικοσυστημάτων\n \nEquipment: Αισθητήρες θερμοκρασίας και pH\n \nControlled parameters: Θερμοκρασία; Διαλυμένο οξυγόνο\n \nGrand challenges: Υδροβιολογία\n \nResearch topics: Κλιματική αλλαγή; Θαλάσσια βιολογία",
+  "subject_orig": "Θαλάσσια οικολογία",
+  "coverage": "country=Ελλάδα; continent=Ευρώπη; east=12.1613; north=58.3712; start=; end="
+ },
+ {
+  "id": "e92cd7e5b5a7212327bf2ef9258625e73a8439a789ddce9cd51e816c9f309341",
+  "title": "[TEST CASE] Non-latin characters: Arabic",
+  "identifier": "e92cd7e5b5a7212327bf2ef9258625e73a8439a789ddce9cd51e816c9f309341",
+  "link": "https://example.org/ar",
+  "type": "physical object",
+  "resulttype": [
+   "Other/Unknown material"
+  ],
+  "authors": "",
+  "year": "",
+  "language": "",
+  "oa_state": "",
+  "published_in": "",
+  "relation": "photo2.jpg",
+  "paper_abstract": "Facility description: تُستخدم المِزْكُوسومات لدراسة التلوث المائي\n \nEquipment: مجسات حرارية\n \nControlled parameters: درجة الحرارة؛ الملوحة\n \nGrand challenges: البيئة المائية\n \nResearch topics: تغير المناخ؛ التنوع البيولوجي",
+  "subject_orig": "علم الأحياء الدقيقة",
+  "coverage": "country=مصر; continent=إفريقيا; east=12.161224071512324; north=58.371236476512365; start=; end="
+ },
+ {
+  "id": "b7c904b5c21772bc38877fe20afd9a39f7d86dc199c9f6e0c7491dd4c4f7b333",
+  "title": "[TEST CASE] Non-latin characters: Chinese",
+  "identifier": "b7c904b5c21772bc38877fe20afd9a39f7d86dc199c9f6e0c7491dd4c4f7b333",
+  "link": "https://example.org/zh",
+  "type": "physical object",
+  "resulttype": [
+   "Other/Unknown material"
+  ],
+  "authors": "",
+  "year": "",
+  "language": "",
+  "oa_state": "",
+  "published_in": "",
+  "relation": "photo3.jpg",
+  "paper_abstract": "Facility description: 用于研究淡水生态系统的中尺度实验系统\n \nEquipment: 传感器; 自动采样器\n \nControlled parameters: 温度; 溶解氧\n \nGrand challenges: 水生态学\n \nResearch topics: 藻类生长; 水质变化",
+  "subject_orig": "水化学",
+  "coverage": "country=中国; continent=亚洲; east=12.161312731342017; north=58.37112392479972; start=; end="
+ },
+ {
+  "id": "02f7e5d2ead0c942f2c932d8e4ee9cfcd60b78668370edbd8e72d94ee9a589c3",
+  "title": "[TEST CASE] Non-latin characters: Japanese",
+  "identifier": "02f7e5d2ead0c942f2c932d8e4ee9cfcd60b78668370edbd8e72d94ee9a589c3",
+  "link": "https://example.org/ja",
+  "type": "physical object",
+  "resulttype": [
+   "Other/Unknown material"
+  ],
+  "authors": "",
+  "year": "",
+  "language": "",
+  "oa_state": "",
+  "published_in": "",
+  "relation": "photo4.jpg",
+  "paper_abstract": "Facility description: 淡水生態系の研究用メソコスム施設\n \nEquipment: 測定装置\n \nControlled parameters: 温度; 溶存酸素\n \nGrand challenges: 淡水生態学\n \nResearch topics: 藻類動態; 水質分析",
+  "subject_orig": "生態学",
+  "coverage": "country=日本; continent=アジア; east=12.161408516934861; north=58.371274226142624; start=; end="
+ },
+ {
+  "id": "bc9a49d6f941c466be6f46794981c25a847a26643bb367a4bbff95be0a503e46",
+  "title": "[TEST CASE] Keywords: data unavailable",
+  "identifier": "bc9a49d6f941c466be6f46794981c25a847a26643bb367a4bbff95be0a503e46",
+  "link": "test 18",
+  "type": "physical object",
+  "resulttype": [
+   "Other/Unknown material"
+  ],
+  "authors": "",
+  "year": "",
+  "language": "",
+  "oa_state": "",
+  "published_in": "",
+  "relation": "['http://mesocosm.org/wp-content/uploads/2019/04/3-1024x769.png', 'http://mesocosm.org/wp-content/uploads/2019/04/2-1024x368.png', 'http://mesocosm.org/wp-content/uploads/2019/04/1.png']",
+  "paper_abstract": "Facility description: LEAP is based at McGill University’s Gault Reserve It is a facility designed for well-replicated experiments addressing the evolution and ecology of aquatic ecosystems exposed to environmental stressors. It is an array of 96 mesocosm tanks, each containing ~1000 liters of water.  Water and organisms (excluding fish) are piped to LEAP directly from a Lake Hertel over a kilometer away. Lake Hertel is a protected lake not exposed to contaminants. The plumbing at LEAP allows for a semi-continuous flow of lake water and organisms into and out of the tanks throughout the season. These communities are natural analogues of the freshwater ponds and lakes so common in Canadian landscapes. The onsite lab allows us to rapidly process samples (see images below). An outflow reservoir can hold the outflow from all mesocosms so that decontamination can be done, if needed\n \nEquipment: Fluoroprobe Microscopes Drone\n \nControlled parameters: Contaminants such as pH and herbicide concentrations\n \nGrand challenges: Experimental research addressing how complex aquatic communities respond to environmental stressors\n \nResearch topics: Freshwater ecology and evolution Limnology Ecosystem processes",
+  "subject_orig": "",
+  "coverage": "country=Canada; continent=North America; east=-73.1578; north=45.5368; start=2016; end=present"
+ },
+ {
+  "id": "71794e32f61f7010990beca3cca4718fdcf9859a7acf78c1d05ccae83c71be16",
+  "title": "[TEST CASE] Keywords: data available",
+  "identifier": "71794e32f61f7010990beca3cca4718fdcf9859a7acf78c1d05ccae83c71be16",
+  "link": "test 19",
+  "type": "physical object",
+  "resulttype": [
+   "Other/Unknown material"
+  ],
+  "authors": "",
+  "year": "",
+  "language": "",
+  "oa_state": "",
+  "published_in": "",
+  "relation": "['http://mesocosm.org/wp-content/uploads/2019/04/3-1024x769.png', 'http://mesocosm.org/wp-content/uploads/2019/04/2-1024x368.png', 'http://mesocosm.org/wp-content/uploads/2019/04/1.png']",
+  "paper_abstract": "Facility description: LEAP is based at McGill University’s Gault Reserve It is a facility designed for well-replicated experiments addressing the evolution and ecology of aquatic ecosystems exposed to environmental stressors. It is an array of 96 mesocosm tanks, each containing ~1000 liters of water.  Water and organisms (excluding fish) are piped to LEAP directly from a Lake Hertel over a kilometer away. Lake Hertel is a protected lake not exposed to contaminants. The plumbing at LEAP allows for a semi-continuous flow of lake water and organisms into and out of the tanks throughout the season. These communities are natural analogues of the freshwater ponds and lakes so common in Canadian landscapes. The onsite lab allows us to rapidly process samples (see images below). An outflow reservoir can hold the outflow from all mesocosms so that decontamination can be done, if needed\n \nEquipment: Fluoroprobe Microscopes Drone\n \nControlled parameters: Contaminants such as pH and herbicide concentrations\n \nGrand challenges: Experimental research addressing how complex aquatic communities respond to environmental stressors\n \nResearch topics: Freshwater ecology and evolution Limnology Ecosystem processes",
+  "subject_orig": "Aquatic plant",
+  "coverage": "country=Canada; continent=North America; east=-73.15785684617272; north=45.53683647651236; start=2016; end=present"
+ }
+]
