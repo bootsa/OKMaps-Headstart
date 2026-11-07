@@ -1,5 +1,14 @@
 # Changelog
 
+## [7.1.26](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.25...v7.1.26) (2026-11-07)
+
+
+### Features
+
+* add configurable place sources for geo maps, with AQUANAVI as one preset ([64c23f3](https://github.com/bootsa/OKMaps-Headstart/commit/64c23f36d7ae855c1ae90f910105e0fba64187a1))
+* add configurable place sources for geo maps, with AQUANAVI as one preset ([f926cdb](https://github.com/bootsa/OKMaps-Headstart/commit/f926cdbad7176a86bae35fe1e239bd4ad7d1f771))
+* add configurable place sources for geo maps, with AQUANAVI as one preset ([#66](https://github.com/bootsa/OKMaps-Headstart/issues/66)) ([64c23f3](https://github.com/bootsa/OKMaps-Headstart/commit/64c23f36d7ae855c1ae90f910105e0fba64187a1))
+
 ## [7.1.25](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.24...v7.1.25) (2026-11-07)
 
 
