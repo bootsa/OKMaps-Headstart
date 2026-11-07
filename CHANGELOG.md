@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.1.14](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.13...v7.1.14) (2026-11-07)
+
+
+### Features
+
+* **ui-svelte:** add VIPER, CoVis, GoTriple and Google Sheets info pages, and the German and other interface languages ([cf0692c](https://github.com/bootsa/OKMaps-Headstart/commit/cf0692ce73faa11e132572016f541986f2a165d4))
+* **ui-svelte:** add VIPER, CoVis, GoTriple and Google Sheets info pages, and the German and other interface languages ([0af289e](https://github.com/bootsa/OKMaps-Headstart/commit/0af289e1722b363d8ee0c44d1560fe022fdb37f8))
+
 ## [7.1.13](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.12...v7.1.13) (2026-11-07)
 
 
