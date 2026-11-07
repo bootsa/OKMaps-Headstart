@@ -95,3 +95,7 @@ html[data-scheme="dark"] .toolbar a {
 html[data-scheme="dark"] .okm-new .toolbar {
 	background: none;
 }
+/* An embedded map (?embed=true) shows no page links. */
+.okm-embedded .toolbar {
+	display: none;
+}

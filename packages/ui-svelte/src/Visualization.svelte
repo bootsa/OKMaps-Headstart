@@ -16,6 +16,7 @@
 	import type { MapState } from "./data/state.svelte";
 	import Header from "./header/Header.svelte";
 	import List from "./list/List.svelte";
+	import { activePlugins } from "./plugins";
 	import KnowledgeMap from "./views/knowledge-map/KnowledgeMap.svelte";
 	import { savedTheme } from "./views/knowledge-map/themes";
 	import ThemePicker from "./views/knowledge-map/themes/ThemePicker.svelte";
@@ -64,6 +65,7 @@
 
 	const reduceMotion = typeof matchMedia === "function" && matchMedia("(prefers-reduced-motion: reduce)").matches;
 	const count = $derived(map.listed.length);
+	const overlays = $derived(activePlugins().flatMap((p) => p.overlays ?? []));
 </script>
 
 <svelte:window bind:innerHeight />
@@ -73,6 +75,9 @@
 	<div class="stage">
 		<div class="map">
 			<KnowledgeMap state={map} />
+			{#each overlays as overlay, i (i)}
+				<overlay.component state={map} {...overlay.props} />
+			{/each}
 			<div class="settings">
 				<SettingsMenu>
 					<ThemePicker state={map} />

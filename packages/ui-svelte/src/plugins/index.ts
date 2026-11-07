@@ -17,12 +17,23 @@ import type { ContextItem } from "../header/context";
 export interface MapAction {
 	id: string;
 	label: string;
+	/** Tooltip. */
+	title?: string;
 	/** Hidden when this returns false. */
 	show?(map: MapState): boolean;
-	run(map: MapState): void;
+	/** A link to open in a new tab instead of running `run`. */
+	href?(map: MapState): string;
+	run?(map: MapState): void;
 }
 
-/** A button on a list entry. */
+/** Something drawn over the map, e.g. a notice that an update is available. */
+export interface Overlay {
+	// biome-ignore lint/suspicious/noExplicitAny: each overlay takes its own props
+	component: Component<any>;
+	/** Passed to the component along with `state`. */
+	props?: Record<string, unknown>;
+}
+
 /** A button under a paper in the list ("PDF", "Cite as", "Export"). */
 export interface PaperAction {
 	id: string;
@@ -62,6 +73,7 @@ export interface OkmPlugin {
 	/** Modals by id; map.openModal(id, data) shows one. */
 	modals?: Record<string, { title(map: MapState, data: unknown): string; component: Component<ModalProps<never>> }>;
 	infoPages?: InfoPage[];
+	overlays?: Overlay[];
 }
 
 const plugins = new Map<string, OkmPlugin>();

@@ -62,13 +62,25 @@ function offerToggle(useNew: boolean) {
 	link.hidden = false;
 }
 
-async function draw(map: SharedMap) {
+const useNew = new URLSearchParams(location.search).get("ui") === "new";
+
+/**
+ * Draws the map. `sharedId` gives the map's share link (publishing it on
+ * first use), for the new interface's Share and Embed buttons.
+ */
+async function draw(map: SharedMap, sharedId?: () => Promise<string>) {
 	document.title = `${map.title} - Open Knowledge Maps`;
-	const useNew = new URLSearchParams(location.search).get("ui") === "new";
 	offerToggle(useNew);
 	if (useNew) {
 		const { drawNew } = await import("./svelte-map.ts");
-		return drawNew($("visualization"), map as unknown as Parameters<typeof drawNew>[1]);
+		const shareLink = sharedId
+			? async () => {
+					const url = new URL(shareUrl(await sharedId()));
+					url.searchParams.set("ui", "new");
+					return url.href;
+				}
+			: undefined;
+		return drawNew($("visualization"), map as unknown as Parameters<typeof drawNew>[1], { shareLink });
 	}
 	const body = JSON.stringify({ context: map.context, data: JSON.stringify(map.documents) });
 	const file = URL.createObjectURL(new Blob([body], { type: "application/json" }));
@@ -77,7 +89,15 @@ async function draw(map: SharedMap) {
 	window.headstart!.start();
 }
 
-/** Share button: publishes the map once and shows its link. */
+/** The map's share id, publishing it to the gateway the first time. */
+async function publishOnce(saved: SavedMap): Promise<string> {
+	if (saved.sharedId) return saved.sharedId;
+	saved.sharedId = await publishMap(settings.gatewayUrl, saved);
+	await saveMap(saved);
+	return saved.sharedId;
+}
+
+/** Share button (current look): publishes the map once and shows its link. */
 function offerShare(saved: SavedMap) {
 	const button = $<HTMLButtonElement>("share");
 	const panel = $("share-panel");
@@ -93,9 +113,7 @@ function offerShare(saved: SavedMap) {
 		button.disabled = true;
 		button.textContent = "Sharing…";
 		try {
-			saved.sharedId = await publishMap(settings.gatewayUrl, saved);
-			await saveMap(saved);
-			show(saved.sharedId);
+			show(await publishOnce(saved));
 		} catch (err) {
 			showMessage(`The map could not be shared: ${err instanceof Error ? err.message : err}`);
 		} finally {
@@ -148,7 +166,7 @@ async function main() {
 		if (!map) return showMessage("This shared map does not exist.");
 		const safe = neutralise(map, domDecode);
 		offerSave(safe, shared);
-		return draw(safe);
+		return draw(safe, async () => shared);
 	}
 	const id = params.get("id");
 	withoutPodLogin();
@@ -159,8 +177,10 @@ async function main() {
 		return;
 	}
 	if (!saved) return showMessage("This map is not saved in this browser.");
-	if (settings.gatewayUrl) offerShare(saved);
-	return draw(saved);
+	if (!settings.gatewayUrl) return draw(saved);
+	// The new look has its own Share and Embed buttons.
+	if (!useNew) offerShare(saved);
+	return draw(saved, () => publishOnce(saved));
 }
 
 main().catch((err) => showMessage(`The map could not be shown: ${err instanceof Error ? err.message : err}`));
