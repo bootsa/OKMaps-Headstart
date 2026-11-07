@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.1.29](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.28...v7.1.29) (2026-11-07)
+
+
+### Features
+
+* add a settings page for metadata sources and several named places to keep maps ([0f09987](https://github.com/bootsa/OKMaps-Headstart/commit/0f099873ef654b24eb99c6eb6b192a442035709d))
+* add a settings page for metadata sources and several named places to keep maps ([bc6f1c5](https://github.com/bootsa/OKMaps-Headstart/commit/bc6f1c5c6fe1aae0ae99cb48410e258c5ec2cd4c))
+
 ## [7.1.28](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.27...v7.1.28) (2026-11-07)
 
 
