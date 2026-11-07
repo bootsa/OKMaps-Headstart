@@ -1,5 +1,14 @@
 # Changelog
 
+## [7.1.23](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.22...v7.1.23) (2026-11-07)
+
+
+### Features
+
+* leave map views a page does not register out of its download ([1f95e88](https://github.com/bootsa/OKMaps-Headstart/commit/1f95e88821da0f9dc256793ea68de6a8f618b2cd))
+* leave map views a page does not register out of its download ([b8c2a92](https://github.com/bootsa/OKMaps-Headstart/commit/b8c2a92e5db294d4a82d7e14db66d55cb8576d73))
+* leave map views a page does not register out of its download ([#60](https://github.com/bootsa/OKMaps-Headstart/issues/60)) ([1f95e88](https://github.com/bootsa/OKMaps-Headstart/commit/1f95e88821da0f9dc256793ea68de6a8f618b2cd))
+
 ## [7.1.22](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.21...v7.1.22) (2026-11-07)
 
 
