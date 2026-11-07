@@ -89,8 +89,10 @@ function readRequest(): SearchRequest {
 		to: s("to"),
 		sorting: s("sorting") as "most-relevant" | "most-recent",
 	};
-	if (service === "base") return { service, ...common, document_types: f.getAll("document_types").map(String) };
-	return { service, ...common };
+	const vis_type = s("vis_type") === "timeline" ? ("timeline" as const) : undefined;
+	const withView = vis_type ? { ...common, vis_type } : common;
+	if (service === "base") return { service, ...withView, document_types: f.getAll("document_types").map(String) };
+	return { service, ...withView };
 }
 
 function titleOf(req: SearchRequest): string {

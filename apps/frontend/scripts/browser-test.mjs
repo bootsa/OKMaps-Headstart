@@ -215,6 +215,37 @@ await makeMap(async () => {
 	await page.check('input[value="base"]');
 	await page.fill("#q", "digital education");
 }, "base");
+// A streamgraph, made and then opened from a share link (the gateway keeps
+// no streams, so the map page counts the keywords again).
+{
+	await page.goto(home);
+	await page.check('input[value="base"]');
+	await page.selectOption("#vis_type", "timeline");
+	await page.fill("#q", "digital education");
+	await page.click("#submit");
+	await page.waitForURL(/map\.html\?id=/, { timeout: 60_000 });
+	const streams = async (p) => {
+		await p.waitForSelector("#visualization .okm-streamgraph .stream", { timeout: 30_000 });
+		return p.$$eval("#visualization .okm-streamgraph .stream", (s) => s.length);
+	};
+	const made = await streams(page);
+	await page.screenshot({ path: path.join(shots, "streamgraph.png") });
+	const sharedSg = await shareLink(page);
+	const viewer = await browser.newPage({ viewport: { width: 1280, height: 860 } });
+	viewer.on("pageerror", (e) => errors.push(e.message));
+	await viewer.route(/^https?:\/\/(?!127\.0\.0\.1)/, answer);
+	await viewer.goto(sharedSg);
+	const shared = await streams(viewer);
+	await viewer.close();
+	console.log(JSON.stringify({ map: "streamgraph", streams: made, sharedStreams: shared }));
+	if (made === 0 || shared !== made) throw new Error("streamgraph: streams missing");
+	// Delete it again (it is the newest), so the counts below stay as they were.
+	await page.goto(home);
+	await page.waitForSelector("#maps li");
+	const before = await page.$$eval("#maps li", (l) => l.length);
+	await page.click("#maps li .delete");
+	await page.waitForFunction((n) => document.querySelectorAll("#maps li").length === n, before - 1);
+}
 await makeMap(async () => {
 	await page.check('input[value="openaire"]');
 	await page.fill("#project_id", "643410");

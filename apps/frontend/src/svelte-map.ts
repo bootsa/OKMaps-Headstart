@@ -15,6 +15,7 @@ import {
 	Visualization,
 } from "@okmaps/ui-svelte";
 import { mount } from "svelte";
+import { visTypeOf } from "./vis-type.ts";
 
 // Every view and plugin the package ships: the app serves all kinds of maps.
 registerCoreViews();
@@ -40,7 +41,7 @@ export function drawMap(target: HTMLElement, record: MapRecord, options: DrawOpt
 	);
 	document.body.classList.toggle("okm-embedded", embedded);
 	target.classList.add("okmaps", "okm-page");
-	const state = new MapState(record, 600);
+	const state = new MapState(record, 600, { visType: visTypeOf(record) });
 	// The page's own links (share, save, back to search) go in the settings
 	// panel; an embedded map shows none of them.
 	const menu = embedded ? null : document.querySelector<HTMLElement>(".toolbar");

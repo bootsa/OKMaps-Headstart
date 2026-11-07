@@ -66,6 +66,21 @@ describe("published maps", () => {
 			"each document needs x and y",
 		]);
 		expect(await bad({ ...map, title: 5 })).toEqual([400, "title must be a string"]);
+		expect(await bad({ ...map, documents: [{ area: "a", x: 1, y: 1 }] })).toEqual([400, "each document needs an id"]);
+	});
+
+	it("take streamgraphs, whose records have no place on a chart", async () => {
+		const { post, get } = setup();
+		const timeline = {
+			...map,
+			context: { ...map.context, params: JSON.stringify({ vis_type: "timeline" }) },
+			documents: [{ id: "1", title: "A", year: "2020", subject: "warming" }],
+		};
+		const res = await post(timeline);
+		expect(res.status).toBe(201);
+		expect(await (await get((await res.json()).id)).json()).toEqual(timeline);
+		const overview = { ...timeline, context: map.context };
+		expect((await post(overview)).status).toBe(400);
 	});
 
 	it("refuse large maps and too many publications", async () => {

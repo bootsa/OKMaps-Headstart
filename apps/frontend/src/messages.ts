@@ -11,6 +11,8 @@ const MESSAGES: Record<string, string> = {
 	"API error: timeout": "The search took too long. Please try again.",
 	"project id or funder id wrong": "No project was found with this grant number and funder.",
 	"not enough results for project": "This project has no publications or datasets in OpenAIRE yet.",
+	"not enough keywords":
+		"The results don't share enough keywords over the years to make a streamgraph. Try broader terms or a knowledge map.",
 	"API error: OpenAIRE not reachable": "OpenAIRE can't be reached right now. Please try again in a few minutes.",
 };
 

@@ -1,6 +1,6 @@
 import { loadDefaultResources } from "@okmaps/pipeline";
 import { describe, expect, it } from "vitest";
-import { buildMap, type SearchRequest, type Stage, timestamp } from "../src/search.ts";
+import { buildMap, type SearchRequest, type Stage, timestamp, visTypeOf } from "../src/search.ts";
 import { fakeFetch, GATEWAY } from "./fake-net.ts";
 
 const settings = { gatewayUrl: GATEWAY, fetch: fakeFetch, crossrefMailto: "maps@example.org" };
@@ -58,6 +58,38 @@ describe("buildMap", () => {
 		expectLaidOut(map.documents);
 	});
 
+	it("makes a BASE streamgraph", async () => {
+		const { map } = await make({
+			service: "base",
+			q: "digital education",
+			from: "1665-01-01",
+			to: "2024-01-01",
+			sorting: "most-relevant",
+			document_types: ["121"],
+			vis_type: "timeline",
+		});
+		expect(visTypeOf(map)).toBe("timeline");
+		const streams = map.streamgraph!.subject;
+		expect(streams.length).toBeGreaterThan(0);
+		const ids = new Set(streams.flatMap((s) => s.ids_overall));
+		expect(new Set(map.documents.map((d) => d.id))).toEqual(ids);
+		// No layout: the records are drawn as streams.
+		for (const d of map.documents) expect(d.x).toBeUndefined();
+	});
+
+	it("says when the results give no streamgraph", async () => {
+		// The PubMed fixture has five records, too few keywords in common.
+		const err = await make({
+			service: "pubmed",
+			q: "ecology",
+			from: "2016-01-01",
+			to: "2025-01-01",
+			sorting: "most-relevant",
+			vis_type: "timeline",
+		}).catch((e) => e);
+		expect(err.reasons).toEqual(["not enough keywords"]);
+	});
+
 	it("makes an OpenAIRE project map with the project details in the context", async () => {
 		const { map } = await make({ service: "openaire", project_id: "643410", funder: "EC" });
 		expectLaidOut(map.documents);
@@ -74,6 +106,13 @@ describe("buildMap", () => {
 		).catch((e) => e);
 		expect(err.reasons).toEqual(["project id or funder id wrong"]);
 	});
+});
+
+it("reads the view from a map's params", () => {
+	const ctx = (params: string) => ({ context: { params } });
+	expect(visTypeOf(ctx('{"vis_type":"timeline"}'))).toBe("timeline");
+	expect(visTypeOf(ctx("{}"))).toBe("overview");
+	expect(visTypeOf(ctx("not json"))).toBe("overview");
 });
 
 it("formats timestamps like the server", () => {
