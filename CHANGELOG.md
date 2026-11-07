@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.1.15](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.14...v7.1.15) (2026-11-07)
+
+
+### Features
+
+* **ui-svelte:** show ORCID researcher maps with the researcher's name, picture, job, details and metrics ([e92aa46](https://github.com/bootsa/OKMaps-Headstart/commit/e92aa4664b1501f7afd1b5aa9381a98163c890a3))
+* **ui-svelte:** show ORCID researcher maps with the researcher's name, picture, job, details and metrics ([f08c9c2](https://github.com/bootsa/OKMaps-Headstart/commit/f08c9c21de289b05716c7db9c0ff05f1a564dcb5))
+
 ## [7.1.14](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.13...v7.1.14) (2026-11-07)
 
 
