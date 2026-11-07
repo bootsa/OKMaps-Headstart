@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.1.32](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.31...v7.1.32) (2026-11-07)
+
+
+### Bug Fixes
+
+* keep the stream name readable in the list header on narrow screens ([030e1dd](https://github.com/bootsa/OKMaps-Headstart/commit/030e1dd46c26478c73b1c289f8f9e61f92bb0706))
+* keep the stream name readable in the list header on narrow screens ([892420c](https://github.com/bootsa/OKMaps-Headstart/commit/892420c781cc82010e95bf1649a683fe26b1f46a))
+
 ## [7.1.31](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.30...v7.1.31) (2026-11-07)
 
 
