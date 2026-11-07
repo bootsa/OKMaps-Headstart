@@ -1,5 +1,14 @@
 # Changelog
 
+## [7.1.27](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.26...v7.1.27) (2026-11-07)
+
+
+### Features
+
+* make geo maps from place sources such as the AQUANAVI facilities on the start page ([1bc2aa2](https://github.com/bootsa/OKMaps-Headstart/commit/1bc2aa2afbd19107ad684c593fddab4ea30c1947))
+* make geo maps from place sources such as the AQUANAVI facilities on the start page ([81e9ff2](https://github.com/bootsa/OKMaps-Headstart/commit/81e9ff2400df10f8ad9227e76e46cf157d929d45))
+* make geo maps from place sources such as the AQUANAVI facilities on the start page ([#68](https://github.com/bootsa/OKMaps-Headstart/issues/68)) ([1bc2aa2](https://github.com/bootsa/OKMaps-Headstart/commit/1bc2aa2afbd19107ad684c593fddab4ea30c1947))
+
 ## [7.1.26](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.25...v7.1.26) (2026-11-07)
 
 
