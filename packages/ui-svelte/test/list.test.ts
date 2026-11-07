@@ -150,3 +150,34 @@ describe("Visualization", () => {
 		expect(entries(container)).toHaveLength(state.map.areas[0].papers.length);
 	});
 });
+
+describe("layout", () => {
+	it("opens the list drawer, closes it, and keeps the settings behind a button", async () => {
+		const state = new MapState(record, 600);
+		const { container } = render(Visualization, { state, height: 600 });
+		flushSync();
+		expect(container.querySelector(".okm-visualization")).toHaveStyle({ height: "600px" });
+		state.listVisible = false;
+		flushSync();
+		expect(container.querySelector(".drawer")).toBeNull();
+		await fireEvent.click(screen.getByRole("button", { name: /List/ }));
+		expect(state.listVisible).toBe(true);
+
+		const settings = screen.getByRole("button", { name: "Display settings" });
+		expect(screen.queryByRole("button", { name: "Dark mode" })).toBeNull();
+		await fireEvent.click(settings);
+		expect(settings).toHaveAttribute("aria-expanded", "true");
+		expect(screen.getByRole("button", { name: "Dark mode" })).toBeInTheDocument();
+		await fireEvent.keyDown(screen.getByRole("button", { name: "Dark mode" }), { key: "Escape" });
+		expect(settings).toHaveAttribute("aria-expanded", "false");
+		expect(document.activeElement).toBe(settings);
+		window.localStorage.clear();
+	});
+
+	it("puts the page's own links in the settings panel", () => {
+		const nav = document.createElement("nav");
+		nav.innerHTML = '<a href="./">Search and your maps</a>';
+		render(Visualization, { state: new MapState(record, 600), height: 600, menu: nav });
+		expect(nav.closest(".okm-settings")).not.toBeNull();
+	});
+});
