@@ -141,22 +141,24 @@
 		</div>
 	{/if}
 
-	<p class="row area">
-		<span class="label">{t(s, "area")}:</span>
-		<button
-			type="button"
-			title={paper.area}
-			onclick={() => map.zoomIn(paper.areaUri)}
-			onpointerenter={() => {
-				if (map.zoomedArea === null) map.hoveredArea = paper.areaUri;
-			}}
-			onpointerleave={() => {
-				if (map.hoveredArea === paper.areaUri) map.hoveredArea = null;
-			}}
-		>
-			{paper.area}
-		</button>
-	</p>
+	{#if map.config.visType !== "timeline"}
+		<p class="row area">
+			<span class="label">{t(s, "area")}:</span>
+			<button
+				type="button"
+				title={paper.area}
+				onclick={() => map.zoomIn(paper.areaUri)}
+				onpointerenter={() => {
+					if (map.zoomedArea === null) map.hoveredArea = paper.areaUri;
+				}}
+				onpointerleave={() => {
+					if (map.hoveredArea === paper.areaUri) map.hoveredArea = null;
+				}}
+			>
+				{paper.area}
+			</button>
+		</p>
+	{/if}
 </article>
 
 <style>

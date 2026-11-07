@@ -21,6 +21,7 @@
 	import KnowledgeMap from "./views/knowledge-map/KnowledgeMap.svelte";
 	import { savedTheme } from "./views/knowledge-map/themes";
 	import ThemePicker from "./views/knowledge-map/themes/ThemePicker.svelte";
+	import Streamgraph from "./views/streamgraph/Streamgraph.svelte";
 
 	interface Props {
 		state: MapState;
@@ -61,7 +62,7 @@
 
 	// Picking a paper on the map of a narrow screen shows it in the list.
 	$effect(() => {
-		if (map.selectedPaper && !docked) untrack(() => (map.listVisible = true));
+		if ((map.selectedPaper || map.selectedStream) && !docked) untrack(() => (map.listVisible = true));
 	});
 
 	const reduceMotion = typeof matchMedia === "function" && matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -75,7 +76,11 @@
 	<div class="head" bind:clientHeight={headerHeight}><Header state={map} /></div>
 	<div class="stage">
 		<div class="map">
-			<KnowledgeMap state={map} />
+			{#if map.config.visType === "timeline"}
+				<Streamgraph state={map} width={mapWidth} height={stageHeight} />
+			{:else}
+				<KnowledgeMap state={map} />
+			{/if}
 			{#each overlays as overlay, i (i)}
 				<overlay.component state={map} {...overlay.props} />
 			{/each}

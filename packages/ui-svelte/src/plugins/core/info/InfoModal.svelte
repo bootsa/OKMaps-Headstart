@@ -1,11 +1,11 @@
 <!-- @component The "More information" modal: the best info page for this map. -->
 <script lang="ts">
 	import { findInfoPage, type ModalProps } from "../../index";
-	import KnowledgeMapInfo from "./KnowledgeMapInfo.svelte";
+	import MapInfo from "./MapInfo.svelte";
 
 	let { state: map }: ModalProps = $props();
 	const page = $derived(findInfoPage(map));
-	const Page = $derived(page?.component ?? KnowledgeMapInfo);
+	const Page = $derived(page?.component ?? MapInfo);
 </script>
 
 <div class="okm-info">
