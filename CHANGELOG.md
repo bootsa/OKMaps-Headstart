@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.1.33](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.32...v7.1.33) (2026-11-07)
+
+
+### Bug Fixes
+
+* keep the map title readable on narrow screens ([310b7d4](https://github.com/bootsa/OKMaps-Headstart/commit/310b7d408d330765021c3bd5ea39b1e1b33496bf))
+* keep the map title readable on narrow screens ([34a30e7](https://github.com/bootsa/OKMaps-Headstart/commit/34a30e7e452f1ea838b7310663682337a7bc1710))
+
 ## [7.1.32](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.31...v7.1.32) (2026-11-07)
 
 
