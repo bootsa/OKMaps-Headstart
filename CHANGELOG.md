@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.1.20](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.19...v7.1.20) (2026-11-07)
+
+
+### Features
+
+* show every map in the new interface and retire the old one ([52d8bf3](https://github.com/bootsa/OKMaps-Headstart/commit/52d8bf303a1509896f9435b086b208a590dfb4ea))
+* show every map in the new interface and retire the old one ([903935c](https://github.com/bootsa/OKMaps-Headstart/commit/903935cd959e79521b98f02658b71e8a90a31bea))
+
 ## [7.1.19](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.18...v7.1.19) (2026-11-07)
 
 
