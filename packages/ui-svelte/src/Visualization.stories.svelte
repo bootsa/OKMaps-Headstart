@@ -20,9 +20,7 @@
 	registerCorePlugins();
 	registerLanguages();
 	registerPlugin(orcidPlugin());
-	registerPlugin(
-		creditPlugin({ faqs: "https://openknowledgemaps.org/faq", create: "https://openknowledgemaps.org/" }),
-	);
+	registerPlugin(creditPlugin({ faqs: "https://openknowledgemaps.org/faq", create: "https://openknowledgemaps.org/" }));
 	const record = base as unknown as MapRecord;
 	const state = new MapState(
 		{
