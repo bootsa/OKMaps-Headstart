@@ -30,50 +30,56 @@
 </script>
 
 <header class="okm-header">
-	{#if actions.length}
-		<div class="actions">
-			{#each actions as action (action.id)}
-				{#if action.href}
-					<Button variant="secondary" size="sm" href={action.href(map)} newTab title={action.title}
-						>{action.label}</Button
+	<!-- wrap-reverse: when the title and the buttons do not fit side by side,
+	     the buttons move to a row above the title instead of squeezing it. -->
+	<div class="top">
+		<div class="main">
+			{#if image}
+				{#if image.href}
+					<a
+						class="author-image"
+						href={image.href}
+						target="_blank"
+						rel="noreferrer"
+						title="Open the researcher's profile in a new tab"
 					>
+						<img src={image.src ?? defaultImage} alt="The researcher">
+					</a>
 				{:else}
-					<Button variant="secondary" size="sm" title={action.title} onclick={() => action.run?.(map)}
-						>{action.label}</Button
-					>
+					<span class="author-image"><img src={defaultImage} alt=""></span>
 				{/if}
-			{/each}
-		</div>
-	{/if}
-	{#if image}
-		{#if image.href}
-			<a
-				class="author-image"
-				href={image.href}
-				target="_blank"
-				rel="noreferrer"
-				title="Open the researcher's profile in a new tab"
-			>
-				<img src={image.src ?? defaultImage} alt="The researcher">
-			</a>
-		{:else}
-			<span class="author-image"><img src={defaultImage} alt=""></span>
-		{/if}
-	{/if}
-	<h1 class="title">
-		{#if title.kind === "basic"}
-			{title.text}
-		{:else if title.kind === "standard"}
-			{title.label} <span class="query" title={title.full}>{title.text}</span>
-		{:else if title.kind === "custom"}
-			{title.label} <span class="query" title={title.tooltip}>{title.text}</span>
-		{:else}
-			Overview of <span class="query" title={title.full}>{title.text}</span>
-			{#if title.projectId}
-				<span class="project-id">({title.projectId})</span>
 			{/if}
+			<h1 class="title">
+				{#if title.kind === "basic"}
+					{title.text}
+				{:else if title.kind === "standard"}
+					{title.label} <span class="query" title={title.full}>{title.text}</span>
+				{:else if title.kind === "custom"}
+					{title.label} <span class="query" title={title.tooltip}>{title.text}</span>
+				{:else}
+					Overview of <span class="query" title={title.full}>{title.text}</span>
+					{#if title.projectId}
+						<span class="project-id">({title.projectId})</span>
+					{/if}
+				{/if}
+			</h1>
+		</div>
+		{#if actions.length}
+			<div class="actions">
+				{#each actions as action (action.id)}
+					{#if action.href}
+						<Button variant="secondary" size="sm" href={action.href(map)} newTab title={action.title}
+							>{action.label}</Button
+						>
+					{:else}
+						<Button variant="secondary" size="sm" title={action.title} onclick={() => action.run?.(map)}
+							>{action.label}</Button
+						>
+					{/if}
+				{/each}
+			</div>
 		{/if}
-	</h1>
+	</div>
 	{#if items.length || hasInfo}
 		<p class="context">
 			{#each items as item (item.id)}
@@ -127,12 +133,25 @@
 		overflow-wrap: anywhere;
 	}
 
+	.top {
+		display: flex;
+		flex-wrap: wrap-reverse;
+		align-items: flex-end;
+		gap: var(--space-2) var(--space-4);
+	}
+
+	.main {
+		display: flow-root;
+		flex: 1 1 14rem;
+		min-width: 0;
+	}
+
 	.actions {
 		display: flex;
 		flex-wrap: wrap;
+		justify-content: flex-end;
 		gap: var(--space-2);
-		float: right;
-		margin: 0 0 var(--space-2) var(--space-4);
+		margin-inline-start: auto;
 	}
 
 	.info {

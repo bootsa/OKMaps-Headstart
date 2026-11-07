@@ -276,9 +276,15 @@ await makeMap(async () => {
 				title: box(".toggle").top,
 			};
 		});
+		// The page title, too, keeps its width; the Cite/Share/Embed buttons go above it.
+		const pageTitle = await phone.$eval(".okm-header", (h) => ({
+			title: h.querySelector(".title").getBoundingClientRect().top,
+			buttons: h.querySelector(".actions").getBoundingClientRect().bottom,
+		}));
 		await phone.screenshot({ path: path.join(shots, `streamgraph-phone-${colorScheme}.png`) });
 		await phone.close();
-		console.log(JSON.stringify({ streamgraphPhone: { colorScheme, ...header } }));
+		console.log(JSON.stringify({ streamgraphPhone: { colorScheme, ...header, pageTitle } }));
+		if (pageTitle.buttons > pageTitle.title + 1) throw new Error("streamgraph: page title squashed on a phone");
 		if (header.heading < 60 || header.back > header.title + 1)
 			throw new Error("streamgraph: stream title squashed on a phone");
 	}
