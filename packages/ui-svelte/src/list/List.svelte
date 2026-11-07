@@ -18,9 +18,13 @@
 		state: MapState;
 		/** Search debounce in ms. */
 		debounce?: number;
+		/** Offer "Full height" / "Fit to screen" (not when the list sits in a drawer). */
+		fitToggle?: boolean;
+		/** Shows a close button that calls this (the list in a drawer). */
+		onclose?: () => void;
 	}
 
-	let { state: map, debounce = 300 }: Props = $props();
+	let { state: map, debounce = 300, fitToggle = true, onclose }: Props = $props();
 
 	const s = $derived(map.strings);
 	const papers = $derived(map.listed);
@@ -72,6 +76,11 @@
 		{#if map.zoomedArea !== null}
 			<Button variant="secondary" size="sm" onclick={() => map.zoomOut()}>{t(s, "backlink")}</Button>
 		{/if}
+		{#if onclose}
+			<button type="button" class="close" aria-label="Close the list" title="Close the list" onclick={onclose}>
+				×
+			</button>
+		{/if}
 	</div>
 
 	{#if map.listVisible}
@@ -114,22 +123,26 @@
 				{#if map.selectedPaper}
 					<Button variant="secondary" size="sm" onclick={() => map.deselectPaper()}>{t(s, "backlink_list")}</Button>
 				{/if}
-				<button
-					type="button"
-					class="fit-toggle"
-					aria-pressed={!map.listFit}
-					title={map.listFit ? "Show the whole list; the page scrolls" : "Fit the list to the screen; the list scrolls"}
-					onclick={() => (map.listFit = !map.listFit)}
-				>
-					<svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">
-						{#if map.listFit}
-							<path d="M7 1v12M3 9l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" />
-						{:else}
-							<path d="M7 13V1M3 5l4-4 4 4" fill="none" stroke="currentColor" stroke-width="1.6" />
-						{/if}
-					</svg>
-					{map.listFit ? "Full height" : "Fit to screen"}
-				</button>
+				{#if fitToggle}
+					<button
+						type="button"
+						class="fit-toggle"
+						aria-pressed={!map.listFit}
+						title={map.listFit
+							? "Show the whole list; the page scrolls"
+							: "Fit the list to the screen; the list scrolls"}
+						onclick={() => (map.listFit = !map.listFit)}
+					>
+						<svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">
+							{#if map.listFit}
+								<path d="M7 1v12M3 9l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" />
+							{:else}
+								<path d="M7 13V1M3 5l4-4 4 4" fill="none" stroke="currentColor" stroke-width="1.6" />
+							{/if}
+						</svg>
+						{map.listFit ? "Full height" : "Fit to screen"}
+					</button>
+				{/if}
 			</div>
 		</div>
 
@@ -204,6 +217,29 @@
 
 		&[aria-expanded="false"] .chevron {
 			transform: rotate(-90deg);
+		}
+	}
+
+	.close {
+		flex: none;
+		width: 2rem;
+		height: 2rem;
+		margin-top: -2px;
+		padding: 0;
+		border: 0;
+		border-radius: 50%;
+		background: none;
+		color: var(--color-text);
+		font-size: 1.5rem;
+		line-height: 1;
+		cursor: pointer;
+
+		&:hover {
+			background: var(--color-surface);
+		}
+
+		&:focus-visible {
+			outline: 2px solid var(--color-focus);
 		}
 	}
 

@@ -176,6 +176,11 @@ async function makeMap(fill, name) {
 	return counts;
 }
 
+/** The new interface keeps the page's toolbar in its settings panel: open it. */
+async function openToolbar(p) {
+	if (await p.isHidden("#share")) await p.click(".okm-settings .fab");
+}
+
 /** Opens the current map in the new (Svelte) interface and checks it draws the same areas. */
 async function checkNewLook(p, name, areas) {
 	const toggle = await p.getAttribute("#ui-toggle", "href");
@@ -219,6 +224,7 @@ const openaire = await makeMap(async () => {
 await checkNewLook(page, "openaire", openaire.areas);
 
 // Share the open (OpenAIRE) map, then open the link as someone else would.
+await openToolbar(page);
 await page.click("#share");
 await page.waitForSelector("#share-panel:not([hidden])");
 const link = await page.inputValue("#share-url");
@@ -369,6 +375,7 @@ console.log(
 );
 // Sharing saves the published id with the map; the map page cannot write to
 // the Pod, so the main page sends it there next time.
+await openToolbar(page);
 await page.click("#share");
 await page.waitForSelector("#share-panel:not([hidden])");
 const podMapId = new URL(podMapUrl).searchParams.get("id");

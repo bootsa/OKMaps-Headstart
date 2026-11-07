@@ -253,8 +253,9 @@ describe("dark mode", () => {
 		const state = new MapState(record, 600);
 		render(Visualization, { state, height: 600 });
 		flushSync();
-		const button = screen.getByRole("button", { name: "Dark mode" });
 		expect(document.documentElement.dataset.scheme).toBe("light");
+		await fireEvent.click(screen.getByRole("button", { name: "Display settings" }));
+		const button = screen.getByRole("button", { name: "Dark mode" });
 		await fireEvent.click(button);
 		expect(button).toHaveAttribute("aria-pressed", "true");
 		expect(document.documentElement.dataset.scheme).toBe("dark");
