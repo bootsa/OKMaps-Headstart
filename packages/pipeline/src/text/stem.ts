@@ -104,7 +104,7 @@ function markRegions(w: string[]): [number, number] {
 }
 
 export function stem(word: string): string {
-	if (Object.prototype.hasOwnProperty.call(EXCEPTION1, word)) return EXCEPTION1[word];
+	if (Object.hasOwn(EXCEPTION1, word)) return EXCEPTION1[word];
 	let w = Array.from(word);
 	if (w.length < 3) return word;
 

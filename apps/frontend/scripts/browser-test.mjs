@@ -186,6 +186,21 @@ async function shareLink(p) {
 	return url;
 }
 
+/** The maps in the explorer (the default store's top folder, open on wide screens). */
+const MAP = ".okm-explorer .map";
+const listedMaps = (p) => p.$$eval(`${MAP} .title`, (t) => t.map((x) => x.textContent));
+/** Deletes the first (newest) listed map, confirming it. */
+async function deleteFirstMap(p) {
+	const before = await p.$$eval(MAP, (l) => l.length);
+	await p
+		.locator(MAP)
+		.first()
+		.getByRole("button", { name: /^Delete map/ })
+		.click();
+	await p.locator(".okm-explorer [role=alert] button:text-is('Delete')").click();
+	await p.waitForFunction(([sel, n]) => document.querySelectorAll(sel).length === n, [MAP, before - 1]);
+}
+
 /** Checks the open map: no markup from its data, every paper listed, and zooming in. */
 async function checkMap(p, name) {
 	const drawn = await p.evaluate(() => ({
@@ -241,10 +256,8 @@ await makeMap(async () => {
 	if (made === 0 || shared !== made) throw new Error("streamgraph: streams missing");
 	// Delete it again (it is the newest), so the counts below stay as they were.
 	await page.goto(home);
-	await page.waitForSelector("#maps li");
-	const before = await page.$$eval("#maps li", (l) => l.length);
-	await page.click("#maps li .delete");
-	await page.waitForFunction((n) => document.querySelectorAll("#maps li").length === n, before - 1);
+	await page.waitForSelector(MAP);
+	await deleteFirstMap(page);
 }
 // A geo map of the bundled AQUANAVI facility table, also opened from its share link.
 {
@@ -270,10 +283,8 @@ await makeMap(async () => {
 	// 98 facilities; pins at the same spot may be clustered, but some must show.
 	if (made === 0 || shared !== made) throw new Error("geomap: pins missing");
 	await page.goto(home);
-	await page.waitForSelector("#maps li");
-	const before = await page.$$eval("#maps li", (l) => l.length);
-	await page.click("#maps li .delete");
-	await page.waitForFunction((n) => document.querySelectorAll("#maps li").length === n, before - 1);
+	await page.waitForSelector(MAP);
+	await deleteFirstMap(page);
 }
 await makeMap(async () => {
 	await page.check('input[value="openaire"]');
@@ -293,11 +304,11 @@ await other.click(".okm-settings .fab"); // the page's links are in the settings
 await other.click("#save");
 await other.waitForSelector("#save:disabled");
 await other.goto(home);
-await other.waitForSelector("#maps li");
-const savedCopy = await other.$$eval("#maps li a", (as) => as.map((a) => a.textContent));
+await other.waitForSelector(MAP);
+const savedCopy = await listedMaps(other);
 console.log(JSON.stringify({ savedFromLink: savedCopy }));
 if (savedCopy.length !== 1) throw new Error("the shared map was not saved");
-await other.click("#maps li a");
+await other.click(`${MAP} a`);
 await other.waitForSelector("#visualization .okm-bubble", { timeout: 30_000 });
 
 // A crafted map must not run script, however its titles are encoded.
@@ -336,13 +347,12 @@ console.log(JSON.stringify({ craftedMapSafe: true }));
 await other.close();
 
 await page.goto(home);
-await page.waitForSelector("#maps li");
-const listed = await page.$$eval("#maps li a", (as) => as.map((a) => a.textContent));
+await page.waitForSelector(MAP);
+const listed = await listedMaps(page);
 console.log(JSON.stringify({ listed }));
 if (listed.length !== 3) throw new Error("expected 3 saved maps");
 await page.screenshot({ path: path.join(shots, "home.png") });
-await page.click("#maps li .delete");
-await page.waitForFunction(() => document.querySelectorAll("#maps li").length === 2);
+await deleteFirstMap(page);
 
 // More places to keep maps, added on the settings page. Each kind is checked
 // before it is added; a new map then goes to whichever is the default.
@@ -395,13 +405,13 @@ await page.waitForSelector(".okm-settings-page :text('My cloud was added.')");
 await makeDefault("My cloud");
 const davMap = await mapInDefault();
 await page.goto(home);
-await page.waitForSelector("#maps li");
-const onDav = await page.$$eval("#maps li a", (as) => as.map((a) => a.textContent));
+await page.waitForSelector(MAP);
+const onDav = await listedMaps(page);
 const davFiles = [...dav.tree.keys()].filter((k) => k.startsWith("/dav/okmaps/"));
 console.log(
 	JSON.stringify({
 		listedFromWebdav: onDav,
-		label: await page.textContent("#storage-label"),
+		open: await page.textContent(".okm-explorer h3 [aria-expanded=true]"),
 		davFiles: davFiles.length,
 	}),
 );
@@ -455,7 +465,7 @@ console.log(
 await shareLink(page);
 const podMapId = new URL(podMapUrl).searchParams.get("id");
 await page.goto(home);
-await page.waitForSelector("#maps li");
+await page.waitForSelector(MAP);
 await page.waitForFunction(
 	async (name) =>
 		!(await new Promise((r) => {
@@ -474,8 +484,8 @@ if (!JSON.parse(solid.pod.tree.get(`/me/okmaps/maps/${podMapId}.json`)).sharedId
 	throw new Error("the map page's change did not reach the Pod");
 console.log(
 	JSON.stringify({
-		listedFromPod: await page.$$eval("#maps li a", (as) => as.map((a) => a.textContent)),
-		label: await page.textContent("#storage-label"),
+		listedFromPod: await listedMaps(page),
+		open: await page.textContent(".okm-explorer h3 [aria-expanded=true]"),
 	}),
 );
 
@@ -489,13 +499,52 @@ if (!/was added/.test(atomicStatus)) throw new Error("the Atomic Data server was
 await makeDefault("atomic.test");
 await mapInDefault();
 await page.goto(home);
-await page.waitForSelector("#maps li");
-const onAtomic = await page.$$eval("#maps li a", (as) => as.map((a) => a.textContent));
+await page.waitForSelector(MAP);
+const onAtomic = await listedMaps(page);
 if (onAtomic.length !== 1) throw new Error(`the map was not kept on Atomic Data: ${JSON.stringify(onAtomic)}`);
 console.log(JSON.stringify({ listedFromAtomic: onAtomic, atomicFiles: atomic.resources.size }));
 await makeDefault("This browser");
 await page.goto(home);
-await page.waitForSelector("#maps li");
+await page.waitForSelector(MAP);
+
+// The explorer: a folder, a map dragged into it, then moved to another store.
+{
+	await page.click(".okm-explorer button:text-is('+ New folder')");
+	await page.fill(".okm-explorer input[placeholder='Folder name']", "Reading");
+	await page.click(".okm-explorer button:text-is('Make')");
+	const folder = page.locator(".okm-explorer .folder .row", { hasText: "Reading" });
+	await folder.waitFor();
+	await page.locator(MAP, { hasText: "ecology" }).locator("a").dragTo(folder);
+	await page.waitForFunction(() =>
+		/ecology moved to This browser \/ Reading/.test(document.querySelector(".okm-explorer [role=status]").textContent),
+	);
+	await folder.getByRole("button", { name: "Reading", exact: true }).click();
+	await page.locator(".okm-explorer .nested .map", { hasText: "ecology" }).waitFor();
+	await page.screenshot({ path: path.join(shots, "explorer.png") });
+	await page
+		.locator(".okm-explorer .nested .map", { hasText: "ecology" })
+		.getByRole("button", { name: /^Move map/ })
+		.click();
+	await page.getByRole("radio", { name: "My cloud" }).check();
+	await page.click("dialog button:text-is('Move')");
+	await page.waitForFunction(() =>
+		/ecology moved to My cloud/.test(document.querySelector(".okm-explorer [role=status]").textContent),
+	);
+	const davTitles = [...dav.tree.entries()]
+		.filter(([k]) => /^\/dav\/okmaps\/maps\/.*\.json$/.test(k))
+		.map(([, v]) => JSON.parse(v).title);
+	console.log(JSON.stringify({ explorer: { top: await listedMaps(page), onDav: davTitles } }));
+	if (!davTitles.includes("ecology")) throw new Error("the map was not moved to the WebDAV store");
+}
+await page.setViewportSize({ width: 412, height: 860 });
+await page.goto(home);
+await page.waitForSelector("body[data-maps]");
+await page.screenshot({ path: path.join(shots, "home-phone.png") });
+await page.click("button:text-is('Your maps')");
+await page.waitForSelector(MAP);
+await page.waitForTimeout(500); // the drawer slides in
+await page.screenshot({ path: path.join(shots, "explorer-phone.png") });
+await page.setViewportSize({ width: 1280, height: 860 });
 
 // A failing search shows the reason, not a crash.
 await page.check('input[value="openaire"]');
@@ -509,6 +558,7 @@ console.log(JSON.stringify({ error: await page.textContent("#status") }));
 
 // Offline: once the service worker has stored the app, saved maps open without a network.
 await page.goto(home);
+await page.waitForSelector("body[data-maps]", { timeout: 30_000 });
 const cached = await page.evaluate(async () => {
 	await navigator.serviceWorker.ready;
 	const keys = await caches.keys();
@@ -521,8 +571,8 @@ const cached = await page.evaluate(async () => {
 console.log(JSON.stringify({ serviceWorker: cached }));
 await page.context().setOffline(true);
 await page.reload();
-await page.waitForSelector("#maps li");
-await page.click("#maps li a");
+await page.waitForSelector(MAP);
+await page.click(`${MAP} a`);
 await page.waitForSelector("#visualization .okm-bubble", { timeout: 30_000 });
 const offlineAreas = await page.$$eval("#visualization .okm-bubble", (c) => c.length);
 await page.screenshot({ path: path.join(shots, "offline.png") });

@@ -2,22 +2,23 @@
  * index.html: the search form and the maps saved in this browser.
  */
 
-import { mapStoreTypes } from "@okmaps/ui-svelte";
+import "@okmaps/ui-svelte/styles.css";
+import { MapExplorer, mapStoreTypes } from "@okmaps/ui-svelte";
+import { mount } from "svelte";
 import { errorMessage } from "./messages.ts";
 import { registerServiceWorker } from "./offline.ts";
 import { placeSettings } from "./places.ts";
 import type { MapRecord, SearchRequest, Service, Stage } from "./search.ts";
 import { settings } from "./settings.ts";
-import { solidLogin, solidSession } from "./solid-login.ts";
+import { solidSession } from "./solid-login.ts";
 import { registerAppSources } from "./sources.ts";
 import {
 	appSettings,
-	LoggedOut,
-	type MapSummary,
 	mapAddress,
 	mapUrl,
 	moveOldMaps,
 	requestPersistence,
+	type StoreInstance,
 	saveTarget,
 	storeById,
 } from "./store.ts";
@@ -182,63 +183,29 @@ form.addEventListener("submit", async (e) => {
 	}
 });
 
-/** The maps in the top folder of the default store. */
-function renderMaps(maps: MapSummary[], storeId: string) {
-	const list = $<HTMLUListElement>("maps");
-	list.replaceChildren();
-	$<HTMLParagraphElement>("no-maps").hidden = maps.length > 0;
-	for (const m of maps) {
-		const li = document.createElement("li");
-		const a = document.createElement("a");
-		a.href = mapUrl(storeId, [], m.id);
-		a.textContent = m.title;
-		// The map page reads Pod maps from the copy in this browser: make it first.
-		a.onclick = async (e) => {
-			if (appSettings().store(storeId)?.type !== "solid") return;
-			e.preventDefault();
-			await (await storeById(storeId)).get([], m.id).catch(() => undefined);
-			location.href = a.href;
-		};
-		const meta = document.createElement("span");
-		meta.className = "meta";
-		meta.textContent = `${SERVICES[m.service] ?? m.service} · ${m.documents} documents · ${new Date(m.created).toLocaleString()}`;
-		const del = document.createElement("button");
-		del.type = "button";
-		del.className = "delete";
-		del.textContent = "Delete";
-		del.setAttribute("aria-label", `Delete map ${m.title}`);
-		del.onclick = async () => {
-			await (await storeById(storeId)).delete([], m.id);
-			await showMaps();
-		};
-		li.append(a, meta, del);
-		list.append(li);
-	}
-}
-
-async function showMaps() {
-	const target = saveTarget();
-	const note = $<HTMLParagraphElement>("no-maps");
-	if (!target) {
-		renderMaps([], "");
-		note.textContent = "There is no place to keep maps. Add one in the settings.";
-		return;
-	}
-	$("storage-label").textContent = `in ${target.store.name}`;
-	try {
-		const store = await storeById(target.store.id);
-		renderMaps((await store.list([])).maps, target.store.id);
-	} catch (err) {
-		renderMaps([], target.store.id);
-		note.textContent = `Your maps could not be read from ${target.store.name}: ${err instanceof Error ? err.message : err}.`;
-		if (err instanceof LoggedOut) {
-			const again = document.createElement("button");
-			again.type = "button";
-			again.textContent = "Log in again";
-			again.onclick = () => solidLogin(err.issuer);
-			note.append(" ", again);
-		}
-	}
+/** The person's maps: the explorer drawer, open from the start on wide screens. */
+function showMaps() {
+	const target = document.getElementById("explorer")!;
+	target.classList.add("okmaps");
+	mount(MapExplorer, {
+		target,
+		props: {
+			settings: appSettings(),
+			open: matchMedia("(min-width: 70rem)").matches,
+			mapHref: mapUrl,
+			openStore: (s: StoreInstance) => storeById(s.id),
+			serviceLabel: (service: string) => SERVICES[service] ?? service,
+			settingsHref: "settings.html",
+			// The map page reads Pod maps from the copy in this browser: make it first.
+			onopenmap: async (e: MouseEvent, m: { store: string; path: string[]; id: string }) => {
+				if (appSettings().store(m.store)?.type !== "solid") return;
+				e.preventDefault();
+				const href = (e.currentTarget as HTMLAnchorElement).href;
+				await (await storeById(m.store)).get(m.path, m.id).catch(() => undefined);
+				location.href = href;
+			},
+		},
+	});
 }
 
 /**
@@ -261,13 +228,11 @@ async function resumeStores(): Promise<boolean> {
 	return false;
 }
 
-/** ?open=<id>&store=..: the map page asks for a Pod map it has no copy of. */
+/**
+ * ?open=<id>&store=..: the map page asks for a Pod map it has no copy of.
+ * Read after restorePodSession, which puts the query back.
+ */
 async function openRequested() {
-	// Logging in to a Pod may pass through the identity provider, which comes
-	// back here and puts the query back afterwards: read it after that.
-	const asked = new URLSearchParams(location.search);
-	if ((asked.has("open") || asked.has("code")) && appSettings().stores.some((s) => s.type === "solid"))
-		await solidSession().catch(() => null);
 	const params = new URLSearchParams(location.search);
 	const id = params.get("open");
 	if (!id) return;
@@ -278,8 +243,18 @@ async function openRequested() {
 	if (map && address.store) location.replace(mapUrl(address.store, address.path, id));
 }
 
+/**
+ * With a Pod among the stores, the session is restored first: that may pass
+ * through the identity provider and back, which is better now than when
+ * someone opens the Pod in the explorer.
+ */
+async function restorePodSession() {
+	if (navigator.onLine && appSettings().stores.some((s) => s.type === "solid")) await solidSession().catch(() => null);
+}
+
 resumeStores()
-	.then((leaving) => (leaving ? new Promise<never>(() => {}) : openRequested()))
+	.then((leaving) => (leaving ? new Promise<never>(() => {}) : restorePodSession()))
+	.then(openRequested)
 	.then(() => moveOldMaps())
 	.catch(() => 0)
 	.finally(showMaps)

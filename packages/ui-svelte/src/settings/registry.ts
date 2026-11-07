@@ -58,6 +58,8 @@ export interface StoreType {
 	connect?(instance: StoreInstance): Promise<StoreInstance>;
 	/** Back from a login `connect` started: the store to add, or null. */
 	resume?(): Promise<StoreInstance | null>;
+	/** Logs in again after the store answered 401 (the explorer offers it). */
+	reconnect?(instance: StoreInstance): Promise<void>;
 }
 
 const sources = new Map<string, SourceModule>();

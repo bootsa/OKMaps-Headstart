@@ -158,3 +158,13 @@ label.check {
 label.check input {
 	width: auto;
 }
+
+/* Room for the open map explorer on wide screens; on narrow ones it covers the page. */
+@media (min-width: 70rem) {
+	body.okm-explorer-open main {
+		margin-left: max(26rem, calc((100% - 760px) / 2));
+	}
+}
+main {
+	padding-top: 64px;
+}
