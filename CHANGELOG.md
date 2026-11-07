@@ -1,5 +1,14 @@
 # Changelog
 
+## [7.1.24](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.23...v7.1.24) (2026-11-07)
+
+
+### Features
+
+* build streamgraphs in the browser with the streamgraph step ported from Python ([0e0e7b8](https://github.com/bootsa/OKMaps-Headstart/commit/0e0e7b81d663810bfd0694d728443f10f80a97bc))
+* build streamgraphs in the browser with the streamgraph step ported from Python ([af295ef](https://github.com/bootsa/OKMaps-Headstart/commit/af295ef23c6c372f22f13badbc75c127641c845f))
+* build streamgraphs in the browser with the streamgraph step ported from Python ([#62](https://github.com/bootsa/OKMaps-Headstart/issues/62)) ([0e0e7b8](https://github.com/bootsa/OKMaps-Headstart/commit/0e0e7b81d663810bfd0694d728443f10f80a97bc))
+
 ## [7.1.23](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.22...v7.1.23) (2026-11-07)
 
 
