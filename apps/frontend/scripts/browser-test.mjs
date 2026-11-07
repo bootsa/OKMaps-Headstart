@@ -160,7 +160,7 @@ async function makeMap(fill, name) {
 	await fill();
 	const t0 = Date.now();
 	await page.click("#submit");
-	await page.waitForURL(/map\.html\?id=/, { timeout: 60_000 });
+	await page.waitForURL(/map\.html\?store=/, { timeout: 60_000 });
 	const made = Date.now() - t0;
 	await page.waitForSelector("#visualization .okm-bubble", { timeout: 30_000 });
 	await page.waitForTimeout(1500);
@@ -223,7 +223,7 @@ await makeMap(async () => {
 	await page.selectOption("#vis_type", "timeline");
 	await page.fill("#q", "digital education");
 	await page.click("#submit");
-	await page.waitForURL(/map\.html\?id=/, { timeout: 60_000 });
+	await page.waitForURL(/map\.html\?store=/, { timeout: 60_000 });
 	const streams = async (p) => {
 		await p.waitForSelector("#visualization .okm-streamgraph .stream", { timeout: 30_000 });
 		return p.$$eval("#visualization .okm-streamgraph .stream", (s) => s.length);
@@ -251,7 +251,7 @@ await makeMap(async () => {
 	await page.goto(home);
 	await page.check('input[value="place:aquanavi"]');
 	await page.click("#submit");
-	await page.waitForURL(/map\.html\?id=/, { timeout: 60_000 });
+	await page.waitForURL(/map\.html\?store=/, { timeout: 60_000 });
 	const pins = async (p) => {
 		await p.waitForSelector("#visualization .okm-geomap .leaflet-marker-icon", { timeout: 30_000 });
 		return p.$$eval("#visualization .leaflet-marker-icon", (m) => m.length);
@@ -344,27 +344,57 @@ await page.screenshot({ path: path.join(shots, "home.png") });
 await page.click("#maps li .delete");
 await page.waitForFunction(() => document.querySelectorAll("#maps li").length === 2);
 
-// Keep the maps in a WebDAV folder instead, copying the ones made so far.
-async function useStorage(fill) {
-	await page.evaluate(() => (document.querySelector("#storage-settings").open = true));
+// More places to keep maps, added on the settings page. Each kind is checked
+// before it is added; a new map then goes to whichever is the default.
+async function addStore(type, fill) {
+	await page.goto(`${home}settings.html`);
+	await page.click("button:text-is('Add a place to keep maps')");
+	await page.check(`input[name="type"][value="${type}"]`);
 	await fill();
-	await page.click("#storage-save");
-	await page.waitForFunction(() => /now kept|could not/.test(document.querySelector("#storage-status").textContent));
-	return page.textContent("#storage-status");
+	await page.click("button:text-is('Check and save')");
+	await page.waitForFunction(
+		() => /was added|could not be used/.test(document.querySelector("#settings")?.textContent ?? ""),
+		null,
+		{ timeout: 30_000 },
+	);
+	return page.$eval(
+		"#settings",
+		(e) => e.textContent.match(/([^\n]{0,40}? was added|That store could not be used[^.]*)/)[0],
+	);
 }
-const wrongPassword = await useStorage(async () => {
-	await page.check('#storage input[value="webdav"]');
-	await page.fill("#dav-url", "https://dav.test/dav/okmaps/");
-	await page.fill("#dav-user", "me");
-	await page.fill("#dav-password", "wrong");
+/** Makes the named store the default (on the settings page). */
+async function makeDefault(name) {
+	await page.goto(`${home}settings.html`);
+	await page.locator(".stores li", { hasText: name }).getByRole("button", { name: "Make default" }).click();
+}
+/** Makes an OpenAIRE map, which goes to the default store; returns the map's URL. */
+async function mapInDefault() {
+	await page.goto(home);
+	await page.waitForSelector("body[data-maps]", { timeout: 30_000 });
+	await page.check('input[value="openaire"]');
+	await page.fill("#project_id", "643410");
+	await page.click("#submit");
+	await page.waitForURL(/map\.html\?store=/, { timeout: 60_000 });
+	await page.waitForSelector("#visualization .okm-bubble", { timeout: 30_000 });
+	return page.url();
+}
+const storeId = (name) =>
+	page.evaluate((n) => JSON.parse(localStorage.getItem("okmaps-settings")).stores.find((s) => s.name === n).id, name);
+
+const wrongPassword = await addStore("webdav", async () => {
+	await page.fill("#okm-store-name", "My cloud");
+	await page.fill("#okm-store-url", "https://dav.test/dav/okmaps/");
+	await page.fill("#okm-store-username", "me");
+	await page.fill("#okm-store-password", "wrong");
 });
 console.log(JSON.stringify({ wrongPassword }));
 if (!/could not be used/.test(wrongPassword)) throw new Error("a refused WebDAV login was not reported");
-await page.fill("#dav-password", "secret");
-await page.click("#storage-save");
-await page.waitForFunction(() => /now kept/.test(document.querySelector("#storage-status").textContent));
-console.log(JSON.stringify({ webdav: await page.textContent("#storage-status") }));
-await page.reload();
+await page.fill("#okm-store-password", "secret");
+await page.click("button:text-is('Check and save')");
+await page.waitForSelector(".okm-settings-page :text('My cloud was added.')");
+await makeDefault("My cloud");
+const davMap = await mapInDefault();
+await page.goto(home);
 await page.waitForSelector("#maps li");
 const onDav = await page.$$eval("#maps li a", (as) => as.map((a) => a.textContent));
 const davFiles = [...dav.tree.keys()].filter((k) => k.startsWith("/dav/okmaps/"));
@@ -375,49 +405,40 @@ console.log(
 		davFiles: davFiles.length,
 	}),
 );
-if (JSON.stringify(onDav) !== JSON.stringify(listed.slice(1)) || !davFiles.includes("/dav/okmaps/index.json"))
-	throw new Error("maps were not moved to WebDAV");
-await page.click("#maps li a");
-await page.waitForSelector("#visualization .okm-bubble", { timeout: 30_000 });
-await page.goto(home);
-// Back to this browser (nothing to copy: the maps are there already).
-await useStorage(async () => {
-	await page.check('#storage input[value="browser"]');
-});
-await page.waitForSelector("#maps li");
+if (
+	onDav.length !== 1 ||
+	!davFiles.includes("/dav/okmaps/index.json") ||
+	!davMap.includes(`store=${await storeId("My cloud")}`)
+)
+	throw new Error("the map was not kept in the WebDAV folder");
+await page.screenshot({ path: path.join(shots, "settings-home.png") });
+await page.goto(`${home}settings.html`);
+await page.screenshot({ path: path.join(shots, "settings.png") });
 
-// Keep them in a Solid Pod: log in at the identity provider, come back, and
-// the maps are copied to okmaps/ at the top of the Pod the WebID names.
-await page.evaluate(() => (document.querySelector("#storage-settings").open = true));
-await page.check('#storage input[value="solid"]');
-await page.fill("#solid-issuer", ISSUER);
-await page.click("#storage-save");
-await page.waitForFunction(
-	() => /now kept|could not/.test(document.querySelector("#storage-status")?.textContent ?? ""),
-	null,
-	{ timeout: 30_000 },
-);
-const solidStatus = await page.textContent("#storage-status");
+// A Solid Pod: log in at the identity provider and come back to the settings
+// page, which adds okmaps/ at the top of the Pod the WebID names.
+const solidStatus = await addStore("solid", async () => {
+	await page.fill("#okm-store-name", "My Pod");
+	await page.fill("#okm-store-issuer", ISSUER);
+});
 console.log(JSON.stringify({ solid: solidStatus, idp: solid.log }));
-if (!/now kept in Solid Pod \(https:\/\/pod\.test\/me\/okmaps\/\)/.test(solidStatus))
-	throw new Error("the Pod was not used after logging in");
-await page.waitForSelector("#maps li");
-const onPod = await page.$$eval("#maps li a", (as) => as.map((a) => a.textContent));
+if (!/Pod was added/.test(solidStatus)) throw new Error("the Pod was not added after logging in");
+await makeDefault("My Pod");
+const podMapUrl = await mapInDefault();
 const podFiles = [...solid.pod.tree.keys()].filter((k) => k.startsWith("/me/okmaps/maps/") && k.endsWith(".json"));
-if (JSON.stringify(onPod) !== JSON.stringify(onDav) || podFiles.length !== onPod.length)
-	throw new Error(`maps were not copied to the Pod: ${JSON.stringify({ onPod, podFiles })}`);
-// The map page reads Pod maps from a copy in this browser, made on the way.
-await page.click("#maps li a");
-await page.waitForSelector("#visualization .okm-bubble", { timeout: 30_000 });
-const podMapUrl = page.url();
-// Without that copy (a bookmark, say), the main page logs in again silently,
-// fetches the map and comes back.
+if (podFiles.length !== 1) throw new Error(`the map was not kept in the Pod: ${JSON.stringify(podFiles)}`);
+// The map page reads Pod maps from a copy in this browser. Without that copy
+// (a bookmark, say), the main page logs in again silently, fetches the map
+// and comes back.
+const podCopy = `okmaps-pod-copy-${await storeId("My Pod")}`;
+await page.goto(home);
 await page.evaluate(
-	() =>
+	(name) =>
 		new Promise((r) => {
-			const q = indexedDB.deleteDatabase("okmaps-pod-copy");
+			const q = indexedDB.deleteDatabase(name);
 			q.onsuccess = q.onerror = q.onblocked = r;
 		}),
+	podCopy,
 );
 const authsBefore = solid.log.filter((l) => l === "GET /auth").length;
 await page.goto(podMapUrl);
@@ -436,9 +457,9 @@ const podMapId = new URL(podMapUrl).searchParams.get("id");
 await page.goto(home);
 await page.waitForSelector("#maps li");
 await page.waitForFunction(
-	async () =>
+	async (name) =>
 		!(await new Promise((r) => {
-			const q = indexedDB.open("okmaps-pod-copy");
+			const q = indexedDB.open(name);
 			q.onsuccess = () => {
 				const g = q.result.transaction("docs").objectStore("docs").get("unsent.json");
 				g.onsuccess = () => {
@@ -447,6 +468,7 @@ await page.waitForFunction(
 				};
 			};
 		})),
+	podCopy,
 );
 if (!JSON.parse(solid.pod.tree.get(`/me/okmaps/maps/${podMapId}.json`)).sharedId)
 	throw new Error("the map page's change did not reach the Pod");
@@ -456,34 +478,23 @@ console.log(
 		label: await page.textContent("#storage-label"),
 	}),
 );
-await useStorage(async () => {
-	await page.check('#storage input[value="browser"]');
-	await page.uncheck('#storage input[name="copy"]');
-});
-await page.waitForSelector("#maps li");
 
 // An Atomic Data server: requests and commits signed with the agent's key.
-const atomicStatus = await useStorage(async () => {
-	await page.check('#storage input[value="atomic"]');
-	await page.check('#storage input[name="copy"]');
-	await page.fill("#atomic-parent", "https://atomic.test/drive/okmaps");
-	await page.fill("#atomic-secret", Buffer.from(JSON.stringify(atomicAgent)).toString("base64"));
+const atomicStatus = await addStore("atomic", async () => {
+	await page.fill("#okm-store-parent", "https://atomic.test/drive/okmaps");
+	await page.fill("#okm-store-secret", Buffer.from(JSON.stringify(atomicAgent)).toString("base64"));
 });
 console.log(JSON.stringify({ atomic: atomicStatus }));
-if (!/now kept in Atomic Data/.test(atomicStatus)) throw new Error("the Atomic Data server was not used");
-await page.reload();
+if (!/was added/.test(atomicStatus)) throw new Error("the Atomic Data server was not added");
+await makeDefault("atomic.test");
+await mapInDefault();
+await page.goto(home);
 await page.waitForSelector("#maps li");
 const onAtomic = await page.$$eval("#maps li a", (as) => as.map((a) => a.textContent));
-if (JSON.stringify(onAtomic) !== JSON.stringify(onDav))
-	throw new Error(`maps were not copied to Atomic Data: ${JSON.stringify(onAtomic)}`);
-await page.click("#maps li a");
-await page.waitForSelector("#visualization .okm-bubble", { timeout: 30_000 });
+if (onAtomic.length !== 1) throw new Error(`the map was not kept on Atomic Data: ${JSON.stringify(onAtomic)}`);
 console.log(JSON.stringify({ listedFromAtomic: onAtomic, atomicFiles: atomic.resources.size }));
+await makeDefault("This browser");
 await page.goto(home);
-await useStorage(async () => {
-	await page.check('#storage input[value="browser"]');
-	await page.uncheck('#storage input[name="copy"]');
-});
 await page.waitForSelector("#maps li");
 
 // A failing search shows the reason, not a crash.

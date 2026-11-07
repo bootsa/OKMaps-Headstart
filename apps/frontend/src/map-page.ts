@@ -1,14 +1,24 @@
 /**
- * map.html?id=...      a map saved in this browser
+ * map.html?store=...&path=...&id=...  a saved map (path: its folder; no store: the default one)
  * map.html?shared=...  a published map (share link)
  *
  * The map is drawn by @okmaps/ui-svelte (svelte-map.ts).
  */
 
+import type { MapStore } from "@okmaps/storage";
 import { registerServiceWorker } from "./offline.ts";
 import { settings } from "./settings.ts";
 import { domDecode, fetchSharedMap, neutralise, publishMap, type SharedMap, shareUrl } from "./share.ts";
-import { getMap, readChoice, type SavedMap, saveMap, withoutPodLogin } from "./store.ts";
+import {
+	appSettings,
+	findMap,
+	mapAddress,
+	mapUrl,
+	type SavedMap,
+	saveTarget,
+	storeById,
+	withoutPodLogin,
+} from "./store.ts";
 import { drawMap } from "./svelte-map.ts";
 
 const $ = <T extends HTMLElement>(id: string) => document.getElementById(id) as T;
@@ -30,20 +40,23 @@ function draw(map: SharedMap, sharedId?: () => Promise<string>) {
 }
 
 /** The map's share id, publishing it to the gateway the first time. */
-async function publishOnce(saved: SavedMap): Promise<string> {
+async function publishOnce(saved: SavedMap, store: MapStore<SavedMap>, path: string[]): Promise<string> {
 	if (saved.sharedId) return saved.sharedId;
 	saved.sharedId = await publishMap(settings.gatewayUrl, saved);
-	await saveMap(saved);
+	await store.save(path, saved);
 	return saved.sharedId;
 }
 
-/** Save button on a shared map: keeps a copy in this browser. */
+/** Save button on a shared map: keeps a copy where new maps are saved. */
 function offerSave(map: SharedMap, sharedId: string) {
 	const button = $<HTMLButtonElement>("save");
+	const target = saveTarget();
+	if (!target) return;
 	button.hidden = false;
 	button.onclick = async () => {
 		const id = crypto.randomUUID();
-		await saveMap({
+		const store = await storeById(target.store.id);
+		await store.save(target.path, {
 			...map,
 			id,
 			context: { ...map.context, id },
@@ -51,7 +64,7 @@ function offerSave(map: SharedMap, sharedId: string) {
 			request: requestOf(map),
 			sharedId,
 		});
-		button.textContent = "Saved to your maps";
+		button.textContent = `Saved to ${target.store.name}`;
 		button.disabled = true;
 	};
 }
@@ -80,16 +93,20 @@ async function main() {
 		offerSave(safe, shared);
 		return draw(safe, async () => shared);
 	}
-	const id = params.get("id");
+	const address = mapAddress(params);
 	withoutPodLogin();
-	const saved = id ? await getMap(id) : undefined;
-	if (!saved && id && readChoice().kind === "solid") {
+	const found = await findMap(address);
+	if (!found && address.id && address.store && appSettings().store(address.store)?.type === "solid") {
 		// Not copied from the Pod yet: the main page logs in and fetches it.
-		location.replace(`./?open=${encodeURIComponent(id)}`);
+		const back = new URLSearchParams(mapUrl(address.store, address.path, address.id).split("?")[1]);
+		back.set("open", address.id);
+		back.delete("id");
+		location.replace(`./?${back}`);
 		return;
 	}
-	if (!saved) return showMessage("This map is not saved in this browser.");
-	return draw(saved, settings.gatewayUrl ? () => publishOnce(saved) : undefined);
+	if (!found) return showMessage("This map is not in any of your stores.");
+	const { map, store, path } = found;
+	return draw(map, settings.gatewayUrl ? () => publishOnce(map, store, path) : undefined);
 }
 
 main().catch((err) => showMessage(`The map could not be shown: ${err instanceof Error ? err.message : err}`));

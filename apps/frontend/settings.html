@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Settings - Open Knowledge Maps</title>
+    <meta name="theme-color" content="#2856b6" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="icon" href="/icons/icon.svg" type="image/svg+xml" />
+    <style>
+      body {
+        margin: 0;
+        background: #fff;
+      }
+      html[data-scheme="dark"],
+      html[data-scheme="dark"] body {
+        background: #1a1e21;
+      }
+      #settings {
+        min-height: 100vh;
+      }
+    </style>
+  </head>
+  <body>
+    <main id="settings"></main>
+    <script type="module" src="/src/settings-page.ts"></script>
+  </body>
+</html>

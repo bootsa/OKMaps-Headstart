@@ -21,11 +21,13 @@ export const KNOWN_ISSUERS = [
 	"https://teamid.live",
 ];
 
-/** Sends the browser to the identity provider. It comes back to this page. */
+/**
+ * Sends the browser to the identity provider. It comes back to the start
+ * page, the page that logs in (and restores the session later).
+ */
 export async function solidLogin(issuer: string): Promise<void> {
 	const { login } = await load();
-	const back = new URL(location.href);
-	back.hash = "";
+	const back = new URL("./", location.href);
 	await login({ oidcIssuer: issuer, redirectUrl: back.href, clientName: "Open Knowledge Maps" });
 }
 
