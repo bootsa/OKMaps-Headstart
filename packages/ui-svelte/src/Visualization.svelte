@@ -18,6 +18,7 @@
 	import Header from "./header/Header.svelte";
 	import List from "./list/List.svelte";
 	import { activePlugins } from "./plugins";
+	import Geomap from "./views/geomap/Geomap.svelte";
 	import KnowledgeMap from "./views/knowledge-map/KnowledgeMap.svelte";
 	import { savedTheme } from "./views/knowledge-map/themes";
 	import ThemePicker from "./views/knowledge-map/themes/ThemePicker.svelte";
@@ -75,9 +76,11 @@
 <div class="okm-visualization" class:docked bind:clientWidth={width} style:height="{total}px">
 	<div class="head" bind:clientHeight={headerHeight}><Header state={map} /></div>
 	<div class="stage">
-		<div class="map">
+		<div class="map" style:--okm-overlay-bottom={map.config.visType === "geomap" ? "2.25rem" : null}>
 			{#if map.config.visType === "timeline"}
 				<Streamgraph state={map} width={mapWidth} height={stageHeight} />
+			{:else if map.config.visType === "geomap"}
+				<Geomap state={map} width={mapWidth} height={stageHeight} />
 			{:else}
 				<KnowledgeMap state={map} />
 			{/if}
@@ -150,7 +153,7 @@
 	.settings {
 		position: absolute;
 		right: var(--space-4);
-		bottom: var(--space-4);
+		bottom: var(--okm-overlay-bottom, var(--space-4));
 		z-index: 2;
 	}
 

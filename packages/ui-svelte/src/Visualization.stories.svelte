@@ -1,5 +1,6 @@
 <script module lang="ts">
 	import { defineMeta } from "@storybook/addon-svelte-csf";
+	import aquanavi from "../test/fixtures/aquanavi-geomap.json";
 	import base from "../test/fixtures/base-map.json";
 	import { MapState } from "./data/state.svelte";
 	import type { MapRecord } from "./data/types";
@@ -103,6 +104,8 @@
 		600,
 		{ visType: "timeline" },
 	);
+
+	const geomap = new MapState(aquanavi as unknown as MapRecord, 600, { visType: "geomap" });
 </script>
 
 <Story name="Knowledge map with list">
@@ -120,5 +123,11 @@
 <Story name="Streamgraph">
 	{#snippet template()}
 		<Visualization state={streamgraph} />
+	{/snippet}
+</Story>
+
+<Story name="Geo map">
+	{#snippet template()}
+		<Visualization state={geomap} />
 	{/snippet}
 </Story>

@@ -101,6 +101,7 @@ export {
 } from "./plugins/integrations";
 export { applyScheme, initialScheme, type Scheme } from "./scheme";
 export { default as Visualization } from "./Visualization.svelte";
+export { Geomap, pinLabel, type TileLayerSpec, tileLayers } from "./views/geomap";
 export {
 	getTheme,
 	KnowledgeMap,
