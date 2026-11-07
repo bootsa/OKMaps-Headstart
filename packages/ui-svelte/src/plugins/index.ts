@@ -60,7 +60,10 @@ export interface InfoPage {
 	priority?: number;
 	matches(map: MapState): boolean;
 	/** The page's body; the modal adds the title and close button. */
-	component: Component<{ state: MapState }>;
+	// biome-ignore lint/suspicious/noExplicitAny: each page takes its own props
+	component: Component<any>;
+	/** Passed to the component along with `state`. */
+	props?: Record<string, unknown>;
 }
 
 export interface OkmPlugin {

@@ -21,6 +21,8 @@ export interface ContextItem {
 	tooltip?: string;
 	/** Shown as a term with a dotted underline (it has more to say). */
 	more?: boolean;
+	/** Makes the item a link-style button, e.g. to open a plugin's modal. */
+	run?: () => void;
 }
 
 type Params = Record<string, unknown>;

@@ -4,7 +4,7 @@
  * default-config.js and the app's per-service settings (apps/frontend
  * vis-config.ts).
  */
-export type Service = "pubmed" | "base" | "openaire" | "aquanavi";
+export type Service = "pubmed" | "base" | "openaire" | "aquanavi" | (string & {});
 
 /** Knowledge map, streamgraph (keywords over time) or geo map. */
 export type VisType = "overview" | "timeline" | "geomap";
@@ -13,6 +13,8 @@ export interface MapConfig {
 	service: Service;
 	visType: VisType;
 	language: string;
+	/** Which info page a service with several shows (OpenAIRE: "openaire" or "viper"). */
+	infoType: string | null;
 	/** Title-from-context style ("viper" for OpenAIRE). */
 	titleStyle: "default" | "viper";
 	/** No reader counts: papers are sized equally and sorted by relevance. */
@@ -98,6 +100,7 @@ const BASE_DOCUMENT_TYPES: Record<string, string> = {
 
 const common: Omit<MapConfig, "service" | "language" | "sortOptions" | "contentBased"> = {
 	visType: "overview",
+	infoType: null,
 	titleStyle: "default",
 	dynamicSizing: false,
 	urlPrefix: null,
@@ -144,7 +147,7 @@ const common: Omit<MapConfig, "service" | "language" | "sortOptions" | "contentB
 	documentTypeNames: BASE_DOCUMENT_TYPES,
 };
 
-const byService: Record<Service, Partial<MapConfig>> = {
+const builtIn: Record<string, Partial<MapConfig>> = {
 	pubmed: {
 		language: "eng_pubmed",
 		bubbleMinScale: 1.2,
@@ -177,11 +180,24 @@ const byService: Record<Service, Partial<MapConfig>> = {
 	},
 };
 
+const registered = new Map<string, Partial<MapConfig>>();
+
+/**
+ * Adds (or replaces) a service's settings, over the BASE ones, for maps
+ * from sources this package doesn't know (CoVis, GoTriple, ORCID, ...).
+ */
+export function registerService(service: string, settings: Partial<MapConfig>): void {
+	registered.set(service, settings);
+}
+
+/** A service's settings; an unknown service gets the BASE ones. */
 export function mapConfig(service: Service, overrides: Partial<MapConfig> = {}): MapConfig {
+	const known = registered.get(service);
+	const own = known ? { ...builtIn.base, ...known } : (builtIn[service] ?? builtIn.base);
 	return {
 		...common,
+		...own,
 		service,
-		...byService[service],
 		...overrides,
 	} as MapConfig;
 }
