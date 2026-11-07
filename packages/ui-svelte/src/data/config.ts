@@ -39,7 +39,10 @@ export interface MapConfig {
 	paperHeightFactor: number;
 	/** Starting alpha of the area layout (higher = more movement). */
 	areaForceAlpha: number;
+	/** "Cite as" button on papers (with the cite-paper plugin). */
 	citePapers: boolean;
+	/** Document types that get no "Cite as" button (case-insensitive). */
+	noCitationDoctypes: string[];
 	showKeywords: boolean;
 	highlightQueryTerms: boolean;
 	/** A fixed title for the map (old config title). */
@@ -115,6 +118,7 @@ const common: Omit<MapConfig, "service" | "language" | "sortOptions" | "contentB
 	paperHeightFactor: 1.6,
 	areaForceAlpha: 0.02,
 	citePapers: false,
+	noCitationDoctypes: [],
 	showKeywords: true,
 	highlightQueryTerms: true,
 	presetTitle: "",

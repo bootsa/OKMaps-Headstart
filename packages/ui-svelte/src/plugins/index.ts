@@ -23,11 +23,18 @@ export interface MapAction {
 }
 
 /** A button on a list entry. */
+/** A button under a paper in the list ("PDF", "Cite as", "Export"). */
 export interface PaperAction {
 	id: string;
 	label: string;
+	/** Tooltip. */
+	title?: string;
+	/** Drawn as the main button. */
+	primary?: boolean;
 	show?(map: MapState, paper: Paper): boolean;
-	run(map: MapState, paper: Paper): void;
+	/** A link to open in a new tab instead of running `run`. */
+	href?(map: MapState, paper: Paper): string;
+	run?(map: MapState, paper: Paper): void;
 }
 
 export interface ModalProps<T = unknown> {
@@ -75,6 +82,13 @@ export function activePlugins(): OkmPlugin[] {
 export function findModal(id: string) {
 	for (const p of plugins.values()) if (p.modals?.[id]) return p.modals[id];
 	return undefined;
+}
+
+/** The paper buttons the plugins offer for this paper. */
+export function paperActions(map: MapState, paper: Paper): PaperAction[] {
+	return activePlugins()
+		.flatMap((p) => p.paperActions ?? [])
+		.filter((a) => a.show?.(map, paper) ?? true);
 }
 
 /** The best info page for this map, if any plugin has one. */

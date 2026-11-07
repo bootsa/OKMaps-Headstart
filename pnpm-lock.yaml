@@ -305,6 +305,12 @@ importers:
 
   packages/ui-svelte:
     dependencies:
+      '@citation-js/core':
+        specifier: ^0.7.21
+        version: 0.7.21
+      '@citation-js/plugin-csl':
+        specifier: ^0.7.22
+        version: 0.7.22(@citation-js/core@0.7.21)
       d3-array:
         specifier: ^3.2.5
         version: 3.2.5

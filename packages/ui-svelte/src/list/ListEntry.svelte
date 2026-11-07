@@ -6,12 +6,14 @@
   zooms in.
 -->
 <script lang="ts">
+	import Button from "../components/Button.svelte";
 	import Highlight from "../components/Highlight.svelte";
 	import Tag from "../components/Tag.svelte";
 	import { paperDate } from "../data/papers";
 	import type { MapState } from "../data/state.svelte";
 	import type { Paper } from "../data/types";
 	import { t } from "../i18n/strings";
+	import { paperActions } from "../plugins";
 	import { authorsLine, docTypeTags, shortTitle } from "./format";
 
 	interface Props {
@@ -32,6 +34,7 @@
 	const title = $derived(paper.title || t(s, "default_paper_title"));
 	const authors = $derived(authorsLine(paper.authorsList, selected) || t(s, "default_authors"));
 	const showCitations = $derived(!map.config.contentBased);
+	const actions = $derived(paperActions(map, paper));
 </script>
 
 <article class="okm-entry" class:selected id="entry-{paper.safeId}">
@@ -104,6 +107,31 @@
 		<p class="row"><strong>{paper.readers}</strong> {t(s, "readers")}</p>
 	{/if}
 
+	{#if actions.length}
+		<div class="actions">
+			{#each actions as action (action.id)}
+				{#if action.href}
+					<Button
+						variant={action.primary ? "primary" : "secondary"}
+						size="sm"
+						href={action.href(map, paper)}
+						newTab
+						title={action.title}
+						>{action.label}</Button
+					>
+				{:else}
+					<Button
+						variant={action.primary ? "primary" : "secondary"}
+						size="sm"
+						title={action.title}
+						onclick={() => action.run?.(map, paper)}
+						>{action.label}</Button
+					>
+				{/if}
+			{/each}
+		</div>
+	{/if}
+
 	<p class="row area">
 		<span class="label">{t(s, "area")}:</span>
 		<button
@@ -133,6 +161,13 @@
 		&.selected {
 			background: var(--color-surface-muted);
 		}
+	}
+
+	.actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-2);
+		margin: var(--space-2) 0;
 	}
 
 	.tags {
