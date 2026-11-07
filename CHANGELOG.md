@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.1.19](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.18...v7.1.19) (2026-11-07)
+
+
+### Features
+
+* **ui-svelte:** show geo maps of resources with a location, on Leaflet ([760144d](https://github.com/bootsa/OKMaps-Headstart/commit/760144da9286503a0f99189d92b68c22cbc274f0))
+* **ui-svelte:** show geo maps of resources with a location, on Leaflet ([720700c](https://github.com/bootsa/OKMaps-Headstart/commit/720700cbb4f0418da67309dc9d0707a7dc6b481b))
+
 ## [7.1.18](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.17...v7.1.18) (2026-11-07)
 
 
