@@ -70,6 +70,39 @@
 			},
 		},
 	);
+
+	// Twelve keywords over twenty years, made up for the story.
+	const years = Array.from({ length: 20 }, (_, i) => String(2005 + i));
+	const keywords = [
+		"plankton",
+		"salinity",
+		"warming",
+		"mesocosm",
+		"nutrients",
+		"fisheries",
+		"acidification",
+		"biodiversity",
+		"sediment",
+		"algae",
+		"oxygen",
+		"microbes",
+	];
+	const streamgraph = new MapState(
+		{
+			...record,
+			context: { ...record.context, params: { sorting: "most-relevant" } },
+			streamgraph: {
+				x: years,
+				subject: keywords.map((name, k) => ({
+					name,
+					y: years.map((_, i) => Math.max(0, Math.round(6 + 5 * Math.sin((i + k * 3) / 3) + (k % 4) - i / 8))),
+					ids_overall: record.documents.slice(k * 5, k * 5 + 5).map((d) => String(d.id)),
+				})),
+			},
+		},
+		600,
+		{ visType: "timeline" },
+	);
 </script>
 
 <Story name="Knowledge map with list">
@@ -81,5 +114,11 @@
 <Story name="ORCID researcher map">
 	{#snippet template()}
 		<Visualization state={orcid} />
+	{/snippet}
+</Story>
+
+<Story name="Streamgraph">
+	{#snippet template()}
+		<Visualization state={streamgraph} />
 	{/snippet}
 </Story>

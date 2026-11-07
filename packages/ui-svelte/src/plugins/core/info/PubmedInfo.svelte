@@ -1,13 +1,13 @@
-<!-- @component Info page of a PubMed knowledge map. -->
+<!-- @component Info page of a PubMed map (knowledge map or streamgraph). -->
 <script lang="ts">
 	import type { MapState } from "../../../data/state.svelte";
 	import DataSourceInfo from "./DataSourceInfo.svelte";
-	import KnowledgeMapInfo from "./KnowledgeMapInfo.svelte";
+	import MapInfo from "./MapInfo.svelte";
 
 	let { state: map }: { state: MapState } = $props();
 </script>
 
-<KnowledgeMapInfo state={map}>
+<MapInfo state={map}>
 	{#snippet source()}
 		<DataSourceInfo source="PubMed">
 			PubMed comprises more than 38 million citations for biomedical literature from MEDLINE, life science journals, and
@@ -18,4 +18,4 @@
 			accuracy and completeness of this data.
 		</DataSourceInfo>
 	{/snippet}
-</KnowledgeMapInfo>
+</MapInfo>

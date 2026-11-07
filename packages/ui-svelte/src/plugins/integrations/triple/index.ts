@@ -1,8 +1,8 @@
 import type { OkmPlugin } from "../../index";
 import TripleInfo from "./TripleInfo.svelte";
 
-/** GoTriple maps (service "triple_km"): their info page. */
+/** GoTriple maps (services "triple_km" and "triple_sg", its streamgraphs): their info page. */
 export const triplePlugin: OkmPlugin = {
 	id: "triple",
-	infoPages: [{ matches: (m) => m.config.service === "triple_km", component: TripleInfo }],
+	infoPages: [{ matches: (m) => m.config.service.startsWith("triple"), component: TripleInfo }],
 };

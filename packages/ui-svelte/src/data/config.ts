@@ -19,6 +19,8 @@ export interface MapConfig {
 	titleStyle: "default" | "viper";
 	/** No reader counts: papers are sized equally and sorted by relevance. */
 	contentBased: boolean;
+	/** Colours of the streams, in turn (old streamgraph_colors). */
+	streamgraphColors: string[];
 	/** What the papers are sized by (old scale_by): a metric such as "citation_count", or "content_based". */
 	scaleBy: string | null;
 	/** The choices of "Scale map by" (old scale_types); none hides it. */
@@ -109,6 +111,20 @@ const common: Omit<MapConfig, "service" | "language" | "sortOptions" | "contentB
 	infoType: null,
 	scaleBy: null,
 	scaleOptions: [],
+	streamgraphColors: [
+		"#28a2a3",
+		"#671A54",
+		"#CC3380",
+		"#7acca3",
+		"#c999ff",
+		"#ffe199",
+		"#ccfff2",
+		"#99DFFF",
+		"#FF99AA",
+		"#c5d5cf",
+		"#FFBD99",
+		"#2856A3",
+	],
 	scaleExplanations: {},
 	titleStyle: "default",
 	dynamicSizing: false,
