@@ -6,6 +6,8 @@ import {
 	getView,
 	MapState,
 	type MapView,
+	mapCitation,
+	mapTitle,
 	mapViews,
 	processMap,
 	registerView,
@@ -25,6 +27,8 @@ const listView: MapView = {
 	label: "Plain list",
 	process: ({ record, papers, size }) => ({ context: record.context, papers, areas: [], streams: [], size }),
 	component: ListView,
+	strings: { heading: "overview_label", backlink: "backlink_list" },
+	citation: { kind: "km", type: "Plain List" },
 };
 
 afterEach(() => unregisterView("plain-list"));
@@ -32,7 +36,7 @@ afterEach(() => unregisterView("plain-list"));
 describe("map views", () => {
 	it("registers the core views", () => {
 		expect(mapViews().map((v) => v.id)).toEqual(["overview", "timeline", "geomap"]);
-		expect(getView("overview").zoomsToArea).toBe(true);
+		expect(getView("overview").areas).toBe(true);
 	});
 
 	it("says which views fit a record", () => {
@@ -58,6 +62,15 @@ describe("map views", () => {
 	it("puts the knowledge map's style picker in the settings", () => {
 		render(Visualization, { state: new MapState(record, 600), height: 600 });
 		expect(screen.getByText("Map style")).toBeInTheDocument();
+	});
+
+	it("names the view in the title and citation", () => {
+		registerView(listView);
+		const state = new MapState(record, 600, { visType: "plain-list" });
+		expect(mapTitle(state.config, state.map.context, state.strings)).toEqual(
+			mapTitle({ ...state.config, visType: "overview" }, state.map.context, state.strings),
+		);
+		expect(mapCitation(state, "https://x.test/map", 2026)).toContain("Plain List");
 	});
 
 	it("does not zoom into an area in views without areas", () => {

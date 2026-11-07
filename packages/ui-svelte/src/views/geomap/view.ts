@@ -2,6 +2,7 @@ import { parsePlace } from "../../data/papers";
 import { placeOnChart } from "../../data/process";
 import type { MapView, ViewProcessor } from "../types";
 import Geomap from "./Geomap.svelte";
+import GeomapInfo from "./GeomapInfo.svelte";
 
 /** Each paper's place from its coverage (AQUANAVI facilities). */
 export const geomapProcessor: ViewProcessor = {
@@ -20,4 +21,12 @@ export const geomapView: MapView = {
 	component: Geomap,
 	// Above Leaflet's attribution line.
 	overlayInset: "2.25rem",
+	places: true,
+	strings: { heading: "geomap_label", backlink: "backlink_list_streamgraph" },
+	citation: {
+		kind: "geomap",
+		type: "Geo Map",
+		text: (query, year, link) => `Open Knowledge Maps ${year}. Geo Map of ${query}. Retrieved from ${link}.`,
+	},
+	info: GeomapInfo,
 };

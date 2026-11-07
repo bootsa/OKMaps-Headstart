@@ -36,7 +36,7 @@
 			current = false;
 		};
 	});
-	const showCreate = $derived(!!create && map.config.visType === "overview");
+	const showCreate = $derived(!!create && !!map.view.creatable);
 </script>
 
 <div class="okm-credit">

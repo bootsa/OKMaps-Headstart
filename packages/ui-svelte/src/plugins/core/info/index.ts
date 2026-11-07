@@ -16,6 +16,6 @@ export const infoPlugin: OkmPlugin = {
 	infoPages: [
 		{ matches: (m) => m.config.service === "base", component: BaseInfo },
 		{ matches: (m) => m.config.service === "pubmed", component: PubmedInfo },
-		{ matches: (m) => m.config.visType === "overview" && m.config.service === "openaire", component: OpenAireInfo },
+		{ matches: (m) => m.view.id === "overview" && m.config.service === "openaire", component: OpenAireInfo },
 	],
 };

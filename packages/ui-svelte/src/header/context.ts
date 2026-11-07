@@ -7,6 +7,7 @@
 import type { MapConfig } from "../data/config";
 import type { MapContext, Paper } from "../data/types";
 import { type Strings, t } from "../i18n/strings";
+import { getView } from "../views/registry";
 
 export type MapTitle =
 	| { kind: "basic"; text: string }
@@ -52,17 +53,8 @@ const MAX_LENGTH_VIPER = 47;
 const MAX_LENGTH_CUSTOM = 100;
 
 function headingLabel(config: MapConfig, s: Strings): string {
-	const key =
-		config.visType === "timeline"
-			? config.isAuthorview
-				? "streamgraph_authors_label"
-				: "streamgraph_label"
-			: config.visType === "geomap"
-				? "geomap_label"
-				: config.isAuthorview
-					? "overview_authors_label"
-					: "overview_label";
-	return t(s, key);
+	const { heading, authorHeading } = getView(config.visType).strings;
+	return t(s, config.isAuthorview ? (authorHeading ?? heading) : heading);
 }
 
 /** The map's title (old Heading.tsx renderTitle). */
@@ -139,9 +131,9 @@ export function timespan(config: MapConfig, context: MapContext, now = new Date(
 	if (Number.isNaN(from.getTime()) || Number.isNaN(to.getTime())) return null;
 	if (to.getTime() > now.getTime()) to = now;
 	const until = `Until ${showDate(to, service)}`;
-	const mostRecentStreamgraph =
-		config.visType === "timeline" && modifier(config, context, Number.POSITIVE_INFINITY) === "most-recent";
-	if (mostRecentStreamgraph) return until;
+	const mostRecentOverTime =
+		getView(config.visType).overTime && modifier(config, context, Number.POSITIVE_INFINITY) === "most-recent";
+	if (mostRecentOverTime) return until;
 	const start = SERVICE_START[service] ?? "1970-01-01";
 	return isoDate(from, service) === start ? until : `${showDate(from, service)} - ${showDate(to, service)}`;
 }
@@ -182,7 +174,8 @@ export function contextItems(config: MapConfig, context: MapContext, papers: Pap
 	if (!config.showContext || !params) return [];
 	const items: ContextItem[] = [];
 	const service = String(context.service ?? config.service);
-	const isStreamgraph = config.visType === "timeline";
+	const view = getView(config.visType);
+	const overTime = !!view.overTime;
 
 	const living = config.isAuthorview ? str(params.living_dates) : null;
 	if (living) items.push({ id: "living_dates", text: living });
@@ -191,14 +184,14 @@ export function contextItems(config: MapConfig, context: MapContext, papers: Pap
 	const count = papers.length;
 	const how = modifier(config, context, count);
 	const label = t(s, "articles_label");
-	const capped = (service === "pubmed" || service === "base") && count >= 100 && !isStreamgraph;
+	const capped = (service === "pubmed" || service === "base") && count >= 100 && !overTime;
 	const shown = capped ? 100 : count;
 	const oa = config.showOaNumber ? ` (${papers.filter((p) => p.oa).length} open access)` : "";
 	if (how === "most-relevant") {
 		items.push({
 			id: "num_articles",
 			text: `${shown} ${t(s, "most_relevant_label")} ${label}${oa}`,
-			tooltip: t(s, isStreamgraph ? "most_relevant_tooltip_sg" : "most_relevant_tooltip"),
+			tooltip: t(s, view.strings.mostRelevantTooltip ?? "most_relevant_tooltip"),
 		});
 	} else if (how === "most-recent") {
 		items.push({ id: "num_articles", text: `${shown} ${t(s, "most_recent_label")} ${label}${oa}` });
@@ -224,8 +217,8 @@ export function contextItems(config: MapConfig, context: MapContext, papers: Pap
 	const span = timespan(config, context);
 	if (span) {
 		items.push(
-			isStreamgraph
-				? { id: "timespan", text: span, tooltip: t(s, "time_frame_context_sg"), more: true }
+			view.strings.timespanTooltip
+				? { id: "timespan", text: span, tooltip: t(s, view.strings.timespanTooltip), more: true }
 				: { id: "timespan", text: span },
 		);
 	}

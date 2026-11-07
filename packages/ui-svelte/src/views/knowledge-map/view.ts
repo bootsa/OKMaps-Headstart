@@ -1,6 +1,7 @@
 import { placeOnChart } from "../../data/process";
 import type { MapView, ViewProcessor } from "../types";
 import KnowledgeMap from "./KnowledgeMap.svelte";
+import KnowledgeMapInfo from "./KnowledgeMapInfo.svelte";
 import { layoutMap } from "./layout";
 import { savedTheme } from "./themes";
 import ThemePicker from "./themes/ThemePicker.svelte";
@@ -21,5 +22,9 @@ export const knowledgeMapView: MapView = {
 		map.theme = savedTheme();
 	},
 	settings: [ThemePicker],
-	zoomsToArea: true,
+	areas: true,
+	creatable: true,
+	strings: { heading: "overview_label", authorHeading: "overview_authors_label", backlink: "backlink_list" },
+	citation: { kind: "km", type: "Knowledge Map" },
+	info: KnowledgeMapInfo,
 };
