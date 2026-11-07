@@ -1,5 +1,19 @@
 # Changelog
 
+## [7.1.34](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.33...v7.1.34) (2026-11-07)
+
+
+### Features
+
+* jump to a map's areas or streams from the overview list ([74d1907](https://github.com/bootsa/OKMaps-Headstart/commit/74d1907daaecd1142471c7ea43b518e5227b4f26))
+* jump to a map's areas or streams from the overview list ([eea901c](https://github.com/bootsa/OKMaps-Headstart/commit/eea901c87dcd1b94f28fb89c1bdafff5354d0d41))
+* jump to a map's areas or streams from the overview list ([#83](https://github.com/bootsa/OKMaps-Headstart/issues/83)) ([74d1907](https://github.com/bootsa/OKMaps-Headstart/commit/74d1907daaecd1142471c7ea43b518e5227b4f26))
+
+
+### Miscellaneous Chores
+
+* release 7.1.34 ([7cc9f3e](https://github.com/bootsa/OKMaps-Headstart/commit/7cc9f3e7b453a77fc5e8a4ae036a63f3c4d35da2))
+
 ## [7.1.33](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.32...v7.1.33) (2026-11-07)
 
 
