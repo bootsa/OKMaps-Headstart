@@ -1,5 +1,14 @@
 # Changelog
 
+## [7.1.21](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.20...v7.1.21) (2026-11-07)
+
+
+### Features
+
+* draw each map through a registered view ([0b3499c](https://github.com/bootsa/OKMaps-Headstart/commit/0b3499c63cd0417fcc51b93258711760d56a8670))
+* draw each map through a registered view ([5ba8e23](https://github.com/bootsa/OKMaps-Headstart/commit/5ba8e23e31f282269ff82037fa57ef25a60d3830))
+* draw each map through a registered view ([#56](https://github.com/bootsa/OKMaps-Headstart/issues/56)) ([0b3499c](https://github.com/bootsa/OKMaps-Headstart/commit/0b3499c63cd0417fcc51b93258711760d56a8670))
+
 ## [7.1.20](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.19...v7.1.20) (2026-11-07)
 
 
