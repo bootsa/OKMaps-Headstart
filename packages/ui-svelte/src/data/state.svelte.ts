@@ -40,6 +40,16 @@ export class MapState {
 	listFit = $state(true);
 	/** The map theme's id (views/knowledge-map/themes). */
 	theme: string = $state("labels");
+	/** The open modal (see plugins): its id and what it was opened with. */
+	modal: { id: string; data?: unknown } | null = $state(null);
+
+	openModal(id: string, data?: unknown) {
+		this.modal = { id, data };
+	}
+
+	closeModal() {
+		this.modal = null;
+	}
 
 	/** `config` overrides the service's settings, e.g. { visType: "geomap" }. */
 	constructor(record: MapRecord, size: number, config?: Partial<MapConfig>) {

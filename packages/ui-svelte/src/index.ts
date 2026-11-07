@@ -2,8 +2,10 @@
 // the tokens and base styles, and wrap the interface in an element with the
 // `okmaps` class (and data-skin for a skin).
 export { default as Button } from "./components/Button.svelte";
+export { default as CopyButton } from "./components/CopyButton.svelte";
 export { default as Dialog } from "./components/Dialog.svelte";
 export { default as Highlight } from "./components/Highlight.svelte";
+export { default as ModalHost } from "./components/ModalHost.svelte";
 export { default as SchemeToggle } from "./components/SchemeToggle.svelte";
 export { default as Tag } from "./components/Tag.svelte";
 export { default as Tooltip } from "./components/Tooltip.svelte";
@@ -43,7 +45,20 @@ export {
 export { default as Header } from "./header/Header.svelte";
 export { type Strings, strings, t } from "./i18n/strings";
 export { authorsLine, List, ListEntry, shortTitle } from "./list";
-export { activePlugins, type OkmPlugin, registerPlugin, unregisterPlugin } from "./plugins";
+export {
+	activePlugins,
+	findInfoPage,
+	findModal,
+	type InfoPage,
+	type MapAction,
+	type ModalProps,
+	type OkmPlugin,
+	type PaperAction,
+	registerPlugin,
+	unregisterPlugin,
+} from "./plugins";
+export { citeMapPlugin, corePlugins, infoPlugin, registerCorePlugins } from "./plugins/core";
+export { citationDate, mapCitation } from "./plugins/core/cite-map/citation";
 export { applyScheme, initialScheme, type Scheme } from "./scheme";
 export { default as Visualization } from "./Visualization.svelte";
 export {

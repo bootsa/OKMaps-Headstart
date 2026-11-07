@@ -4,8 +4,11 @@
  * far: no header, paper details or modals yet.
  */
 import "@okmaps/ui-svelte/styles.css";
-import { type MapRecord, MapState, Visualization } from "@okmaps/ui-svelte";
+import { type MapRecord, MapState, registerCorePlugins, Visualization } from "@okmaps/ui-svelte";
 import { mount } from "svelte";
+
+// Every plugin the package ships: the app serves all kinds of maps.
+registerCorePlugins();
 
 export function drawNew(target: HTMLElement, record: MapRecord): void {
 	target.classList.add("okmaps", "okm-page");

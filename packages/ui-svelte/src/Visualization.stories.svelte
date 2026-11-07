@@ -3,6 +3,7 @@
 	import base from "../test/fixtures/base-map.json";
 	import { MapState } from "./data/state.svelte";
 	import type { MapRecord } from "./data/types";
+	import { registerCorePlugins } from "./plugins/core";
 	import Visualization from "./Visualization.svelte";
 
 	const { Story } = defineMeta({
@@ -13,6 +14,7 @@
 
 	// Built here, not passed as an arg: Storybook copies args, and a copy of
 	// the state no longer updates the page.
+	registerCorePlugins();
 	const record = base as unknown as MapRecord;
 	const state = new MapState(
 		{

@@ -5,9 +5,11 @@
   items from plugins. All text, never HTML.
 -->
 <script lang="ts">
+	import Button from "../components/Button.svelte";
 	import Tooltip from "../components/Tooltip.svelte";
 	import type { MapState } from "../data/state.svelte";
-	import { activePlugins } from "../plugins";
+	import { t } from "../i18n/strings";
+	import { activePlugins, findModal } from "../plugins";
 	import { contextItems, mapTitle } from "./context";
 
 	let { state: map }: { state: MapState } = $props();
@@ -17,9 +19,22 @@
 		...contextItems(map.config, map.map.context, map.map.papers, map.strings),
 		...activePlugins().flatMap((p) => p.contextItems?.(map) ?? []),
 	]);
+	const actions = $derived(
+		activePlugins()
+			.flatMap((p) => p.actions ?? [])
+			.filter((a) => a.show?.(map) ?? true),
+	);
+	const hasInfo = $derived(Boolean(findModal("info")));
 </script>
 
 <header class="okm-header">
+	{#if actions.length}
+		<div class="actions">
+			{#each actions as action (action.id)}
+				<Button variant="secondary" size="sm" onclick={() => action.run(map)}>{action.label}</Button>
+			{/each}
+		</div>
+	{/if}
 	<h1 class="title">
 		{#if title.kind === "basic"}
 			{title.text}
@@ -34,7 +49,7 @@
 			{/if}
 		{/if}
 	</h1>
-	{#if items.length}
+	{#if items.length || hasInfo}
 		<p class="context">
 			{#each items as item (item.id)}
 				<span class="item" data-item={item.id}>
@@ -45,12 +60,18 @@
 					{/if}
 				</span>
 			{/each}
+			{#if hasInfo}
+				<button type="button" class="info" onclick={() => map.openModal("info")}>
+					{t(map.strings, "intro_label")}
+				</button>
+			{/if}
 		</p>
 	{/if}
 </header>
 
 <style>
 	.okm-header {
+		display: flow-root;
 		min-width: 0;
 		color: var(--color-text);
 		font-family: var(--font-sans);
@@ -63,6 +84,25 @@
 		font-weight: var(--font-weight-regular);
 		line-height: var(--line-height-tight);
 		overflow-wrap: anywhere;
+	}
+
+	.actions {
+		display: flex;
+		flex-wrap: wrap;
+		gap: var(--space-2);
+		float: right;
+		margin: 0 0 var(--space-2) var(--space-4);
+	}
+
+	.info {
+		padding: 0;
+		border: 0;
+		background: none;
+		color: var(--color-link);
+		font: inherit;
+		text-decoration: underline;
+		text-underline-offset: 0.15em;
+		cursor: pointer;
 	}
 
 	.query {
