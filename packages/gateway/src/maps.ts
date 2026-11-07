@@ -41,6 +41,15 @@ export interface PublishedMap {
 
 const MAX_DOCUMENTS = 1000;
 
+function paramsOf(params: string): Record<string, unknown> {
+	try {
+		const p = JSON.parse(params);
+		return p && typeof p === "object" ? p : {};
+	} catch {
+		return {};
+	}
+}
+
 /** Checks the shape of a map to publish; returns the map with only the known top-level fields, or an error. */
 export function validateMap(value: unknown): { map: PublishedMap } | { error: string } {
 	if (typeof value !== "object" || value === null) return { error: "body must be a JSON object" };
@@ -55,10 +64,14 @@ export function validateMap(value: unknown): { map: PublishedMap } | { error: st
 	if (!Array.isArray(v.documents) || v.documents.length === 0 || v.documents.length > MAX_DOCUMENTS) {
 		return { error: `documents must be a list of 1 to ${MAX_DOCUMENTS} records` };
 	}
+	// A streamgraph's records have no place on a chart (the map page counts their keywords).
+	const placed = paramsOf(c.params as string).vis_type !== "timeline";
 	for (const d of v.documents) {
 		if (typeof d !== "object" || d === null || Array.isArray(d)) return { error: "each document must be an object" };
 		const doc = d as Record<string, unknown>;
-		if (typeof doc.id !== "string" || typeof doc.area !== "string") return { error: "each document needs id and area" };
+		if (typeof doc.id !== "string") return { error: "each document needs an id" };
+		if (!placed) continue;
+		if (typeof doc.area !== "string") return { error: "each document needs id and area" };
 		if (!Number.isFinite(Number(doc.x)) || !Number.isFinite(Number(doc.y)))
 			return { error: "each document needs x and y" };
 	}

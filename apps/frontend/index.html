@@ -25,6 +25,13 @@
         </fieldset>
 
         <div data-services="pubmed base">
+          <label for="vis_type">Map type</label>
+          <select id="vis_type" name="vis_type">
+            <option value="overview">Knowledge map: the main areas of the topic</option>
+            <option value="timeline">Streamgraph: how its keywords changed over time</option>
+          </select>
+        </div>
+        <div data-services="pubmed base">
           <label for="q">Search terms</label>
           <input id="q" name="q" type="search" required placeholder="e.g. climate change" />
         </div>

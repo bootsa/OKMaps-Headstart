@@ -7,6 +7,12 @@
 
 import { buildOverviewMap, type PipelineResources, toLegacyRecords } from "@okmaps/pipeline";
 import {
+	buildStreamgraph,
+	type StreamgraphData,
+	StreamgraphError,
+	streamgraphDocuments,
+} from "@okmaps/pipeline/streamgraph";
+import {
 	addCitationCounts,
 	type FetchFn,
 	fetchBaseContentProviders,
@@ -16,6 +22,10 @@ import {
 	searchOpenaire,
 	searchPubmed,
 } from "@okmaps/sources";
+import { type VisType, visTypeOf } from "./vis-type.ts";
+
+export type { VisType } from "./vis-type.ts";
+export { visTypeOf } from "./vis-type.ts";
 
 export type Service = "pubmed" | "base" | "openaire";
 
@@ -26,6 +36,7 @@ export interface PubmedRequest {
 	to: string;
 	sorting: "most-relevant" | "most-recent";
 	article_types?: string[];
+	vis_type?: VisType;
 }
 
 export interface BaseSearchRequest {
@@ -36,6 +47,7 @@ export interface BaseSearchRequest {
 	sorting: "most-relevant" | "most-recent";
 	/** BASE dctypenorm codes; 121 is journal article. */
 	document_types: string[];
+	vis_type?: VisType;
 }
 
 export interface OpenaireRequest {
@@ -58,15 +70,21 @@ export interface SearchSettings {
 	fetch?: FetchFn;
 }
 
-/** What the visualisation's local_files mode reads (the getLatestRevision.php shape). */
+/**
+ * What the visualisation's local_files mode reads (the getLatestRevision.php
+ * shape). A streamgraph has `vis_type: "timeline"` in its params.
+ */
 export interface MapRecord {
 	context: { id: string; query: string; service: Service; timestamp: string; params: string };
 	documents: Record<string, unknown>[];
+	/** Keyword counts per year (streamgraphs); the map page recomputes them when missing. */
+	streamgraph?: StreamgraphData;
 }
 
 export type Stage = "searching" | "citations" | "layout";
 
-const PAGE = { pubmed: 100, base: 120 };
+/** Records per search; the old API asked BASE for 1000 for a streamgraph. */
+const PAGE = { pubmed: 100, base: 120, baseTimeline: 1000 };
 
 /** "2026-11-06 14:05:09", the timestamp format of the server's map context. */
 export function timestamp(d: Date): string {
@@ -81,19 +99,35 @@ async function fetchSource(
 	s: SearchSettings,
 ): Promise<{ result: SourceResult; query: string; params: Record<string, unknown> }> {
 	const http = { fetch: s.fetch };
+	const timeline = req.service !== "openaire" && req.vis_type === "timeline";
+	const visType = timeline ? { vis_type: "timeline" } : {};
 	if (req.service === "pubmed") {
-		const params = { from: req.from, to: req.to, sorting: req.sorting, article_types: req.article_types ?? [] };
+		const params = {
+			from: req.from,
+			to: req.to,
+			sorting: req.sorting,
+			article_types: req.article_types ?? [],
+			...visType,
+		};
 		const result = await searchPubmed({ q: req.q, ...params, limit: PAGE.pubmed }, { ...http, apiKey: s.pubmedApiKey });
 		return { result, query: req.q, params };
 	}
 	if (req.service === "base") {
-		const params = { from: req.from, to: req.to, sorting: req.sorting, document_types: req.document_types };
+		const params = {
+			from: req.from,
+			to: req.to,
+			sorting: req.sorting,
+			document_types: req.document_types,
+			...visType,
+		};
 		// Without the provider list, journal volume and issue are just not split out.
 		const contentProviders = await fetchBaseContentProviders(gateway(s, "/base/repositories"), http).catch(
 			() => undefined,
 		);
 		const result = await searchBase(
-			{ q: req.q, ...params, limit: PAGE.base, list_size: 100 },
+			timeline
+				? { q: req.q, ...params, limit: PAGE.baseTimeline, list_size: PAGE.baseTimeline }
+				: { q: req.q, ...params, limit: PAGE.base, list_size: 100 },
 			// The gateway spaces BASE requests for all users, so no client-side pause.
 			{ ...http, endpoint: gateway(s, "/base/search"), contentProviders, minIntervalMs: 0 },
 		);
@@ -124,17 +158,27 @@ export async function buildMap(
 		papers = await addCitationCounts(papers, { fetch: settings.fetch, mailto: settings.crossrefMailto });
 	}
 	onStage("layout");
+	const context = {
+		id: crypto.randomUUID(),
+		query,
+		service: req.service,
+		timestamp: timestamp(now),
+		params: JSON.stringify(params),
+	};
+	if (visTypeOf({ context }) === "timeline") {
+		// The old server's timeline: keyword streams instead of the layout,
+		// and only the records that appear in them.
+		let streamgraph: StreamgraphData;
+		try {
+			streamgraph = buildStreamgraph(papers, { query });
+		} catch (err) {
+			if (err instanceof StreamgraphError) throw Object.assign(err, { reasons: ["not enough keywords"] });
+			throw err;
+		}
+		return { context, documents: streamgraphDocuments(papers, streamgraph), streamgraph };
+	}
 	const map = buildOverviewMap({ papers, content: result.content, service: req.service }, await resources(), {
 		taxonomySeparator: ";",
 	});
-	return {
-		context: {
-			id: crypto.randomUUID(),
-			query,
-			service: req.service,
-			timestamp: timestamp(now),
-			params: JSON.stringify(params),
-		},
-		documents: toLegacyRecords(map),
-	};
+	return { context, documents: toLegacyRecords(map) };
 }
