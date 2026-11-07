@@ -130,6 +130,9 @@ importers:
       '@okmaps/pipeline':
         specifier: workspace:*
         version: link:../pipeline
+      '@okmaps/storage':
+        specifier: workspace:*
+        version: link:../storage
       d3-array:
         specifier: ^3.2.5
         version: 3.2.5

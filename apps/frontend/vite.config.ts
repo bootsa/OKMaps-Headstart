@@ -8,7 +8,11 @@ export default defineConfig({
 	build: {
 		target: "es2022",
 		rollupOptions: {
-			input: { index: resolve(__dirname, "index.html"), map: resolve(__dirname, "map.html") },
+			input: {
+				index: resolve(__dirname, "index.html"),
+				map: resolve(__dirname, "map.html"),
+				settings: resolve(__dirname, "settings.html"),
+			},
 		},
 	},
 	worker: { format: "es" },

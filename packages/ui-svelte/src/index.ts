@@ -100,6 +100,7 @@ export {
 	viperPlugin,
 } from "./plugins/integrations";
 export { applyScheme, initialScheme, type Scheme } from "./scheme";
+export * from "./settings";
 export { default as Visualization } from "./Visualization.svelte";
 export { coreViews, registerCoreViews } from "./views/core";
 export { Geomap, geomapProcessor, geomapView, pinLabel, type TileLayerSpec, tileLayers } from "./views/geomap";

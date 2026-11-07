@@ -13,8 +13,9 @@
   <body>
     <main>
       <h1>Open Knowledge Maps</h1>
-      <p class="lead">Get an overview of a research topic. The map is made in your browser and saved here.</p>
+      <p class="lead">Get an overview of a research topic. The map is made in your browser and kept where you choose.</p>
       <p id="version" class="hint" hidden></p>
+      <p class="hint"><a id="settings-link" href="settings.html">Settings: sources and where maps are kept</a></p>
 
       <form id="search">
         <fieldset class="services">
@@ -84,52 +85,11 @@
       </form>
 
       <section>
-        <h2>Your maps</h2>
+        <h2>Your maps <span id="storage-label" class="meta"></span></h2>
         <p id="no-maps">Maps you make are kept and listed here.</p>
         <ul id="maps"></ul>
       </section>
 
-      <section>
-        <details id="storage-settings">
-          <summary>Where your maps are kept: <span id="storage-label">this browser</span></summary>
-          <form id="storage">
-            <fieldset class="services">
-              <legend>Keep my maps in</legend>
-              <label><input type="radio" name="kind" value="browser" checked /> This browser</label>
-              <label><input type="radio" name="kind" value="webdav" /> A WebDAV folder (Nextcloud, ownCloud, …)</label>
-              <label><input type="radio" name="kind" value="solid" /> A Solid Pod</label>
-              <label><input type="radio" name="kind" value="atomic" /> An Atomic Data server</label>
-            </fieldset>
-            <div data-kinds="webdav">
-              <label for="dav-url">Folder URL</label>
-              <input id="dav-url" name="url" type="url" required placeholder="https://cloud.example.org/remote.php/dav/files/me/okmaps/" />
-              <div class="row">
-                <div><label for="dav-user">User name</label><input id="dav-user" name="username" autocomplete="username" /></div>
-                <div><label for="dav-password">Password or app password</label><input id="dav-password" name="password" type="password" autocomplete="current-password" /></div>
-              </div>
-              <p class="hint">The folder's server must allow this site (CORS). The password is kept in this browser only.</p>
-            </div>
-            <div data-kinds="solid">
-              <label for="solid-issuer">Where you log in (your identity provider)</label>
-              <input id="solid-issuer" name="issuer" type="url" required list="solid-issuers" placeholder="https://login.inrupt.com" />
-              <datalist id="solid-issuers"></datalist>
-              <label for="solid-container">Folder in your Pod (optional)</label>
-              <input id="solid-container" name="container" type="url" placeholder="Leave empty for okmaps/ at the top of your Pod" />
-              <p class="hint">You will be sent to log in and then brought back here.</p>
-            </div>
-            <div data-kinds="atomic">
-              <label for="atomic-parent">Folder or Drive URL</label>
-              <input id="atomic-parent" name="parent" type="url" required placeholder="https://atomic.example.org/drive/okmaps" />
-              <label for="atomic-secret">Agent secret</label>
-              <input id="atomic-secret" name="secret" type="password" required autocomplete="off" />
-              <p class="hint">Your secret is under User settings in the Atomic data browser. It is kept in this browser only. The server must allow this site (CORS).</p>
-            </div>
-            <label class="check"><input type="checkbox" name="copy" checked /> Copy the maps I have now</label>
-            <button id="storage-save" type="submit">Use this</button>
-            <p id="storage-status" class="status" role="status" aria-live="polite"></p>
-          </form>
-        </details>
-      </section>
     </main>
     <script type="module" src="/src/main.ts"></script>
   </body>

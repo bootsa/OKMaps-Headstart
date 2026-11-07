@@ -16,7 +16,14 @@ export function precacheList(outDir: string): string[] {
 					.filter((f) => !f.endsWith(".map"))
 					.map((f) => `${dir}/${f}`)
 			: [];
-	const files = ["index.html", "map.html", "manifest.webmanifest", ...list("assets"), ...list("icons")];
+	const files = [
+		"index.html",
+		"map.html",
+		"settings.html",
+		"manifest.webmanifest",
+		...list("assets"),
+		...list("icons"),
+	];
 	const tagsFile = path.join(outDir, "vis/tags.json");
 	if (fs.existsSync(tagsFile)) {
 		const tags = JSON.parse(fs.readFileSync(tagsFile, "utf8")) as { scripts: string[]; styles: string[] };
