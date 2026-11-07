@@ -12,13 +12,20 @@ const preview: Preview = {
 				dynamicTitle: true,
 			},
 		},
+		scheme: {
+			description: "Light or dark mode (data-scheme on <html>)",
+			toolbar: { title: "Mode", icon: "mirror", items: ["light", "dark"], dynamicTitle: true },
+		},
 	},
-	initialGlobals: { skin: "default" },
+	initialGlobals: { skin: "default", scheme: "light" },
 	decorators: [
 		(story, context) => {
 			const skin = context.globals.skin as string;
 			if (skin && skin !== "default") document.documentElement.dataset.skin = skin;
 			else delete document.documentElement.dataset.skin;
+			document.documentElement.dataset.scheme = (context.globals.scheme as string) || "light";
+			document.body.style.background = "var(--color-surface)";
+			document.body.style.color = "var(--color-text)";
 			return story();
 		},
 	],

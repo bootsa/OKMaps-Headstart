@@ -5,23 +5,15 @@
   All text, never HTML.
 -->
 <script lang="ts">
-	import Highlight from "../../components/Highlight.svelte";
-	import Tag from "../../components/Tag.svelte";
-	import { paperDate } from "../../data/papers";
-	import type { Paper } from "../../data/types";
-	import { cutAuthors, popupPlacement, type Rect } from "./geometry";
+	import Highlight from "../../../../components/Highlight.svelte";
+	import Tag from "../../../../components/Tag.svelte";
+	import { paperDate } from "../../../../data/papers";
+	import { cutAuthors, iconRect, popupPlacement } from "../../geometry";
+	import type { PopupProps } from "../types";
 
-	interface Props {
-		paper: Paper;
-		/** The paper's icon. */
-		icon: Rect;
-		/** Chart size in px, to keep the popup inside. */
-		size: number;
-		search?: string[];
-		query?: string[];
-	}
+	let { paper, rect, size, search = [], query = [] }: PopupProps = $props();
 
-	let { paper, icon, size, search = [], query = [] }: Props = $props();
+	const icon = $derived(iconRect(rect, true));
 
 	const WIDTH = 260;
 	let height = $state(120);

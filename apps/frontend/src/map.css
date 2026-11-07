@@ -61,3 +61,17 @@
 .okm-page {
 	padding: 8px 16px 64px;
 }
+
+/* Dark mode, set by the new interface's switch (data-scheme on <html>). */
+html[data-scheme="dark"] body {
+	background: #1a1e21;
+}
+html[data-scheme="dark"] .toolbar,
+html[data-scheme="dark"] .toolbar button {
+	background: #24292d;
+	border-color: #3a4247;
+	color: #e3e6e8;
+}
+html[data-scheme="dark"] .toolbar a {
+	color: #9fbcdc;
+}

@@ -57,6 +57,9 @@
 	--color-paper-fill: var(--okm-white);
 	--color-tag-low: var(--okm-tag-low);
 	--color-tag-high: var(--okm-tag-high);
+	--color-area-dimmed: rgb(0 0 0 / 0.1);
+	/* Behind text drawn over the map (paper titles, the map toolbar). */
+	--color-backdrop: rgb(255 255 255 / 0.85);
 
 	/* Typography */
 	--font-sans: "Open Sans", "Helvetica Neue", Helvetica, sans-serif;
@@ -98,4 +101,42 @@
 		--duration-fast: 0ms;
 		--duration-zoom: 0ms;
 	}
+}
+
+/* Dark mode: set data-scheme="dark" on <html> (the scheme toggle does) or
+   on the map's root. Overrides the semantic tokens only, like a skin. All
+   text pairs keep at least WCAG AA contrast (4.5:1). */
+:root[data-scheme="dark"],
+.okmaps[data-scheme="dark"] {
+	color-scheme: dark;
+	--color-text: #e3e6e8;
+	--color-text-muted: #a5adb2;
+	--color-text-inverse: #1a1e21;
+	--color-heading: #f0f2f3;
+	--color-link: #e3e6e8;
+	--color-journal: #9fbcdc;
+	--color-surface: #1a1e21;
+	--color-surface-muted: #24292d;
+	--color-border: #3a4247;
+	--color-highlight: #2c4741;
+	--color-highlight-search: #2a3337;
+	--color-accent: #4fc3a1;
+	--color-accent-strong: #9fbcdc;
+	--color-action: #b9c1c6;
+	--color-action-text: #1a1e21;
+	--color-open-access: #4fc3a1;
+	--color-focus: #51c9ae;
+	--color-danger: #ff8a80;
+	--color-area-fill: #20262a;
+	--color-area-fill-active: #2a3a47;
+	--color-area-stroke: #c3c9cd;
+	--color-area-title: #e3e6e8;
+	--color-area-dimmed: rgb(255 255 255 / 0.07);
+	--color-paper: #5b656c;
+	--color-paper-fill: #2a3135;
+	--color-tag-low: #a3abef;
+	--color-tag-high: #ff7aa6;
+	--color-backdrop: rgb(32 38 42 / 0.85);
+	--shadow-raised: 0 2px 4px rgb(0 0 0 / 0.5);
+	--shadow-overlay: 0 10px 30px rgb(0 0 0 / 0.6);
 }

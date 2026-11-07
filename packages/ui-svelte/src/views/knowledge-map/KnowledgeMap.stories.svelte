@@ -18,8 +18,9 @@
 	const overview = () => new MapState(record, 600);
 
 	/** The same map zoomed into its largest area, with a paper selected. */
-	function zoomed() {
+	function zoomed(theme = "labels") {
 		const state = new MapState(record, 600);
+		state.theme = theme;
 		const area = [...state.map.areas].sort((a, b) => b.papers.length - a.papers.length)[0];
 		state.selectPaper(area.papers[0].safeId);
 		return state;
@@ -36,5 +37,8 @@
 
 <Story name="Overview" args={{ state: overview() }} />
 <Story name="Zoomed in" args={{ state: zoomed() }} />
+<Story name="Original theme" args={{ state: Object.assign(overview(), { theme: "original" }) }} />
+<Story name="Original theme, zoomed in" args={{ state: zoomed("original") }} />
+<Story name="Octagons theme, zoomed in" args={{ state: zoomed("octagons") }} />
 <Story name="Searching" args={{ state: Object.assign(overview(), { search: "water" }) }} />
 <Story name="Crafted area title" args={{ state: crafted() }} />

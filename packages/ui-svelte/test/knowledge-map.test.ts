@@ -3,7 +3,17 @@ import path from "node:path";
 import { fireEvent, render, screen } from "@testing-library/svelte";
 import { flushSync } from "svelte";
 import { describe, expect, it } from "vitest";
-import { highlightParts, KnowledgeMap, MapState, mapGeometry, queryTerms } from "../src/index";
+import {
+	getTheme,
+	highlightParts,
+	KnowledgeMap,
+	labelsTheme,
+	MapState,
+	mapGeometry,
+	octagonShape,
+	queryTerms,
+	Visualization,
+} from "../src/index";
 import { dogEarPath, iconRect, labelWidth, paperPath, popupPlacement } from "../src/views/knowledge-map/geometry";
 
 const record = JSON.parse(fs.readFileSync(path.join(__dirname, "fixtures", "base-map.json"), "utf8"));
@@ -51,7 +61,7 @@ describe("knowledge map geometry", () => {
 	it.each([600, 420])("keeps zoomed titles apart and inside the circle at %d px", (size) => {
 		const state = new MapState(record, size);
 		for (const area of state.map.areas) {
-			const g = mapGeometry(state.map.areas, state.map.papers, size, area);
+			const g = mapGeometry(state.map.areas, state.map.papers, size, area, labelsTheme);
 			const circle = g.areas[area.uri];
 			const boxes = area.papers.map((p) => {
 				const icon = iconRect(g.papers[p.safeId], true);
@@ -167,5 +177,90 @@ describe("KnowledgeMap", () => {
 		const { container } = draw(rec);
 		expect(container.querySelector("img")).toBeNull();
 		expect(container.textContent).toContain(crafted);
+	});
+});
+
+describe("map themes", () => {
+	const draw = (theme: string) => {
+		const state = new MapState(record, 600);
+		state.theme = theme;
+		const result = render(KnowledgeMap, { state, duration: 0 });
+		flushSync();
+		return { state, ...result };
+	};
+
+	it("falls back to the labels theme for an unknown id", () => {
+		expect(getTheme("nope").id).toBe("labels");
+		expect(getTheme("original").name).toBe("Original");
+	});
+
+	it("original: writes the details on the paper and enlarges it on hover, without a popup", async () => {
+		const { state, container } = draw("original");
+		const paper = state.map.papers[0];
+		expect(container.querySelector(".okm-paper .authors")).not.toBeNull();
+		state.zoomIn(paper.areaUri);
+		flushSync();
+		const shape = [...container.querySelectorAll(".okm-paper")].find((g) => g.textContent?.includes(paper.title));
+		const width = () => Number(shape?.querySelector("foreignObject")?.getAttribute("width"));
+		const before = width();
+		await fireEvent.pointerEnter(shape as Element);
+		expect(width()).toBeGreaterThan(before);
+		expect(container.querySelector(".okm-popup")).toBeNull();
+		// Papers keep their layout positions: nothing moves them apart.
+		const g = mapGeometry(state.map.areas, state.map.papers, 600, state.area, getTheme("original"));
+		const plain = mapGeometry(state.map.areas, state.map.papers, 600, state.area);
+		expect(g.papers[paper.safeId]).toEqual(plain.papers[paper.safeId]);
+	});
+
+	it("octagons: draws areas as octagons and keeps papers inside them", () => {
+		const { container } = draw("octagons");
+		const d = container.querySelector(".okm-bubble .outline")?.getAttribute("d") ?? "";
+		expect(d.match(/[ML]/g)).toHaveLength(8);
+		const state = new MapState(record, 600);
+		const theme = getTheme("octagons");
+		for (const area of state.map.areas) {
+			const g = mapGeometry(state.map.areas, state.map.papers, 600, area, {
+				inset: theme.shape.inset,
+				placePapers: theme.placePapers,
+			});
+			const c = g.areas[area.uri];
+			for (const p of area.papers) {
+				const r = g.papers[p.safeId];
+				expect(Math.hypot(r.x + r.w / 2 - c.x, r.y + r.h / 2 - c.y)).toBeLessThan(c.r * octagonShape.inset);
+			}
+		}
+	});
+
+	it("switches theme from the picker, remembers it, and takes ?theme= from the URL", async () => {
+		window.history.replaceState(null, "", "?theme=original");
+		const state = new MapState(record, 600);
+		const { container } = render(Visualization, { state, height: 600 });
+		flushSync();
+		expect(state.theme).toBe("original");
+		const select = screen.getByLabelText("Map style") as HTMLSelectElement;
+		await fireEvent.change(select, { target: { value: "labels" } });
+		expect(state.theme).toBe("labels");
+		expect(window.localStorage.getItem("okmaps-map-theme")).toBe("labels");
+		expect(container.querySelector(".okm-paper .authors")).toBeNull();
+		window.history.replaceState(null, "", "?");
+		window.localStorage.clear();
+	});
+});
+
+describe("dark mode", () => {
+	it("switches the page to dark and back, remembering the choice", async () => {
+		window.localStorage.clear();
+		const state = new MapState(record, 600);
+		render(Visualization, { state, height: 600 });
+		flushSync();
+		const button = screen.getByRole("button", { name: "Dark mode" });
+		expect(document.documentElement.dataset.scheme).toBe("light");
+		await fireEvent.click(button);
+		expect(button).toHaveAttribute("aria-pressed", "true");
+		expect(document.documentElement.dataset.scheme).toBe("dark");
+		expect(window.localStorage.getItem("okmaps-scheme")).toBe("dark");
+		await fireEvent.click(button);
+		expect(document.documentElement.dataset.scheme).toBe("light");
+		window.localStorage.clear();
 	});
 });

@@ -4,6 +4,7 @@
 export { default as Button } from "./components/Button.svelte";
 export { default as Dialog } from "./components/Dialog.svelte";
 export { default as Highlight } from "./components/Highlight.svelte";
+export { default as SchemeToggle } from "./components/SchemeToggle.svelte";
 export { default as Tag } from "./components/Tag.svelte";
 export {
 	type MapConfig,
@@ -30,5 +31,20 @@ export type {
 } from "./data/types";
 export { type Strings, strings, t } from "./i18n/strings";
 export { authorsLine, List, ListEntry, shortTitle } from "./list";
+export { applyScheme, initialScheme, type Scheme } from "./scheme";
 export { default as Visualization } from "./Visualization.svelte";
-export { KnowledgeMap, layoutMap, mapGeometry } from "./views/knowledge-map";
+export {
+	getTheme,
+	KnowledgeMap,
+	labelsTheme,
+	layoutMap,
+	type MapTheme,
+	mapGeometry,
+	mapThemes,
+	octagonShape,
+	octagonsTheme,
+	originalTheme,
+	polygonShape,
+	registerTheme,
+	ThemePicker,
+} from "./views/knowledge-map";
