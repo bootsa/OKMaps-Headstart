@@ -1,5 +1,19 @@
 # Changelog
 
+## [7.1.18](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.17...v7.1.18) (2026-11-07)
+
+
+### Features
+
+* **ui-svelte:** export the streamgraph view ([f7cf8ea](https://github.com/bootsa/OKMaps-Headstart/commit/f7cf8ea37ffcca986ceea145b117da67d2302162))
+* **ui-svelte:** show streamgraphs of keywords over time, with their info page ([921994e](https://github.com/bootsa/OKMaps-Headstart/commit/921994e503f836e17bf6942c7f5afa3505e27692))
+* **ui-svelte:** show streamgraphs of keywords over time, with their info page ([90b576e](https://github.com/bootsa/OKMaps-Headstart/commit/90b576edbad7eed7c6e65a90e977ce25c67eb909))
+
+
+### Bug Fixes
+
+* **ui-svelte:** keep a streamgraph's list on its stream when a paper is selected ([cc4d348](https://github.com/bootsa/OKMaps-Headstart/commit/cc4d348b20818c6ed5208fb195614e3ae9d46b1d))
+
 ## [7.1.17](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.16...v7.1.17) (2026-11-07)
 
 
