@@ -80,3 +80,50 @@ R's string sort is a Shell sort with locale collation (not stable, so strings
 that collate equal keep a specific order), tm's `removeWords` pastes stopwords
 into a regex unescaped (one French stopword, `o|`, adds an empty alternative),
 and tm's SimpleCorpus counts word length in bytes.
+
+## Streamgraph step
+
+```ts
+import { buildStreamgraph, streamgraphDocuments } from "@okmaps/pipeline/streamgraph";
+
+const streamgraph = buildStreamgraph(papers, { query: "cancer research" }); // topN 12, method "count"
+const documents = streamgraphDocuments(papers, streamgraph); // the papers in the streams
+// streamgraph: { x: ["2009", ...], subject: [{ name, y, ids_timestep, ids_overall }, ...] }
+```
+
+The keyword counts per year that the streamgraph view draws (the record's
+`streamgraph` field). It is a port of the old dataprocessing worker's
+`Streamgraph` (`legacy/workers/dataprocessing/src/streamgraph.py`), which ran
+for maps with `vis_type = "timeline"` instead of the layout. The subpath
+`@okmaps/pipeline/streamgraph` loads only this step. The streamgraph view in
+`@okmaps/ui-svelte` runs it when a record has no `streamgraph` field.
+
+Parity: `test/golden/py/streamgraph_golden.py` runs the Python step on the
+BASE worker's timeline outputs, the 21 known cases and some made-up edge
+cases, with the `count` and `tfidf` methods; every year, count, id list and
+keyword is identical, and inputs Python rejects are rejected
+(`StreamgraphError`). Kept as in Python:
+
+- A stream counts every keyword that matches its keyword as a
+  case-insensitive regular expression, so "math" also counts "mathematics
+  education".
+- A keyword equal to the query is left out only when the case matches.
+- Dates are read as pandas reads them (time zones count in UTC; invalid
+  dates and ranges such as "2017 Apr-Jun" are dropped).
+
+Deliberate differences:
+
+- `nmf` and `lda` are not ported (the worker imported them, but nothing set
+  `sg_method` to them).
+- A record without a subject line is skipped; Python failed.
+- A keyword that is not a valid regular expression is matched literally;
+  Python failed.
+- `streamgraphDocuments` keeps PubMed's records; `reduce_metadata_set`
+  read their numeric ids back as numbers and kept none.
+
+Regenerating the goldens needs Python with pandas and scikit-learn:
+
+```
+PYTHONPATH=../../legacy/workers/dataprocessing/src \
+  python test/golden/py/streamgraph_golden.py test/golden/streamgraph
+```
