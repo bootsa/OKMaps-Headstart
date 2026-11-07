@@ -60,26 +60,29 @@
 
 <section class="okm-list" class:fit={map.listFit} aria-label="Resources">
 	<div class="header">
-		<button
-			type="button"
-			class="toggle"
-			aria-expanded={map.listVisible}
-			title={map.listVisible ? "Hide list" : "Show list"}
-			onclick={() => (map.listVisible = !map.listVisible)}
-		>
-			<span class="chevron" aria-hidden="true">▾</span>
-			<span class="title">
-				<span class="heading">{heading}</span>
-				<span class="docs">(<span class="count">{papers.length}</span> {docsLabel})</span>
-			</span>
-		</button>
-		{#if map.zoomedArea !== null}
-			<Button variant="secondary" size="sm" onclick={() => map.zoomOut()}>{t(s, "backlink")}</Button>
-		{:else if map.selectedStream !== null}
-			<Button variant="secondary" size="sm" onclick={() => map.selectStream(null)}
-				>{t(s, "backlink_list_streamgraph_stream_selected")}</Button
+		<!-- The back button floats above the title when they do not fit side by side. -->
+		<div class="lead">
+			<button
+				type="button"
+				class="toggle"
+				aria-expanded={map.listVisible}
+				title={map.listVisible ? "Hide list" : "Show list"}
+				onclick={() => (map.listVisible = !map.listVisible)}
 			>
-		{/if}
+				<span class="chevron" aria-hidden="true">▾</span>
+				<span class="title">
+					<span class="heading">{heading}</span>
+					<span class="docs">(<span class="count">{papers.length}</span> {docsLabel})</span>
+				</span>
+			</button>
+			{#if map.zoomedArea !== null}
+				<Button variant="secondary" size="sm" onclick={() => map.zoomOut()}>{t(s, "backlink")}</Button>
+			{:else if map.selectedStream !== null}
+				<Button variant="secondary" size="sm" onclick={() => map.selectStream(null)}
+					>{t(s, "backlink_list_streamgraph_stream_selected")}</Button
+				>
+			{/if}
+		</div>
 		{#if onclose}
 			<button type="button" class="close" aria-label="Close the list" title="Close the list" onclick={onclose}>
 				×
@@ -188,9 +191,24 @@
 		background: var(--color-surface-muted);
 	}
 
-	.toggle {
+	/* wrap-reverse: when the title and the back button do not fit on one row,
+	   the button moves to its own row above the title, which keeps the full width. */
+	.lead {
 		display: flex;
 		flex: 1;
+		flex-wrap: wrap-reverse;
+		align-items: center;
+		gap: var(--space-1) var(--space-2);
+		min-width: 0;
+
+		> :global(button:not(.toggle)) {
+			max-width: 100%;
+		}
+	}
+
+	.toggle {
+		display: flex;
+		flex: 1 1 12rem;
 		align-items: baseline;
 		gap: var(--space-2);
 		min-width: 0;

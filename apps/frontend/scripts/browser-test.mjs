@@ -254,6 +254,34 @@ await makeMap(async () => {
 	await viewer.close();
 	console.log(JSON.stringify({ map: "streamgraph", streams: made, sharedStreams: shared }));
 	if (made === 0 || shared !== made) throw new Error("streamgraph: streams missing");
+	// On a phone, a picked stream's name keeps the list header's width; the
+	// "show all" button goes above it instead of squeezing it.
+	for (const colorScheme of ["light", "dark"]) {
+		const phone = await browser.newPage({ viewport: { width: 360, height: 760 }, colorScheme });
+		phone.on("pageerror", (e) => errors.push(e.message));
+		await phone.route(/^https?:\/\/(?!127\.0\.0\.1)/, answer);
+		await phone.goto(sharedSg);
+		await streams(phone);
+		await phone.focus("#visualization .okm-streamgraph .stream");
+		await phone.keyboard.press("Enter");
+		if (!(await phone.$("#visualization .drawer"))) await phone.click("#visualization .open-list");
+		await phone.waitForSelector("#visualization .drawer .okm-list .header .okm-button");
+		await phone.waitForTimeout(300); // the drawer slides in
+		const header = await phone.$eval("#visualization .drawer .okm-list .header", (h) => {
+			const box = (sel) => h.querySelector(sel).getBoundingClientRect();
+			return {
+				width: h.clientWidth,
+				heading: box(".heading").width,
+				back: box(".okm-button").bottom,
+				title: box(".toggle").top,
+			};
+		});
+		await phone.screenshot({ path: path.join(shots, `streamgraph-phone-${colorScheme}.png`) });
+		await phone.close();
+		console.log(JSON.stringify({ streamgraphPhone: { colorScheme, ...header } }));
+		if (header.heading < 60 || header.back > header.title + 1)
+			throw new Error("streamgraph: stream title squashed on a phone");
+	}
 	// Delete it again (it is the newest), so the counts below stay as they were.
 	await page.goto(home);
 	await page.waitForSelector(MAP);
