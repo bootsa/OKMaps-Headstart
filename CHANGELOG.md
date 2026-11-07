@@ -1,5 +1,19 @@
 # Changelog
 
+## [7.1.11](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.9...v7.1.11) (2026-11-07)
+
+
+### Features
+
+* **ui-svelte:** add PDF, "Cite as" and "Export" (BibTeX) buttons to the papers in the list ([157a943](https://github.com/bootsa/OKMaps-Headstart/commit/157a9435054478cc513644cfdf39d64e719f5b3e))
+* **ui-svelte:** add PDF, "Cite as" and "Export" (BibTeX) buttons to the papers in the list ([12b561b](https://github.com/bootsa/OKMaps-Headstart/commit/12b561b3c278c73b914bf4cb91d40f8a4c9c39ea))
+* **ui-svelte:** add the "More information" page and a "Cite" button for the map ([b909fa0](https://github.com/bootsa/OKMaps-Headstart/commit/b909fa0695d66feffd32c6a45f15c5fe1845205d))
+
+
+### Bug Fixes
+
+* **ui-svelte:** declare the citation-js types where the app's type check sees them ([8da7751](https://github.com/bootsa/OKMaps-Headstart/commit/8da77519a34aa5d80d1b3fa8c882d0076f6d0bdd))
+
 ## [7.1.9](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.8...v7.1.9) (2026-11-07)
 
 
