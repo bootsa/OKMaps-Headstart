@@ -1,5 +1,17 @@
 # Changelog
 
+## [7.1.7](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.6...v7.1.7) (2026-11-07)
+
+
+### Features
+
+* **pages:** describe each version on the versions page ([d262af9](https://github.com/bootsa/OKMaps-Headstart/commit/d262af92c7f51a8ed8e6fa5acc53e11ac653d445))
+
+
+### Bug Fixes
+
+* **ui-svelte:** centre zoomed papers and their titles inside the area ([7daa5ff](https://github.com/bootsa/OKMaps-Headstart/commit/7daa5ff1af5e0de6b14961d45994389cf131976d))
+
 ## [7.1.6](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.5...v7.1.6) (2026-11-06)
 
 
