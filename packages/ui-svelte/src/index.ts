@@ -53,6 +53,7 @@ export {
 	type MapAction,
 	type ModalProps,
 	type OkmPlugin,
+	type Overlay,
 	type PaperAction,
 	paperActions,
 	registerPlugin,
@@ -62,16 +63,24 @@ export {
 	citeMapPlugin,
 	citePaperPlugin,
 	corePlugins,
+	type EmbedOptions,
+	embedPlugin,
 	exportPaperPlugin,
+	faqsPlugin,
 	infoPlugin,
 	type PdfOptions,
 	pdfPlugin,
+	type ReloadOptions,
 	registerCorePlugins,
+	reloadPlugin,
+	type ShareOptions,
+	sharePlugin,
 } from "./plugins/core";
 export { citationDate, mapCitation } from "./plugins/core/cite-map/citation";
 export { type CitationStyle, citationStyles, cslRecord, paperCitation } from "./plugins/core/cite-paper/citation";
 export { bibtexType, paperBibtex } from "./plugins/core/export-paper/bibtex";
 export { directPdf, hasFile, hasPdf, isNonText, type PdfResolver } from "./plugins/core/pdf/pdf";
+export { embedCode, embedUrl, type LinkMaker, pageLink, shareTargets } from "./plugins/core/share/links";
 export { applyScheme, initialScheme, type Scheme } from "./scheme";
 export { default as Visualization } from "./Visualization.svelte";
 export {

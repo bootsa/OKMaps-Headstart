@@ -31,7 +31,15 @@
 	{#if actions.length}
 		<div class="actions">
 			{#each actions as action (action.id)}
-				<Button variant="secondary" size="sm" onclick={() => action.run(map)}>{action.label}</Button>
+				{#if action.href}
+					<Button variant="secondary" size="sm" href={action.href(map)} newTab title={action.title}
+						>{action.label}</Button
+					>
+				{:else}
+					<Button variant="secondary" size="sm" title={action.title} onclick={() => action.run?.(map)}
+						>{action.label}</Button
+					>
+				{/if}
 			{/each}
 		</div>
 	{/if}

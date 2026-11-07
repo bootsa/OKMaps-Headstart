@@ -176,9 +176,24 @@ async function makeMap(fill, name) {
 	return counts;
 }
 
-/** The new interface keeps the page's toolbar in its settings panel: open it. */
-async function openToolbar(p) {
-	if (await p.isHidden("#share")) await p.click(".okm-settings .fab");
+/**
+ * Shares the open map and returns its link (without ui=new). The current
+ * look has a Share button in the toolbar; the new look has one by the title.
+ */
+async function shareLink(p) {
+	if (await p.isVisible("#share")) {
+		await p.click("#share");
+		await p.waitForSelector("#share-panel:not([hidden])");
+		return p.inputValue("#share-url");
+	}
+	await p.click(".okm-header button:text-is('Share')");
+	const input = p.getByLabel("Link to this map");
+	await input.waitFor();
+	const url = new URL(await input.inputValue());
+	if (url.searchParams.get("ui") !== "new") throw new Error("the new look's share link drops ui=new");
+	await p.keyboard.press("Escape");
+	url.searchParams.delete("ui");
+	return url.href;
 }
 
 /** Opens the current map in the new (Svelte) interface and checks it draws the same areas. */
@@ -224,10 +239,7 @@ const openaire = await makeMap(async () => {
 await checkNewLook(page, "openaire", openaire.areas);
 
 // Share the open (OpenAIRE) map, then open the link as someone else would.
-await openToolbar(page);
-await page.click("#share");
-await page.waitForSelector("#share-panel:not([hidden])");
-const link = await page.inputValue("#share-url");
+const link = await shareLink(page);
 console.log(JSON.stringify({ link }));
 if (!/map\.html\?shared=[0-9a-f]{24}$/.test(link)) throw new Error("no share link");
 const other = await browser.newPage({ viewport: { width: 1280, height: 860 } });
@@ -375,9 +387,7 @@ console.log(
 );
 // Sharing saves the published id with the map; the map page cannot write to
 // the Pod, so the main page sends it there next time.
-await openToolbar(page);
-await page.click("#share");
-await page.waitForSelector("#share-panel:not([hidden])");
+await shareLink(page);
 const podMapId = new URL(podMapUrl).searchParams.get("id");
 await page.goto(home);
 await page.waitForSelector("#maps li");
