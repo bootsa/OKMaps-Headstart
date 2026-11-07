@@ -11,15 +11,27 @@ import {
 	registerCorePlugins,
 	registerCoreViews,
 	registerPlugin,
+	registerService,
 	sharePlugin,
 	Visualization,
 } from "@okmaps/ui-svelte";
 import { mount } from "svelte";
+import { placeSettings } from "./places.ts";
 import { visTypeOf } from "./vis-type.ts";
 
 // Every view and plugin the package ships: the app serves all kinds of maps.
 registerCoreViews();
 registerCorePlugins();
+// Place sources other than AQUANAVI get AQUANAVI's map settings.
+for (const p of placeSettings()) {
+	if (p.id !== "aquanavi")
+		registerService(p.id, {
+			language: "eng",
+			sortOptions: ["relevance", "title", "authors", "year"],
+			contentBased: true,
+			urlPrefix: null,
+		});
+}
 
 export interface DrawOptions {
 	/** The map's share link; with it the map gets Share and Embed buttons. */

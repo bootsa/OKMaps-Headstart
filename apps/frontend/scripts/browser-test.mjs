@@ -246,6 +246,35 @@ await makeMap(async () => {
 	await page.click("#maps li .delete");
 	await page.waitForFunction((n) => document.querySelectorAll("#maps li").length === n, before - 1);
 }
+// A geo map of the bundled AQUANAVI facility table, also opened from its share link.
+{
+	await page.goto(home);
+	await page.check('input[value="place:aquanavi"]');
+	await page.click("#submit");
+	await page.waitForURL(/map\.html\?id=/, { timeout: 60_000 });
+	const pins = async (p) => {
+		await p.waitForSelector("#visualization .okm-geomap .leaflet-marker-icon", { timeout: 30_000 });
+		return p.$$eval("#visualization .leaflet-marker-icon", (m) => m.length);
+	};
+	const made = await pins(page);
+	const title = await page.$eval(".okm-header h1", (h) => h.textContent.trim());
+	await page.screenshot({ path: path.join(shots, "geomap.png") });
+	const sharedGeo = await shareLink(page);
+	const viewer = await browser.newPage({ viewport: { width: 1280, height: 860 } });
+	viewer.on("pageerror", (e) => errors.push(e.message));
+	await viewer.route(/^https?:\/\/(?!127\.0\.0\.1)/, answer);
+	await viewer.goto(sharedGeo);
+	const shared = await pins(viewer);
+	await viewer.close();
+	console.log(JSON.stringify({ map: "geomap", title, pins: made, sharedPins: shared }));
+	// 98 facilities; pins at the same spot may be clustered, but some must show.
+	if (made === 0 || shared !== made) throw new Error("geomap: pins missing");
+	await page.goto(home);
+	await page.waitForSelector("#maps li");
+	const before = await page.$$eval("#maps li", (l) => l.length);
+	await page.click("#maps li .delete");
+	await page.waitForFunction((n) => document.querySelectorAll("#maps li").length === n, before - 1);
+}
 await makeMap(async () => {
 	await page.check('input[value="openaire"]');
 	await page.fill("#project_id", "643410");

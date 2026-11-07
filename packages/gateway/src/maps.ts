@@ -31,7 +31,8 @@ export const bucketStore = (bucket: ObjectBucket, prefix = "maps/"): MapStore =>
 /** 24 lowercase hex characters (96 bits of SHA-256). */
 export const MAP_ID = /^[0-9a-f]{24}$/;
 
-export const SERVICES = new Set(["pubmed", "base", "openaire"]);
+/** Providers, or a place source's id (geo maps): short lowercase names. */
+export const SERVICE = /^[a-z][a-z0-9_-]{0,39}$/;
 
 export interface PublishedMap {
 	title: string;
@@ -60,12 +61,14 @@ export function validateMap(value: unknown): { map: PublishedMap } | { error: st
 	for (const k of ["id", "query", "service", "timestamp", "params"]) {
 		if (typeof c[k] !== "string") return { error: `context.${k} must be a string` };
 	}
-	if (!SERVICES.has(c.service as string)) return { error: "unknown service" };
+	if (!SERVICE.test(c.service as string)) return { error: "unknown service" };
 	if (!Array.isArray(v.documents) || v.documents.length === 0 || v.documents.length > MAX_DOCUMENTS) {
 		return { error: `documents must be a list of 1 to ${MAX_DOCUMENTS} records` };
 	}
-	// A streamgraph's records have no place on a chart (the map page counts their keywords).
-	const placed = paramsOf(c.params as string).vis_type !== "timeline";
+	// Only a knowledge map's records have a place on its chart: a streamgraph
+	// counts their keywords, a geo map puts them where they are.
+	const vis = paramsOf(c.params as string).vis_type;
+	const placed = vis !== "timeline" && vis !== "geomap";
 	for (const d of v.documents) {
 		if (typeof d !== "object" || d === null || Array.isArray(d)) return { error: "each document must be an object" };
 		const doc = d as Record<string, unknown>;
