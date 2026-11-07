@@ -11,6 +11,7 @@ browser, a Web Worker or Node 18+.
 | BASE | done | source gateway (BASE needs a registered IP) | `base.R`, `subject_cleaning.R`, `preprocess.R`, `workers/base`, `common/deduplication.py`, `common/enrichment.py` |
 | OpenAIRE | done | OpenAIRE search API (CORS not yet checked; a gateway URL can be passed) | `openaire.R`, `run_openaire_projectdata.R` |
 | Crossref citations | done | Crossref REST API (CORS allowed) | `metrics.R` (`add_citations`) |
+| Places (geo maps), AQUANAVI preset | done | any CSV or JSON table, cached | `workers/common/common/aquanavi` |
 
 ## PubMed
 
@@ -130,6 +131,59 @@ the REST API's `is-referenced-by-count`, 50 DOIs per request. Both are
 Crossref's cited-by count. A failed request leaves its counts `null`, as R
 leaves them `NA`. Not yet compared against live Crossref answers.
 
+## Places (geo maps)
+
+A place source is a table of places (facilities, field stations, sites)
+plus a mapping that says which column holds what. Its records are what the
+geo map view draws. Nothing is specific to one project: AQUANAVI, the
+mesocosm facilities the geo map was first made for, is one preset.
+
+```ts
+import { aquanaviSource, csvTable, registerPlaceSource, searchPlaces } from "@okmaps/sources";
+
+registerPlaceSource(aquanaviSource("https://example.org/data/aquanavi.csv"));
+registerPlaceSource({
+  id: "stations",
+  label: "Field stations",
+  title: "field stations",
+  table: csvTable("https://example.org/stations.csv"),
+  mapping: {
+    title: "name", url: "website", latitude: "lat", longitude: "lon", country: "country",
+    years: "operating", keywords: "topics",
+    description: [{ column: "about", label: "About" }, { column: "equipment", label: "Equipment" }],
+  },
+});
+const { papers } = await searchPlaces("stations", {}, { cache }); // cache: optional, e.g. a MapStorage
+```
+
+- **Table** (`table.ts`): `csvTable(url)`, `jsonTable(url, rows?)` or
+  `staticTable(rows)`; any `(http) => Promise<Row[]>` works, so a SPARQL,
+  Wikidata or Atomic Data loader can return the same rows later.
+  `cachedTable` (used by `searchPlaces` when a `cache` is passed) keeps the
+  last table for a day and falls back to it when the source can't be
+  reached. A `MapStorage` from `@okmaps/storage` fits as the cache.
+- **Mapping** (`mapping.ts`, `PlaceMapping`): title, url, image, country,
+  continent, coordinates (one `"[lat, lon]"` column or two columns), a
+  free-text time span ("2016 - present", "since 2009"), description
+  sections and keywords. Places at the same spot are spread a few metres
+  apart on a spiral, so every marker can be clicked. The record id is the
+  SHA-256 of url and location unless the mapping gives an `id` function.
+- **Registry**: `registerPlaceSource`, `getPlaceSource`, `placeSources`,
+  so a deployment offers the sources it registers.
+
+Like the old API, a search returns the whole table; the query is only the
+map's title.
+
+Parity: `test/golden/py/aquanavi_golden.py` runs the old API's mapping on
+the facility table (`test/fixtures/places/aquanavi.csv`, from
+`mesocosm_data_cleaned.csv`) and on its edge cases
+(`aquanavi-edge-cases.csv`); the AQUANAVI preset gives identical records,
+including the spread coordinates. The test also checks them against the
+production map embedded on mesocosm.org/facilities. Kept as in Python: an
+en dash in the time span is not read ("2016 – present" gives no years), a
+coordinate of exactly 0 is written as missing, and an empty "Controlled
+Parameters" cell is labelled with a capital P.
+
 ## XML
 
 `src/xml.ts` is a small XML reader (DOMParser is not available in Web
@@ -157,4 +211,6 @@ PYTHONPATH=../../legacy/workers/common:../../legacy/workers/base/src \
   python test/golden/py/base_worker_golden.py test/golden/base_records test/golden/base_worker
 python test/golden/py/fuzz_golden.py test/golden/fuzz.json.gz
 Rscript test/golden/r/openaire_golden.R test/fixtures/openaire test/golden/openaire
+PYTHONPATH=../../legacy/workers/common \
+  python test/golden/py/aquanavi_golden.py test/fixtures/places test/golden/places
 ```
