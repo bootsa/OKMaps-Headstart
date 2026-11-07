@@ -45,6 +45,30 @@ export interface ViewProps {
 	height: number;
 }
 
+/** One part of a map the list can jump to: an area, a stream, ... */
+export interface MapSection {
+	id: string;
+	label: string;
+	/** Resources in it that match the list's search and filter. */
+	count: number;
+}
+
+/**
+ * The parts of a map (knowledge map areas, streamgraph streams) the list
+ * offers as shortcuts on the overview, so they can be reached without
+ * the map, e.g. on a phone with the list drawer open.
+ */
+export interface ViewSections {
+	/** Key of the string (i18n/strings.ts) that names them, e.g. "areas_label". */
+	label: string;
+	/** The parts, in the order the list shows them. */
+	list(map: MapState): MapSection[];
+	/** Zooms into or selects a part. */
+	open(map: MapState, id: string): void;
+	/** Lights up a part on the map while the pointer is over its shortcut (null when it leaves). */
+	hover?(map: MapState, id: string | null): void;
+}
+
 export interface MapView extends ViewProcessor {
 	/** Shown to people, e.g. "Knowledge map". */
 	label: string;
@@ -65,6 +89,8 @@ export interface MapView extends ViewProcessor {
 	 * area, and list entries name their area.
 	 */
 	areas?: boolean;
+	/** Shortcuts in the list to the map's parts (areas, streams). */
+	sections?: ViewSections;
 	/** List entries show a place instead of authors; hovering one lights up its pin. */
 	places?: boolean;
 	/**

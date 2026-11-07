@@ -3,7 +3,7 @@ import path from "node:path";
 import { fireEvent, render, screen, within } from "@testing-library/svelte";
 import { flushSync } from "svelte";
 import { afterEach, describe, expect, it } from "vitest";
-import { infoPlugin, MapState, registerPlugin, unregisterPlugin, Visualization } from "../src/index";
+import { infoPlugin, List, MapState, registerPlugin, unregisterPlugin, Visualization } from "../src/index";
 import { labelBox, separateLabels } from "../src/views/streamgraph/labels";
 
 const fixture = (name: string) => JSON.parse(fs.readFileSync(path.join(__dirname, "fixtures", name), "utf8"));
@@ -102,6 +102,23 @@ describe("streamgraph view", () => {
 		flushSync();
 		expect(screen.getByRole("dialog").textContent).toContain("This streamgraph presents you with an overview");
 		expect(screen.getByRole("dialog").textContent).toContain("BASE provides access");
+	});
+});
+
+describe("streamgraph list", () => {
+	it("offers the streams on the overview and selects one", async () => {
+		const map = streamgraphMap();
+		const { container } = render(List, { state: map, debounce: 0 });
+		const nav = container.querySelector("details.sections") as HTMLElement;
+		expect(nav.querySelector("summary")?.textContent).toBe(`Streams (${map.map.streams.length})`);
+		const chips = nav.querySelectorAll("button");
+		expect([...chips].map((c) => c.querySelector(".label")?.textContent)).toEqual(map.map.streams.map((s) => s.key));
+		const first = map.map.streams[0];
+		expect(chips[0].querySelector(".n")?.textContent).toBe(String(first.docIds.length));
+		await fireEvent.click(chips[0]);
+		expect(map.selectedStream).toBe(first.key);
+		expect(container.querySelectorAll("article.okm-entry")).toHaveLength(first.docIds.length);
+		expect(container.querySelector("details.sections")).toBeNull();
 	});
 });
 

@@ -43,6 +43,35 @@ describe("List", () => {
 		expect(screen.getByRole("button", { name: /Overview/ })).toHaveAttribute("aria-expanded", "true");
 	});
 
+	it("offers the areas on the overview and zooms into one", async () => {
+		const { state, container } = draw();
+		const nav = container.querySelector("details.sections") as HTMLDetailsElement;
+		expect(nav.open).toBe(true);
+		expect(nav.querySelector("summary")?.textContent).toBe(`Areas (${state.map.areas.length})`);
+		const chips = nav.querySelectorAll("button");
+		expect(chips).toHaveLength(state.map.areas.length);
+		const biggest = [...state.map.areas].sort((a, b) => b.papers.length - a.papers.length)[0];
+		expect(chips[0].querySelector(".label")?.textContent).toBe(biggest.title);
+		expect(chips[0].querySelector(".n")?.textContent).toBe(String(biggest.papers.length));
+
+		await fireEvent.pointerEnter(chips[0]);
+		expect(state.hoveredArea).toBe(biggest.uri);
+		await fireEvent.click(chips[0]);
+		expect(state.zoomedArea).toBe(biggest.uri);
+		expect(state.hoveredArea).toBeNull();
+		expect(entries(container)).toHaveLength(biggest.papers.length);
+		expect(container.querySelector("details.sections")).toBeNull();
+	});
+
+	it("counts only the papers that match the search in each area", async () => {
+		const { state, container } = draw();
+		state.search = "zzzz-no-match";
+		flushSync();
+		const counts = [...container.querySelectorAll("details.sections .n")].map((n) => n.textContent);
+		expect(counts.every((n) => n === "0")).toBe(true);
+		expect(container.querySelectorAll("details.sections button.none")).toHaveLength(counts.length);
+	});
+
 	it("hides and shows the entries", async () => {
 		const { container } = draw();
 		await fireEvent.click(screen.getByRole("button", { name: /Overview/ }));

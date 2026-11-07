@@ -23,6 +23,24 @@ export const knowledgeMapView: MapView = {
 	},
 	settings: [ThemePicker],
 	areas: true,
+	sections: {
+		label: "areas_label",
+		// Biggest areas first, as they draw the eye on the map.
+		list: (map) =>
+			map.map.areas
+				.map((a) => ({
+					id: a.uri,
+					label: a.title,
+					size: a.papers.length,
+					count: a.papers.filter((p) => map.matching.has(p.safeId)).length,
+				}))
+				.sort((a, b) => b.size - a.size || a.label.localeCompare(b.label))
+				.map(({ id, label, count }) => ({ id, label, count })),
+		open: (map, id) => map.zoomIn(id),
+		hover: (map, id) => {
+			map.hoveredArea = id;
+		},
+	},
 	creatable: true,
 	strings: { heading: "overview_label", authorHeading: "overview_authors_label", backlink: "backlink_list" },
 	citation: { kind: "km", type: "Knowledge Map" },
