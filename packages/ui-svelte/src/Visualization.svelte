@@ -6,6 +6,7 @@
 -->
 <script lang="ts">
 	import { untrack } from "svelte";
+	import ModalHost from "./components/ModalHost.svelte";
 	import SchemeToggle from "./components/SchemeToggle.svelte";
 	import type { MapState } from "./data/state.svelte";
 	import Header from "./header/Header.svelte";
@@ -50,6 +51,7 @@
 		</div>
 	</div>
 	<List state={map} />
+	<ModalHost state={map} />
 </div>
 
 <style>
