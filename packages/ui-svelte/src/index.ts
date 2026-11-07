@@ -57,7 +57,10 @@ export {
 	type OkmPlugin,
 	type Overlay,
 	type PaperAction,
+	type PaperMetric,
 	paperActions,
+	paperMetrics,
+	pluginTitle,
 	registerPlugin,
 	unregisterPlugin,
 } from "./plugins";
@@ -86,6 +89,8 @@ export { embedCode, embedUrl, type LinkMaker, pageLink, shareTargets } from "./p
 export {
 	covisPlugin,
 	gsheetsPlugin,
+	type OrcidOptions,
+	orcidPlugin,
 	registerIntegrations,
 	triplePlugin,
 	viperPlugin,

@@ -13,7 +13,7 @@
 	import type { MapState } from "../data/state.svelte";
 	import type { Paper } from "../data/types";
 	import { t } from "../i18n/strings";
-	import { paperActions } from "../plugins";
+	import { paperActions, paperMetrics } from "../plugins";
 	import { authorsLine, docTypeTags, shortTitle } from "./format";
 
 	interface Props {
@@ -33,8 +33,9 @@
 	const date = $derived(paper.year ? ` (${paperDate(paper.year)})` : "");
 	const title = $derived(paper.title || t(s, "default_paper_title"));
 	const authors = $derived(authorsLine(paper.authorsList, selected) || t(s, "default_authors"));
-	const showCitations = $derived(!map.config.contentBased);
 	const actions = $derived(paperActions(map, paper));
+	const metrics = $derived(paperMetrics(map, paper));
+	const showCitations = $derived(!map.config.contentBased && !metrics.length);
 </script>
 
 <article class="okm-entry" class:selected id="entry-{paper.safeId}">
@@ -106,6 +107,13 @@
 	{#if showCitations}
 		<p class="row"><strong>{paper.readers}</strong> {t(s, "readers")}</p>
 	{/if}
+	{#if metrics.length}
+		<p class="row metrics">
+			{#each metrics as m (m.id)}
+				<span data-metric={m.id}><strong>{m.value}</strong> {m.label}</span>
+			{/each}
+		</p>
+	{/if}
 
 	{#if actions.length}
 		<div class="actions">
@@ -168,6 +176,12 @@
 		flex-wrap: wrap;
 		gap: var(--space-2);
 		margin: var(--space-2) 0;
+	}
+
+	.metrics {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0 var(--space-3);
 	}
 
 	.tags {

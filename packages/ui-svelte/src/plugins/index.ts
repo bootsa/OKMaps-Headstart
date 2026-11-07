@@ -11,7 +11,7 @@
 import type { Component } from "svelte";
 import type { MapState } from "../data/state.svelte";
 import type { Paper } from "../data/types";
-import type { ContextItem } from "../header/context";
+import type { ContextItem, MapTitle } from "../header/context";
 
 /** A button in the map's toolbar (next to the title). */
 export interface MapAction {
@@ -48,6 +48,13 @@ export interface PaperAction {
 	run?(map: MapState, paper: Paper): void;
 }
 
+/** A number shown under a paper in the list, e.g. "12 citations". */
+export interface PaperMetric {
+	id: string;
+	value: number | "n/a";
+	label: string;
+}
+
 export interface ModalProps<T = unknown> {
 	state: MapState;
 	/** What the modal was opened with (map.openModal(id, data)). */
@@ -69,10 +76,14 @@ export interface InfoPage {
 export interface OkmPlugin {
 	/** Unique name; registering the same id again replaces the plugin. */
 	id: string;
+	/** The map's title instead of the usual one; the first plugin with one wins. */
+	title?(map: MapState): MapTitle | null | undefined;
 	/** Items added to the end of the context line. */
 	contextItems?(map: MapState): ContextItem[];
 	actions?: MapAction[];
 	paperActions?: PaperAction[];
+	/** Numbers shown under each paper in the list, in place of its readers. */
+	paperMetrics?(map: MapState, paper: Paper): PaperMetric[];
 	/** Modals by id; map.openModal(id, data) shows one. */
 	modals?: Record<string, { title(map: MapState, data: unknown): string; component: Component<ModalProps<never>> }>;
 	infoPages?: InfoPage[];
@@ -104,6 +115,20 @@ export function paperActions(map: MapState, paper: Paper): PaperAction[] {
 	return activePlugins()
 		.flatMap((p) => p.paperActions ?? [])
 		.filter((a) => a.show?.(map, paper) ?? true);
+}
+
+/** A plugin's title for the map, if one has it. */
+export function pluginTitle(map: MapState): MapTitle | undefined {
+	for (const p of plugins.values()) {
+		const title = p.title?.(map);
+		if (title) return title;
+	}
+	return undefined;
+}
+
+/** The metrics the plugins show for this paper. */
+export function paperMetrics(map: MapState, paper: Paper): PaperMetric[] {
+	return activePlugins().flatMap((p) => p.paperMetrics?.(map, paper) ?? []);
 }
 
 /** The best info page for this map, if any plugin has one. */
