@@ -1,5 +1,14 @@
 # Changelog
 
+## [7.1.25](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.24...v7.1.25) (2026-11-07)
+
+
+### Features
+
+* make streamgraphs from the start page for PubMed and BASE searches ([b48c4c7](https://github.com/bootsa/OKMaps-Headstart/commit/b48c4c78c7ce73c615f7f4bbe482c56c8cea951d))
+* make streamgraphs from the start page for PubMed and BASE searches ([892185b](https://github.com/bootsa/OKMaps-Headstart/commit/892185bfd9accbb6ede5b6ad148870eb454a0044))
+* make streamgraphs from the start page for PubMed and BASE searches ([#64](https://github.com/bootsa/OKMaps-Headstart/issues/64)) ([b48c4c7](https://github.com/bootsa/OKMaps-Headstart/commit/b48c4c78c7ce73c615f7f4bbe482c56c8cea951d))
+
 ## [7.1.24](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.23...v7.1.24) (2026-11-07)
 
 
