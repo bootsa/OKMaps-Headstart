@@ -139,11 +139,11 @@ export class MapState {
 		this.selectedPaper = null;
 	}
 
-	/** Selects a paper and zooms into its area. */
+	/** Selects a paper and, on a knowledge map, zooms into its area (streamgraphs and geo maps have none). */
 	selectPaper(safeId: string) {
 		const paper = this.map.papers.find((p) => p.safeId === safeId);
 		if (!paper) return;
-		this.zoomedArea = paper.areaUri;
+		if (this.config.visType === "overview") this.zoomedArea = paper.areaUri;
 		this.selectedPaper = safeId;
 	}
 

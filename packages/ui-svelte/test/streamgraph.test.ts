@@ -73,6 +73,18 @@ describe("streamgraph view", () => {
 		expect(container.querySelectorAll(".okm-entry")).toHaveLength(map.map.papers.length);
 	});
 
+	it("selects a paper of a stream without leaving the stream", async () => {
+		const map = streamgraphMap();
+		const { container } = render(Visualization, { state: map, height: 600 });
+		await fireEvent.click(screen.getByRole("button", { name: /^salinity:/ }));
+		const title = container.querySelector(".okm-entry .title button") as HTMLButtonElement;
+		await fireEvent.click(title);
+		expect(map.selectedPaper).not.toBeNull();
+		expect(map.zoomedArea).toBeNull();
+		expect(map.selectedStream).toBe("salinity");
+		expect(container.querySelectorAll(".okm-entry")).toHaveLength(3);
+	});
+
 	it("picks streams from the keyboard", async () => {
 		const map = streamgraphMap();
 		render(Visualization, { state: map, height: 600 });
