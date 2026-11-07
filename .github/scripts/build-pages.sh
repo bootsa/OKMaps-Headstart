@@ -97,17 +97,39 @@ for tag in $(git -C "$root" tag --list 'v*' --sort=-version:refname | head -n "$
   fi
 done
 
+# What a release changed, in one line: its features and fixes from
+# CHANGELOG.md (written by release-please from the commit subjects), each
+# once, without scopes or commit links. Empty for releases it doesn't list.
+summary() { # <tag>
+  awk -v want="${1#v}" '
+    /^## / { on = index($0, "[" want "]") == 4; kind = ""; next }
+    /^### / { kind = ($0 ~ /Features|Bug Fixes/); next }
+    on && kind && /^\* / {
+      line = $0
+      sub(/^\* (\*\*[^*]*:\*\* )?/, "", line)
+      sub(/ \(\[[0-9a-f]+\]\([^)]*\)\)$/, "", line)
+      if (!(line in seen)) { seen[line] = 1; out = out (out ? "; " : "") line }
+    }
+    END { print out }
+  ' "$root/CHANGELOG.md" 2>/dev/null
+}
+
 # The list of versions, and the pages that point to them.
 {
   printf '[{"name":"latest","path":"latest/"}'
-  for v in "${versions[@]}"; do printf ',{"name":"%s","path":"%s/"}' "$v" "$v"; done
+  for v in "${versions[@]}"; do
+    printf ',{"name":"%s","path":"%s/","summary":"%s"}' "$v" "$v" "$(summary "$v" | sed 's/[\\"]/\\&/g')"
+  done
   printf ']\n'
 } >"$site/versions.json"
 
 items='<li><a href="latest/">latest</a> (the newest code)</li>'
 storybook=""
 [ -d "$site/storybook" ] && storybook='<p>The interface and its design system: <a href="storybook/">Storybook</a>.</p>'
-for v in "${versions[@]}"; do items+="<li><a href=\"$v/\">$v</a></li>"; done
+for v in "${versions[@]}"; do
+  about=$(summary "$v" | sed 's/&/\&amp;/g; s/</\&lt;/g; s/>/\&gt;/g')
+  items+="<li><a href=\"$v/\">$v</a>${about:+ – $about}</li>"
+done
 page() { # <title> <extra head>
   cat <<HTML
 <!doctype html>

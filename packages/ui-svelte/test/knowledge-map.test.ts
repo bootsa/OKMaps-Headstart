@@ -4,7 +4,7 @@ import { fireEvent, render, screen } from "@testing-library/svelte";
 import { flushSync } from "svelte";
 import { describe, expect, it } from "vitest";
 import { highlightParts, KnowledgeMap, MapState, mapGeometry, queryTerms } from "../src/index";
-import { dogEarPath, iconRect, paperPath, popupPlacement } from "../src/views/knowledge-map/geometry";
+import { dogEarPath, iconRect, labelWidth, paperPath, popupPlacement } from "../src/views/knowledge-map/geometry";
 
 const record = JSON.parse(fs.readFileSync(path.join(__dirname, "fixtures", "base-map.json"), "utf8"));
 
@@ -48,14 +48,15 @@ describe("knowledge map geometry", () => {
 		expect(g.papers[paper.safeId].w / paper.width).toBeCloseTo(270 / area.r);
 	});
 
-	it("moves zoomed papers apart so their titles do not overlap", () => {
-		const state = new MapState(record, 600);
+	it.each([600, 420])("keeps zoomed titles apart and inside the circle at %d px", (size) => {
+		const state = new MapState(record, size);
 		for (const area of state.map.areas) {
-			const g = mapGeometry(state.map.areas, state.map.papers, 600, area);
+			const g = mapGeometry(state.map.areas, state.map.papers, size, area);
 			const circle = g.areas[area.uri];
 			const boxes = area.papers.map((p) => {
 				const icon = iconRect(g.papers[p.safeId], true);
-				return { l: icon.x, r: icon.x + icon.w + 156, t: icon.y + icon.h / 2 - 17, b: icon.y + icon.h / 2 + 17 };
+				const r = icon.x + icon.w + 6 + labelWidth(size);
+				return { l: icon.x, r, t: icon.y + icon.h / 2 - 17, b: icon.y + icon.h / 2 + 17 };
 			});
 			let overlaps = 0;
 			for (let i = 0; i < boxes.length; i++)
@@ -64,10 +65,14 @@ describe("knowledge map geometry", () => {
 					if (Math.min(a.r, b.r) - Math.max(a.l, b.l) > 1 && Math.min(a.b, b.b) - Math.max(a.t, b.t) > 1) overlaps++;
 				}
 			expect(overlaps, area.title).toBe(0);
-			for (const p of area.papers) {
-				const r = g.papers[p.safeId];
-				expect(Math.hypot(r.x + r.w / 2 - circle.x, r.y + r.h / 2 - circle.y)).toBeLessThan(circle.r);
+			for (const b of boxes) {
+				const dx = Math.max(Math.abs(b.l - circle.x), Math.abs(b.r - circle.x));
+				const dy = Math.max(Math.abs(b.t - circle.y), Math.abs(b.b - circle.y));
+				expect(Math.hypot(dx, dy), area.title).toBeLessThanOrEqual(circle.r + 0.5);
 			}
+			// Icons and titles together sit centred, not off to one side.
+			const middle = (Math.min(...boxes.map((b) => b.l)) + Math.max(...boxes.map((b) => b.r))) / 2;
+			expect(Math.abs(middle - circle.x), area.title).toBeLessThan(10);
 		}
 	});
 
