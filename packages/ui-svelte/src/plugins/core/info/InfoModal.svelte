@@ -4,11 +4,12 @@
 	import KnowledgeMapInfo from "./KnowledgeMapInfo.svelte";
 
 	let { state: map }: ModalProps = $props();
-	const Page = $derived(findInfoPage(map)?.component ?? KnowledgeMapInfo);
+	const page = $derived(findInfoPage(map));
+	const Page = $derived(page?.component ?? KnowledgeMapInfo);
 </script>
 
 <div class="okm-info">
-	<Page state={map} />
+	<Page state={map} {...page?.props} />
 </div>
 
 <style>

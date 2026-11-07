@@ -12,6 +12,7 @@ export { default as Tooltip } from "./components/Tooltip.svelte";
 export {
 	type MapConfig,
 	mapConfig,
+	registerService,
 	type Service,
 	type VisType,
 } from "./data/config";
@@ -43,7 +44,8 @@ export {
 	timespan,
 } from "./header/context";
 export { default as Header } from "./header/Header.svelte";
-export { type Strings, strings, t } from "./i18n/strings";
+export { engOrcid, engPlos, extraLanguages, ger, gerLinkedcat, registerLanguages } from "./i18n/languages";
+export { registerLanguage, type Strings, strings, t } from "./i18n/strings";
 export { authorsLine, List, ListEntry, shortTitle } from "./list";
 export {
 	activePlugins,
@@ -81,6 +83,13 @@ export { type CitationStyle, citationStyles, cslRecord, paperCitation } from "./
 export { bibtexType, paperBibtex } from "./plugins/core/export-paper/bibtex";
 export { directPdf, hasFile, hasPdf, isNonText, type PdfResolver } from "./plugins/core/pdf/pdf";
 export { embedCode, embedUrl, type LinkMaker, pageLink, shareTargets } from "./plugins/core/share/links";
+export {
+	covisPlugin,
+	gsheetsPlugin,
+	registerIntegrations,
+	triplePlugin,
+	viperPlugin,
+} from "./plugins/integrations";
 export { applyScheme, initialScheme, type Scheme } from "./scheme";
 export { default as Visualization } from "./Visualization.svelte";
 export {

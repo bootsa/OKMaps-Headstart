@@ -207,9 +207,16 @@ const languages = {
 
 export type Language = keyof typeof languages;
 
+const registered = new Map<string, Strings>();
+
+/** Adds (or replaces) a language; its strings go over eng. */
+export function registerLanguage(id: string, own: Strings): void {
+	registered.set(id, own);
+}
+
 /** The strings for a language: eng with the language's own on top. */
 export function strings(language: Language | string = "eng"): Strings {
-	const own = (languages as Record<string, Strings>)[language] ?? {};
+	const own = registered.get(language) ?? (languages as Record<string, Strings>)[language] ?? {};
 	return { ...languages.eng, ...own };
 }
 

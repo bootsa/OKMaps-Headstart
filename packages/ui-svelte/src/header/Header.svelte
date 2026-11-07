@@ -61,7 +61,9 @@
 		<p class="context">
 			{#each items as item (item.id)}
 				<span class="item" data-item={item.id}>
-					{#if item.tooltip}
+					{#if item.run}
+						<button type="button" class="info" title={item.tooltip} onclick={item.run}>{item.text}</button>
+					{:else if item.tooltip}
 						<Tooltip tip={item.tooltip}>{item.text}</Tooltip>
 					{:else}
 						{item.text}
