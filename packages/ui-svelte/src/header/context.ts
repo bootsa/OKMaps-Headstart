@@ -146,6 +146,26 @@ export function timespan(config: MapConfig, context: MapContext, now = new Date(
 	return isoDate(from, service) === start ? until : `${showDate(from, service)} - ${showDate(to, service)}`;
 }
 
+const isWebUrl = (v: unknown): v is string => typeof v === "string" && /^https?:\/\//i.test(v);
+
+/**
+ * The picture beside the title of an author map (old AuthorImage): the
+ * map's image_link, linking to the researcher's ORCID profile if there is
+ * one. `src` is null when the map has no picture of its own.
+ */
+export function authorImage(
+	config: MapConfig,
+	context: MapContext,
+	author: Record<string, unknown>,
+): { src: string | null; href: string | null } | null {
+	if (!config.isAuthorview) return null;
+	const image = contextParams(context)?.image_link;
+	const src = isWebUrl(image) ? image : null;
+	const orcid = str(author.orcid_id);
+	if (context.service === "orcid" && orcid) return { src, href: `https://orcid.org/${encodeURIComponent(orcid)}` };
+	return { src, href: src };
+}
+
 /** "high", "low" or null: whether papers without an abstract were left out. */
 export function metadataQuality(context: MapContext): "high" | "low" | null {
 	const raw = contextParams(context)?.min_descsize;
@@ -163,6 +183,9 @@ export function contextItems(config: MapConfig, context: MapContext, papers: Pap
 	const items: ContextItem[] = [];
 	const service = String(context.service ?? config.service);
 	const isStreamgraph = config.visType === "timeline";
+
+	const living = config.isAuthorview ? str(params.living_dates) : null;
+	if (living) items.push({ id: "living_dates", text: living });
 
 	// Number of resources, "100 most relevant resources" for capped searches.
 	const count = papers.length;

@@ -5,16 +5,18 @@
   items from plugins. All text, never HTML.
 -->
 <script lang="ts">
+	import defaultImage from "../assets/author_default.png";
 	import Button from "../components/Button.svelte";
 	import Tooltip from "../components/Tooltip.svelte";
 	import type { MapState } from "../data/state.svelte";
 	import { t } from "../i18n/strings";
-	import { activePlugins, findModal } from "../plugins";
-	import { contextItems, mapTitle } from "./context";
+	import { activePlugins, findModal, pluginTitle } from "../plugins";
+	import { authorImage, contextItems, mapTitle } from "./context";
 
 	let { state: map }: { state: MapState } = $props();
 
-	const title = $derived(mapTitle(map.config, map.map.context, map.strings));
+	const title = $derived(pluginTitle(map) ?? mapTitle(map.config, map.map.context, map.strings));
+	const image = $derived(authorImage(map.config, map.map.context, map.author));
 	const items = $derived([
 		...contextItems(map.config, map.map.context, map.map.papers, map.strings),
 		...activePlugins().flatMap((p) => p.contextItems?.(map) ?? []),
@@ -42,6 +44,21 @@
 				{/if}
 			{/each}
 		</div>
+	{/if}
+	{#if image}
+		{#if image.href}
+			<a
+				class="author-image"
+				href={image.href}
+				target="_blank"
+				rel="noreferrer"
+				title="Open the researcher's profile in a new tab"
+			>
+				<img src={image.src ?? defaultImage} alt="The researcher">
+			</a>
+		{:else}
+			<span class="author-image"><img src={defaultImage} alt=""></span>
+		{/if}
 	{/if}
 	<h1 class="title">
 		{#if title.kind === "basic"}
@@ -85,6 +102,20 @@
 		min-width: 0;
 		color: var(--color-text);
 		font-family: var(--font-sans);
+	}
+
+	.author-image {
+		float: left;
+		margin: 0 var(--space-3) var(--space-1) 0;
+
+		img {
+			display: block;
+			width: 3.25rem;
+			height: 3.25rem;
+			border: 1px solid var(--color-border);
+			border-radius: 50%;
+			object-fit: cover;
+		}
 	}
 
 	.title {

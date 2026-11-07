@@ -6,6 +6,8 @@ export interface MapRecord {
 	documents: RawDocument[];
 	/** Keyword counts per year, for streamgraphs. */
 	streamgraph?: StreamgraphData | string | null;
+	/** About the researcher, for maps of one person's works (ORCID). */
+	author?: Record<string, unknown> | null;
 }
 
 export interface MapContext {

@@ -16,6 +16,8 @@ import type { Area, MapRecord, Paper, ProcessedMap } from "./types";
 export class MapState {
 	readonly config: MapConfig;
 	readonly strings: Strings;
+	/** The researcher of an author map (record.author), else empty. */
+	readonly author: Record<string, unknown>;
 	map: ProcessedMap = $state.raw({
 		context: {},
 		papers: [],
@@ -55,6 +57,7 @@ export class MapState {
 	constructor(record: MapRecord, size: number, config?: Partial<MapConfig>) {
 		this.config = mapConfig((record.context.service as Service) ?? "base", config);
 		this.strings = strings(this.config.language);
+		this.author = record.author && typeof record.author === "object" ? record.author : {};
 		this.sort = this.config.sortOptions[0];
 		const map = processMap(record, size, {
 			config: this.config,
