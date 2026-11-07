@@ -13,7 +13,7 @@
 		"url": "git+https://github.com/bootsa/OKMaps-Headstart.git"
 	},
 	"scripts": {
-		"build": "pnpm --filter @okmaps/frontend build:vis && pnpm --filter @okmaps/frontend build",
+		"build": "pnpm --filter @okmaps/frontend build",
 		"dev": "pnpm --filter @okmaps/frontend dev",
 		"test": "pnpm -r --workspace-concurrency=1 test",
 		"typecheck": "pnpm -r typecheck",

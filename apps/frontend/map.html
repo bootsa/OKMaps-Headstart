@@ -11,21 +11,13 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet" />
     <link rel="stylesheet" href="/src/map.css" />
   </head>
-  <body class="vis">
+  <body>
     <nav class="toolbar">
-      <div id="share-panel" class="share-panel" hidden>
-        <input id="share-url" readonly aria-label="Share link" />
-        <button id="copy" type="button">Copy</button>
-      </div>
-      <button id="share" type="button" hidden>Share</button>
       <button id="save" type="button" hidden>Save to my maps</button>
-      <a id="ui-toggle" href="?ui=new" hidden></a>
       <a href="./">← Search and your maps</a>
     </nav>
     <p id="message" class="message" hidden></p>
-    <div class="overflow-vis">
-      <div id="visualization" style="background-color: white"></div>
-    </div>
+    <div id="visualization"></div>
     <script type="module" src="/src/map-page.ts"></script>
   </body>
 </html>

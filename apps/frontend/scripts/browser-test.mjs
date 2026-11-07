@@ -1,6 +1,6 @@
-// End-to-end check of the built app (npm run build:vis && VITE_GATEWAY_URL=https://gateway.test npm run build)
+// End-to-end check of the built app (VITE_GATEWAY_URL=https://gateway.test npm run build)
 // in headless Chromium: makes a PubMed, a BASE and an OpenAIRE map from recorded
-// provider answers, checks the visualisation draws them, that they are listed
+// provider answers, checks the map draws them, that they are listed
 // and can be deleted, that a share link opens (and a crafted one runs no script),
 // and that saved maps open offline. Screenshots go to test-results/.
 
@@ -148,9 +148,9 @@ await page.route(/^https?:\/\/(?!127\.0\.0\.1)/, answer);
 
 async function openShared(p, url, name) {
 	await p.goto(url);
-	await p.waitForSelector("#visualization circle.area", { timeout: 30_000 });
+	await p.waitForSelector("#visualization .okm-bubble", { timeout: 30_000 });
 	await p.waitForTimeout(1500);
-	const areas = await p.$$eval("#visualization circle.area", (c) => c.length);
+	const areas = await p.$$eval("#visualization .okm-bubble", (c) => c.length);
 	await p.screenshot({ path: path.join(shots, `${name}.png`) });
 	console.log(JSON.stringify({ map: name, areas }));
 }
@@ -162,13 +162,13 @@ async function makeMap(fill, name) {
 	await page.click("#submit");
 	await page.waitForURL(/map\.html\?id=/, { timeout: 60_000 });
 	const made = Date.now() - t0;
-	await page.waitForSelector("#visualization circle.area", { timeout: 30_000 });
+	await page.waitForSelector("#visualization .okm-bubble", { timeout: 30_000 });
 	await page.waitForTimeout(1500);
 	const counts = await page.evaluate(() => ({
-		areas: document.querySelectorAll("#visualization circle.area").length,
-		papers: document.querySelectorAll("#visualization g.paper").length,
-		listEntries: document.querySelectorAll(".list_entry").length,
-		title: document.querySelector("#context, #subdiscipline_title, h4")?.textContent?.trim().slice(0, 120) ?? "",
+		areas: document.querySelectorAll("#visualization .okm-bubble").length,
+		papers: document.querySelectorAll("#visualization .okm-paper").length,
+		listEntries: document.querySelectorAll("#visualization .okm-entry").length,
+		title: document.querySelector(".okm-header h1")?.textContent?.trim().slice(0, 120) ?? "",
 	}));
 	await page.screenshot({ path: path.join(shots, `${name}.png`) });
 	console.log(JSON.stringify({ map: name, msToMap: made, ...counts }));
@@ -176,33 +176,18 @@ async function makeMap(fill, name) {
 	return counts;
 }
 
-/**
- * Shares the open map and returns its link (without ui=new). The current
- * look has a Share button in the toolbar; the new look has one by the title.
- */
+/** Shares the open map with its Share button and returns its link. */
 async function shareLink(p) {
-	if (await p.isVisible("#share")) {
-		await p.click("#share");
-		await p.waitForSelector("#share-panel:not([hidden])");
-		return p.inputValue("#share-url");
-	}
 	await p.click(".okm-header button:text-is('Share')");
 	const input = p.getByLabel("Link to this map");
 	await input.waitFor();
-	const url = new URL(await input.inputValue());
-	if (url.searchParams.get("ui") !== "new") throw new Error("the new look's share link drops ui=new");
+	const url = await input.inputValue();
 	await p.keyboard.press("Escape");
-	url.searchParams.delete("ui");
-	return url.href;
+	return url;
 }
 
-/** Opens the current map in the new (Svelte) interface and checks it draws the same areas. */
-async function checkNewLook(p, name, areas) {
-	const toggle = await p.getAttribute("#ui-toggle", "href");
-	if (!toggle?.includes("ui=new")) throw new Error(`${name}: no link to the new look`);
-	await p.goto(toggle);
-	await p.waitForSelector("#visualization svg.okm-knowledge-map .okm-bubble", { timeout: 30_000 });
-	await p.waitForTimeout(500);
+/** Checks the open map: no markup from its data, every paper listed, and zooming in. */
+async function checkMap(p, name) {
 	const drawn = await p.evaluate(() => ({
 		areas: document.querySelectorAll("#visualization .okm-bubble").length,
 		papers: document.querySelectorAll("#visualization .okm-paper").length,
@@ -210,13 +195,10 @@ async function checkNewLook(p, name, areas) {
 		images: document.querySelectorAll("#visualization img:not(.okm-credit img)").length,
 		listEntries: document.querySelectorAll("#visualization .okm-entry").length,
 	}));
-	await p.screenshot({ path: path.join(shots, `${name}-new.png`) });
-	console.log(JSON.stringify({ map: `${name} (new look)`, ...drawn }));
-	if (areas !== undefined && drawn.areas !== areas)
-		throw new Error(`${name}: new look drew ${drawn.areas} areas, not ${areas}`);
-	if (drawn.images) throw new Error(`${name}: new look rendered markup from the map`);
+	console.log(JSON.stringify({ map: name, ...drawn }));
+	if (drawn.images) throw new Error(`${name}: rendered markup from the map`);
 	if (drawn.listEntries !== drawn.papers)
-		throw new Error(`${name}: new look lists ${drawn.listEntries} of ${drawn.papers} papers`);
+		throw new Error(`${name}: lists ${drawn.listEntries} of ${drawn.papers} papers`);
 	await p.click("#visualization .okm-bubble", { force: true }); // its papers may sit on top: both zoom in
 	await p.waitForSelector("#visualization svg.okm-knowledge-map.zoom");
 	const zoomedPapers = await p.$$eval("#visualization .okm-paper", (g) => g.length);
@@ -233,11 +215,11 @@ await makeMap(async () => {
 	await page.check('input[value="base"]');
 	await page.fill("#q", "digital education");
 }, "base");
-const openaire = await makeMap(async () => {
+await makeMap(async () => {
 	await page.check('input[value="openaire"]');
 	await page.fill("#project_id", "643410");
 }, "openaire");
-await checkNewLook(page, "openaire", openaire.areas);
+await checkMap(page, "openaire");
 
 // Share the open (OpenAIRE) map, then open the link as someone else would.
 const link = await shareLink(page);
@@ -247,6 +229,7 @@ const other = await browser.newPage({ viewport: { width: 1280, height: 860 } });
 other.on("pageerror", (e) => errors.push(e.message));
 await other.route(/^https?:\/\/(?!127\.0\.0\.1)/, answer);
 await openShared(other, link, "shared");
+await other.click(".okm-settings .fab"); // the page's links are in the settings panel
 await other.click("#save");
 await other.waitForSelector("#save:disabled");
 await other.goto(home);
@@ -255,7 +238,7 @@ const savedCopy = await other.$$eval("#maps li a", (as) => as.map((a) => a.textC
 console.log(JSON.stringify({ savedFromLink: savedCopy }));
 if (savedCopy.length !== 1) throw new Error("the shared map was not saved");
 await other.click("#maps li a");
-await other.waitForSelector("#visualization circle.area", { timeout: 30_000 });
+await other.waitForSelector("#visualization .okm-bubble", { timeout: 30_000 });
 
 // A crafted map must not run script, however its titles are encoded.
 const evil = "&lt;img src=x onerror=&quot;window.pwned=1&quot;&gt;";
@@ -287,8 +270,8 @@ const posted = await gateway(
 const evilId = (await posted.json()).id;
 await openShared(other, link.replace(/shared=.*/, `shared=${evilId}`), "shared-crafted");
 if (await other.evaluate(() => window.pwned)) throw new Error("a shared map ran script");
-await checkNewLook(other, "shared-crafted");
-if (await other.evaluate(() => window.pwned)) throw new Error("a shared map ran script in the new look");
+await checkMap(other, "shared-crafted");
+if (await other.evaluate(() => window.pwned)) throw new Error("a shared map ran script");
 console.log(JSON.stringify({ craftedMapSafe: true }));
 await other.close();
 
@@ -335,7 +318,7 @@ console.log(
 if (JSON.stringify(onDav) !== JSON.stringify(listed.slice(1)) || !davFiles.includes("/dav/okmaps/index.json"))
 	throw new Error("maps were not moved to WebDAV");
 await page.click("#maps li a");
-await page.waitForSelector("#visualization circle.area", { timeout: 30_000 });
+await page.waitForSelector("#visualization .okm-bubble", { timeout: 30_000 });
 await page.goto(home);
 // Back to this browser (nothing to copy: the maps are there already).
 await useStorage(async () => {
@@ -365,7 +348,7 @@ if (JSON.stringify(onPod) !== JSON.stringify(onDav) || podFiles.length !== onPod
 	throw new Error(`maps were not copied to the Pod: ${JSON.stringify({ onPod, podFiles })}`);
 // The map page reads Pod maps from a copy in this browser, made on the way.
 await page.click("#maps li a");
-await page.waitForSelector("#visualization circle.area", { timeout: 30_000 });
+await page.waitForSelector("#visualization .okm-bubble", { timeout: 30_000 });
 const podMapUrl = page.url();
 // Without that copy (a bookmark, say), the main page logs in again silently,
 // fetches the map and comes back.
@@ -379,7 +362,7 @@ await page.evaluate(
 const authsBefore = solid.log.filter((l) => l === "GET /auth").length;
 await page.goto(podMapUrl);
 await page.waitForURL((u) => u.href === podMapUrl, { timeout: 30_000 });
-await page.waitForSelector("#visualization circle.area", { timeout: 30_000 });
+await page.waitForSelector("#visualization .okm-bubble", { timeout: 30_000 });
 console.log(
 	JSON.stringify({
 		podMapWithoutCopy: page.url() === podMapUrl,
@@ -434,7 +417,7 @@ const onAtomic = await page.$$eval("#maps li a", (as) => as.map((a) => a.textCon
 if (JSON.stringify(onAtomic) !== JSON.stringify(onDav))
 	throw new Error(`maps were not copied to Atomic Data: ${JSON.stringify(onAtomic)}`);
 await page.click("#maps li a");
-await page.waitForSelector("#visualization circle.area", { timeout: 30_000 });
+await page.waitForSelector("#visualization .okm-bubble", { timeout: 30_000 });
 console.log(JSON.stringify({ listedFromAtomic: onAtomic, atomicFiles: atomic.resources.size }));
 await page.goto(home);
 await useStorage(async () => {
@@ -469,8 +452,8 @@ await page.context().setOffline(true);
 await page.reload();
 await page.waitForSelector("#maps li");
 await page.click("#maps li a");
-await page.waitForSelector("#visualization circle.area", { timeout: 30_000 });
-const offlineAreas = await page.$$eval("#visualization circle.area", (c) => c.length);
+await page.waitForSelector("#visualization .okm-bubble", { timeout: 30_000 });
+const offlineAreas = await page.$$eval("#visualization .okm-bubble", (c) => c.length);
 await page.screenshot({ path: path.join(shots, "offline.png") });
 console.log(JSON.stringify({ offlineMap: { areas: offlineAreas } }));
 await page.context().setOffline(false);

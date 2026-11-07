@@ -3,23 +3,22 @@
 OKMaps in the browser. A person searches PubMed, BASE or an OpenAIRE
 project; a Web Worker runs the search (`@okmaps/sources`), adds Crossref
 citation counts for PubMed, lays out the map (`@okmaps/pipeline`) and the map
-is saved in the browser (IndexedDB). The visualisation (`@okmaps/ui`, `packages/ui`)
-shows it, reading it in its `local_files` mode, so maps look and behave as
-they do on the site today.
+is saved in the browser (IndexedDB). `@okmaps/ui-svelte` draws it
+(`src/svelte-map.ts`), with every plugin the package ships.
 
 Nothing is stored on a server unless a person shares a map. The only server
 involved is the gateway (`packages/gateway`), for BASE and for share links.
 
 ```
 index.html   search form and the maps saved in this browser
-map.html     one map (map.html?id=... saved here, map.html?shared=... a share link), drawn by @okmaps/ui
-src/search.ts   search -> citations -> layout -> the record @okmaps/ui reads
+map.html     one map (map.html?id=... saved here, map.html?shared=... a share link), drawn by @okmaps/ui-svelte
+src/search.ts   search -> citations -> layout -> the record the map reads
 src/worker.ts   runs search.ts off the main thread
 src/store.ts    IndexedDB
 src/share.ts    publishing and opening share links
 src/offline.ts  registers the service worker
 sw/sw.js        the service worker; scripts/sw-plugin.ts fills in its file list at build time
-src/vis-config.ts  @okmaps/ui settings per service
+src/svelte-map.ts  draws a map and registers the plugins
 ```
 
 ## Building
@@ -27,14 +26,12 @@ src/vis-config.ts  @okmaps/ui settings per service
 ```
 pnpm install                # in the repository root
 cd apps/frontend
-pnpm build:vis              # builds @okmaps/ui with webpack into public/vis
 cp .env.example .env        # set VITE_GATEWAY_URL
 pnpm build                  # static site in dist/
 ```
 
-`dist/` can be served by any static host. Set `APP_BASE=/some/path/` for
-both build steps if it is not served from the root. `pnpm dev` serves the
-app with hot reload (after `build:vis`).
+`dist/` can be served by any static host. Set `APP_BASE=/some/path/` if
+it is not served from the root. `pnpm dev` serves the app with hot reload.
 
 ### GitHub Pages
 

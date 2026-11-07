@@ -1,6 +1,6 @@
 name: GitHub Pages
 
-# Builds the browser app (apps/frontend) with the visualisation (packages/ui) and publishes
+# Builds the browser app (apps/frontend) with the map interface (packages/ui-svelte) and publishes
 # it to GitHub Pages at https://<owner>.github.io/<repository>/:
 #   latest/   the default branch
 #   v1.2.0/   each release tag v* (newest 20; repository variable PAGES_MAX_VERSIONS),
