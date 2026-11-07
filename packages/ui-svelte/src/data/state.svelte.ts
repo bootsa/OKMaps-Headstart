@@ -6,7 +6,8 @@
  */
 
 import { type Strings, strings } from "../i18n/strings";
-import { layoutMap } from "../views/knowledge-map/layout";
+import { getView } from "../views/registry";
+import type { MapView } from "../views/types";
 import { type MapConfig, mapConfig, type Service } from "./config";
 import { listPapers, searchWords } from "./filter";
 import { queryTerms } from "./highlight";
@@ -71,8 +72,13 @@ export class MapState {
 
 	#process(size: number): ProcessedMap {
 		const map = processMap(this.#record, size, { config: this.config, strings: this.strings });
-		if (this.config.visType === "overview") layoutMap(map.areas, map.papers, size, this.config);
+		this.view.layout?.(map, this.config);
 		return map;
+	}
+
+	/** The view that draws this map (config.visType; see ../views). */
+	get view(): MapView {
+		return getView(this.config.visType);
 	}
 
 	/** The "Scale map by" choice in effect (old toolbar scaleValue). */
@@ -141,11 +147,11 @@ export class MapState {
 		this.selectedPaper = null;
 	}
 
-	/** Selects a paper and, on a knowledge map, zooms into its area (streamgraphs and geo maps have none). */
+	/** Selects a paper and, in views with areas (the knowledge map), zooms into its area. */
 	selectPaper(safeId: string) {
 		const paper = this.map.papers.find((p) => p.safeId === safeId);
 		if (!paper) return;
-		if (this.config.visType === "overview") this.zoomedArea = paper.areaUri;
+		if (this.view.zoomsToArea) this.zoomedArea = paper.areaUri;
 		this.selectedPaper = safeId;
 	}
 

@@ -236,7 +236,7 @@ export function processPaper(doc: RawDocument, config: MapConfig, s: Strings, _c
 		diameter: 0,
 		width: 0,
 		height: 0,
-		place: config.visType === "geomap" ? parsePlace(doc.coverage) : null,
+		place: null,
 		raw: doc,
 	};
 }

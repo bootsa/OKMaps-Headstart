@@ -20,7 +20,7 @@ export {
 export { type ListQuery, listPapers } from "./data/filter";
 export { highlightParts, queryTerms } from "./data/highlight";
 export { citedBySum, outsideReferences, parsePlace, scaleMetric, scaleUnit, socialMentions } from "./data/papers";
-export { processMap, resizeMap } from "./data/process";
+export { placeOnChart, processMap, resizeMap } from "./data/process";
 export { MapState } from "./data/state.svelte";
 export { parseStreams } from "./data/streams";
 export type {
@@ -101,10 +101,13 @@ export {
 } from "./plugins/integrations";
 export { applyScheme, initialScheme, type Scheme } from "./scheme";
 export { default as Visualization } from "./Visualization.svelte";
-export { Geomap, pinLabel, type TileLayerSpec, tileLayers } from "./views/geomap";
+export { coreViews, registerCoreViews } from "./views/core";
+export { Geomap, geomapProcessor, geomapView, pinLabel, type TileLayerSpec, tileLayers } from "./views/geomap";
 export {
 	getTheme,
 	KnowledgeMap,
+	knowledgeMapProcessor,
+	knowledgeMapView,
 	labelsTheme,
 	layoutMap,
 	type MapTheme,
@@ -117,4 +120,13 @@ export {
 	registerTheme,
 	ThemePicker,
 } from "./views/knowledge-map";
-export { type LabelBox, labelBox, Streamgraph, separateLabels } from "./views/streamgraph";
+export { getView, hasView, mapViews, registerView, unregisterView, viewsFor } from "./views/registry";
+export {
+	type LabelBox,
+	labelBox,
+	Streamgraph,
+	separateLabels,
+	streamgraphProcessor,
+	streamgraphView,
+} from "./views/streamgraph";
+export type { MapView, ProcessInput, ViewProcessor, ViewProps } from "./views/types";

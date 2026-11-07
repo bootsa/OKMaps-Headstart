@@ -38,3 +38,8 @@ if (typeof globalThis.ResizeObserver === "undefined") {
 		disconnect() {}
 	} as unknown as typeof ResizeObserver;
 }
+
+// Every view this package ships (the app registers the ones it draws).
+// Imported after the stubs above: the views load svelte/motion.
+const { registerCoreViews } = await import("../src/views/core");
+registerCoreViews();

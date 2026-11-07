@@ -1,12 +1,11 @@
 /**
- * A map record to what the views draw. For a knowledge map (and the list
- * next to a geo map), for a square chart of
- * `size` px: papers placed by their layout coordinates, areas at the mean
- * of their papers, sized by the summed metric. The force layout that then
- * separates the bubbles is in ../map (it runs once the chart is shown).
+ * A map record to what the views draw: the documents become papers here,
+ * then the map's view (config.visType, see ../views) shapes them.
+ * placeOnChart is the shaping the knowledge map and the geo map share.
  */
 import { extent } from "d3-array";
 import { type Strings, strings } from "../i18n/strings";
+import { getView } from "../views/registry";
 import { type MapConfig, mapConfig, type Service } from "./config";
 import { processPaper } from "./papers";
 import {
@@ -17,7 +16,6 @@ import {
 	resizeFactors,
 	resizeScale,
 } from "./scale";
-import { parseStreams } from "./streams";
 import type { Area, MapRecord, Paper, ProcessedMap } from "./types";
 
 const GOLDEN_RATIO = 2.6;
@@ -36,11 +34,15 @@ export function processMap(record: MapRecord, size: number, options: ProcessOpti
 	const s = options.strings ?? strings(config.language);
 
 	const papers = record.documents.map((doc) => processPaper(doc, config, s, record.context));
-	if (config.visType === "timeline") {
-		// Streamgraphs place nothing on a map.
-		const streams = parseStreams(record.streamgraph);
-		return { context: record.context, papers, areas: [], streams, size };
-	}
+	return getView(config.visType).process({ record, papers, size, config });
+}
+
+/**
+ * For a square chart of `size` px: papers placed by their layout
+ * coordinates, areas at the mean of their papers, sized by the summed
+ * metric. The knowledge map's force layout then separates the bubbles.
+ */
+export function placeOnChart(record: MapRecord, papers: Paper[], size: number, config: MapConfig): ProcessedMap {
 	separateDuplicates(papers);
 
 	const [paperFactor, bubbleFactor] = resizeFactors(papers.length, config.dynamicSizing);

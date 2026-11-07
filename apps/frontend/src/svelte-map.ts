@@ -9,13 +9,15 @@ import {
 	type MapRecord,
 	MapState,
 	registerCorePlugins,
+	registerCoreViews,
 	registerPlugin,
 	sharePlugin,
 	Visualization,
 } from "@okmaps/ui-svelte";
 import { mount } from "svelte";
 
-// Every plugin the package ships: the app serves all kinds of maps.
+// Every view and plugin the package ships: the app serves all kinds of maps.
+registerCoreViews();
 registerCorePlugins();
 
 export interface DrawOptions {
