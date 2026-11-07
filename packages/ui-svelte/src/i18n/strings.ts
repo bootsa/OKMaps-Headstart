@@ -76,6 +76,8 @@ const languages = {
 		comment_by_label: "by",
 		pdf_not_loaded: "Sorry, we were not able to retrieve the PDF for this publication. You can get it directly from",
 		pdf_not_loaded_linktext: "this website",
+		// Not in the old eng strings (the old map showed nothing while loading).
+		pdf_load_text: "Looking for the PDF…",
 		share_button_title: "Share this visualization",
 		share_button_title_sg: "Share this visualization",
 		embed_title: "embed visualization",

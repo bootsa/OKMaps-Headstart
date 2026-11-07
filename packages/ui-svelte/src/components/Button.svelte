@@ -14,14 +14,33 @@
 		label?: string;
 		/** Render as a link instead of a button. */
 		href?: string;
+		/** Open the link in a new tab. */
+		newTab?: boolean;
 		children?: Snippet;
 	}
 
-	let { variant = "primary", size = "md", label, href, children, type = "button", ...rest }: Props = $props();
+	let {
+		variant = "primary",
+		size = "md",
+		label,
+		href,
+		newTab = false,
+		children,
+		type = "button",
+		...rest
+	}: Props = $props();
 </script>
 
 {#if href}
-	<a class="okm-button {variant} {size}" {href} aria-label={label}>{@render children?.()}</a>
+	<a
+		class="okm-button {variant} {size}"
+		{href}
+		title={rest.title}
+		aria-label={label}
+		target={newTab ? "_blank" : undefined}
+		rel={newTab ? "noreferrer noopener" : undefined}
+		>{@render children?.()}</a
+	>
 {:else}
 	<button class="okm-button {variant} {size}" {type} aria-label={label} {...rest}>{@render children?.()}</button>
 {/if}

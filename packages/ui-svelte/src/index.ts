@@ -54,11 +54,24 @@ export {
 	type ModalProps,
 	type OkmPlugin,
 	type PaperAction,
+	paperActions,
 	registerPlugin,
 	unregisterPlugin,
 } from "./plugins";
-export { citeMapPlugin, corePlugins, infoPlugin, registerCorePlugins } from "./plugins/core";
+export {
+	citeMapPlugin,
+	citePaperPlugin,
+	corePlugins,
+	exportPaperPlugin,
+	infoPlugin,
+	type PdfOptions,
+	pdfPlugin,
+	registerCorePlugins,
+} from "./plugins/core";
 export { citationDate, mapCitation } from "./plugins/core/cite-map/citation";
+export { type CitationStyle, citationStyles, cslRecord, paperCitation } from "./plugins/core/cite-paper/citation";
+export { bibtexType, paperBibtex } from "./plugins/core/export-paper/bibtex";
+export { directPdf, hasFile, hasPdf, isNonText, type PdfResolver } from "./plugins/core/pdf/pdf";
 export { applyScheme, initialScheme, type Scheme } from "./scheme";
 export { default as Visualization } from "./Visualization.svelte";
 export {
