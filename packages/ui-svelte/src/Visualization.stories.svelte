@@ -45,7 +45,10 @@
 				author_name: "Ada Lovelace",
 				orcid_id: "0000-0002-1825-0097",
 				biography: "Mathematician and writer, known for her work on the Analytical Engine.",
-				employment: { role: "Senior research software engineer", organization: "Leibniz Institute of Freshwater Ecology" },
+				employment: {
+					role: "Senior research software engineer",
+					organization: "Leibniz Institute of Freshwater Ecology",
+				},
 				employments: [
 					{ role: "Engineer", organization: "IGB", start_date: "2019" },
 					{ role: "Student", organization: "FU Berlin", start_date: "2014", end_date: "2018" },
