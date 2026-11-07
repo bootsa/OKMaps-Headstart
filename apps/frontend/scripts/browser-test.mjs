@@ -302,7 +302,7 @@ await other.route(/^https?:\/\/(?!127\.0\.0\.1)/, answer);
 await openShared(other, link, "shared");
 await other.click(".okm-settings .fab"); // the page's links are in the settings panel
 await other.click("#save");
-await other.waitForSelector("#save:disabled");
+await other.waitForSelector("#save:text-matches(\"Saved to\")");
 await other.goto(home);
 await other.waitForSelector(MAP);
 const savedCopy = await listedMaps(other);
@@ -442,6 +442,8 @@ if (podFiles.length !== 1) throw new Error(`the map was not kept in the Pod: ${J
 // and comes back.
 const podCopy = `okmaps-pod-copy-${await storeId("My Pod")}`;
 await page.goto(home);
+// After the start page's own silent login, so nothing navigates while the copy is deleted.
+await page.waitForSelector(`body[data-maps] ${MAP}`, { timeout: 30_000 });
 await page.evaluate(
 	(name) =>
 		new Promise((r) => {
