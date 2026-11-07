@@ -3,6 +3,7 @@ import path from "node:path";
 import { fireEvent, render, screen, within } from "@testing-library/svelte";
 import { flushSync } from "svelte";
 import { afterEach, describe, expect, it } from "vitest";
+import { citedBySum } from "../src/data/papers";
 import {
 	infoPlugin,
 	MapState,
@@ -12,7 +13,7 @@ import {
 	unregisterPlugin,
 	Visualization,
 } from "../src/index";
-import { citedBySum, dateRange, researcherSections } from "../src/plugins/integrations/orcid/researcher";
+import { dateRange, researcherSections } from "../src/plugins/integrations/orcid/researcher";
 
 const record = JSON.parse(fs.readFileSync(path.join(__dirname, "fixtures", "base-map.json"), "utf8"));
 

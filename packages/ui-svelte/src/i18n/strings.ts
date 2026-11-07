@@ -106,6 +106,20 @@ const languages = {
 		download: "Download",
 		please_note: "Please note",
 		scale_by_label: "Scale map by: ",
+		// "Scale map by" choices (the old map had these for pubmed and orcid only).
+		scale_label: {
+			content_based: "Documents",
+			citations: "Citations",
+			cited_by_accounts_count: "Social media mentions",
+			references: "References outside academia",
+			citation_count: "Citations",
+			cited_by_tweeters_count: "Tweets",
+			"readers.mendeley": "Readers",
+		},
+		tweets: "tweets",
+		social: "social media mentions",
+		references: "references outside academia",
+		citations: "citations",
 		citation_warning:
 			"we were not able to verify whether this citation is formatted correctly based on the metadata received. Please check before reuse.",
 		location: "Location",

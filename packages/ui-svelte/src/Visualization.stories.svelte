@@ -62,6 +62,13 @@
 			context: { ...record.context, service: "orcid", query: "0000-0002-1825-0097", params: {} },
 		},
 		600,
+		{
+			scaleOptions: ["content_based", "citations", "cited_by_accounts_count", "references"],
+			scaleExplanations: {
+				content_based: "The size of the bubbles is relative to the number of resources in them.",
+				citations: "The size of the bubbles is relative to the number of citations of the resources in them.",
+			},
+		},
 	);
 </script>
 

@@ -19,6 +19,12 @@ export interface MapConfig {
 	titleStyle: "default" | "viper";
 	/** No reader counts: papers are sized equally and sorted by relevance. */
 	contentBased: boolean;
+	/** What the papers are sized by (old scale_by): a metric such as "citation_count", or "content_based". */
+	scaleBy: string | null;
+	/** The choices of "Scale map by" (old scale_types); none hides it. */
+	scaleOptions: string[];
+	/** A sentence per choice on what the sizes mean (old scale_explanation). */
+	scaleExplanations: Record<string, string>;
 	/** Scale the bubbles and papers with the number of papers. */
 	dynamicSizing: boolean;
 	urlPrefix: string | null;
@@ -101,6 +107,9 @@ const BASE_DOCUMENT_TYPES: Record<string, string> = {
 const common: Omit<MapConfig, "service" | "language" | "sortOptions" | "contentBased"> = {
 	visType: "overview",
 	infoType: null,
+	scaleBy: null,
+	scaleOptions: [],
+	scaleExplanations: {},
 	titleStyle: "default",
 	dynamicSizing: false,
 	urlPrefix: null,
