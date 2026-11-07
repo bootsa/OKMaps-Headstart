@@ -1,5 +1,14 @@
 # Changelog
 
+## [7.1.22](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.21...v7.1.22) (2026-11-07)
+
+
+### Features
+
+* let each map view set its own title, list entries, citation and info page ([2008988](https://github.com/bootsa/OKMaps-Headstart/commit/2008988490408fdbe1cb79d760e49dd1548c687b))
+* let each map view set its own title, list entries, citation and info page ([b3a1464](https://github.com/bootsa/OKMaps-Headstart/commit/b3a1464ddc7346190acb0a5830f6a74433d7f7a8))
+* let each map view set its own title, list entries, citation and info page ([#58](https://github.com/bootsa/OKMaps-Headstart/issues/58)) ([2008988](https://github.com/bootsa/OKMaps-Headstart/commit/2008988490408fdbe1cb79d760e49dd1548c687b))
+
 ## [7.1.21](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.20...v7.1.21) (2026-11-07)
 
 
