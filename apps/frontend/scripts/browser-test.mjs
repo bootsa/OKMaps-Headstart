@@ -302,7 +302,7 @@ await other.route(/^https?:\/\/(?!127\.0\.0\.1)/, answer);
 await openShared(other, link, "shared");
 await other.click(".okm-settings .fab"); // the page's links are in the settings panel
 await other.click("#save");
-await other.waitForSelector("#save:text-matches(\"Saved to\")");
+await other.waitForSelector('#save:text-matches("Saved to")');
 await other.goto(home);
 await other.waitForSelector(MAP);
 const savedCopy = await listedMaps(other);
