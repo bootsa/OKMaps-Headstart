@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.1.17](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.16...v7.1.17) (2026-11-07)
+
+
+### Features
+
+* **ui-svelte:** let maps be scaled by documents, citations, social media mentions or references ([bd6c773](https://github.com/bootsa/OKMaps-Headstart/commit/bd6c773ec278d9bfd9c81ac630d4dde3f9d6174e))
+* **ui-svelte:** let maps be scaled by documents, citations, social media mentions or references ([7a86ae4](https://github.com/bootsa/OKMaps-Headstart/commit/7a86ae45aafa900663b55b51aae7d540cabd1c76))
+
 ## [7.1.16](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.15...v7.1.16) (2026-11-07)
 
 
