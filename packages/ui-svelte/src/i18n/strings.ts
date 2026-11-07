@@ -47,6 +47,8 @@ const languages = {
 		documenttypes_tooltip:
 			"The following resource types were taken into consideration in the creation of this visualization (not all of them may appear in the visualization):",
 		area: "Area",
+		areas_label: "Areas",
+		streams_label: "Streams",
 		items: "items",
 		backlink: "← Back to overview",
 		backlink_list: "Show all resources in area",

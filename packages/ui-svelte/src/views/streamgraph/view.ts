@@ -40,6 +40,18 @@ export const streamgraphView: MapView = {
 	label: "Streamgraph",
 	component: Streamgraph,
 	overTime: true,
+	sections: {
+		label: "streams_label",
+		list: (map) => {
+			const matching = new Set(map.map.papers.filter((p) => map.matching.has(p.safeId)).map((p) => p.id));
+			return map.map.streams.map((st) => ({
+				id: st.key,
+				label: st.key,
+				count: st.docIds.filter((id) => matching.has(id)).length,
+			}));
+		},
+		open: (map, id) => map.selectStream(id),
+	},
 	strings: {
 		heading: "streamgraph_label",
 		authorHeading: "streamgraph_authors_label",

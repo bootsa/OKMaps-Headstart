@@ -42,6 +42,8 @@ export class MapState {
 	filter = $state("all");
 	sort: string = $state("");
 	listVisible = $state(true);
+	/** The list's shortcuts to the map's areas or streams are shown (they fold away). */
+	sectionsOpen = $state(true);
 	/** The list fits the screen and scrolls inside (true), or runs its full height and the page scrolls. */
 	listFit = $state(true);
 	/** The map theme's id (views/knowledge-map/themes). */

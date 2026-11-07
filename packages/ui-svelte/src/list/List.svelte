@@ -55,6 +55,13 @@
 			listPapers(map.map.papers, { search: map.search, filter: map.filter, sort: "", area: map.zoomedArea }).length ===
 				0,
 	);
+	// Shortcuts to the map's areas or streams, on the overview only.
+	const sections = $derived(map.view.sections);
+	const overview = $derived(map.zoomedArea === null && map.selectedStream === null && map.selectedPaper === null);
+	const parts = $derived(sections && overview ? sections.list(map) : []);
+	function leave() {
+		sections?.hover?.(map, null);
+	}
 	const options = (ids: string[]) => ids.map((id) => ({ id, label: capitalize(t(s, id)) }));
 </script>
 
@@ -154,6 +161,34 @@
 				{/if}
 			</div>
 		</div>
+
+		{#if sections && parts.length > 0}
+			<details class="sections" bind:open={map.sectionsOpen}>
+				<summary>{t(s, sections.label)} ({parts.length})</summary>
+				<ul>
+					{#each parts as part (part.id)}
+						<li>
+							<button
+								type="button"
+								class:none={part.count === 0}
+								title={part.label}
+								onclick={() => {
+									leave();
+									sections.open(map, part.id);
+								}}
+								onpointerenter={() => sections.hover?.(map, part.id)}
+								onpointerleave={leave}
+								onfocus={() => sections.hover?.(map, part.id)}
+								onblur={leave}
+							>
+								<span class="label">{part.label}</span>
+								<span class="n">{part.count}</span>
+							</button>
+						</li>
+					{/each}
+				</ul>
+			</details>
+		{/if}
 
 		<div class="entries">
 			{#if empty}
@@ -347,6 +382,81 @@
 			border-radius: var(--radius-pill);
 			background: var(--color-surface);
 			font: inherit;
+		}
+	}
+
+	.sections {
+		flex: none;
+		padding: var(--space-2) var(--space-4);
+		background: var(--color-surface-muted);
+		border-bottom: 1px solid var(--color-border);
+		font-size: var(--font-size-xs);
+		color: var(--color-text);
+
+		summary {
+			width: fit-content;
+			font-weight: var(--font-weight-semibold);
+			cursor: pointer;
+
+			&:focus-visible {
+				outline: 2px solid var(--color-focus);
+			}
+		}
+
+		/* A few rows at most, so the entries keep the room on a phone. Long
+		   names must not widen the list (contain), they are cut instead. */
+		ul {
+			contain: inline-size;
+			display: flex;
+			flex-wrap: wrap;
+			gap: var(--space-1);
+			max-height: 6.5rem;
+			margin: var(--space-2) 0 0;
+			padding: 0;
+			overflow-y: auto;
+			list-style: none;
+		}
+
+		li {
+			min-width: 0;
+			max-width: 100%;
+		}
+
+		button {
+			display: inline-flex;
+			align-items: baseline;
+			gap: var(--space-1);
+			max-width: 100%;
+			padding: 2px var(--space-2);
+			border: 1px solid var(--color-border);
+			border-radius: var(--radius-pill);
+			background: var(--color-surface);
+			color: var(--color-text);
+			font: inherit;
+			cursor: pointer;
+
+			&:hover {
+				border-color: var(--color-accent);
+			}
+
+			&:focus-visible {
+				outline: 2px solid var(--color-focus);
+			}
+
+			&.none {
+				opacity: 0.55;
+			}
+		}
+
+		.label {
+			min-width: 0;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+
+		.n {
+			color: var(--color-text-muted);
 		}
 	}
 
