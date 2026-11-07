@@ -7,6 +7,7 @@
 import { type OkmPlugin, registerPlugin } from "../index";
 import { citeMapPlugin } from "./cite-map";
 import { citePaperPlugin } from "./cite-paper";
+import { type CreditOptions, creditPlugin } from "./credit";
 import { exportPaperPlugin } from "./export-paper";
 import { infoPlugin } from "./info";
 import { type PdfOptions, pdfPlugin } from "./pdf";
@@ -14,8 +15,10 @@ import { type ReloadOptions, reloadPlugin } from "./reload";
 import { type EmbedOptions, embedPlugin, faqsPlugin, type ShareOptions, sharePlugin } from "./share";
 
 export {
+	type CreditOptions,
 	citeMapPlugin,
 	citePaperPlugin,
+	creditPlugin,
 	type EmbedOptions,
 	embedPlugin,
 	exportPaperPlugin,

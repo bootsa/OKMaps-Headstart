@@ -65,9 +65,11 @@ export {
 	unregisterPlugin,
 } from "./plugins";
 export {
+	type CreditOptions,
 	citeMapPlugin,
 	citePaperPlugin,
 	corePlugins,
+	creditPlugin,
 	type EmbedOptions,
 	embedPlugin,
 	exportPaperPlugin,
@@ -83,6 +85,7 @@ export {
 } from "./plugins/core";
 export { citationDate, mapCitation } from "./plugins/core/cite-map/citation";
 export { type CitationStyle, citationStyles, cslRecord, paperCitation } from "./plugins/core/cite-paper/citation";
+export { createdAt, withoutEmbed } from "./plugins/core/credit/credit";
 export { bibtexType, paperBibtex } from "./plugins/core/export-paper/bibtex";
 export { directPdf, hasFile, hasPdf, isNonText, type PdfResolver } from "./plugins/core/pdf/pdf";
 export { embedCode, embedUrl, type LinkMaker, pageLink, shareTargets } from "./plugins/core/share/links";

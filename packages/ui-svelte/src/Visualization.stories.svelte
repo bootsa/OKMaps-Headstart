@@ -5,7 +5,7 @@
 	import type { MapRecord } from "./data/types";
 	import { registerLanguages } from "./i18n/languages";
 	import { registerPlugin } from "./plugins";
-	import { registerCorePlugins } from "./plugins/core";
+	import { creditPlugin, registerCorePlugins } from "./plugins/core";
 	import { orcidPlugin } from "./plugins/integrations";
 	import Visualization from "./Visualization.svelte";
 
@@ -20,6 +20,7 @@
 	registerCorePlugins();
 	registerLanguages();
 	registerPlugin(orcidPlugin());
+	registerPlugin(creditPlugin({ faqs: "https://openknowledgemaps.org/faq", create: "https://openknowledgemaps.org/" }));
 	const record = base as unknown as MapRecord;
 	const state = new MapState(
 		{

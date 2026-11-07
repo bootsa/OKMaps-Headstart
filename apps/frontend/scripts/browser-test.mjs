@@ -206,7 +206,8 @@ async function checkNewLook(p, name, areas) {
 	const drawn = await p.evaluate(() => ({
 		areas: document.querySelectorAll("#visualization .okm-bubble").length,
 		papers: document.querySelectorAll("#visualization .okm-paper").length,
-		images: document.querySelectorAll("#visualization img").length,
+		// The credit's logo is ours; any other image came from the map's data.
+		images: document.querySelectorAll("#visualization img:not(.okm-credit img)").length,
 		listEntries: document.querySelectorAll("#visualization .okm-entry").length,
 	}));
 	await p.screenshot({ path: path.join(shots, `${name}-new.png`) });
