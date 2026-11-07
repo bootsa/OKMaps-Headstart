@@ -9,7 +9,7 @@
 	interface Props {
 		fields: FieldSpec[];
 		values: FieldValues;
-		/** Prefix for element ids, so two forms on a page don't clash. */
+		/** Prefix for element ids, so two forms on a page don't clash ("" for the bare field names). */
 		idPrefix?: string;
 		disabled?: boolean;
 	}
@@ -27,7 +27,7 @@
 		return out;
 	});
 
-	const id = (f: FieldSpec) => `${idPrefix}-${f.name}`;
+	const id = (f: FieldSpec) => (idPrefix ? `${idPrefix}-${f.name}` : f.name);
 
 	function toggle(name: string, value: string, on: boolean) {
 		const list = Array.isArray(values[name]) ? (values[name] as string[]) : [];

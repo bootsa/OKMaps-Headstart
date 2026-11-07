@@ -101,6 +101,7 @@ export {
 	viperPlugin,
 } from "./plugins/integrations";
 export { applyScheme, initialScheme, type Scheme } from "./scheme";
+export * from "./search";
 export * from "./settings";
 export { default as Visualization } from "./Visualization.svelte";
 export { coreViews, registerCoreViews } from "./views/core";
