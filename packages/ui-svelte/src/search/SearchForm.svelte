@@ -9,7 +9,7 @@
 	import Button from "../components/Button.svelte";
 	import Fields from "../settings/Fields.svelte";
 	import { defaultValues, type FieldValues, missingFields } from "../settings/fields";
-	import { metadataSources, type SourceModule } from "../settings/registry";
+	import { allSources, type SourceModule } from "../settings/registry";
 	import type { AppSettings, SaveTarget } from "../settings/settings.svelte";
 	import { getView, hasView } from "../views/registry";
 	import type { SearchSubmit } from "./types";
@@ -26,7 +26,9 @@
 
 	let { settings, onsearch, viewLabel, settingsHref }: Props = $props();
 
-	const sources = $derived(metadataSources().filter((s) => !s.unavailable?.() && settings.sourceEnabled(s.id)));
+	const sources = $derived(
+		allSources(settings.sources).filter((s) => !s.unavailable?.() && settings.sourceEnabled(s.id)),
+	);
 	let sourceId = $state("");
 	const source = $derived(sources.find((s) => s.id === sourceId) ?? sources[0]);
 	/** Each source keeps its own values while another is chosen. */

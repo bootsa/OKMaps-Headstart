@@ -5,6 +5,7 @@
  * fields, and the explorer opens the person's stores with their type.
  *
  *   registerSource(pubmedSource);
+ *   registerSourceType(sparqlSourceType); // sources people set up themselves
  *   registerStoreType(browserStoreType);
  */
 import type { MapStore } from "@okmaps/storage";
@@ -26,6 +27,43 @@ export interface SourceModule<Request = unknown> {
 	request(values: FieldValues, view: string): Request;
 	/** The saved map's title. */
 	title(values: FieldValues): string;
+}
+
+/** A source someone set up on the settings page: their name for it and its type's config. */
+export interface SourceInstance {
+	/** Stable id; the source's id is "<type>:<id>". */
+	id: string;
+	type: string;
+	name: string;
+	config: Record<string, string>;
+}
+
+/** A ready-made config for a source type, offered first in its form. */
+export interface SourcePreset {
+	id: string;
+	label: string;
+	description?: string;
+	config: Record<string, string>;
+}
+
+/**
+ * A kind of source people set up themselves on the settings page (a SPARQL
+ * endpoint, ...); they can add several of one type, each with its own name.
+ */
+export interface SourceType<Request = unknown> {
+	type: string;
+	label: string;
+	description?: string;
+	/** The fields of a source of this type (endpoint, query, ...). */
+	fields: FieldSpec[];
+	/** Ready-made configs; picking one fills the fields. */
+	presets?: SourcePreset[];
+	/** A name for a new source, from its config. */
+	defaultName?(config: Record<string, string>): string;
+	/** What is wrong with a config, so it is not saved (nothing when it is fine). */
+	check?(config: Record<string, string>): string[] | Promise<string[]>;
+	/** The source for one of these; its id and label are set from the instance. */
+	module(instance: SourceInstance): Omit<SourceModule<Request>, "id" | "label"> & Partial<SourceModule<Request>>;
 }
 
 /** A store as the settings keep it: the person's name for it and its type's config. */
@@ -63,6 +101,7 @@ export interface StoreType {
 }
 
 const sources = new Map<string, SourceModule>();
+const sourceTypes = new Map<string, SourceType>();
 const storeTypes = new Map<string, StoreType>();
 
 export function registerSource(source: SourceModule): void {
@@ -80,6 +119,38 @@ export function metadataSources(): SourceModule[] {
 
 export function getSource(id: string): SourceModule | undefined {
 	return sources.get(id);
+}
+
+export function registerSourceType(type: SourceType): void {
+	sourceTypes.set(type.type, type);
+}
+
+export function unregisterSourceType(type: string): void {
+	sourceTypes.delete(type);
+}
+
+/** The source types people can add sources of, in the order they were registered. */
+export function metadataSourceTypes(): SourceType[] {
+	return [...sourceTypes.values()];
+}
+
+export function getSourceType(type: string): SourceType | undefined {
+	return sourceTypes.get(type);
+}
+
+/** The id of the source an instance makes. */
+export const ownSourceId = (instance: Pick<SourceInstance, "type" | "id">) => `${instance.type}:${instance.id}`;
+
+/** The source a person's source instance makes, or undefined when its type is not registered. */
+export function ownSource(instance: SourceInstance): SourceModule | undefined {
+	const type = sourceTypes.get(instance.type);
+	if (!type) return undefined;
+	return { ...type.module(instance), id: ownSourceId(instance), label: instance.name };
+}
+
+/** The site's sources, then the person's own (of the registered types). */
+export function allSources(own: SourceInstance[] = []): SourceModule[] {
+	return [...sources.values(), ...own.map(ownSource).filter((s): s is SourceModule => !!s)];
 }
 
 export function registerStoreType(type: StoreType): void {

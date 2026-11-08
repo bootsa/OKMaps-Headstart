@@ -2,16 +2,25 @@ import { fireEvent, render, screen, waitFor, within } from "@testing-library/sve
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import {
 	AppSettings,
+	allSources,
 	defaultValues,
 	missingFields,
 	registerSource,
+	registerSourceType,
 	registerStoreType,
 	SettingsPage,
 	textValues,
 	unregisterSource,
+	unregisterSourceType,
 	unregisterStoreType,
 } from "../src/index";
-import { davLikeStoreType, demoSource, gatewaySource, memoryStoreType } from "../src/settings/testing/fakes";
+import {
+	davLikeStoreType,
+	demoSource,
+	endpointSourceType,
+	gatewaySource,
+	memoryStoreType,
+} from "../src/settings/testing/fakes";
 
 const memory = () => {
 	const data = new Map<string, string>();
@@ -23,8 +32,10 @@ beforeEach(() => {
 	registerStoreType(davLikeStoreType);
 	registerSource(demoSource);
 	registerSource(gatewaySource);
+	registerSourceType(endpointSourceType);
 });
 afterEach(() => {
+	unregisterSourceType("endpoint");
 	unregisterStoreType("memory");
 	unregisterStoreType("dav");
 	unregisterSource("demo");
@@ -37,6 +48,9 @@ describe("fields", () => {
 		const values = defaultValues(fields, { username: "me" });
 		expect(values).toEqual({ url: "", username: "me", password: "" });
 		expect(missingFields(fields, values)).toEqual(["Folder URL"]);
+		const boxes = [{ name: "b", label: "B", kind: "checkboxes" as const, options: [] }];
+		expect(defaultValues(boxes, { b: "on,off" })).toEqual({ b: ["on", "off"] });
+		expect(textValues(boxes, defaultValues(boxes, { b: "" }))).toEqual({ b: "" });
 		expect(textValues(fields, { url: " https://x/ ", username: "me", password: " p " })).toEqual({
 			url: "https://x/",
 			username: "me",
@@ -75,7 +89,92 @@ describe("AppSettings", () => {
 	});
 });
 
+describe("own sources", () => {
+	it("are kept with the settings and become sources after the site's", () => {
+		const storage = memory();
+		const one = new AppSettings({ storage });
+		one.putSource({ id: "w1", type: "endpoint", name: "My wiki", config: { endpoint: "https://w/", query: "{{q}}" } });
+		one.putSource({ id: "x", type: "gone", name: "Old type", config: {} });
+		one.setSourceEnabled("endpoint:w1", false);
+
+		const two = new AppSettings({ storage });
+		expect(two.sources.map((s) => s.name)).toEqual(["My wiki", "Old type"]);
+		expect(two.sourceEnabled("endpoint:w1")).toBe(false);
+		const all = allSources(two.sources);
+		expect(all.map((s) => s.id)).toEqual(["demo", "gated", "endpoint:w1"]);
+		expect(all[2]).toMatchObject({ label: "My wiki", description: "https://w/" });
+		expect(all[2].request({ q: "x" }, "overview")).toMatchObject({ config: { endpoint: "https://w/" } });
+
+		two.removeSource("w1");
+		expect(two.disabledSources).toEqual([]);
+		expect(new AppSettings({ storage }).sources.map((s) => s.id)).toEqual(["x"]);
+	});
+
+	it("reads settings saved before there were own sources", () => {
+		const storage = memory();
+		storage.setItem("okmaps-settings", JSON.stringify({ version: 1, disabledSources: [], stores: [], saveTo: "none" }));
+		expect(new AppSettings({ storage }).sources).toEqual([]);
+	});
+});
+
 describe("settings page", () => {
+	it("adds a source from a preset, edits it and removes it", async () => {
+		const settings = new AppSettings({ storage: memory() });
+		render(SettingsPage, { settings });
+		expect(screen.getByText(/None yet/)).toBeInTheDocument();
+		await fireEvent.click(screen.getByRole("button", { name: "Add a source" }));
+		// The first preset fills the fields.
+		expect(screen.getByLabelText("Start from")).toHaveValue("wiki");
+		expect(screen.getByLabelText("Endpoint")).toHaveValue("https://wiki.example/sparql");
+		expect(screen.getByText("Searches the wiki.")).toBeInTheDocument();
+		await fireEvent.change(screen.getByLabelText("Start from"), { target: { value: "other" } });
+		expect(screen.getByLabelText("Endpoint")).toHaveValue("https://other.example/sparql");
+		await fireEvent.change(screen.getByLabelText("Start from"), { target: { value: "wiki" } });
+		await fireEvent.click(screen.getByRole("button", { name: "Check and save" }));
+		await waitFor(() => expect(settings.sources).toHaveLength(1));
+		expect(settings.sources[0]).toMatchObject({
+			type: "endpoint",
+			name: "Wiki",
+			config: { endpoint: "https://wiki.example/sparql", query: 'SELECT * { "{{q}}" }', title: "" },
+		});
+		expect(screen.getByText(/Wiki was added/)).toBeInTheDocument();
+		const box = screen.getByRole("checkbox", { name: /Wiki/ });
+		expect(box).toBeChecked();
+		await fireEvent.click(box);
+		expect(settings.sourceEnabled(`endpoint:${settings.sources[0].id}`)).toBe(false);
+
+		// The type's check keeps a broken query from being saved.
+		await fireEvent.click(screen.getByRole("button", { name: "Edit" }));
+		expect(screen.getByLabelText("Start again from")).toHaveValue("");
+		await fireEvent.input(screen.getByLabelText("Query"), { target: { value: "SELECT nothing" } });
+		await fireEvent.click(screen.getByRole("button", { name: "Check and save" }));
+		await waitFor(() => expect(screen.getByText("The query must use {{q}}.")).toBeInTheDocument());
+		expect(settings.sources[0].config.query).toBe('SELECT * { "{{q}}" }');
+		await fireEvent.input(screen.getByLabelText("Query"), { target: { value: "ASK {{q}}" } });
+		await fireEvent.input(screen.getByLabelText("Name", { selector: "#okm-source-name" }), {
+			target: { value: "Renamed" },
+		});
+		await fireEvent.click(screen.getByRole("button", { name: "Check and save" }));
+		await waitFor(() => expect(settings.sources[0].name).toBe("Renamed"));
+		expect(settings.sources[0].config.query).toBe("ASK {{q}}");
+
+		await fireEvent.click(screen.getAllByRole("button", { name: "Remove" })[0]);
+		await fireEvent.click(within(screen.getByRole("alert")).getByRole("button", { name: "Remove" }));
+		expect(settings.sources).toEqual([]);
+		expect(screen.getByText(/Maps made with it were not deleted/)).toBeInTheDocument();
+	});
+
+	it("starts an own source empty when asked, and folds the mapping away", async () => {
+		const settings = new AppSettings({ storage: memory() });
+		render(SettingsPage, { settings });
+		await fireEvent.click(screen.getByRole("button", { name: "Add a source" }));
+		await fireEvent.change(screen.getByLabelText("Start from"), { target: { value: "" } });
+		expect(screen.getByLabelText("Endpoint")).toHaveValue("");
+		expect(screen.getByText("Field mapping").closest("details")).not.toHaveAttribute("open");
+		await fireEvent.click(screen.getByRole("button", { name: "Check and save" }));
+		expect(screen.getByText("Please fill in: Endpoint, Query.")).toBeInTheDocument();
+	});
+
 	it("switches sources on and off, but not ones this site cannot use", async () => {
 		const settings = new AppSettings({ storage: memory() });
 		render(SettingsPage, { settings });

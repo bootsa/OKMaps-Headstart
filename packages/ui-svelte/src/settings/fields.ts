@@ -14,7 +14,7 @@ export interface FieldOption {
 export interface FieldSpec {
 	name: string;
 	label: string;
-	kind: "text" | "search" | "url" | "password" | "date" | "select" | "checkboxes";
+	kind: "text" | "search" | "url" | "password" | "date" | "select" | "checkboxes" | "textarea" | "number";
 	required?: boolean;
 	placeholder?: string;
 	hint?: string;
@@ -27,6 +27,12 @@ export interface FieldSpec {
 	suggestions?: string[];
 	/** Fields with the same row sit side by side on wide screens. */
 	row?: string;
+	/** Consecutive fields with the same section are folded under its name (closed at first). */
+	section?: string;
+	/** Lines of a textarea. */
+	lines?: number;
+	/** Monospaced text (code, queries). */
+	code?: boolean;
 }
 
 /** The starting values of a form. */
@@ -34,8 +40,10 @@ export function defaultValues(fields: FieldSpec[], current: FieldValues = {}): F
 	const values: FieldValues = {};
 	for (const f of fields) {
 		const d = typeof f.default === "function" ? f.default() : f.default;
-		values[f.name] =
+		const v =
 			current[f.name] ?? d ?? (f.kind === "checkboxes" ? [] : f.kind === "select" ? (f.options?.[0]?.value ?? "") : "");
+		// Kept as text ("a,b", see textValues), ticked boxes again.
+		values[f.name] = f.kind === "checkboxes" && typeof v === "string" ? v.split(",").filter(Boolean) : v;
 	}
 	return values;
 }
