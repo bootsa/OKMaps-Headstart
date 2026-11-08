@@ -1,6 +1,6 @@
 /**
  * Stage-by-stage comparison with the R pipeline on the known cases
- * (legacy/workers/tests/knowncases). Goldens come from
+ * (server/workers/tests/knowncases). Goldens come from
  * test/golden/r/generate_goldens.R.
  */
 import { beforeAll, describe, expect, it } from "vitest";

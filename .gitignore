@@ -15,9 +15,3 @@ test-results/
 .pages-cache/
 _site/
 
-# R and Python, for the golden and parity scripts in legacy/
-.Rhistory
-.Rproj.user
-*.pyc
-__pycache__/
-.venv

@@ -5,7 +5,8 @@ positions, areas and area titles of an overview map. It has no runtime
 dependencies and uses no Node APIs, so the same code runs in a browser Web
 Worker and in Node.
 
-It is a port of the R scripts in `legacy/preprocessing/other-scripts`
+It is a port of the R scripts in `server/preprocessing/other-scripts` (on the
+`legacy-server` branch)
 (`vis_layout()` for `vis_type = "overview"`), step 1 of the plan to run OKMaps
 as a browser app with a thin gateway (no R, Python, PHP, Postgres or Redis).
 
@@ -32,7 +33,8 @@ const map = buildOverviewMap({ papers }, resources);
 
 Tested against R outputs in `test/golden`:
 
-- **21 known cases** (`legacy/workers/tests/knowncases`, BASE and PubMed):
+- **21 known cases** (`test/golden/cases`, from the old server's
+  `workers/tests/knowncases`, BASE and PubMed):
   the stemmed corpus, the term list, the distances (to 1e-7), the merge order of
   the clustering, the explained variance, the number of areas, every paper's
   area and every keyword filled in for papers without keywords are identical
@@ -64,16 +66,11 @@ Tested against R outputs in `test/golden`:
 
 ## Regenerating the goldens
 
-Needs R with tm, vegan, SnowballC, proxy, stringi, stringr, stringdist,
-logging, doParallel, plyr, dplyr and jsonlite, and the `en_US.UTF-8` locale
-(term order and tie-breaking follow it). GMD, which is archived on CRAN, is
-replaced by `test/golden/r/gmd_shim.R`. From the repository root:
-
-```sh
-Rscript packages/pipeline/test/golden/r/generate_goldens.R legacy/workers/tests/knowncases /tmp/goldens
-Rscript packages/pipeline/test/golden/r/convert_replay.R /tmp/replay
-# then gzip the JSON files into test/golden/data and test/golden/replay
-```
+The goldens were made by R scripts that ran the old server's code
+(`test/golden/r/generate_goldens.R`, `convert_replay.R` and `gmd_shim.R`, with
+R's tm, vegan, SnowballC and friends in the `en_US.UTF-8` locale). They were
+removed with the `legacy/` folder; check out commit `ec6a09b` to run them
+again.
 
 Some R behaviours the port reproduces on purpose, because they change the results:
 R's string sort is a Shell sort with locale collation (not stable, so strings
@@ -93,12 +90,13 @@ const documents = streamgraphDocuments(papers, streamgraph); // the papers in th
 
 The keyword counts per year that the streamgraph view draws (the record's
 `streamgraph` field). It is a port of the old dataprocessing worker's
-`Streamgraph` (`legacy/workers/dataprocessing/src/streamgraph.py`), which ran
+`Streamgraph` (`server/workers/dataprocessing/src/streamgraph.py` on the
+`legacy-server` branch), which ran
 for maps with `vis_type = "timeline"` instead of the layout. The subpath
 `@okmaps/pipeline/streamgraph` loads only this step. The streamgraph view in
 `@okmaps/ui-svelte` runs it when a record has no `streamgraph` field.
 
-Parity: `test/golden/py/streamgraph_golden.py` runs the Python step on the
+Parity: the goldens in `test/golden/streamgraph` come from the Python step run on the
 BASE worker's timeline outputs, the 21 known cases and some made-up edge
 cases, with the `count` and `tfidf` methods; every year, count, id list and
 keyword is identical, and inputs Python rejects are rejected
@@ -121,9 +119,5 @@ Deliberate differences:
 - `streamgraphDocuments` keeps PubMed's records; `reduce_metadata_set`
   read their numeric ids back as numbers and kept none.
 
-Regenerating the goldens needs Python with pandas and scikit-learn:
-
-```
-PYTHONPATH=../../legacy/workers/dataprocessing/src \
-  python test/golden/py/streamgraph_golden.py test/golden/streamgraph
-```
+The script that made them (`test/golden/py/streamgraph_golden.py`) was
+removed with the `legacy/` folder; it is in commit `ec6a09b`.

@@ -1,7 +1,7 @@
 /**
  * BASE duplicate merging, a port of filter_duplicates() in
- * legacy/workers/base/src/base.py with its helpers from
- * legacy/workers/common/common/deduplication.py and enrichment.py.
+ * server/workers/base/src/base.py with its helpers from
+ * server/workers/common/common/deduplication.py and enrichment.py.
  *
  * Records keep a `label`, their position in the R output, which plays the
  * role of the pandas row index: the passes below key on it, and the final

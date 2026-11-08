@@ -18,5 +18,5 @@ export default defineConfig({
 	worker: { format: "es" },
 	// The workspace packages (and the fixtures the tests read) live outside this folder.
 	server: { fs: { allow: [resolve(__dirname, "../..")] } },
-	plugins: [svelte(), serviceWorker(resolve(__dirname, "sw/sw.js"))],
+	plugins: [svelte(), serviceWorker(resolve(__dirname, "sw/sw.ts"))],
 });

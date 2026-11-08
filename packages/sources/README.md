@@ -5,9 +5,9 @@ data provider and returns `{ papers, content }`, which is the input of
 `buildOverviewMap` in `@okmaps/pipeline`. No runtime dependencies; runs in a
 browser, a Web Worker or Node 18+.
 
-| Provider | Status | Talks to | Port of |
+| Provider | Status | Talks to | Port of (`legacy-server` branch) |
 |---|---|---|---|
-| PubMed | done | NCBI E-utilities directly (CORS allowed) | `legacy/preprocessing/other-scripts/pubmed.R` |
+| PubMed | done | NCBI E-utilities directly (CORS allowed) | `server/preprocessing/other-scripts/pubmed.R` |
 | BASE | done | source gateway (BASE needs a registered IP) | `base.R`, `subject_cleaning.R`, `preprocess.R`, `workers/base`, `common/deduplication.py`, `common/enrichment.py` |
 | OpenAIRE | done | OpenAIRE search API (CORS not yet checked; a gateway URL can be passed) | `openaire.R`, `run_openaire_projectdata.R` |
 | Crossref citations | done | Crossref REST API (CORS allowed) | `metrics.R` (`add_citations`) |
@@ -196,21 +196,8 @@ default `NOBLANKS`, so `textOf` equals R's `xml_text`.
 pnpm install && pnpm typecheck && pnpm test
 ```
 
-Regenerating the goldens needs R with xml2, data.table, jsonlite, logging,
-stringi, dplyr, stringr, stringdist and plyr, and Python with pandas, numpy,
-rapidfuzz, Levenshtein, dateparser and redis:
-
-```
-Rscript test/golden/r/pubmed_golden.R test/fixtures/pubmed_efetch.xml > test/golden/pubmed_efetch.json
-Rscript scripts/extract_subject_tables.R
-Rscript test/golden/r/subject_golden.R test/golden/subject_cleaning.json.gz
-Rscript test/golden/r/base_query_golden.R test/golden/base_query.json
-Rscript test/golden/r/make_base_fixtures.R test/fixtures/base   # then gzip -9 -n the .xml files
-Rscript test/golden/r/base_records_golden.R test/fixtures/base test/golden/base_records
-PYTHONPATH=../../legacy/workers/common:../../legacy/workers/base/src \
-  python test/golden/py/base_worker_golden.py test/golden/base_records test/golden/base_worker
-python test/golden/py/fuzz_golden.py test/golden/fuzz.json.gz
-Rscript test/golden/r/openaire_golden.R test/fixtures/openaire test/golden/openaire
-PYTHONPATH=../../legacy/workers/common \
-  python test/golden/py/aquanavi_golden.py test/fixtures/places test/golden/places
-```
+The goldens were made by R and Python scripts that ran the old server's code
+(`scripts/extract_subject_tables.R`, `test/golden/r/*.R`, `test/golden/py/*.py`).
+They were removed with the `legacy/` folder; check out commit `ec6a09b` to run
+them again. `test/fixtures/contentproviders.json.gz` is the old Python
+worker's BASE provider list, which the tests use as the gateway's answer.

@@ -1,6 +1,6 @@
 /**
  * BASE query building, a port of preprocess_query() and the first half of
- * get_papers() in legacy/preprocessing/other-scripts/base.R.
+ * get_papers() in server/preprocessing/other-scripts/base.R.
  *
  * The patterns come from R's perl = TRUE engine, so \s, \S and \b are
  * ASCII-only; PS / NS spell that out for JavaScript.

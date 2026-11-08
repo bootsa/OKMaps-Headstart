@@ -9,9 +9,10 @@ import { SourceError } from "../src/errors.js";
 const here = path.dirname(fileURLToPath(import.meta.url));
 const gz = (p: string) => zlib.gunzipSync(fs.readFileSync(path.join(here, p))).toString("utf8");
 const providers = new Map<string, string>(
-	JSON.parse(
-		fs.readFileSync(path.join(here, "../../../legacy/workers/common/common/contentproviders.json"), "utf8"),
-	).map((r: { name: string; internal_name: string }) => [r.name, r.internal_name]),
+	JSON.parse(gz("fixtures/contentproviders.json.gz")).map((r: { name: string; internal_name: string }) => [
+		r.name,
+		r.internal_name,
+	]),
 );
 
 const WORDS = [

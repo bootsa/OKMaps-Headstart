@@ -20,7 +20,6 @@ offline once installed as a web app.
 | `packages/storage` | where maps are kept: one interface, an adaptor per storage system |
 | `packages/gateway` | the small server some providers need (BASE's registered IP and key) and the store for share links |
 | `packages/ui-svelte` | the map interface in Svelte 5 and plain CSS, with its Storybook |
-| `legacy/` | the old R and Python code, kept only to regenerate test goldens and run the parity checks |
 
 It is a [pnpm](https://pnpm.io/) workspace (Node 22.18 or newer; `corepack enable`
 gives you the pnpm version in `package.json`). Each package has a README with
@@ -36,8 +35,7 @@ how to run and test it. From the repository root:
 
 Run one package's scripts with `pnpm --filter @okmaps/<name> <script>`.
 
-[Biome](https://biomejs.dev/) lints and formats the code (`biome.json`). It
-leaves out `legacy/`, which is on its way out. In
+[Biome](https://biomejs.dev/) lints and formats the code (`biome.json`). In
 `.svelte` files it uses Biome's experimental full Svelte support, and
 `svelte-check` stays in charge of types and accessibility warnings.
 
@@ -57,6 +55,12 @@ are not released on their own. Merging the release PR updates the version in
 
 The earlier server (PHP, R and Python workers, Postgres, Redis, Docker
 setup) is on the [`legacy-server`](https://github.com/bootsa/OKMaps-Headstart/tree/legacy-server) branch.
+Code comments that name `server/…` files or R functions point there.
+
+The tests compare against saved outputs ("goldens") of that old code. The R
+and Python scripts that made them ran the old code and were removed together
+with the `legacy/` folder after commit `ec6a09b`; check out that commit to
+make the goldens again.
 
 ### Interface tests and Storybook
 

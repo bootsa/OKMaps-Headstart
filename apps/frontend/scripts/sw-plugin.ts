@@ -1,11 +1,12 @@
 /**
- * Writes dist/sw.js after the build: the service worker in sw/sw.js with
- * the files to store at install and a version made from their contents.
+ * Writes dist/sw.js after the build: the service worker in sw/sw.ts without
+ * its types, with the files to store at install and a version made from
+ * their contents.
  */
 import { createHash } from "node:crypto";
 import fs from "node:fs";
 import path from "node:path";
-import type { Plugin } from "vite";
+import { type Plugin, transformWithOxc } from "vite";
 
 /** Files stored at install, relative to the site root. */
 export function precacheList(outDir: string): string[] {
@@ -40,15 +41,13 @@ export function serviceWorker(source: string): Plugin {
 		configResolved(config) {
 			outDir = path.resolve(config.root, config.build.outDir);
 		},
-		closeBundle() {
+		async closeBundle() {
+			const { code } = await transformWithOxc(fs.readFileSync(source, "utf8"), source, { lang: "ts" });
 			const files = precacheList(outDir);
 			const hash = createHash("sha256");
 			for (const f of files) hash.update(f).update(fs.readFileSync(path.join(outDir, f)));
 			const version = hash.digest("hex").slice(0, 16);
-			const sw = fs
-				.readFileSync(source, "utf8")
-				.replace('"__VERSION__"', JSON.stringify(version))
-				.replace("__PRECACHE__", JSON.stringify(files));
+			const sw = code.replace('"__VERSION__"', JSON.stringify(version)).replace("__PRECACHE__", JSON.stringify(files));
 			fs.writeFileSync(path.join(outDir, "sw.js"), sw);
 		},
 	};

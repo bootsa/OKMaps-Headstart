@@ -32,11 +32,11 @@ const base = zlib
 	.gunzipSync(fs.readFileSync(path.join(fixtures, "base/base_digital_education.xml.gz")))
 	.toString("utf8")
 	.replace(/numFound="\d+"/, `numFound="117"`);
-// The content provider list the Python worker uses (legacy/workers/common/common/contentproviders.json),
+// The content provider list the old Python worker used (workers/common/common/contentproviders.json),
 // so journal fields are split out as on the server.
 const escapeXml = (x: string) => x.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 const providers = JSON.parse(
-	fs.readFileSync(path.resolve(here, "../../../legacy/workers/common/common/contentproviders.json"), "utf8"),
+	zlib.gunzipSync(fs.readFileSync(path.join(fixtures, "contentproviders.json.gz"))).toString("utf8"),
 ) as Array<{ name: string; internal_name: string }>;
 const repositories = `<?xml version="1.0" encoding="UTF-8"?><collection><list_repositories>${providers
 	.map(
