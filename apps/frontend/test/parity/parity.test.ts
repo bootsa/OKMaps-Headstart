@@ -1,8 +1,8 @@
 /**
  * End-to-end parity: the map the app makes from recorded provider answers,
- * against the map today's server makes from the same answers (legacy/*.json.gz,
+ * against the map the old server made from the same answers (legacy/*.json.gz,
  * made by legacy_maps.R and legacy_finish.py from the server's own R and
- * Python code).
+ * Python code; both scripts are in commit ec6a09b).
  *
  * Compared: the documents, every field of every document, which papers share
  * an area, the area titles, and the layout. Differences that are known and

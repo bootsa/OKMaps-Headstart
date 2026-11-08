@@ -2,7 +2,7 @@
  * The streamgraph step: how often each of the most frequent keywords
  * occurs per year. A port of the old dataprocessing worker's
  * `Streamgraph.get_streamgraph_data` and `reduce_metadata_set`
- * (legacy/workers/dataprocessing/src/streamgraph.py), which ran instead of
+ * (server/workers/dataprocessing/src/streamgraph.py), which ran instead of
  * the knowledge-map layout for maps with vis_type "timeline".
  *
  * Its output is the record's `streamgraph` field, which the streamgraph

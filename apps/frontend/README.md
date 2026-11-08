@@ -17,7 +17,7 @@ src/worker.ts   runs search.ts off the main thread
 src/store.ts    IndexedDB
 src/share.ts    publishing and opening share links
 src/offline.ts  registers the service worker
-sw/sw.js        the service worker; scripts/sw-plugin.ts fills in its file list at build time
+sw/sw.ts        the service worker; scripts/sw-plugin.ts strips its types and fills in its file list at build time
 src/svelte-map.ts  draws a map and registers the plugins
 ```
 
@@ -83,10 +83,10 @@ profile and saves it there, and opens a crafted map whose titles hold markup
 to check that no script runs. Last, it goes offline and opens a saved map.
 Screenshots go to `test-results/`.
 
-### Parity with the current server
+### Parity with the old server
 
 `test/parity/parity.test.ts` (part of `pnpm test`) compares the maps the app
-makes from the recorded provider answers with the maps today's server makes
+makes from the recorded provider answers with the maps the old server made
 from the same answers. The server's maps (`test/parity/legacy/*.json.gz`) are
 made by running the server's own code: the R and Python source stages (as
 recorded in `packages/sources/test/golden`), the PubMed citation merge,
@@ -96,14 +96,9 @@ titles, and the layout (against R's own run-to-run variation), and writes a
 summary to `test-results/parity.md`. Intended differences are listed in the
 test with their reasons.
 
-To remake the server's maps (needs R with the packages listed in
-`packages/pipeline/test/golden/r/generate_goldens.R`, and pandas), from the
-repository root:
-
-```
-Rscript apps/frontend/test/parity/legacy_maps.R apps/frontend/test/parity/legacy
-python3 apps/frontend/test/parity/legacy_finish.py apps/frontend/test/parity/legacy
-```
+The scripts that made the server's maps (`test/parity/legacy_maps.R` and
+`legacy_finish.py`) ran the old server's code and were removed with the
+`legacy/` folder; check out commit `ec6a09b` to run them again.
 
 ## Streamgraphs and geo maps
 

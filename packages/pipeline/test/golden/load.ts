@@ -5,7 +5,8 @@ import { fileURLToPath } from "node:url";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 export const goldenDir = path.join(here, "data");
-export const casesDir = path.resolve(here, "../../../../legacy/workers/tests/knowncases");
+/** The known cases (the old server's workers/tests/knowncases), gzipped. */
+export const casesDir = path.join(here, "cases");
 
 export interface Golden {
   name: string;
@@ -49,7 +50,7 @@ export interface KnownCase {
 }
 
 export function loadCase(name: string): KnownCase {
-  const d = JSON.parse(fs.readFileSync(path.join(casesDir, `${name}.json`), "utf8"));
+  const d = JSON.parse(zlib.gunzipSync(fs.readFileSync(path.join(casesDir, `${name}.json.gz`))).toString("utf8"));
   const parse = (v: unknown) => (typeof v === "string" ? JSON.parse(v) : v);
   return { params: d.params, text: parse(d.input_data.text), metadata: parse(d.input_data.metadata) };
 }

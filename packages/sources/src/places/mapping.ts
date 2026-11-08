@@ -4,7 +4,7 @@
  * AQUANAVI's mesocosm facilities, can become a geo map.
  *
  * The record shape is the one the old AQUANAVI API returned
- * (legacy/workers/common/common/aquanavi/mapping.py): the place goes in
+ * (server/workers/common/common/aquanavi/mapping.py): the place goes in
  * `coverage` as "country=..; continent=..; east=<lon>; north=<lat>;
  * start=..; end=..", which the geo map view reads.
  */

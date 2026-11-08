@@ -1,6 +1,6 @@
 /**
  * Area titles on the R labelling replay fixtures
- * (legacy/preprocessing/other-scripts/test/replay), converted by
+ * (server/preprocessing/other-scripts/test/replay), converted by
  * test/golden/r/convert_replay.R. These start from R's own clusters, keywords
  * and casing vocabulary, so they test the labeller on its own across BASE,
  * PubMed, ORCID and OpenAIRE maps.

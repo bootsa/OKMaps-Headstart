@@ -2,7 +2,7 @@
  * AQUANAVI: the mesocosm facilities of mesocosm.org, the project the geo
  * map was first made for. One preset of the place source, with the column
  * names of the facility table the old API read
- * (legacy/workers/common/common/aquanavi). Other projects register their
+ * (server/workers/common/common/aquanavi). Other projects register their
  * own PlaceSource with their own table and mapping.
  */
 
