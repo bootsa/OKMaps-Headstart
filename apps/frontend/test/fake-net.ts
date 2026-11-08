@@ -64,6 +64,13 @@ export function fakeAnswer(url: string): { body: string; type: string } | null {
 	if (url === PLACES) return { body: read("places/aquanavi.csv"), type: "text/csv" };
 	if (url.startsWith(`${GATEWAY}/base/search`)) return xml(base);
 	if (url.startsWith(`${GATEWAY}/base/repositories`)) return xml(repositories);
+	if (u.hostname === "dbpedia.org" && u.pathname === "/sparql")
+		return { body: read("sparql/dbpedia-coral-reef.json"), type: "application/sparql-results+json" };
+	if (u.hostname === "en.wikipedia.org" && u.pathname === "/w/api.php") {
+		const titles = (u.searchParams.get("titles") ?? "").split("|");
+		const pages = titles.map((title) => ({ title, extract: `${title} is a thing about coral reefs and the sea.` }));
+		return json(JSON.stringify({ query: { pages } }));
+	}
 	if (u.hostname === "api.openaire.eu") {
 		const kind = u.pathname.replace(/^.*\/search\//, "");
 		const file = { projects: "project.xml", publications: "publications.xml", datasets: "datasets.xml" }[kind];

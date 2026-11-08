@@ -22,6 +22,14 @@ import { visTypeOf } from "./vis-type.ts";
 // Every view and plugin the package ships: the app serves all kinds of maps.
 registerCoreViews();
 registerCorePlugins();
+// SPARQL sources: no citation data, links go where the record says.
+registerService("sparql", {
+	language: "eng",
+	sortOptions: ["relevance", "title", "authors", "year"],
+	contentBased: true,
+	urlPrefix: null,
+	citePapers: false,
+});
 // Place sources other than AQUANAVI get AQUANAVI's map settings.
 for (const p of placeSettings()) {
 	if (p.id !== "aquanavi")

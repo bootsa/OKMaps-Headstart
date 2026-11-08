@@ -36,6 +36,7 @@ const SERVICES: Record<string, string> = {
 	pubmed: "PubMed",
 	base: "BASE",
 	openaire: "OpenAIRE",
+	sparql: "SPARQL",
 	...Object.fromEntries(places.map((p) => [p.id, p.label])),
 };
 const VIEWS: Record<string, string> = {

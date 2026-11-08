@@ -18,10 +18,12 @@ import {
 	fetchBaseContentProviders,
 	getOpenaireProject,
 	type SourceResult,
+	type SparqlSourceConfig,
 	searchBase,
 	searchOpenaire,
 	searchPlaces,
 	searchPubmed,
+	searchSparql,
 	type TableCache,
 } from "@okmaps/sources";
 import { placeSource } from "./place-source.ts";
@@ -31,7 +33,7 @@ import { visTypeOf } from "./vis-type.ts";
 export type { VisType } from "./vis-type.ts";
 export { visTypeOf } from "./vis-type.ts";
 
-export type Service = "pubmed" | "base" | "openaire" | "places";
+export type Service = "pubmed" | "base" | "openaire" | "places" | "sparql";
 
 /** The views a search can ask for; place sources make geo maps. */
 type SearchView = "overview" | "timeline";
@@ -72,7 +74,17 @@ export interface PlacesRequest {
 	title?: string;
 }
 
-export type SearchRequest = PubmedRequest | BaseSearchRequest | OpenaireRequest | PlacesRequest;
+/** A search on a SPARQL source someone set up on the settings page (src/sparql-source.ts). */
+export interface SparqlRequest {
+	service: "sparql";
+	/** The source's name, kept with the map. */
+	source: string;
+	config: SparqlSourceConfig;
+	q: string;
+	vis_type?: SearchView;
+}
+
+export type SearchRequest = PubmedRequest | BaseSearchRequest | OpenaireRequest | PlacesRequest | SparqlRequest;
 
 export interface SearchSettings {
 	/** Gateway base URL (packages/gateway), for BASE and the OpenAIRE fallback. */
@@ -122,6 +134,13 @@ async function fetchSource(
 	const http = { fetch: s.fetch };
 	const timeline = req.service !== "openaire" && req.vis_type === "timeline";
 	const visType = timeline ? { vis_type: "timeline" } : {};
+	if (req.service === "sparql") {
+		const result = await searchSparql(req.config, { q: req.q }, http);
+		if (result.papers.length === 0) throw Object.assign(new Error("no results"), { reasons: ["not enough results"] });
+		// The whole config, so the map says how it was made (and a shared copy can be made again).
+		const params = { source: req.source, sparql: req.config, ...visType };
+		return { result, query: req.q, params };
+	}
 	if (req.service === "pubmed") {
 		const params = {
 			from: req.from,

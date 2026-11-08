@@ -104,6 +104,14 @@ function requestOf(map: SharedMap): SavedMap["request"] {
 	const p = JSON.parse(map.context.params || "{}");
 	if (p.vis_type === "geomap")
 		return { service: "places", source: p.source ?? map.context.service, title: p.custom_title ?? "" };
+	if (map.context.service === "sparql" && p.sparql?.endpoint)
+		return {
+			service: "sparql",
+			source: String(p.source ?? "SPARQL"),
+			config: p.sparql,
+			q: map.context.query,
+			...(p.vis_type === "timeline" ? { vis_type: "timeline" as const } : {}),
+		};
 	if (map.context.service === "openaire")
 		return { service: "openaire", project_id: p.project_id ?? "", funder: p.funder ?? "" };
 	const common = { q: map.context.query, from: p.from ?? "", to: p.to ?? "", sorting: p.sorting ?? "most-relevant" };

@@ -1,6 +1,7 @@
 import { loadDefaultResources } from "@okmaps/pipeline";
 import { describe, expect, it } from "vitest";
 import { buildMap, type SearchRequest, type Stage, timestamp, visTypeOf } from "../src/search.ts";
+import { sparqlConfig, sparqlSourceType } from "../src/sparql-source.ts";
 import { fakeFetch, GATEWAY, PLACES } from "./fake-net.ts";
 
 const places = [{ id: "aquanavi", label: "AQUANAVI", preset: "aquanavi" as const, url: PLACES }];
@@ -126,6 +127,21 @@ describe("buildMap", () => {
 			custom_title: "Mesocosms",
 		});
 		expect(offline.context.query).toBe("Mesocosms");
+	});
+
+	it("makes a map from a SPARQL source, with Wikipedia introductions", async () => {
+		const config = sparqlConfig(sparqlSourceType.presets?.find((p) => p.id === "dbpedia")?.config ?? {});
+		const { map, stages } = await make({ service: "sparql", source: "DBpedia", config, q: "coral reef" });
+		expect(stages).toEqual(["searching", "layout"]);
+		expect(map.context).toMatchObject({ query: "coral reef", service: "sparql" });
+		expect(JSON.parse(map.context.params)).toMatchObject({
+			source: "DBpedia",
+			sparql: { endpoint: "https://dbpedia.org/sparql", wikipediaIntros: true },
+		});
+		expectLaidOut(map.documents);
+		const adventure = map.documents.find((d) => d.title === "Coral Reef Adventure");
+		expect(adventure?.paper_abstract).toBe("Coral Reef Adventure is a thing about coral reefs and the sea.");
+		expect(adventure?.url).toBe("http://en.wikipedia.org/wiki/Coral_Reef_Adventure");
 	});
 
 	it("reports provider errors with their reasons", async () => {
