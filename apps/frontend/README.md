@@ -1,24 +1,32 @@
 # @okmaps/frontend
 
-OKMaps in the browser. A person searches PubMed, BASE or an OpenAIRE
-project; a Web Worker runs the search (`@okmaps/sources`), adds Crossref
-citation counts for PubMed, lays out the map (`@okmaps/pipeline`) and the map
-is saved in the browser (IndexedDB). `@okmaps/ui-svelte` draws it
-(`src/svelte-map.ts`), with every plugin the package ships.
+OKMaps in the browser. A person searches the metadata sources they have
+turned on (PubMed, BASE, OpenAIRE, OpenAlex, Zenodo, Zotero, SPARQL
+endpoints, place tables); a Web Worker runs the search (`@okmaps/sources`),
+adds Crossref citation counts for PubMed, lays out the map
+(`@okmaps/pipeline`) and the map is saved in the store they picked.
+`@okmaps/ui-svelte` draws it (`src/svelte-map.ts`) with the view its params
+name (knowledge map, streamgraph or geo map) and every plugin the package
+ships.
 
-Nothing is stored on a server unless a person shares a map. The only server
-involved is the gateway (`packages/gateway`), for BASE and for share links.
+Nothing is stored on a server unless a person shares a map or picks a
+remote store. The only server of our own is the gateway
+(`packages/gateway`), for BASE and for share links.
 
 ```
-index.html   search form and the maps saved in this browser
-map.html     one map (map.html?id=... saved here, map.html?shared=... a share link), drawn by @okmaps/ui-svelte
-src/search.ts   search -> citations -> layout -> the record the map reads
-src/worker.ts   runs search.ts off the main thread
-src/store.ts    IndexedDB
-src/share.ts    publishing and opening share links
-src/offline.ts  registers the service worker
-sw/sw.ts        the service worker; scripts/sw-plugin.ts strips its types and fills in its file list at build time
-src/svelte-map.ts  draws a map and registers the plugins
+index.html     search form (fields of the enabled sources, where to save) and the drawer with your maps
+map.html       one map (map.html?store=...&path=...&id=... saved, map.html?shared=... a share link), drawn by @okmaps/ui-svelte
+settings.html  metadata sources and map stores
+src/search.ts     search -> citations -> layout -> the record the map reads
+src/worker.ts     runs search.ts off the main thread
+src/sources.ts    the sources this site offers (registerSource, registerSourceType); *-source.ts are the configurable ones
+src/stores.ts     the kinds of store this site offers (registerStoreType)
+src/store.ts      the person's stores and saved maps; src/drafts.ts the maps made without saving
+src/places.ts     place sources for geo maps; src/place-cache.ts keeps their tables in IndexedDB
+src/share.ts      publishing and opening share links
+src/offline.ts    registers the service worker
+sw/sw.ts          the service worker; scripts/sw-plugin.ts strips its types and fills in its file list at build time
+src/svelte-map.ts draws a map and registers the plugins
 ```
 
 ## Building
@@ -127,16 +135,18 @@ reached after that.
 
 ## Where maps are kept
 
-By default maps are kept in the browser (IndexedDB). Under "Where your maps
-are kept" on the start page a person can choose a WebDAV folder instead
+Maps are kept in stores the person sets up on the settings page
+(`settings.html`): this browser (IndexedDB, the default), WebDAV folders
 (Nextcloud, ownCloud, or any WebDAV server that allows the site through
-CORS), and copy the maps they have there. The choice, and the WebDAV
-password, are kept in that browser's localStorage. Maps then follow the
-person to any browser that uses the same folder. The storage adaptors are in
-`packages/storage`. Maps made before this choice existed are moved into the
-new browser storage once.
+CORS), Solid Pods and Atomic Data servers, several of a kind with their own
+names. The drawer on the start page shows every store as a folder tree:
+maps can be opened, deleted and dragged between stores and subfolders. The
+search form asks where to save a new map, or not to save it yet; such a map
+can be saved later from the map page. The settings, and passwords or
+secrets, are kept in that browser's localStorage. The storage adaptors are
+in `packages/storage`.
 
-A Solid Pod works the same way after logging in (Solid-OIDC, with
+A Solid Pod needs a login (Solid-OIDC, with
 `@inrupt/solid-client-authn-browser`, loaded only when a Pod is used). The
 person names their identity provider and, optionally, a folder; without one
 the maps go in `okmaps/` at the top of the Pod their WebID names. The login
@@ -174,9 +184,4 @@ Service workers need HTTPS (or `localhost`).
 
 ## Not there yet
 
-These parts of the visualisation call the PHP server and are turned off or
-do not work yet: PDF preview, metadata export, the visualisation's own share
-and embed dialogs (the app's Share button replaces them), Hypothesis
-annotations, analytics.
-The timeline (streamgraph) view is not ported. No live provider has been
-called from this app yet; that needs a deployed gateway and a browser.
+Hypothesis annotations and analytics from the old site are not ported.

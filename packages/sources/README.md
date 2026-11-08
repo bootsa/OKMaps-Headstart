@@ -13,6 +13,7 @@ browser, a Web Worker or Node 18+.
 | Crossref citations | done | Crossref REST API (CORS allowed) | `metrics.R` (`add_citations`) |
 | Places (geo maps), AQUANAVI preset | done | any CSV or JSON table, cached | `workers/common/common/aquanavi` |
 | SPARQL (Wikidata, Wikidata scholarly, DBpedia presets) | done | any SPARQL endpoint that allows CORS | new |
+| Zenodo (or any InvenioRDM site), optionally one community | done | its REST API (CORS allowed), optional access token | new |
 | Zotero (personal and group libraries, collections) | done | Zotero Web API v3 (CORS allowed) | new |
 | OpenAlex works | done | OpenAlex API directly (CORS allowed), optional API key | new |
 
