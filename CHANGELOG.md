@@ -1,5 +1,14 @@
 # Changelog
 
+## [7.1.43](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.42...v7.1.43) (2026-11-08)
+
+
+### Features
+
+* one search across several sources, each work once ([c2265a6](https://github.com/bootsa/OKMaps-Headstart/commit/c2265a610b988f51edb571ee29d753273727c334))
+* one search across several sources, each work once ([f110c24](https://github.com/bootsa/OKMaps-Headstart/commit/f110c24397fb53fc89fe8f2dd081b0c309721018))
+* one search across several sources, each work once ([#106](https://github.com/bootsa/OKMaps-Headstart/issues/106)) ([c2265a6](https://github.com/bootsa/OKMaps-Headstart/commit/c2265a610b988f51edb571ee29d753273727c334))
+
 ## [7.1.42](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.41...v7.1.42) (2026-11-08)
 
 
