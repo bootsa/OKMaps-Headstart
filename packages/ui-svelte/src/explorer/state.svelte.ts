@@ -3,7 +3,15 @@
  * listed so far. Listing is lazy: a store or folder is read when it is
  * first expanded, and again after a change in it.
  */
-import { type FolderListing, type FolderPath, type MapStore, moveMap } from "@okmaps/storage";
+import {
+	exportMaps,
+	type FolderListing,
+	type FolderPath,
+	importMaps,
+	type MapStore,
+	moveMap,
+	parseMapsFile,
+} from "@okmaps/storage";
 import { openStore, type StoreInstance } from "../settings/registry";
 import type { AppSettings } from "../settings/settings.svelte";
 
@@ -158,6 +166,44 @@ export class ExplorerState {
 			this.#say(`${title} moved to ${[where, ...to.path].join(" / ")}.`);
 		}
 		return ok;
+	}
+
+	/**
+	 * The maps of a store (or of one folder, with its subfolders) as a maps
+	 * file: its file name and JSON text, or null when that did not work.
+	 */
+	async exportMaps(store: string, path: FolderPath = []): Promise<{ name: string; text: string } | null> {
+		let file: Awaited<ReturnType<typeof exportMaps>> | undefined;
+		const ok = await this.#run("Exporting the maps", async () => {
+			file = await exportMaps(await this.store(store), path);
+		});
+		if (!ok || !file) return null;
+		const where = [this.settings.store(store)?.name ?? store, ...path].join(" ");
+		const slug =
+			where
+				.replace(/[^\p{L}\p{N}]+/gu, "-")
+				.replace(/^-|-$/g, "")
+				.toLowerCase() || "maps";
+		const n = file.maps.length;
+		this.#say(`${n} ${n === 1 ? "map" : "maps"} exported.`);
+		return { name: `okmaps-${slug}-${file.exported.slice(0, 10)}.json`, text: JSON.stringify(file, null, 1) };
+	}
+
+	/** Imports a maps file (or one map's JSON) into a folder of a store. */
+	async importMaps(store: string, path: FolderPath, file: { text(): Promise<string> }): Promise<boolean> {
+		let result: Awaited<ReturnType<typeof importMaps>> | undefined;
+		const ok = await this.#run("Importing the maps", async () => {
+			const entries = parseMapsFile(await file.text());
+			result = await importMaps(await this.store(store), path, entries);
+		});
+		if (!ok || !result) return false;
+		this.#forget(store, path);
+		this.expanded[placeKey(store, path)] = true;
+		await this.load(store, path);
+		const n = result.maps;
+		const where = [this.settings.store(store)?.name ?? store, ...path].join(" / ");
+		this.#say(`${n} ${n === 1 ? "map" : "maps"} imported into ${where}.`);
+		return true;
 	}
 
 	/** Drops what is known about a folder and the folders in it. */

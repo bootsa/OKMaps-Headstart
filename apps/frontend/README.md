@@ -140,7 +140,9 @@ Maps are kept in stores the person sets up on the settings page
 (Nextcloud, ownCloud, or any WebDAV server that allows the site through
 CORS), Solid Pods and Atomic Data servers, several of a kind with their own
 names. The drawer on the start page shows every store as a folder tree:
-maps can be opened, deleted and dragged between stores and subfolders. The
+maps can be opened, deleted and dragged between stores and subfolders, and
+each store's maps exported to a file (a backup, or a way to another browser)
+and a file imported into it. The
 search form asks where to save a new map, or not to save it yet; such a map
 can be saved later from the map page. The settings, and passwords or
 secrets, are kept in that browser's localStorage. The storage adaptors are

@@ -48,6 +48,15 @@ and, where the type allows folders, `createFolder/renameFolder/deleteFolder`.
 `moveMap(from, to, id)` moves a map between folders or stores (saved there
 first, then removed here).
 
+`exportMaps(store, path)` writes the maps of a folder and its subfolders to
+one JSON document (`{ format: "okmaps-maps", version: 1, exported, maps:
+[{ path, map }] }`), and `importMaps(store, path, parseMapsFile(text))`
+saves such a file, or a single map's JSON, into any store: with its
+subfolders where the store has folders, otherwise all at the top. A map
+whose id is already there is replaced (it is the same map).
+`parseMapsFile` refuses anything that is not a map, an id that is not a
+safe key, and folder names that would leave the folder.
+
 Adding a storage means writing those four methods. Planned or possible: S3 (signed requests), Google Drive / Dropbox (OAuth),
 remoteStorage.
 

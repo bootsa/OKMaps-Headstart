@@ -7,6 +7,16 @@ export {
 	stableStringify,
 } from "./atomic.ts";
 export { bucketStorage, type ObjectBucket } from "./bucket.ts";
+export {
+	exportMaps,
+	type ImportResult,
+	importMaps,
+	isStoredMap,
+	MAPS_FILE_FORMAT,
+	type MapsFile,
+	type MapsFileEntry,
+	parseMapsFile,
+} from "./exchange.ts";
 export { indexedDbStorage } from "./indexeddb.ts";
 export { MapLibrary, type MapSummary, type StoredMap } from "./library.ts";
 export { memoryStorage } from "./memory.ts";

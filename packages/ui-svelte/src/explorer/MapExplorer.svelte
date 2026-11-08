@@ -3,7 +3,8 @@
   The person's maps in a vertical drawer: each store is a section that
   opens like an accordion, with its folders and maps. Folders can be made,
   renamed and deleted where the store allows them; maps can be deleted, and
-  moved between folders and stores by dragging them or with "Move".
+  moved between folders and stores by dragging them or with "Move". Each
+  store's maps can be exported to a file, and a file imported into it.
 -->
 <script lang="ts">
 	import type { MapStore } from "@okmaps/storage";
@@ -75,6 +76,24 @@
 			(on) => (over = on ? store : over === store ? null : over),
 		);
 
+	async function exportStore(store: string) {
+		const file = await ex.exportMaps(store);
+		if (!file) return;
+		const url = URL.createObjectURL(new Blob([file.text], { type: "application/json" }));
+		const a = document.createElement("a");
+		a.href = url;
+		a.download = file.name;
+		a.click();
+		setTimeout(() => URL.revokeObjectURL(url), 0);
+	}
+
+	async function importInto(store: string, e: Event) {
+		const input = e.currentTarget as HTMLInputElement;
+		const file = input.files?.[0];
+		if (file) await ex.importMaps(store, [], file);
+		input.value = "";
+	}
+
 	/** Refreshes every open folder (after another page changed something). */
 	export function refresh() {
 		for (const s of settings.stores) if (ex.isExpanded(s.id, [])) void ex.load(s.id, []);
@@ -128,6 +147,19 @@
 								{onopenmap}
 								onmove={(m) => (moving = m)}
 							/>
+							<div class="exchange">
+								<button type="button" class="tool" onclick={() => exportStore(s.id)}>Export maps</button>
+								<label class="tool">
+									Import maps
+									<input
+										class="file"
+										type="file"
+										accept=".json,application/json"
+										aria-label="Import maps into {s.name}"
+										onchange={(e) => importInto(s.id, e)}
+									>
+								</label>
+							</div>
 						{:else}
 							<p class="quiet">This site does not offer {s.type} stores.</p>
 						{/if}
@@ -272,6 +304,42 @@
 
 	.body {
 		padding: 0 0 var(--space-2) var(--space-2);
+	}
+
+	.exchange {
+		display: flex;
+		gap: var(--space-2);
+		margin: var(--space-2) var(--space-2) 0;
+	}
+
+	.tool {
+		position: relative;
+		padding: var(--space-1) var(--space-2);
+		border: 1px solid var(--color-border);
+		border-radius: var(--radius-pill);
+		font: inherit;
+		font-size: var(--font-size-xs);
+		color: var(--color-text);
+		background: var(--color-surface);
+		cursor: pointer;
+
+		&:hover {
+			border-color: var(--color-text-muted);
+		}
+
+		&:focus-within {
+			outline: 2px solid var(--color-accent);
+			outline-offset: 2px;
+		}
+	}
+
+	/* The file input stays focusable and clickable through its label. */
+	.file {
+		position: absolute;
+		inset: 0;
+		width: 100%;
+		opacity: 0;
+		cursor: pointer;
 	}
 
 	footer {
