@@ -24,6 +24,9 @@ export const ger: Strings = {
 	most_relevant_label: "relevanteste",
 	articles_label: "ressourcen",
 	source_label: "Quelle",
+	sources_label: "Quellen",
+	duplicates_label: "In mehreren gefunden",
+	failed_sources_label: "Nicht erreicht",
 	resulttype_label: "Dokumentart",
 	documenttypes_label: "Publikationsarten",
 	documenttypes_tooltip:

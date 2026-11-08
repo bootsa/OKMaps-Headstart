@@ -41,6 +41,9 @@ const languages = {
 		most_relevant_tooltip_sg:
 			"In this streamgraph you find the most relevant resources matching your query related to the top keywords. To determine the most relevant resources, we use the relevance ranking provided by the data source e.g. BASE. Data sources mainly use text similarity between your query and the article metadata to determine the relevance ranking. Please consult the FAQs for more information.",
 		source_label: "Data source",
+		sources_label: "Sources",
+		duplicates_label: "Found by more than one",
+		failed_sources_label: "Not reached",
 		resulttype_label: "Document type",
 		documenttypes_label: "Resource types",
 		readers_count_label: "readers",

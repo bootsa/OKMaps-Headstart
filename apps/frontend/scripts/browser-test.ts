@@ -264,8 +264,7 @@ await makeMap(async () => {
 	await page.check('input[value="base"]');
 	await page.fill("#q", "digital education");
 }, "base");
-// Several sources: PubMed and BASE in one search. BASE has no recorded answer
-// for this query, so the map holds PubMed's records and names BASE as failed.
+// Several sources: PubMed and BASE in one search, named on the context line.
 {
 	await makeMap(async () => {
 		await page.check('input[value="okm:combined"]');
@@ -276,6 +275,8 @@ await makeMap(async () => {
 		return sections.length;
 	});
 	if (!sources) throw new Error("combined: no records listed");
+	const line = (await page.textContent('.context [data-item="sources"]'))?.trim();
+	if (!line?.startsWith("Sources: PubMed, BASE")) throw new Error(`combined: context line says ${line}`);
 	await page.goto(home);
 	await page.waitForSelector(MAP);
 	await deleteFirstMap(page);
