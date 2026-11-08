@@ -1,0 +1,362 @@
+{
+	"$schema": "https://json-schema.org/draft/2020-12/schema",
+	"$id": "https://github.com/bootsa/OKMaps-Headstart/packages/config/schema.json",
+	"title": "OKMaps build config",
+	"description": "One custom OKMaps version: what it offers, its services and its look. Everything is optional; what is left out is as on the full site. Strings may contain ${env:NAME} or ${env:NAME:-fallback}, read at build time. See packages/config/README.md.",
+	"type": "object",
+	"additionalProperties": false,
+	"properties": {
+		"$schema": {
+			"type": "string"
+		},
+		"site": {
+			"type": "object",
+			"additionalProperties": false,
+			"properties": {
+				"title": {
+					"type": "string",
+					"description": "Name of the site: page titles, heading, installed app."
+				},
+				"lead": {
+					"type": "string",
+					"description": "The line under the heading."
+				},
+				"lang": {
+					"type": "string",
+					"description": "Language of the pages (html lang), e.g. en."
+				}
+			}
+		},
+		"sources": {
+			"type": "object",
+			"additionalProperties": false,
+			"properties": {
+				"offer": {
+					"type": "array",
+					"items": {
+						"enum": ["pubmed", "base", "openaire", "places"]
+					},
+					"uniqueItems": true,
+					"description": "The site's sources; default all."
+				},
+				"off": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					},
+					"description": "Source ids offered but switched off until people switch them on (e.g. \"base\", \"zotero:group\")."
+				},
+				"places": {
+					"type": "array",
+					"description": "Place tables for \"places\" (geo maps); default the bundled AQUANAVI table.",
+					"items": {
+						"type": "object",
+						"required": ["url"],
+						"properties": {
+							"id": {
+								"type": "string",
+								"pattern": "^[A-Za-z0-9][A-Za-z0-9_-]*$"
+							},
+							"label": {
+								"type": "string"
+							},
+							"title": {
+								"type": "string"
+							},
+							"url": {
+								"type": "string"
+							},
+							"format": {
+								"enum": ["csv", "json"]
+							},
+							"preset": {
+								"enum": ["aquanavi"]
+							},
+							"mapping": {
+								"type": "object"
+							}
+						}
+					}
+				},
+				"types": {
+					"type": "array",
+					"items": {
+						"enum": ["sparql", "zenodo", "zotero", "openalex"]
+					},
+					"uniqueItems": true,
+					"description": "Kinds of source people can add on the settings page; default all."
+				},
+				"presets": {
+					"type": "array",
+					"description": "Ready-made sources of those kinds, offered to everyone.",
+					"items": {
+						"type": "object",
+						"required": ["id", "type", "name"],
+						"additionalProperties": false,
+						"properties": {
+							"id": {
+								"type": "string",
+								"pattern": "^[A-Za-z0-9][A-Za-z0-9_-]*$"
+							},
+							"type": {
+								"enum": ["sparql", "zenodo", "zotero", "openalex"]
+							},
+							"name": {
+								"type": "string"
+							},
+							"description": {
+								"type": "string"
+							},
+							"config": {
+								"type": "object",
+								"additionalProperties": {
+									"type": "string"
+								}
+							}
+						}
+					}
+				},
+				"typePresets": {
+					"type": "object",
+					"description": "Ready-made configs offered first when someone adds a source of a kind.",
+					"propertyNames": {
+						"enum": ["sparql", "zenodo", "zotero", "openalex"]
+					},
+					"additionalProperties": {
+						"type": "array",
+						"items": {
+							"type": "object",
+							"required": ["id", "label"],
+							"properties": {
+								"id": {
+									"type": "string"
+								},
+								"label": {
+									"type": "string"
+								},
+								"description": {
+									"type": "string"
+								},
+								"config": {
+									"type": "object",
+									"additionalProperties": {
+										"type": "string"
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"stores": {
+			"type": "object",
+			"additionalProperties": false,
+			"properties": {
+				"types": {
+					"type": "array",
+					"items": {
+						"enum": ["browser", "webdav", "solid", "atomic"]
+					},
+					"uniqueItems": true,
+					"description": "Kinds of store; default all."
+				},
+				"presets": {
+					"type": "array",
+					"description": "Stores everyone starts with; default one \"This browser\" store.",
+					"items": {
+						"type": "object",
+						"required": ["id", "type", "name"],
+						"additionalProperties": false,
+						"properties": {
+							"id": {
+								"type": "string",
+								"pattern": "^[A-Za-z0-9][A-Za-z0-9_-]*$"
+							},
+							"type": {
+								"enum": ["browser", "webdav", "solid", "atomic"]
+							},
+							"name": {
+								"type": "string"
+							},
+							"config": {
+								"type": "object",
+								"additionalProperties": {
+									"type": "string"
+								}
+							}
+						}
+					}
+				},
+				"saveTo": {
+					"type": "string",
+					"description": "The preset store new maps go to, or \"none\"."
+				}
+			}
+		},
+		"views": {
+			"type": "array",
+			"items": {
+				"enum": ["overview", "timeline", "geomap"]
+			},
+			"uniqueItems": true,
+			"description": "Map views; default all."
+		},
+		"plugins": {
+			"type": "array",
+			"items": {
+				"enum": ["info", "cite-map", "pdf", "cite-paper", "export-paper"]
+			},
+			"uniqueItems": true,
+			"description": "Map plugins; default all."
+		},
+		"features": {
+			"type": "object",
+			"additionalProperties": false,
+			"properties": {
+				"settingsPage": {
+					"type": "boolean",
+					"description": "The settings page (settings.html) and links to it."
+				},
+				"chooseSources": {
+					"type": "boolean",
+					"description": "Switching the site's sources on and off on the settings page."
+				},
+				"addSources": {
+					"type": "boolean",
+					"description": "Adding own sources (of sources.types) on the settings page."
+				},
+				"addStores": {
+					"type": "boolean",
+					"description": "Adding, changing and removing map stores on the settings page."
+				},
+				"explorer": {
+					"type": "boolean",
+					"description": "The drawer with the person's maps on the start page."
+				},
+				"saveChoice": {
+					"type": "boolean",
+					"description": "\"Keep the map in\" in the search form (else maps go to the default store)."
+				},
+				"combine": {
+					"type": "boolean",
+					"description": "\"Several sources\" in the search form."
+				},
+				"share": {
+					"type": "boolean",
+					"description": "Share and Embed buttons on maps (they also need a gateway)."
+				},
+				"schemeToggle": {
+					"type": "boolean",
+					"description": "The light/dark switch on maps."
+				},
+				"offline": {
+					"type": "boolean",
+					"description": "Works offline (service worker)."
+				},
+				"versionLink": {
+					"type": "boolean",
+					"description": "\"Version … · other versions\" on the start page."
+				}
+			}
+		},
+		"services": {
+			"type": "object",
+			"additionalProperties": false,
+			"properties": {
+				"gatewayUrl": {
+					"type": "string",
+					"description": "The gateway: BASE, share links, OpenAIRE fallback. Empty = none."
+				},
+				"openaireViaGateway": {
+					"type": "boolean"
+				},
+				"crossrefMailto": {
+					"type": "string",
+					"description": "Contact address for Crossref's polite pool."
+				},
+				"pubmedApiKey": {
+					"type": "string",
+					"description": "NCBI API key. A secret: needs allowSecrets."
+				}
+			}
+		},
+		"theme": {
+			"type": "object",
+			"additionalProperties": false,
+			"properties": {
+				"skin": {
+					"enum": ["viper", "cris_vis", "linkedcat", "covis"]
+				},
+				"scheme": {
+					"enum": ["system", "light", "dark"],
+					"description": "The scheme the map and settings pages start in."
+				},
+				"accent": {
+					"type": "string",
+					"pattern": "^[^;{}<>\"]*$",
+					"description": "--color-accent (buttons, links, focus)."
+				},
+				"heading": {
+					"type": "string",
+					"pattern": "^[^;{}<>\"]*$",
+					"description": "--color-heading and --color-accent-strong."
+				},
+				"font": {
+					"type": "string",
+					"pattern": "^[^;{}<>\"]*$",
+					"description": "--font-sans, e.g. Lato, sans-serif."
+				},
+				"fontStylesheet": {
+					"type": "string",
+					"pattern": "^[^;{}<>\"]*$",
+					"description": "Stylesheet URL for the font."
+				},
+				"tokens": {
+					"type": "object",
+					"propertyNames": {
+						"pattern": "^--[A-Za-z0-9-]+$"
+					},
+					"additionalProperties": {
+						"type": "string",
+						"pattern": "^[^;{}<>]*$"
+					},
+					"description": "Design tokens (CSS custom properties) for the light scheme (colours) and both (others)."
+				},
+				"darkTokens": {
+					"type": "object",
+					"propertyNames": {
+						"pattern": "^--[A-Za-z0-9-]+$"
+					},
+					"additionalProperties": {
+						"type": "string",
+						"pattern": "^[^;{}<>]*$"
+					},
+					"description": "Design tokens for the dark scheme."
+				},
+				"css": {
+					"type": "string",
+					"pattern": "^[^;{}<>\"]*$",
+					"description": "A CSS file, relative to the config file, added to every page."
+				},
+				"logo": {
+					"type": "string",
+					"pattern": "^[^;{}<>\"]*$",
+					"description": "Logo above the start page's heading."
+				},
+				"favicon": {
+					"type": "string",
+					"pattern": "^[^;{}<>\"]*$"
+				},
+				"themeColor": {
+					"type": "string",
+					"pattern": "^[^;{}<>\"]*$"
+				}
+			}
+		},
+		"allowSecrets": {
+			"type": "boolean",
+			"description": "Allows passwords, API keys and tokens in the build. Anyone who can open the site can read them."
+		}
+	}
+}

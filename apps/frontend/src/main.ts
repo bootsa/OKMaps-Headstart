@@ -5,15 +5,17 @@
 import "@okmaps/ui-svelte/styles.css";
 import { MapExplorer, mapStoreTypes, SearchForm, type SearchSubmit } from "@okmaps/ui-svelte";
 import { mount } from "svelte";
+import { features } from "./app.ts";
 import { saveDraft } from "./drafts.ts";
 import { errorMessage } from "./messages.ts";
 import { registerServiceWorker } from "./offline.ts";
 import { openalexSecrets } from "./openalex-source.ts";
 import { placeSettings } from "./places.ts";
+import { presetSources, registerAppSources } from "./register-sources.ts";
 import type { CombinableRequest, MapRecord, SearchRequest, Stage } from "./search.ts";
 import { settings } from "./settings.ts";
 import { solidSession } from "./solid-login.ts";
-import { combinedRequest, registerAppSources } from "./sources.ts";
+import { combinedRequest } from "./sources.ts";
 import {
 	appSettings,
 	mapAddress,
@@ -52,7 +54,7 @@ const VIEWS: Record<string, string> = {
 };
 
 // The Pages build publishes several versions side by side (../versions.html).
-if (import.meta.env.VITE_APP_VERSION) {
+if (import.meta.env.VITE_APP_VERSION && features.versionLink) {
 	const v = $<HTMLParagraphElement>("version");
 	const other = Object.assign(document.createElement("a"), {
 		href: `${import.meta.env.BASE_URL}../versions.html`,
@@ -73,7 +75,7 @@ function runWorker(request: SearchRequest, progress: (text: string) => void): Pr
 		};
 		worker.onerror = (e) => reject(new Error(e.message));
 		// Own sources' API keys go beside the request, which is kept with the map.
-		const openalex = openalexSecrets(appSettings().sources);
+		const openalex = openalexSecrets([...presetSources(), ...appSettings().sources]);
 		worker.postMessage({ request, settings: { ...settings, places, openalex } });
 	}).finally(() => worker.terminate());
 }
@@ -139,8 +141,9 @@ function alertLater(text: string) {
 			settings: appSettings(),
 			onsearch: makeMap,
 			viewLabel: (v: string) => VIEWS[v],
-			settingsHref: "settings.html",
-			combine: combinedRequest,
+			settingsHref: features.settingsPage ? "settings.html" : undefined,
+			combine: features.combine ? combinedRequest : undefined,
+			saveChoice: features.saveChoice,
 		},
 	});
 }
@@ -157,7 +160,7 @@ function showMaps() {
 			mapHref: mapUrl,
 			openStore: (s: StoreInstance) => storeById(s.id),
 			serviceLabel: (service: string) => SERVICES[service] ?? service,
-			settingsHref: "settings.html",
+			settingsHref: features.settingsPage ? "settings.html" : undefined,
 			// The map page reads Pod maps from the copy in this browser: make it first.
 			onopenmap: async (e: MouseEvent, m: { store: string; path: string[]; id: string }) => {
 				if (appSettings().store(m.store)?.type !== "solid") return;
@@ -219,7 +222,7 @@ resumeStores()
 	.then(openRequested)
 	.then(() => moveOldMaps())
 	.catch(() => 0)
-	.finally(showMaps)
+	.finally(() => (features.explorer ? showMaps() : undefined))
 	// Tests wait for this: logging in to a Pod may pass through its provider first.
 	.finally(() => document.body.setAttribute("data-maps", "shown"));
 registerServiceWorker();

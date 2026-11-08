@@ -15,6 +15,7 @@
 	"scripts": {
 		"build": "pnpm --filter @okmaps/frontend build",
 		"dev": "pnpm --filter @okmaps/frontend dev",
+		"okmaps": "node packages/config/src/cli.ts",
 		"test": "pnpm -r --workspace-concurrency=1 test",
 		"coverage": "pnpm -r --workspace-concurrency=1 exec vitest run --coverage --coverage.reporter=text-summary --coverage.reporter=json-summary",
 		"typecheck": "pnpm -r typecheck",

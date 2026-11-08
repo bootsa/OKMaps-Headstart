@@ -1,0 +1,22 @@
+{
+	"$schema": "../schema.json",
+	"site": {
+		"title": "Mesocosm facilities",
+		"lead": "Aquatic mesocosm facilities in Europe and beyond, on a map."
+	},
+	"sources": {
+		"offer": ["places"],
+		"places": [{ "preset": "aquanavi", "url": "data/aquanavi.csv" }],
+		"types": []
+	},
+	"stores": { "types": ["browser"], "saveTo": "none" },
+	"views": ["geomap"],
+	"plugins": ["info"],
+	"features": {
+		"settingsPage": false,
+		"explorer": false,
+		"saveChoice": false,
+		"combine": false
+	},
+	"theme": { "skin": "covis", "scheme": "light" }
+}

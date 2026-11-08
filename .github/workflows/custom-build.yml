@@ -1,0 +1,59 @@
+name: Custom build
+
+# Builds one custom OKMaps version from a committed config file
+# (see packages/config/README.md) and keeps the site as a download
+# (the run's "okmaps-site" artifact): static files to put on any web server.
+#
+# Run it from the Actions tab: "Custom build" > "Run workflow", with the
+# config's path (e.g. configs/lab-maps.okmaps.json). Values in the config
+# written as ${env:NAME} are read from the environment below; add the
+# repository variables or secrets they need there. A config with secrets
+# ("allowSecrets": true) makes a site anyone can read them from.
+
+on:
+  workflow_dispatch:
+    inputs:
+      config:
+        description: "Config file, from the repository root"
+        required: true
+        default: packages/config/examples/pubmed-only.json
+      base:
+        description: "Path the site is served under (e.g. /maps/); empty for a site's root"
+        required: false
+        default: ""
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: pnpm/action-setup@v6
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 26
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Check the config
+        run: pnpm okmaps check "$CONFIG"
+        env:
+          CONFIG: ${{ inputs.config }}
+          OKMAPS_GATEWAY: ${{ vars.GATEWAY_URL }}
+
+      - name: Build
+        run: pnpm okmaps build "$CONFIG" --out "$GITHUB_WORKSPACE/okmaps-site" ${BASE:+--base "$BASE"}
+        env:
+          CONFIG: ${{ inputs.config }}
+          BASE: ${{ inputs.base }}
+          OKMAPS_GATEWAY: ${{ vars.GATEWAY_URL }}
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: okmaps-site
+          path: okmaps-site/

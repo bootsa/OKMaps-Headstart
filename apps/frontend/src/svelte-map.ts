@@ -8,20 +8,19 @@ import {
 	embedPlugin,
 	type MapRecord,
 	MapState,
-	registerCorePlugins,
-	registerCoreViews,
 	registerPlugin,
 	registerService,
 	sharePlugin,
 	Visualization,
 } from "@okmaps/ui-svelte";
 import { mount } from "svelte";
+import { features, startScheme } from "./app.ts";
 import { placeSettings } from "./places.ts";
+import { registerAppViews } from "./register-views.ts";
 import { visTypeOf } from "./vis-type.ts";
 
-// Every view and plugin the package ships: the app serves all kinds of maps.
-registerCoreViews();
-registerCorePlugins();
+// The views and plugins of this build (its config's "views" and "plugins").
+registerAppViews();
 // SPARQL sources: no citation data, links go where the record says.
 registerService("sparql", {
 	language: "eng",
@@ -80,7 +79,7 @@ export interface DrawOptions {
 
 export function drawMap(target: HTMLElement, record: MapRecord, options: DrawOptions = {}): void {
 	const embedded = new URLSearchParams(location.search).get("embed") === "true";
-	if (options.shareLink && !embedded) {
+	if (options.shareLink && !embedded && features.share) {
 		registerPlugin(sharePlugin({ link: options.shareLink, hashtags: "okmaps,openscience,dataviz" }));
 		registerPlugin(embedPlugin({ link: options.shareLink }));
 	}
@@ -88,14 +87,15 @@ export function drawMap(target: HTMLElement, record: MapRecord, options: DrawOpt
 		creditPlugin({
 			faqs: "https://openknowledgemaps.org/faq",
 			create: embedded ? undefined : new URL("./", location.href).href,
-			link: options.shareLink,
+			link: features.share ? options.shareLink : undefined,
 		}),
 	);
 	document.body.classList.toggle("okm-embedded", embedded);
+	startScheme();
 	target.classList.add("okmaps", "okm-page");
 	const state = new MapState(record, 600, { visType: visTypeOf(record) });
 	// The page's own links (share, save, back to search) go in the settings
 	// panel; an embedded map shows none of them.
 	const menu = embedded ? null : document.querySelector<HTMLElement>(".toolbar");
-	mount(Visualization, { target, props: { state, menu } });
+	mount(Visualization, { target, props: { state, menu, schemeToggle: features.schemeToggle } });
 }

@@ -25,9 +25,11 @@
 		height?: number;
 		/** More for the settings panel, e.g. the page's own links. */
 		menu?: HTMLElement | null;
+		/** Whether the settings panel has the light/dark switch. */
+		schemeToggle?: boolean;
 	}
 
-	let { state: map, height, menu = null }: Props = $props();
+	let { state: map, height, menu = null, schemeToggle = true }: Props = $props();
 
 	/** From this width the drawer sits beside the map instead of over it. */
 	const DOCK_WIDTH = 900;
@@ -83,7 +85,9 @@
 					{#each view.settings ?? [] as Setting, i (i)}
 						<Setting state={map} />
 					{/each}
-					<SchemeToggle />
+					{#if schemeToggle}
+						<SchemeToggle />
+					{/if}
 					{#if menu}
 						<div class="menu" {@attach (el) => el.append(menu)}></div>
 					{/if}

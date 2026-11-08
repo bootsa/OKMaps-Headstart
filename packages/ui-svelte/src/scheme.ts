@@ -1,11 +1,19 @@
 /**
  * Light or dark mode for the whole page: sets data-scheme on <html>, which
  * the dark tokens (styles/tokens.css) follow. Starts from ?scheme= in the
- * URL, else the last choice in this browser, else the system's setting.
+ * URL, else the last choice in this browser, else the site's default
+ * (setDefaultScheme), else the system's setting.
  */
 export type Scheme = "light" | "dark";
 
 const KEY = "okmaps-scheme";
+
+let fallback: Scheme | "system" = "system";
+
+/** The scheme pages start in when the person chose none ("system": the system's setting). A site's build sets it. */
+export function setDefaultScheme(scheme: Scheme | "system"): void {
+	fallback = scheme;
+}
 
 export function initialScheme(): Scheme {
 	try {
@@ -13,6 +21,7 @@ export function initialScheme(): Scheme {
 		if (fromUrl === "light" || fromUrl === "dark") return fromUrl;
 		const saved = window.localStorage.getItem(KEY);
 		if (saved === "light" || saved === "dark") return saved;
+		if (fallback !== "system") return fallback;
 		return window.matchMedia?.("(prefers-color-scheme: dark)").matches ? "dark" : "light";
 	} catch {
 		return "light";

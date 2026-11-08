@@ -5,6 +5,7 @@
  * and in Node tests.
  */
 
+import * as built from "virtual:okmaps/flags";
 import { buildOverviewMap, type PipelineResources, toLegacyRecords } from "@okmaps/pipeline";
 import {
 	buildStreamgraph,
@@ -217,6 +218,12 @@ export function timestamp(d: Date): string {
 
 const gateway = (s: SearchSettings, path: string) => `${s.gatewayUrl.replace(/\/$/, "")}${path}`;
 
+/**
+ * A source or view this build leaves out (its config). The checks on the
+ * build's flags are constants, so the code behind them is left out too.
+ */
+const notBuilt = (what: string) => new Error(`this site does not offer ${what}`);
+
 async function fetchSource(
 	req: Exclude<SearchRequest, PlacesRequest | CombinedRequest>,
 	s: SearchSettings,
@@ -225,6 +232,7 @@ async function fetchSource(
 	const timeline = req.service !== "openaire" && req.vis_type === "timeline";
 	const visType = timeline ? { vis_type: "timeline" } : {};
 	if (req.service === "sparql") {
+		if (!built.sparql) throw notBuilt("SPARQL sources");
 		const result = await searchSparql(req.config, { q: req.q }, http);
 		if (result.papers.length === 0) throw Object.assign(new Error("no results"), { reasons: ["not enough results"] });
 		// The whole config, so the map says how it was made (and a shared copy can be made again).
@@ -232,6 +240,7 @@ async function fetchSource(
 		return { result, query: req.q, params };
 	}
 	if (req.service === "openalex") {
+		if (!built.openalex) throw notBuilt("OpenAlex sources");
 		const secrets = s.openalex?.[req.sourceId] ?? {};
 		const result = await searchOpenalex(
 			{ ...req.config, ...secrets },
@@ -252,6 +261,7 @@ async function fetchSource(
 		return { result, query: req.q, params };
 	}
 	if (req.service === "zenodo") {
+		if (!built.zenodo) throw notBuilt("Zenodo sources");
 		const result = await searchZenodo(req.config, { q: req.q }, http);
 		if (result.papers.length === 0) throw Object.assign(new Error("no results"), { reasons: ["not enough results"] });
 		// The config says how the map was made; never the access token (maps are shared and stored elsewhere).
@@ -260,6 +270,7 @@ async function fetchSource(
 		return { result, query: req.q, params };
 	}
 	if (req.service === "zotero") {
+		if (!built.zotero) throw notBuilt("Zotero sources");
 		const result = await searchZotero(req.config, { q: req.q }, http);
 		if (result.papers.length === 0) throw Object.assign(new Error("no results"), { reasons: ["not enough results"] });
 		// How the map was made, without the API key (maps get shared).
@@ -273,6 +284,7 @@ async function fetchSource(
 		return { result, query: req.q, params };
 	}
 	if (req.service === "pubmed") {
+		if (!built.pubmed) throw notBuilt("PubMed");
 		const params = {
 			from: req.from,
 			to: req.to,
@@ -284,6 +296,7 @@ async function fetchSource(
 		return { result, query: req.q, params };
 	}
 	if (req.service === "base") {
+		if (!built.base) throw notBuilt("BASE");
 		const params = {
 			from: req.from,
 			to: req.to,
@@ -304,6 +317,7 @@ async function fetchSource(
 		);
 		return { result, query: req.q, params };
 	}
+	if (!built.openaire) throw notBuilt("OpenAIRE");
 	const oa = { ...http, endpoint: s.openaireViaGateway ? gateway(s, "/openaire/") : undefined };
 	const project = { project_id: req.project_id, funder: req.funder };
 	const [result, details] = await Promise.all([
@@ -322,7 +336,10 @@ export async function buildMap(
 	now = new Date(),
 ): Promise<MapRecord> {
 	onStage("searching");
-	if (req.service === "places") return buildPlaceMap(req, settings, now);
+	if (req.service === "places") {
+		if (!built.places || !built.geomap) throw notBuilt("geo maps");
+		return buildPlaceMap(req, settings, now);
+	}
 	const { result, query, params } =
 		req.service === "combined" ? await fetchCombined(req, settings) : await fetchSource(req, settings);
 	let papers = result.papers;
@@ -350,6 +367,7 @@ export async function buildMap(
 		params: JSON.stringify(params),
 	};
 	if (visTypeOf({ context }) === "timeline") {
+		if (!built.timeline) throw notBuilt("streamgraphs");
 		// The old server's timeline: keyword streams instead of the layout,
 		// and only the records that appear in them.
 		let streamgraph: StreamgraphData;
@@ -361,6 +379,7 @@ export async function buildMap(
 		}
 		return { context, documents: streamgraphDocuments(papers, streamgraph), streamgraph };
 	}
+	if (!built.overview) throw notBuilt("knowledge maps");
 	const map = buildOverviewMap({ papers, content: result.content, service: req.service }, await resources(), {
 		taxonomySeparator: ";",
 	});

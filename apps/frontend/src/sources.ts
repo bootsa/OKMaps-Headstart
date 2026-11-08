@@ -1,24 +1,12 @@
 /**
- * The metadata sources this site offers. Each is an opt-in module
- * (registerSource): the settings page lists them and the search form draws
- * the fields of the enabled ones.
+ * The metadata sources this site can offer. Each is an opt-in module: the
+ * build config picks them (okmaps.catalog.ts, register-sources.ts), the
+ * settings page lists them and the search form draws the enabled ones' fields.
  */
-import {
-	type FieldSpec,
-	type FieldValues,
-	registerSource,
-	registerSourceType,
-	type SourceModule,
-	type SourceType,
-	text,
-} from "@okmaps/ui-svelte";
-import { openalexSourceType } from "./openalex-source.ts";
+import { type FieldSpec, type FieldValues, type SourceModule, text } from "@okmaps/ui-svelte";
 import { type PlaceSourceConfig, placeSettings } from "./places.ts";
 import type { CombinableRequest, CombinedRequest, SearchRequest } from "./search.ts";
 import { settings } from "./settings.ts";
-import { sparqlSourceType } from "./sparql-source.ts";
-import { zenodoSourceType } from "./zenodo-source.ts";
-import { zoteroSourceType } from "./zotero-source.ts";
 
 const today = () => new Date().toISOString().slice(0, 10);
 
@@ -135,18 +123,9 @@ export function placeModule(p: PlaceSourceConfig): SourceModule<SearchRequest> {
 	};
 }
 
-/** Every source this site offers. */
-export function appSources(): SourceModule<SearchRequest>[] {
-	return [pubmedSource, baseSource, openaireSource, ...placeSettings().map(placeModule)];
-}
-
-/** The site's sources, and the kinds of source people can add themselves (SPARQL, Zenodo, Zotero, OpenAlex). */
-export function registerAppSources(): void {
-	for (const s of appSources()) registerSource(s);
-	registerSourceType(sparqlSourceType as SourceType);
-	registerSourceType(zenodoSourceType as SourceType);
-	registerSourceType(zoteroSourceType as SourceType);
-	registerSourceType(openalexSourceType as SourceType);
+/** A geo map source for each place table of the build. */
+export function placeModules(): SourceModule<SearchRequest>[] {
+	return placeSettings().map(placeModule);
 }
 
 const COMBINABLE = new Set(["pubmed", "base", "sparql", "zenodo", "zotero", "openalex"]);

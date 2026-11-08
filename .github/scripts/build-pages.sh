@@ -4,6 +4,7 @@
 #   <site>/latest/     the default branch
 #   <site>/v1.2.0/     each tag v* (a release) that has the browser app
 #   <site>/storybook/  the design system (Storybook) of the default branch
+#   <site>/configure/  the configurator for custom versions (apps/configurator)
 #   <site>/index.html  sends visitors to latest/
 #   <site>/versions.html, versions.json   the list of versions
 #
@@ -60,6 +61,10 @@ build() { # <git ref> <folder> <version label>
   if [ "$dir" = latest ] && [ -d "$tree/packages/ui-svelte" ]; then
     (cd "$tree" && pnpm --filter @okmaps/ui-svelte build-storybook)
     cp -r "$tree/packages/ui-svelte/storybook-static" "$site/storybook"
+  fi
+  if [ "$dir" = latest ] && [ -d "$tree/apps/configurator" ]; then
+    (cd "$tree" && pnpm --filter @okmaps/configurator build)
+    cp -r "$tree/apps/configurator/dist" "$site/configure"
   fi
   git -C "$root" worktree remove --force "$tree"
   echo "::endgroup::"
@@ -126,6 +131,7 @@ summary() { # <tag>
 items='<li><a href="latest/">latest</a> (the newest code)</li>'
 storybook=""
 [ -d "$site/storybook" ] && storybook='<p>The interface and its design system: <a href="storybook/">Storybook</a>.</p>'
+[ -d "$site/configure" ] && storybook+='<p>Your own version, with the sources, stores, views and look you choose: <a href="configure/">configurator</a>.</p>'
 for v in "${versions[@]}"; do
   about=$(summary "$v" | sed 's/&/\&amp;/g; s/</\&lt;/g; s/>/\&gt;/g')
   items+="<li><a href=\"$v/\">$v</a>${about:+ – $about}</li>"

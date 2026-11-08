@@ -1,0 +1,4 @@
+/* Extra styles for the project build (theme.css in project-library.json). */
+main h1 {
+	letter-spacing: 0.02em;
+}

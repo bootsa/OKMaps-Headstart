@@ -1,0 +1,23 @@
+{
+	"name": "@okmaps/configurator",
+	"version": "0.1.0",
+	"description": "The web configurator for custom OKMaps versions: pick sources, stores, views, switches and a theme, get the okmaps.config.json and the command that builds it. Plain TypeScript, no framework.",
+	"license": "MIT",
+	"type": "module",
+	"private": true,
+	"scripts": {
+		"dev": "vite",
+		"build": "vite build",
+		"test": "vitest run",
+		"typecheck": "tsc --noEmit"
+	},
+	"devDependencies": {
+		"@okmaps/config": "workspace:*",
+		"@okmaps/ui-svelte": "workspace:*",
+		"@types/node": "^22.10.0",
+		"jsdom": "^31.0.0",
+		"typescript": "^5.7.2",
+		"vite": "8.3.6",
+		"vitest": "^5.1.0"
+	}
+}
