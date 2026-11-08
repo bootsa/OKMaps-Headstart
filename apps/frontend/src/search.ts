@@ -21,6 +21,7 @@ import {
 	type SparqlSourceConfig,
 	searchBase,
 	searchOpenaire,
+	searchOpenalex,
 	searchPlaces,
 	searchPubmed,
 	searchSparql,
@@ -31,6 +32,7 @@ import {
 	type ZenodoSourceConfig,
 	type ZoteroSourceConfig,
 } from "@okmaps/sources";
+import type { OpenalexPublicConfig, OpenalexSecrets } from "./openalex-source.ts";
 import { placeSource } from "./place-source.ts";
 import type { PlaceSourceConfig } from "./places.ts";
 import { visTypeOf } from "./vis-type.ts";
@@ -38,7 +40,7 @@ import { visTypeOf } from "./vis-type.ts";
 export type { VisType } from "./vis-type.ts";
 export { visTypeOf } from "./vis-type.ts";
 
-export type Service = "pubmed" | "base" | "openaire" | "places" | "sparql" | "zenodo" | "zotero";
+export type Service = "pubmed" | "base" | "openaire" | "places" | "sparql" | "zenodo" | "zotero" | "openalex";
 
 /** The views a search can ask for; place sources make geo maps. */
 type SearchView = "overview" | "timeline";
@@ -112,6 +114,24 @@ export interface ZoteroRequest {
 	vis_type?: SearchView;
 }
 
+/**
+ * A search on an OpenAlex source someone set up on the settings page
+ * (src/openalex-source.ts). No API key in here: requests are kept with maps.
+ */
+export interface OpenalexRequest {
+	service: "openalex";
+	/** The source's name, kept with the map. */
+	source: string;
+	/** The source instance's id, to find its API key (SearchSettings.openalex). */
+	sourceId: string;
+	config: OpenalexPublicConfig;
+	q: string;
+	from?: string;
+	to?: string;
+	sorting?: "most-relevant" | "most-recent" | "most-cited";
+	vis_type?: SearchView;
+}
+
 export type SearchRequest =
 	| PubmedRequest
 	| BaseSearchRequest
@@ -119,7 +139,8 @@ export type SearchRequest =
 	| PlacesRequest
 	| SparqlRequest
 	| ZenodoRequest
-	| ZoteroRequest;
+	| ZoteroRequest
+	| OpenalexRequest;
 
 export interface SearchSettings {
 	/** Gateway base URL (packages/gateway), for BASE and the OpenAIRE fallback. */
@@ -132,6 +153,8 @@ export interface SearchSettings {
 	pubmedApiKey?: string;
 	/** The place sources offered for geo maps. */
 	places?: PlaceSourceConfig[];
+	/** API keys and addresses of the person's OpenAlex sources, by source id (never kept with maps). */
+	openalex?: OpenalexSecrets;
 	/** Where place tables are cached (the worker passes IndexedDB). */
 	placeCache?: TableCache;
 	fetch?: FetchFn;
@@ -174,6 +197,26 @@ async function fetchSource(
 		if (result.papers.length === 0) throw Object.assign(new Error("no results"), { reasons: ["not enough results"] });
 		// The whole config, so the map says how it was made (and a shared copy can be made again).
 		const params = { source: req.source, sparql: req.config, ...visType };
+		return { result, query: req.q, params };
+	}
+	if (req.service === "openalex") {
+		const secrets = s.openalex?.[req.sourceId] ?? {};
+		const result = await searchOpenalex(
+			{ ...req.config, ...secrets },
+			{ q: req.q, from: req.from, to: req.to, sorting: req.sorting },
+			http,
+		);
+		if (result.papers.length === 0) throw Object.assign(new Error("no results"), { reasons: ["not enough results"] });
+		// How the map was made, without the API key or address.
+		const params = {
+			source: req.source,
+			openalex: req.config,
+			from: req.from ?? "",
+			to: req.to ?? "",
+			sorting: req.sorting ?? "most-relevant",
+			...(result.partial ? { partial: result.partial } : {}),
+			...visType,
+		};
 		return { result, query: req.q, params };
 	}
 	if (req.service === "zenodo") {

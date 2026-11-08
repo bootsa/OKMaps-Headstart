@@ -30,6 +30,14 @@ registerService("sparql", {
 	urlPrefix: null,
 	citePapers: false,
 });
+// OpenAlex sources: sized and sortable by citations (as PubMed maps), links to the publisher or DOI.
+registerService("openalex", {
+	language: "eng_pubmed",
+	sortOptions: ["relevance", "readers", "title", "authors", "year"],
+	contentBased: false,
+	urlPrefix: null,
+	citePapers: false,
+});
 // Zenodo sources: no citation data, links go to the record pages.
 registerService("zenodo", {
 	language: "eng",

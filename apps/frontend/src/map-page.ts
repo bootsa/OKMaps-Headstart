@@ -128,6 +128,19 @@ function requestOf(map: SharedMap): SavedMap["request"] {
 			q: map.context.query ?? "",
 			...(p.vis_type === "timeline" ? { vis_type: "timeline" as const } : {}),
 		};
+	if (map.context.service === "openalex" && p.openalex)
+		return {
+			service: "openalex",
+			source: String(p.source ?? "OpenAlex"),
+			// A shared copy names no source of this browser's: it runs without an API key.
+			sourceId: "",
+			config: p.openalex,
+			q: map.context.query,
+			from: p.from ?? "",
+			to: p.to ?? "",
+			sorting: p.sorting ?? "most-relevant",
+			...(p.vis_type === "timeline" ? { vis_type: "timeline" as const } : {}),
+		};
 	if (map.context.service === "openaire")
 		return { service: "openaire", project_id: p.project_id ?? "", funder: p.funder ?? "" };
 	const common = { q: map.context.query, from: p.from ?? "", to: p.to ?? "", sorting: p.sorting ?? "most-relevant" };

@@ -8,6 +8,7 @@ import { mount } from "svelte";
 import { saveDraft } from "./drafts.ts";
 import { errorMessage } from "./messages.ts";
 import { registerServiceWorker } from "./offline.ts";
+import { openalexSecrets } from "./openalex-source.ts";
 import { placeSettings } from "./places.ts";
 import type { MapRecord, SearchRequest, Stage } from "./search.ts";
 import { settings } from "./settings.ts";
@@ -41,6 +42,7 @@ const SERVICES: Record<string, string> = {
 	sparql: "SPARQL",
 	zenodo: "Zenodo",
 	zotero: "Zotero",
+	openalex: "OpenAlex",
 	...Object.fromEntries(places.map((p) => [p.id, p.label])),
 };
 const VIEWS: Record<string, string> = {
@@ -69,7 +71,9 @@ function runWorker(request: SearchRequest, progress: (text: string) => void): Pr
 			else if (msg.type === "error") reject(Object.assign(new Error(msg.message), { reasons: msg.reasons }));
 		};
 		worker.onerror = (e) => reject(new Error(e.message));
-		worker.postMessage({ request, settings: { ...settings, places } });
+		// Own sources' API keys go beside the request, which is kept with the map.
+		const openalex = openalexSecrets(appSettings().sources);
+		worker.postMessage({ request, settings: { ...settings, places, openalex } });
 	}).finally(() => worker.terminate());
 }
 

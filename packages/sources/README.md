@@ -14,6 +14,7 @@ browser, a Web Worker or Node 18+.
 | Places (geo maps), AQUANAVI preset | done | any CSV or JSON table, cached | `workers/common/common/aquanavi` |
 | SPARQL (Wikidata, Wikidata scholarly, DBpedia presets) | done | any SPARQL endpoint that allows CORS | new |
 | Zotero (personal and group libraries, collections) | done | Zotero Web API v3 (CORS allowed) | new |
+| OpenAlex works | done | OpenAlex API directly (CORS allowed), optional API key | new |
 
 ## PubMed
 
@@ -332,3 +333,45 @@ await searchZotero({ library: libraries[0].library, apiKey, subcollections: true
   short `Retry-After` is waited for once, and a `Backoff` header delays the
   next requests), `API error: Zotero not reachable`, `API error: timeout`
   and `unexpected Zotero response`.
+
+## OpenAlex
+
+OpenAlex works (`/works`) as map records. Plain JSON config, no UI code.
+
+```ts
+import { searchOpenalex } from "@okmaps/sources";
+const { papers, content, total, partial } = await searchOpenalex(
+  { apiKey, email, filter: "is_oa:true,type:article", searchIn: "all", limit: 200 },
+  { q: "coral bleaching", from: "2015", to: "2024-06-30", sorting: "most-cited" },
+);
+```
+
+- Search: `searchIn: "all"` uses `search=` (title, abstract, full text);
+  `"title_and_abstract"` and `"title"` use the `*.search` filters. `filter`
+  is appended in OpenAlex syntax (`key:value,...`; checked for shape by
+  `checkOpenalexConfig`). `from`/`to` become publication date filters
+  (a bare year means its first or last day). Sorting: relevance (default),
+  `publication_date:desc` or `cited_by_count:desc`.
+- Paging: cursor paging (`cursor=*`, then `meta.next_cursor`), 100 works per
+  page, up to `limit` (default 100, at most 1000). Only the fields the records
+  need are asked for (`select=`).
+- Records: abstract rebuilt from `abstract_inverted_index`; authors as
+  "Last, First" (`;`-separated, as the map's author parsing expects);
+  keywords, then the primary and other topics as subjects (deprecated
+  concepts only when a work has neither); `cited_by_count` as `readers` and
+  `citation_count`; `oa_state` 1/0 from `open_access.is_oa`; `url` is the
+  landing page, else the DOI; `link` prefers the open access PDF.
+- Keys and limits (checked 2026-11-08): OpenAlex now meters requests by a
+  daily budget. Without a key, everyone behind one IP shares a free budget;
+  a search costs 10 credits, a single work by id none. The key goes in the
+  `api_key` query parameter, not an `Authorization` header, so browsers send
+  no CORS preflight. `email` is sent as `mailto`.
+- Errors are `SourceError`s with reasons: `API error: OpenAlex not
+  reachable` (also 401/403, with a hint to check the key), `API error:
+  OpenAlex rate limited` (a `Retry-After` of up to 10 s is waited for once;
+  longer ones say how long, and suggest a key when there is none), `API
+  error: timeout`, `OpenAlex query error` (400, with OpenAlex's message) and
+  `unexpected OpenAlex response`. When a later page fails, the pages so far
+  are returned with `partial` set to the reason.
+- Fixtures (`test/fixtures/openalex/`) are real works, fetched one by one
+  by DOI and id, put into two result pages.
