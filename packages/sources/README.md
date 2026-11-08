@@ -12,6 +12,7 @@ browser, a Web Worker or Node 18+.
 | OpenAIRE | done | OpenAIRE search API (CORS not yet checked; a gateway URL can be passed) | `openaire.R`, `run_openaire_projectdata.R` |
 | Crossref citations | done | Crossref REST API (CORS allowed) | `metrics.R` (`add_citations`) |
 | Places (geo maps), AQUANAVI preset | done | any CSV or JSON table, cached | `workers/common/common/aquanavi` |
+| SPARQL (Wikipedia via Wikidata, Wikidata scholarly, DBpedia presets) | done | any SPARQL endpoint that allows CORS | new |
 
 ## PubMed
 
@@ -201,3 +202,61 @@ The goldens were made by R and Python scripts that ran the old server's code
 They were removed with the `legacy/` folder; check out commit `ec6a09b` to run
 them again. `test/fixtures/contentproviders.json.gz` is the old Python
 worker's BASE provider list, which the tests use as the gateway's answer.
+
+## SPARQL
+
+Any SPARQL 1.1 endpoint as a source: a query template, and which result
+variable holds which map field. Plain JSON config, no UI code, so the
+settings page, a Web Worker or a server can use it alike.
+
+```ts
+import { searchSparql, sparqlPreset } from "@okmaps/sources";
+const { papers, content } = await searchSparql(sparqlPreset("wikipedia")!.config, { q: "coral bleaching" });
+
+// Your own endpoint and query:
+await searchSparql(
+  {
+    endpoint: "https://query.wikidata.org/sparql",
+    query: 'SELECT ?item ?label WHERE { ... "{{q}}" ... } LIMIT {{limit}}',
+    mapping: { title: "label" }, // the rest keep their default variable names
+    wikipediaIntros: true,
+  },
+  { q: "coral bleaching" },
+);
+```
+
+Placeholders (`src/sparql/template.ts`): `{{q}}` is the search, escaped for a
+`"..."` literal, so it can never end the string and change the query;
+`{{q_words}}` is `'word' AND 'word'` for Virtuoso's `bif:contains`;
+`{{limit}}` and `{{lang}}`. Unknown placeholders are refused.
+
+Default variables: `?item` (id; rows with the same id are merged, so one
+row per author or keyword is fine), `?title`, `?abstract`, `?authors`,
+`?year` (a year or any xsd date), `?url`, `?doi`, `?subjects`,
+`?published_in`. Several values in one cell may be separated by `;`
+(keywords also `|`); URIs become their last segment (`Category:Coral_reefs`
+→ "Coral reefs").
+
+Presets (`src/sparql/presets.ts`). Wikipedia has no SPARQL endpoint of its own, so:
+- `wikipedia`: the Wikidata Query Service runs Wikipedia's own search
+  (`wikibase:mwapi`) and adds each article's Wikidata description, kinds,
+  main subjects and dates; abstracts are filled in from the articles'
+  introductions (MediaWiki API, `origin=*`).
+- `wikidata-scholarly`: scholarly articles on `query-scholarly.wikidata.org`
+  (the graph split off in 2025), with author names, venue, DOI and date.
+- `dbpedia`: DBpedia resources whose name matches (`bif:contains`), with
+  their categories as keywords and Wikipedia introductions as abstracts
+  (DBpedia's own abstracts are often missing).
+
+The queries read labels with `rdfs:label` rather than `SERVICE
+wikibase:label`, which only Blazegraph has; the search part (`mwapi`,
+`bif:contains`) is endpoint-specific and is what changes for another backend
+such as QLever.
+
+Errors are `SourceError`s with reasons: `API error: SPARQL endpoint not
+reachable` (also CORS refusals, which a browser cannot tell apart),
+`API error: SPARQL rate limited` (a short `Retry-After` is waited for once;
+longer ones say how long to wait), `API error: timeout`, `SPARQL query
+error` (with the endpoint's own one-line message) and `unexpected SPARQL
+response`. Outside a browser pass `headers: { "User-Agent": "tool/1.0 (contact)" }`:
+Wikimedia refuses requests without one.
