@@ -116,4 +116,33 @@ describe("map explorer", () => {
 		await waitFor(() => expect(screen.getByRole("status")).toHaveTextContent("Sea ice moved to Browser / Reading."));
 		expect((await stores.a.list(["Reading"])).maps.map((m) => m.id).sort()).toEqual(["one", "two"]);
 	});
+
+	it("exports a store's maps to a file and imports the file into another store", async () => {
+		const { stores, explorer } = await setup();
+		const file = await explorer.exportMaps("a");
+		expect(file?.name).toMatch(/^okmaps-browser-\d{4}-\d{2}-\d{2}\.json$/);
+		expect(JSON.parse(file?.text ?? "").maps.map((e: { path: string[] }) => e.path)).toEqual([[], ["Reading"]]);
+
+		await fireEvent.click(screen.getByRole("button", { name: "Flat" }));
+		await screen.findByText("No maps yet.");
+		const input = screen.getByLabelText("Import maps into Flat") as HTMLInputElement;
+		await fireEvent.change(input, {
+			target: { files: [new File([file?.text ?? ""], "maps.json", { type: "application/json" })] },
+		});
+		await waitFor(() => expect(screen.getByRole("status")).toHaveTextContent("2 maps imported into Flat."));
+		// Flat has no folders: both maps land at its top.
+		expect((await stores.b.list()).maps.map((m) => m.id).sort()).toEqual(["one", "two"]);
+		expect(screen.getAllByText("Coral reefs").length).toBeGreaterThan(0);
+	});
+
+	it("says what is wrong with a file it cannot import", async () => {
+		await setup();
+		const input = screen.getByLabelText("Import maps into Browser") as HTMLInputElement;
+		await fireEvent.change(input, { target: { files: [new File(["{}"], "x.json")] } });
+		await waitFor(() =>
+			expect(screen.getByRole("status")).toHaveTextContent(
+				"Importing the maps did not work: the file is neither a maps file nor a map.",
+			),
+		);
+	});
 });
