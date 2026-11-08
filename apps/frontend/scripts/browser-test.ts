@@ -264,6 +264,22 @@ await makeMap(async () => {
 	await page.check('input[value="base"]');
 	await page.fill("#q", "digital education");
 }, "base");
+// Several sources: PubMed and BASE in one search. BASE has no recorded answer
+// for this query, so the map holds PubMed's records and names BASE as failed.
+{
+	await makeMap(async () => {
+		await page.check('input[value="okm:combined"]');
+		await page.fill("#q", "ecology");
+	}, "combined");
+	const sources = await page.evaluate(() => {
+		const sections = document.querySelectorAll(".okm-entry");
+		return sections.length;
+	});
+	if (!sources) throw new Error("combined: no records listed");
+	await page.goto(home);
+	await page.waitForSelector(MAP);
+	await deleteFirstMap(page);
+}
 // A streamgraph, made and then opened from a share link (the gateway keeps
 // no streams, so the map page counts the keywords again).
 {

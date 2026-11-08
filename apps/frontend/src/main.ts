@@ -10,10 +10,10 @@ import { errorMessage } from "./messages.ts";
 import { registerServiceWorker } from "./offline.ts";
 import { openalexSecrets } from "./openalex-source.ts";
 import { placeSettings } from "./places.ts";
-import type { MapRecord, SearchRequest, Stage } from "./search.ts";
+import type { CombinableRequest, MapRecord, SearchRequest, Stage } from "./search.ts";
 import { settings } from "./settings.ts";
 import { solidSession } from "./solid-login.ts";
-import { registerAppSources } from "./sources.ts";
+import { combinedRequest, registerAppSources } from "./sources.ts";
 import {
 	appSettings,
 	mapAddress,
@@ -43,6 +43,7 @@ const SERVICES: Record<string, string> = {
 	zenodo: "Zenodo",
 	zotero: "Zotero",
 	openalex: "OpenAlex",
+	combined: "Several sources",
 	...Object.fromEntries(places.map((p) => [p.id, p.label])),
 };
 const VIEWS: Record<string, string> = {
@@ -77,6 +78,12 @@ function runWorker(request: SearchRequest, progress: (text: string) => void): Pr
 	}).finally(() => worker.terminate());
 }
 
+/** The request as it is kept with the map: without access tokens or API keys. */
+function kept(req: SearchRequest): SearchRequest {
+	if (req.service !== "combined") return keptRequest(withoutToken(req));
+	return { ...req, parts: req.parts.map((p) => ({ ...p, request: kept(p.request) as CombinableRequest })) };
+}
+
 /** Makes the map, keeps it where the form says (or as a draft) and opens it. */
 async function makeMap({ request, title, saveTo, progress }: SearchSubmit): Promise<void> {
 	progress(STAGES.searching);
@@ -92,7 +99,7 @@ async function makeMap({ request, title, saveTo, progress }: SearchSubmit): Prom
 		...map,
 		id,
 		created: new Date().toISOString(),
-		request: keptRequest(withoutToken(request as SearchRequest)),
+		request: kept(request as SearchRequest),
 		title,
 	};
 	if (saveTo === "none") {
@@ -133,6 +140,7 @@ function alertLater(text: string) {
 			onsearch: makeMap,
 			viewLabel: (v: string) => VIEWS[v],
 			settingsHref: "settings.html",
+			combine: combinedRequest,
 		},
 	});
 }

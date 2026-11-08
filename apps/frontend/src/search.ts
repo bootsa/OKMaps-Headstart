@@ -14,6 +14,7 @@ import {
 } from "@okmaps/pipeline/streamgraph";
 import {
 	addCitationCounts,
+	combineResults,
 	type FetchFn,
 	fetchBaseContentProviders,
 	getOpenaireProject,
@@ -40,7 +41,16 @@ import { visTypeOf } from "./vis-type.ts";
 export type { VisType } from "./vis-type.ts";
 export { visTypeOf } from "./vis-type.ts";
 
-export type Service = "pubmed" | "base" | "openaire" | "places" | "sparql" | "zenodo" | "zotero" | "openalex";
+export type Service =
+	| "pubmed"
+	| "base"
+	| "openaire"
+	| "places"
+	| "sparql"
+	| "zenodo"
+	| "zotero"
+	| "openalex"
+	| "combined";
 
 /** The views a search can ask for; place sources make geo maps. */
 type SearchView = "overview" | "timeline";
@@ -132,7 +142,29 @@ export interface OpenalexRequest {
 	vis_type?: SearchView;
 }
 
+/** The keyword searches a combined search can run. */
+export type CombinableRequest =
+	| PubmedRequest
+	| BaseSearchRequest
+	| SparqlRequest
+	| ZenodoRequest
+	| ZoteroRequest
+	| OpenalexRequest;
+
+/**
+ * One search on several sources: each request runs, and the records come
+ * together in one map, each work once (packages/sources combineResults).
+ */
+export interface CombinedRequest {
+	service: "combined";
+	q: string;
+	/** Each source's own request, with the source's name. */
+	parts: { label: string; request: CombinableRequest }[];
+	vis_type?: SearchView;
+}
+
 export type SearchRequest =
+	| CombinedRequest
 	| PubmedRequest
 	| BaseSearchRequest
 	| OpenaireRequest
@@ -186,7 +218,7 @@ export function timestamp(d: Date): string {
 const gateway = (s: SearchSettings, path: string) => `${s.gatewayUrl.replace(/\/$/, "")}${path}`;
 
 async function fetchSource(
-	req: Exclude<SearchRequest, PlacesRequest>,
+	req: Exclude<SearchRequest, PlacesRequest | CombinedRequest>,
 	s: SearchSettings,
 ): Promise<{ result: SourceResult; query: string; params: Record<string, unknown> }> {
 	const http = { fetch: s.fetch };
@@ -291,11 +323,23 @@ export async function buildMap(
 ): Promise<MapRecord> {
 	onStage("searching");
 	if (req.service === "places") return buildPlaceMap(req, settings, now);
-	const { result, query, params } = await fetchSource(req, settings);
+	const { result, query, params } =
+		req.service === "combined" ? await fetchCombined(req, settings) : await fetchSource(req, settings);
 	let papers = result.papers;
 	if (req.service === "pubmed") {
 		onStage("citations");
 		papers = await addCitationCounts(papers, { fetch: settings.fetch, mailto: settings.crossrefMailto });
+	} else if (req.service === "combined" && papers.some((p) => p.source_service === "pubmed")) {
+		// PubMed records get Crossref citation counts, as in a PubMed map.
+		onStage("citations");
+		const pubmed = papers.filter((p) => p.source_service === "pubmed");
+		const counted = new Map(
+			(await addCitationCounts(pubmed, { fetch: settings.fetch, mailto: settings.crossrefMailto })).map((p) => [
+				p.id,
+				p,
+			]),
+		);
+		papers = papers.map((p) => counted.get(p.id) ?? p);
 	}
 	onStage("layout");
 	const context = {
@@ -321,6 +365,41 @@ export async function buildMap(
 		taxonomySeparator: ";",
 	});
 	return { context, documents: toLegacyRecords(map) };
+}
+
+/**
+ * Runs each part of a combined search. Sources that fail are left out (and
+ * named in the map's params); when every one fails, the first failure is
+ * the map's.
+ */
+async function fetchCombined(
+	req: CombinedRequest,
+	s: SearchSettings,
+): Promise<{ result: SourceResult; query: string; params: Record<string, unknown> }> {
+	const runs = await Promise.allSettled(
+		req.parts.map(async ({ label, request }) => ({ label, request, ...(await fetchSource(request, s)) })),
+	);
+	const done = runs.flatMap((r) => (r.status === "fulfilled" ? [r.value] : []));
+	const failed = runs.flatMap((r, i) =>
+		r.status === "rejected" ? [{ label: req.parts[i].label, error: r.reason }] : [],
+	);
+	if (!done.length) throw failed[0]?.error ?? new Error("no sources");
+	const result = combineResults(done.map((d) => ({ service: d.request.service, label: d.label, result: d.result })));
+	if (!result.papers.length) throw Object.assign(new Error("no results"), { reasons: ["not enough results"] });
+	const params = {
+		sources: done.map((d) => ({ label: d.label, service: d.request.service, query: d.query, params: d.params })),
+		duplicates: result.duplicates,
+		...(failed.length
+			? {
+					failed: failed.map((f) => ({
+						label: f.label,
+						error: f.error instanceof Error ? f.error.message : String(f.error),
+					})),
+				}
+			: {}),
+		...(req.vis_type === "timeline" ? { vis_type: "timeline" } : {}),
+	};
+	return { result, query: req.q, params };
 }
 
 /** A geo map: every place of the source, drawn where it is (no layout, as on the old server). */

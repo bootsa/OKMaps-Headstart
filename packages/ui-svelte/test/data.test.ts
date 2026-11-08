@@ -95,6 +95,20 @@ describe("processPaper", () => {
 		expect(p.area).toBe("<b>x");
 	});
 
+	it("links each record of a map of several sources as its own source does", () => {
+		const combined = mapConfig("combined");
+		const fromPubmed = processPaper({ id: "s1-1", pmcid: "PMC1", source_service: "pubmed" }, combined, s, {});
+		expect(fromPubmed.oa).toBe(true);
+		expect(fromPubmed.oaLink).toBe("http://www.ncbi.nlm.nih.gov/pmc/articles/PMC1/pdf/");
+		const fromBase = processPaper(
+			{ id: "s2-1", oa_state: 1, link: "https://x/pdf", source_service: "base" },
+			combined,
+			s,
+			{},
+		);
+		expect(fromBase.outlink).toBe("https://x/pdf");
+	});
+
 	it("uses PMC ids for PubMed open access and links", () => {
 		const p = processPaper({ id: "1", pmcid: "PMC1", url: "123", readers: "4" }, pubmed, strings("eng_pubmed"), {});
 		expect(p.oa).toBe(true);

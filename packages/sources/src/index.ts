@@ -8,6 +8,7 @@ export {
 	preprocessQuery,
 	searchBase,
 } from "./base/index.js";
+export { type CombinedResult, combineResults, type SourcePart, titleKey } from "./combine.js";
 export type { CrossrefOptions } from "./crossref.js";
 export { addCitationCounts, CROSSREF_BASE, fetchCitationCounts } from "./crossref.js";
 export { normalizeDoi } from "./doi.js";

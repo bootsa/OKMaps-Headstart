@@ -222,6 +222,54 @@ describe("buildMap", () => {
 		expect(Number(hughes?.readers)).toBeGreaterThan(1000);
 	});
 
+	it("makes one map from several sources, each work once, and names a source that failed", async () => {
+		const dbpedia = sparqlConfig(sparqlSourceType.presets?.find((p) => p.id === "dbpedia")?.config ?? {});
+		const zenodo = zenodoConfig({ type: "dataset", limit: "5", token: "secret" });
+		const q = "coral reef";
+		const { map, stages } = await make({
+			service: "combined",
+			q,
+			parts: [
+				{ label: "DBpedia", request: { service: "sparql", source: "DBpedia", config: dbpedia, q } },
+				{ label: "Zenodo datasets", request: { service: "zenodo", source: "Zenodo datasets", config: zenodo, q } },
+				{
+					label: "Broken",
+					request: {
+						service: "sparql",
+						source: "Broken",
+						config: { ...dbpedia, endpoint: "https://nowhere.test/sparql" },
+						q,
+					},
+				},
+			],
+		});
+		expect(stages).toEqual(["searching", "layout"]);
+		expect(map.context).toMatchObject({ query: q, service: "combined" });
+		const params = JSON.parse(map.context.params);
+		expect(params.sources.map((s: { label: string }) => s.label)).toEqual(["DBpedia", "Zenodo datasets"]);
+		expect(params.failed.map((f: { label: string }) => f.label)).toEqual(["Broken"]);
+		expect(JSON.stringify(map)).not.toContain("secret");
+		expectLaidOut(map.documents);
+		const services = new Set(map.documents.map((d) => d.source_service));
+		expect(services).toEqual(new Set(["sparql", "zenodo"]));
+		expect(map.documents.find((d) => d.id === "s2-4963256")?.sources).toBe("Zenodo datasets");
+		const ids = map.documents.map((d) => d.id);
+		expect(new Set(ids).size).toBe(ids.length);
+	});
+
+	it("fails a combined search with the first reason when every source fails", async () => {
+		const err = await buildMap(
+			{
+				service: "combined",
+				q: "x",
+				parts: [{ label: "Zenodo", request: { service: "zenodo", source: "Z", config: zenodoConfig({}), q: "x" } }],
+			},
+			{ gatewayUrl: GATEWAY, fetch: async () => new Response("{}", { status: 500 }) },
+			loadDefaultResources,
+		).catch((e) => e);
+		expect(err).toBeInstanceOf(Error);
+	});
+
 	it("reports provider errors with their reasons", async () => {
 		const err = await buildMap(
 			{ service: "openaire", project_id: "1", funder: "EC" },
