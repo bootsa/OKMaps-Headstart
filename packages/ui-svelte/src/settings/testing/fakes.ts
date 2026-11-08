@@ -1,6 +1,6 @@
 /** Store types and sources for stories and tests: memory stores, no network. */
 import { memoryStorage, treeStore } from "@okmaps/storage";
-import type { SourceModule, StoreInstance, StoreType } from "../registry";
+import type { SourceModule, SourceType, StoreInstance, StoreType } from "../registry";
 
 const memories = new Map<string, ReturnType<typeof memoryStorage>>();
 
@@ -54,4 +54,34 @@ export const gatewaySource: SourceModule = {
 	label: "Gated library",
 	description: "Needs a server.",
 	unavailable: () => "needs a gateway",
+};
+
+/** A source type people set up themselves: an endpoint and a query, with two presets. */
+export const endpointSourceType: SourceType = {
+	type: "endpoint",
+	label: "A query endpoint",
+	description: "Any endpoint that takes a query.",
+	fields: [
+		{ name: "endpoint", label: "Endpoint", kind: "url", required: true },
+		{ name: "query", label: "Query", kind: "textarea", required: true, code: true, lines: 4 },
+		{ name: "title", label: "Title variable", kind: "text", placeholder: "title", section: "Field mapping" },
+	],
+	presets: [
+		{
+			id: "wiki",
+			label: "Wiki",
+			description: "Searches the wiki.",
+			config: { endpoint: "https://wiki.example/sparql", query: 'SELECT * { "{{q}}" }' },
+		},
+		{ id: "other", label: "Other wiki", config: { endpoint: "https://other.example/sparql", query: "SELECT {{q}}" } },
+	],
+	defaultName: (c) => (c.endpoint ? new URL(c.endpoint).host : "Endpoint"),
+	check: (c) => (c.query.includes("{{q}}") ? [] : ["The query must use {{q}}."]),
+	module: (s) => ({
+		description: s.config.endpoint,
+		views: ["overview"],
+		fields: [{ name: "q", label: "Search terms", kind: "search", required: true }],
+		request: (v) => ({ service: "endpoint", q: v.q, config: s.config }),
+		title: (v) => String(v.q),
+	}),
 };

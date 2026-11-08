@@ -1,7 +1,8 @@
 <!--
   @component
   Draws form fields described as data (FieldSpec). Fields that share a
-  `row` sit side by side on wide screens. Bind `values`.
+  `row` sit side by side on wide screens; fields that share a `section` are
+  folded under its name. Bind `values`.
 -->
 <script lang="ts">
 	import type { FieldSpec, FieldValues } from "./fields";
@@ -17,12 +18,23 @@
 	let { fields, values = $bindable(), idPrefix = "okm-field", disabled = false }: Props = $props();
 
 	/** Consecutive fields with the same row, grouped. */
-	const groups = $derived.by(() => {
+	function rows(list: FieldSpec[]): FieldSpec[][] {
 		const out: FieldSpec[][] = [];
-		for (const f of fields) {
+		for (const f of list) {
 			const last = out.at(-1);
 			if (f.row && last?.[0]?.row === f.row) last.push(f);
 			else out.push([f]);
+		}
+		return out;
+	}
+
+	/** Consecutive fields with the same section (or none), grouped. */
+	const sections = $derived.by(() => {
+		const out: { name?: string; fields: FieldSpec[] }[] = [];
+		for (const f of fields) {
+			const last = out.at(-1);
+			if (last && last.name === f.section) last.fields.push(f);
+			else out.push({ name: f.section, fields: [f] });
 		}
 		return out;
 	});
@@ -35,73 +47,98 @@
 	}
 </script>
 
-{#each groups as group, g (g)}
-	<div class="okm-fields-row" class:row={group.length > 1}>
-		{#each group as f (f.name)}
-			{#if f.kind === "checkboxes"}
-				<fieldset class="field">
-					<legend>{f.label}</legend>
-					<div class="choices">
-						{#each f.options ?? [] as o (o.value)}
-							<label class="choice">
-								<input
-									type="checkbox"
-									name={f.name}
-									value={o.value}
-									{disabled}
-									checked={Array.isArray(values[f.name]) && (values[f.name] as string[]).includes(o.value)}
-									onchange={(e) => toggle(f.name, o.value, e.currentTarget.checked)}
-								>
-								{o.label}
-							</label>
-						{/each}
-					</div>
-					{#if f.hint}
-						<p class="hint">{f.hint}</p>
-					{/if}
-				</fieldset>
-			{:else}
-				<div class="field">
-					<label for={id(f)}
-						>{f.label}
-						{#if !f.required && f.kind !== "select"}
-							<span class="optional"> (optional)</span>
-						{/if}</label
-					>
-					{#if f.kind === "select"}
-						<select id={id(f)} name={f.name} {disabled} bind:value={values[f.name]}>
-							{#each f.options ?? [] as o (o.value)}
-								<option value={o.value}>{o.label}</option>
-							{/each}
-						</select>
-					{:else}
-						<input
-							id={id(f)}
-							name={f.name}
-							type={f.kind}
-							required={f.required}
-							placeholder={f.placeholder}
-							autocomplete={f.autocomplete}
-							list={f.suggestions ? `${id(f)}-list` : undefined}
-							{disabled}
-							bind:value={values[f.name]}
-						>
-						{#if f.suggestions}
-							<datalist id="{id(f)}-list">
-								{#each f.suggestions as s (s)}
-									<option value={s}></option>
-								{/each}
-							</datalist>
-						{/if}
-					{/if}
-					{#if f.hint}
-						<p class="hint">{f.hint}</p>
-					{/if}
-				</div>
-			{/if}
-		{/each}
-	</div>
+{#each sections as section, i (i)}
+	{#if section.name}
+		<details class="okm-fields-section">
+			<summary>{section.name}</summary>
+			{@render rowsOf(section.fields)}
+		</details>
+	{:else}
+		{@render rowsOf(section.fields)}
+	{/if}
 {/each}
+
+{#snippet rowsOf(list: FieldSpec[])}
+	{#each rows(list) as group, g (g)}
+		<div class="okm-fields-row" class:row={group.length > 1}>
+			{#each group as f (f.name)}
+				{#if f.kind === "checkboxes"}
+					<fieldset class="field">
+						<legend>{f.label}</legend>
+						<div class="choices">
+							{#each f.options ?? [] as o (o.value)}
+								<label class="choice">
+									<input
+										type="checkbox"
+										name={f.name}
+										value={o.value}
+										{disabled}
+										checked={Array.isArray(values[f.name]) && (values[f.name] as string[]).includes(o.value)}
+										onchange={(e) => toggle(f.name, o.value, e.currentTarget.checked)}
+									>
+									{o.label}
+								</label>
+							{/each}
+						</div>
+						{#if f.hint}
+							<p class="hint">{f.hint}</p>
+						{/if}
+					</fieldset>
+				{:else}
+					<div class="field">
+						<label for={id(f)}
+							>{f.label}
+							{#if !f.required && f.kind !== "select"}
+								<span class="optional"> (optional)</span>
+							{/if}</label
+						>
+						{#if f.kind === "select"}
+							<select id={id(f)} name={f.name} {disabled} bind:value={values[f.name]}>
+								{#each f.options ?? [] as o (o.value)}
+									<option value={o.value}>{o.label}</option>
+								{/each}
+							</select>
+						{:else if f.kind === "textarea"}
+							<textarea
+								id={id(f)}
+								name={f.name}
+								required={f.required}
+								placeholder={f.placeholder}
+								rows={f.lines ?? 6}
+								spellcheck={f.code ? false : undefined}
+								class:code={f.code}
+								{disabled}
+								bind:value={values[f.name]}
+							></textarea>
+						{:else}
+							<input
+								id={id(f)}
+								name={f.name}
+								type={f.kind}
+								required={f.required}
+								placeholder={f.placeholder}
+								autocomplete={f.autocomplete}
+								list={f.suggestions ? `${id(f)}-list` : undefined}
+								{disabled}
+								bind:value={values[f.name]}
+							>
+							{#if f.suggestions}
+								<datalist id="{id(f)}-list">
+									{#each f.suggestions as s (s)}
+										<option value={s}></option>
+									{/each}
+								</datalist>
+							{/if}
+						{/if}
+						{#if f.hint}
+							<p class="hint">{f.hint}</p>
+						{/if}
+					</div>
+				{/if}
+			{/each}
+		</div>
+	{/each}
+{/snippet}
 
 <style>
 	.okm-fields-row {
@@ -138,7 +175,8 @@
 	}
 
 	input:not([type="checkbox"]),
-	select {
+	select,
+	textarea {
 		display: block;
 		box-sizing: border-box;
 		width: 100%;
@@ -149,6 +187,30 @@
 		font: inherit;
 		color: var(--color-text);
 		background: var(--color-surface);
+	}
+
+	textarea {
+		resize: vertical;
+
+		&.code {
+			font-family: var(--font-mono);
+			font-size: var(--font-size-sm);
+			white-space: pre;
+			overflow-wrap: normal;
+			overflow-x: auto;
+		}
+	}
+
+	.okm-fields-section {
+		margin-bottom: var(--space-4);
+
+		& > summary {
+			margin-bottom: var(--space-3);
+			cursor: pointer;
+			font-size: var(--font-size-sm);
+			font-weight: var(--font-weight-semibold);
+			color: var(--color-link);
+		}
 	}
 
 	.choices {

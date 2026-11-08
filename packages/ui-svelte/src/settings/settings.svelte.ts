@@ -1,10 +1,10 @@
 /**
- * The person's settings: which metadata sources are on, their map stores
- * and where a new map is saved. Kept in this browser (localStorage), which
+ * The person's settings: which metadata sources are on, the sources they
+ * set up themselves, their map stores and where a new map is saved. Kept in this browser (localStorage), which
  * also holds store passwords and secrets, as before.
  */
 import type { FolderPath } from "@okmaps/storage";
-import type { StoreInstance } from "./registry";
+import { ownSourceId, type SourceInstance, type StoreInstance } from "./registry";
 
 /** Where a new map goes: a folder of a store, or nowhere (saved later from the map page). */
 export type SaveTarget = { store: string; path: string[] } | "none";
@@ -13,6 +13,8 @@ export interface SettingsData {
 	version: 1;
 	/** Sources switched off; new sources start switched on. */
 	disabledSources: string[];
+	/** Sources set up on the settings page (missing in settings saved before they existed). */
+	sources?: SourceInstance[];
 	stores: StoreInstance[];
 	saveTo: SaveTarget;
 }
@@ -47,6 +49,7 @@ export function newStoreId(): string {
 
 export class AppSettings {
 	disabledSources: string[] = $state([]);
+	sources: SourceInstance[] = $state([]);
 	stores: StoreInstance[] = $state([]);
 	saveTo: SaveTarget = $state("none");
 
@@ -59,6 +62,7 @@ export class AppSettings {
 		const saved = this.#read();
 		if (saved) {
 			this.disabledSources = saved.disabledSources;
+			this.sources = saved.sources ?? [];
 			this.stores = saved.stores;
 			this.saveTo = saved.saveTo;
 		} else {
@@ -83,6 +87,9 @@ export class AppSettings {
 				disabledSources: Array.isArray(v.disabledSources)
 					? v.disabledSources.filter((x: unknown) => typeof x === "string")
 					: [],
+				sources: Array.isArray(v.sources)
+					? v.sources.filter(isStore).map((s: SourceInstance) => ({ ...s, config: { ...(s.config ?? {}) } }))
+					: [],
 				stores: v.stores.filter(isStore).map((s: StoreInstance) => ({ ...s, config: { ...(s.config ?? {}) } })),
 				saveTo,
 			};
@@ -96,6 +103,7 @@ export class AppSettings {
 		const data: SettingsData = {
 			version: 1,
 			disabledSources: $state.snapshot(this.disabledSources),
+			sources: $state.snapshot(this.sources),
 			stores: $state.snapshot(this.stores),
 			saveTo: $state.snapshot(this.saveTo),
 		};
@@ -120,6 +128,26 @@ export class AppSettings {
 	setSourceEnabled(id: string, on: boolean): void {
 		const rest = this.disabledSources.filter((x) => x !== id);
 		this.disabledSources = on ? rest : [...rest, id];
+		this.save();
+	}
+
+	source(id: string): SourceInstance | undefined {
+		return this.sources.find((s) => s.id === id);
+	}
+
+	/** Adds a source of the person's own, or replaces the one with the same id. */
+	putSource(instance: SourceInstance): void {
+		const i = this.sources.findIndex((s) => s.id === instance.id);
+		if (i >= 0) this.sources[i] = instance;
+		else this.sources.push(instance);
+		this.save();
+	}
+
+	/** Forgets a source of the person's own; maps made with it stay. */
+	removeSource(id: string): void {
+		const gone = this.sources.find((s) => s.id === id);
+		this.sources = this.sources.filter((s) => s.id !== id);
+		if (gone) this.disabledSources = this.disabledSources.filter((x) => x !== ownSourceId(gone));
 		this.save();
 	}
 

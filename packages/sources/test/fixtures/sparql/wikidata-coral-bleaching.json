@@ -1,0 +1,1735 @@
+{
+ "head": {
+  "vars": [
+   "item",
+   "title",
+   "abstract",
+   "url",
+   "year",
+   "subjects",
+   "authors"
+  ]
+ },
+ "results": {
+  "bindings": [
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q568916"
+    },
+    "subjects": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "response to stress"
+    },
+    "url": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q568916"
+    },
+    "title": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "coral bleaching"
+    },
+    "abstract": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "breakdown of relations between the coral host and zooxanthallae, leading to loss of colour"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q104856069"
+    },
+    "url": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q104856069"
+    },
+    "title": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Coral bleaching in Oahu"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q134096475"
+    },
+    "subjects": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "occurrence"
+    },
+    "url": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q134096475"
+    },
+    "title": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "2023–2025 global coral bleaching event"
+    },
+    "abstract": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "ongoing marine ecosystem phenomenon"
+    },
+    "year": {
+     "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+     "type": "literal",
+     "value": "2023-01-01T00:00:00Z"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q112900936"
+    },
+    "url": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q112900936"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q112905945"
+    },
+    "url": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q112905945"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q132178434"
+    },
+    "subjects": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "human"
+    },
+    "url": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q132178434"
+    },
+    "title": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Barbara E. Brown"
+    },
+    "abstract": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "marine biologist and expert on coral bleaching"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q112886901"
+    },
+    "url": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q112886901"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q130569341"
+    },
+    "subjects": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "aquatic ecology"
+    },
+    "url": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q130569341"
+    },
+    "title": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Taiwan Coral Bleaching Observation Network"
+    },
+    "year": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/.well-known/genid/f6b1f71fc2fe4cdd8444501164f230ea"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q130569341"
+    },
+    "subjects": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "citizen science project"
+    },
+    "url": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q130569341"
+    },
+    "title": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Taiwan Coral Bleaching Observation Network"
+    },
+    "year": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/.well-known/genid/f6b1f71fc2fe4cdd8444501164f230ea"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q111026981"
+    },
+    "url": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q111026981"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q112892015"
+    },
+    "url": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q112892015"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q112938529"
+    },
+    "url": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q112938529"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q140720141"
+    },
+    "subjects": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "climate change"
+    },
+    "url": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q140720141"
+    },
+    "title": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "ocean warming"
+    },
+    "abstract": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "The ocean absorbs excess heat from greenhouse gas emissions, causing rising temperatures that lead to coral bleaching and the loss of breeding grounds for marine species."
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q139311498"
+    },
+    "subjects": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "article"
+    },
+    "url": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q139311498"
+    },
+    "title": {
+     "xml:lang": "mul",
+     "type": "literal",
+     "value": "Telomere dysfunction is associated to dark-induced coral bleaching in the reef coral Stylophora pistillata"
+    },
+    "year": {
+     "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+     "type": "literal",
+     "value": "2021-04-20T00:00:00Z"
+    },
+    "authors": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Eric Gilson"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q112955289"
+    },
+    "url": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q112955289"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q112956506"
+    },
+    "url": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q112956506"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q112906721"
+    },
+    "url": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q112906721"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q136229167"
+    },
+    "subjects": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "article"
+    },
+    "url": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q136229167"
+    },
+    "title": {
+     "xml:lang": "mul",
+     "type": "literal",
+     "value": "Ship fuel sulfur content regulations may exacerbate mass coral bleaching events on the Great Barrier Reef"
+    },
+    "year": {
+     "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+     "type": "literal",
+     "value": "2025-06-05T00:00:00Z"
+    },
+    "authors": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Robyn Schofield"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "subjects": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "article"
+    },
+    "url": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "title": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "The 2014-17 Global Coral Bleaching Event: The Most Severe and Widespread Coral Reef Destruction"
+    },
+    "year": {
+     "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+     "type": "literal",
+     "value": "2022-06-06T00:00:00Z"
+    },
+    "authors": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Diego Lirman"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "subjects": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "article"
+    },
+    "url": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "title": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "The 2014-17 Global Coral Bleaching Event: The Most Severe and Widespread Coral Reef Destruction"
+    },
+    "year": {
+     "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+     "type": "literal",
+     "value": "2022-06-06T00:00:00Z"
+    },
+    "authors": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Ole Brodnicke"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "subjects": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "article"
+    },
+    "url": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "title": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "The 2014-17 Global Coral Bleaching Event: The Most Severe and Widespread Coral Reef Destruction"
+    },
+    "year": {
+     "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+     "type": "literal",
+     "value": "2022-06-06T00:00:00Z"
+    },
+    "authors": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Minh Thai"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "subjects": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "article"
+    },
+    "url": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "title": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "The 2014-17 Global Coral Bleaching Event: The Most Severe and Widespread Coral Reef Destruction"
+    },
+    "year": {
+     "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+     "type": "literal",
+     "value": "2022-06-06T00:00:00Z"
+    },
+    "authors": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Tyler Smith"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "subjects": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "article"
+    },
+    "url": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "title": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "The 2014-17 Global Coral Bleaching Event: The Most Severe and Widespread Coral Reef Destruction"
+    },
+    "year": {
+     "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+     "type": "literal",
+     "value": "2022-06-06T00:00:00Z"
+    },
+    "authors": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Richard Evans"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "subjects": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "article"
+    },
+    "url": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "title": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "The 2014-17 Global Coral Bleaching Event: The Most Severe and Widespread Coral Reef Destruction"
+    },
+    "year": {
+     "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+     "type": "literal",
+     "value": "2022-06-06T00:00:00Z"
+    },
+    "authors": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Eylem Elma"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "subjects": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "article"
+    },
+    "url": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "title": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "The 2014-17 Global Coral Bleaching Event: The Most Severe and Widespread Coral Reef Destruction"
+    },
+    "year": {
+     "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+     "type": "literal",
+     "value": "2022-06-06T00:00:00Z"
+    },
+    "authors": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "M. James Crabbe"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "subjects": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "article"
+    },
+    "url": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "title": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "The 2014-17 Global Coral Bleaching Event: The Most Severe and Widespread Coral Reef Destruction"
+    },
+    "year": {
+     "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+     "type": "literal",
+     "value": "2022-06-06T00:00:00Z"
+    },
+    "authors": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Chao-Yang Kuo"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "subjects": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "article"
+    },
+    "url": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "title": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "The 2014-17 Global Coral Bleaching Event: The Most Severe and Widespread Coral Reef Destruction"
+    },
+    "year": {
+     "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+     "type": "literal",
+     "value": "2022-06-06T00:00:00Z"
+    },
+    "authors": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Stuart A. Sandin"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "subjects": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "article"
+    },
+    "url": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "title": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "The 2014-17 Global Coral Bleaching Event: The Most Severe and Widespread Coral Reef Destruction"
+    },
+    "year": {
+     "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+     "type": "literal",
+     "value": "2022-06-06T00:00:00Z"
+    },
+    "authors": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Derek P Manzello"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "subjects": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "article"
+    },
+    "url": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "title": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "The 2014-17 Global Coral Bleaching Event: The Most Severe and Widespread Coral Reef Destruction"
+    },
+    "year": {
+     "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+     "type": "literal",
+     "value": "2022-06-06T00:00:00Z"
+    },
+    "authors": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Julia K. Baum"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "subjects": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "article"
+    },
+    "url": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "title": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "The 2014-17 Global Coral Bleaching Event: The Most Severe and Widespread Coral Reef Destruction"
+    },
+    "year": {
+     "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+     "type": "literal",
+     "value": "2022-06-06T00:00:00Z"
+    },
+    "authors": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Gergely Torda"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "subjects": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "article"
+    },
+    "url": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "title": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "The 2014-17 Global Coral Bleaching Event: The Most Severe and Widespread Coral Reef Destruction"
+    },
+    "year": {
+     "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+     "type": "literal",
+     "value": "2022-06-06T00:00:00Z"
+    },
+    "authors": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Mariana Álvarez-Noriega"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "subjects": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "article"
+    },
+    "url": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "title": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "The 2014-17 Global Coral Bleaching Event: The Most Severe and Widespread Coral Reef Destruction"
+    },
+    "year": {
+     "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+     "type": "literal",
+     "value": "2022-06-06T00:00:00Z"
+    },
+    "authors": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Thomas M. DeCarlo"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "subjects": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "article"
+    },
+    "url": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "title": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "The 2014-17 Global Coral Bleaching Event: The Most Severe and Widespread Coral Reef Destruction"
+    },
+    "year": {
+     "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+     "type": "literal",
+     "value": "2022-06-06T00:00:00Z"
+    },
+    "authors": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Simon D. Donner"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "subjects": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "article"
+    },
+    "url": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "title": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "The 2014-17 Global Coral Bleaching Event: The Most Severe and Widespread Coral Reef Destruction"
+    },
+    "year": {
+     "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+     "type": "literal",
+     "value": "2022-06-06T00:00:00Z"
+    },
+    "authors": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Gal Eyal"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "subjects": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "article"
+    },
+    "url": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "title": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "The 2014-17 Global Coral Bleaching Event: The Most Severe and Widespread Coral Reef Destruction"
+    },
+    "year": {
+     "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+     "type": "literal",
+     "value": "2022-06-06T00:00:00Z"
+    },
+    "authors": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Brigitte Sommer"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "subjects": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "article"
+    },
+    "url": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "title": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "The 2014-17 Global Coral Bleaching Event: The Most Severe and Widespread Coral Reef Destruction"
+    },
+    "year": {
+     "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+     "type": "literal",
+     "value": "2022-06-06T00:00:00Z"
+    },
+    "authors": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Chaolun Allen Chen"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "subjects": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "article"
+    },
+    "url": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "title": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "The 2014-17 Global Coral Bleaching Event: The Most Severe and Widespread Coral Reef Destruction"
+    },
+    "year": {
+     "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+     "type": "literal",
+     "value": "2022-06-06T00:00:00Z"
+    },
+    "authors": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Ruy K. P. Kikuchi"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "subjects": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "article"
+    },
+    "url": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "title": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "The 2014-17 Global Coral Bleaching Event: The Most Severe and Widespread Coral Reef Destruction"
+    },
+    "year": {
+     "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+     "type": "literal",
+     "value": "2022-06-06T00:00:00Z"
+    },
+    "authors": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Andrew S. Hoey"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "subjects": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "article"
+    },
+    "url": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "title": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "The 2014-17 Global Coral Bleaching Event: The Most Severe and Widespread Coral Reef Destruction"
+    },
+    "year": {
+     "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+     "type": "literal",
+     "value": "2022-06-06T00:00:00Z"
+    },
+    "authors": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Denise Perez"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "subjects": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "article"
+    },
+    "url": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "title": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "The 2014-17 Global Coral Bleaching Event: The Most Severe and Widespread Coral Reef Destruction"
+    },
+    "year": {
+     "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+     "type": "literal",
+     "value": "2022-06-06T00:00:00Z"
+    },
+    "authors": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Hajime Kayanne"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "subjects": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "article"
+    },
+    "url": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "title": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "The 2014-17 Global Coral Bleaching Event: The Most Severe and Widespread Coral Reef Destruction"
+    },
+    "year": {
+     "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+     "type": "literal",
+     "value": "2022-06-06T00:00:00Z"
+    },
+    "authors": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Randi Rotjan"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "subjects": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "article"
+    },
+    "url": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "title": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "The 2014-17 Global Coral Bleaching Event: The Most Severe and Widespread Coral Reef Destruction"
+    },
+    "year": {
+     "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+     "type": "literal",
+     "value": "2022-06-06T00:00:00Z"
+    },
+    "authors": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Morgan S. Pratchett"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "subjects": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "article"
+    },
+    "url": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "title": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "The 2014-17 Global Coral Bleaching Event: The Most Severe and Widespread Coral Reef Destruction"
+    },
+    "year": {
+     "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+     "type": "literal",
+     "value": "2022-06-06T00:00:00Z"
+    },
+    "authors": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Deron E Burkepile"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "subjects": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "article"
+    },
+    "url": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "title": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "The 2014-17 Global Coral Bleaching Event: The Most Severe and Widespread Coral Reef Destruction"
+    },
+    "year": {
+     "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+     "type": "literal",
+     "value": "2022-06-06T00:00:00Z"
+    },
+    "authors": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Monica Montefalcone"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "subjects": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "article"
+    },
+    "url": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "title": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "The 2014-17 Global Coral Bleaching Event: The Most Severe and Widespread Coral Reef Destruction"
+    },
+    "year": {
+     "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+     "type": "literal",
+     "value": "2022-06-06T00:00:00Z"
+    },
+    "authors": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "C. Mark Eakin"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "subjects": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "article"
+    },
+    "url": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "title": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "The 2014-17 Global Coral Bleaching Event: The Most Severe and Widespread Coral Reef Destruction"
+    },
+    "year": {
+     "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+     "type": "literal",
+     "value": "2022-06-06T00:00:00Z"
+    },
+    "authors": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "David O. Obura"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "subjects": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "article"
+    },
+    "url": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "title": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "The 2014-17 Global Coral Bleaching Event: The Most Severe and Widespread Coral Reef Destruction"
+    },
+    "year": {
+     "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+     "type": "literal",
+     "value": "2022-06-06T00:00:00Z"
+    },
+    "authors": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Emma V Kennedy"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "subjects": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "article"
+    },
+    "url": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "title": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "The 2014-17 Global Coral Bleaching Event: The Most Severe and Widespread Coral Reef Destruction"
+    },
+    "year": {
+     "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+     "type": "literal",
+     "value": "2022-06-06T00:00:00Z"
+    },
+    "authors": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Shaun K. Wilson"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "subjects": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "article"
+    },
+    "url": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "title": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "The 2014-17 Global Coral Bleaching Event: The Most Severe and Widespread Coral Reef Destruction"
+    },
+    "year": {
+     "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+     "type": "literal",
+     "value": "2022-06-06T00:00:00Z"
+    },
+    "authors": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Scott F. Heron"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "subjects": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "article"
+    },
+    "url": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "title": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "The 2014-17 Global Coral Bleaching Event: The Most Severe and Widespread Coral Reef Destruction"
+    },
+    "year": {
+     "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+     "type": "literal",
+     "value": "2022-06-06T00:00:00Z"
+    },
+    "authors": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Lorenzo Alvarez-Filip"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "subjects": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "article"
+    },
+    "url": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "title": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "The 2014-17 Global Coral Bleaching Event: The Most Severe and Widespread Coral Reef Destruction"
+    },
+    "year": {
+     "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+     "type": "literal",
+     "value": "2022-06-06T00:00:00Z"
+    },
+    "authors": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Jamie M Caldwell"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "subjects": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "article"
+    },
+    "url": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "title": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "The 2014-17 Global Coral Bleaching Event: The Most Severe and Widespread Coral Reef Destruction"
+    },
+    "year": {
+     "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+     "type": "literal",
+     "value": "2022-06-06T00:00:00Z"
+    },
+    "authors": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Sean R. Connolly"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "subjects": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "article"
+    },
+    "url": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "title": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "The 2014-17 Global Coral Bleaching Event: The Most Severe and Widespread Coral Reef Destruction"
+    },
+    "year": {
+     "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+     "type": "literal",
+     "value": "2022-06-06T00:00:00Z"
+    },
+    "authors": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "John M Pandolfi"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "subjects": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "article"
+    },
+    "url": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "title": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "The 2014-17 Global Coral Bleaching Event: The Most Severe and Widespread Coral Reef Destruction"
+    },
+    "year": {
+     "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+     "type": "literal",
+     "value": "2022-06-06T00:00:00Z"
+    },
+    "authors": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "John Burt"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "subjects": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "article"
+    },
+    "url": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "title": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "The 2014-17 Global Coral Bleaching Event: The Most Severe and Widespread Coral Reef Destruction"
+    },
+    "year": {
+     "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+     "type": "literal",
+     "value": "2022-06-06T00:00:00Z"
+    },
+    "authors": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Christian R. Voolstra"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "subjects": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "article"
+    },
+    "url": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "title": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "The 2014-17 Global Coral Bleaching Event: The Most Severe and Widespread Coral Reef Destruction"
+    },
+    "year": {
+     "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+     "type": "literal",
+     "value": "2022-06-06T00:00:00Z"
+    },
+    "authors": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Mia O. Hoogenboom"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "subjects": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "article"
+    },
+    "url": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "title": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "The 2014-17 Global Coral Bleaching Event: The Most Severe and Widespread Coral Reef Destruction"
+    },
+    "year": {
+     "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+     "type": "literal",
+     "value": "2022-06-06T00:00:00Z"
+    },
+    "authors": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "James Davis Reimer"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "subjects": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "article"
+    },
+    "url": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "title": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "The 2014-17 Global Coral Bleaching Event: The Most Severe and Widespread Coral Reef Destruction"
+    },
+    "year": {
+     "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+     "type": "literal",
+     "value": "2022-06-06T00:00:00Z"
+    },
+    "authors": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Andrew H. Baird"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "subjects": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "article"
+    },
+    "url": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "title": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "The 2014-17 Global Coral Bleaching Event: The Most Severe and Widespread Coral Reef Destruction"
+    },
+    "year": {
+     "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+     "type": "literal",
+     "value": "2022-06-06T00:00:00Z"
+    },
+    "authors": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Terry P. Hughes"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "subjects": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "article"
+    },
+    "url": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q114156738"
+    },
+    "title": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "The 2014-17 Global Coral Bleaching Event: The Most Severe and Widespread Coral Reef Destruction"
+    },
+    "year": {
+     "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+     "type": "literal",
+     "value": "2022-06-06T00:00:00Z"
+    },
+    "authors": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Ove Hoegh-Guldberg"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q112574907"
+    },
+    "url": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q112574907"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q111027454"
+    },
+    "url": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q111027454"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q111026792"
+    },
+    "url": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q111026792"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q111966156"
+    },
+    "url": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q111966156"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q112903446"
+    },
+    "url": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q112903446"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q136912649"
+    },
+    "subjects": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "article"
+    },
+    "url": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q136912649"
+    },
+    "title": {
+     "xml:lang": "mul",
+     "type": "literal",
+     "value": "Resilience in a time of stress: revealing the molecular underpinnings of coral survival following thermal bleaching events"
+    },
+    "year": {
+     "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+     "type": "literal",
+     "value": "2024-07-03T00:00:00Z"
+    },
+    "authors": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Brook L Nunn"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q136912649"
+    },
+    "subjects": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "article"
+    },
+    "url": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q136912649"
+    },
+    "title": {
+     "xml:lang": "mul",
+     "type": "literal",
+     "value": "Resilience in a time of stress: revealing the molecular underpinnings of coral survival following thermal bleaching events"
+    },
+    "year": {
+     "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+     "type": "literal",
+     "value": "2024-07-03T00:00:00Z"
+    },
+    "authors": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Carly D Kenkel"
+    }
+   },
+   {
+    "item": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q136912649"
+    },
+    "subjects": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "article"
+    },
+    "url": {
+     "type": "uri",
+     "value": "http://www.wikidata.org/entity/Q136912649"
+    },
+    "title": {
+     "xml:lang": "mul",
+     "type": "literal",
+     "value": "Resilience in a time of stress: revealing the molecular underpinnings of coral survival following thermal bleaching events"
+    },
+    "year": {
+     "datatype": "http://www.w3.org/2001/XMLSchema#dateTime",
+     "type": "literal",
+     "value": "2024-07-03T00:00:00Z"
+    },
+    "authors": {
+     "xml:lang": "en",
+     "type": "literal",
+     "value": "Michael Riffle"
+    }
+   }
+  ]
+ }
+}

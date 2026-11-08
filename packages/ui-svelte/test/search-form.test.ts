@@ -1,7 +1,15 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/svelte";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
-import { AppSettings, registerSource, SearchForm, type SearchSubmit, unregisterSource } from "../src/index";
-import { demoSource, gatewaySource } from "../src/settings/testing/fakes";
+import {
+	AppSettings,
+	registerSource,
+	registerSourceType,
+	SearchForm,
+	type SearchSubmit,
+	unregisterSource,
+	unregisterSourceType,
+} from "../src/index";
+import { demoSource, endpointSourceType, gatewaySource } from "../src/settings/testing/fakes";
 
 const other = { ...demoSource, id: "other", label: "Other library", views: ["overview"] };
 
@@ -9,8 +17,10 @@ beforeEach(() => {
 	registerSource(demoSource);
 	registerSource(gatewaySource);
 	registerSource(other);
+	registerSourceType(endpointSourceType);
 });
 afterEach(() => {
+	unregisterSourceType("endpoint");
 	for (const id of ["demo", "gated", "other"]) unregisterSource(id);
 });
 
@@ -70,5 +80,25 @@ describe("search form", () => {
 		await fireEvent.input(screen.getByLabelText("Search terms"), { target: { value: "x" } });
 		await fireEvent.click(screen.getByRole("button", { name: "Make map" }));
 		await waitFor(() => expect(screen.getByRole("status")).toHaveTextContent("There are not enough results."));
+	});
+});
+
+it("offers the person's own sources and hands over their request", async () => {
+	const settings = settingsWith();
+	settings.putSource({
+		id: "w",
+		type: "endpoint",
+		name: "My wiki",
+		config: { endpoint: "https://w/", query: "{{q}}" },
+	});
+	const onsearch = vi.fn(async (_s: SearchSubmit) => {});
+	render(SearchForm, { settings, onsearch });
+	await fireEvent.click(screen.getByRole("radio", { name: "My wiki" }));
+	await fireEvent.input(screen.getByLabelText("Search terms"), { target: { value: "coral" } });
+	await fireEvent.click(screen.getByRole("button", { name: "Make map" }));
+	await waitFor(() => expect(onsearch).toHaveBeenCalledTimes(1));
+	expect(onsearch.mock.calls[0][0]).toMatchObject({
+		request: { service: "endpoint", q: "coral", config: { endpoint: "https://w/" } },
+		title: "coral",
 	});
 });

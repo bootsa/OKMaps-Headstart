@@ -1,14 +1,26 @@
 <!--
   @component
-  The settings page: which metadata sources the search form offers, and the
-  places maps are kept (several of one kind are fine, each with its own
+  The settings page: which metadata sources the search form offers (the
+  site's and the person's own, e.g. a SPARQL endpoint), and the places maps
+  are kept (several of one kind are fine, each with its own
   name). Sources and store types come from their registries; the settings
   themselves from an AppSettings.
 -->
 <script lang="ts">
 	import { onMount } from "svelte";
 	import Button from "../components/Button.svelte";
-	import { getStoreType, mapStoreTypes, metadataSources, type StoreInstance } from "./registry";
+	import {
+		getSourceType,
+		getStoreType,
+		mapStoreTypes,
+		metadataSources,
+		metadataSourceTypes,
+		ownSource,
+		ownSourceId,
+		type SourceInstance,
+		type StoreInstance,
+	} from "./registry";
+	import SourceDialog from "./SourceDialog.svelte";
 	import StoreDialog from "./StoreDialog.svelte";
 	import type { AppSettings } from "./settings.svelte";
 
@@ -24,11 +36,38 @@
 	let { settings, home = "./", notice = $bindable(""), noticeError = $bindable(false) }: Props = $props();
 
 	const sources = metadataSources();
+	const sourceTypes = metadataSourceTypes();
+	let sourceDialogOpen = $state(false);
+	let editingSource: SourceInstance | undefined = $state();
+	let confirmRemoveSource: string | null = $state(null);
+	let sourceNotice = $state("");
 	let dialogOpen = $state(false);
 	let editing: StoreInstance | undefined = $state();
 	let confirmRemove: string | null = $state(null);
 
 	const isDefault = (s: StoreInstance) => settings.saveTo !== "none" && settings.saveTo.store === s.id;
+
+	function addSource() {
+		editingSource = undefined;
+		sourceDialogOpen = true;
+	}
+
+	function editSource(s: SourceInstance) {
+		editingSource = s;
+		sourceDialogOpen = true;
+	}
+
+	function savedSource(s: SourceInstance) {
+		const isNew = !settings.source(s.id);
+		settings.putSource(s);
+		sourceNotice = isNew ? `${s.name} was added: the search form offers it now.` : `${s.name} was saved.`;
+	}
+
+	function removeSource(s: SourceInstance) {
+		settings.removeSource(s.id);
+		confirmRemoveSource = null;
+		sourceNotice = `${s.name} was removed. Maps made with it were not deleted.`;
+	}
 
 	function add() {
 		editing = undefined;
@@ -106,6 +145,57 @@
 				{/each}
 			</ul>
 		{/if}
+		{#if sourceTypes.length > 0}
+			<h3 id="okm-own-sources-heading">Your own sources</h3>
+			<ul class="sources own" aria-labelledby="okm-own-sources-heading">
+				{#each settings.sources as s (s.id)}
+					{@const type = getSourceType(s.type)}
+					{@const module = ownSource(s)}
+					{@const why = module?.unavailable?.()}
+					<li>
+						<div class="store">
+							<label>
+								<input
+									type="checkbox"
+									checked={!!module && !why && settings.sourceEnabled(ownSourceId(s))}
+									disabled={!module || !!why}
+									onchange={(e) => settings.setSourceEnabled(ownSourceId(s), e.currentTarget.checked)}
+								>
+								<span>
+									<strong>{s.name}</strong>
+									<span class="desc">
+										{type?.label ?? `${s.type} (not offered on this site)`}
+										{#if module?.description}
+											· {module.description}
+										{/if}
+									</span>
+									{#if why}
+										<span class="desc why">Not available here: {why}.</span>
+									{/if}
+								</span>
+							</label>
+							<div class="actions">
+								{#if type}
+									<Button size="sm" variant="secondary" onclick={() => editSource(s)}>Edit</Button>
+								{/if}
+								<Button size="sm" variant="secondary" onclick={() => (confirmRemoveSource = s.id)}>Remove</Button>
+							</div>
+						</div>
+						{#if confirmRemoveSource === s.id}
+							<div class="confirm" role="alert">
+								<span>Remove {s.name}? Maps made with it are kept.</span>
+								<Button size="sm" onclick={() => removeSource(s)}>Remove</Button>
+								<Button size="sm" variant="ghost" onclick={() => (confirmRemoveSource = null)}>Keep</Button>
+							</div>
+						{/if}
+					</li>
+				{:else}
+					<li class="empty">None yet. You can add: {sourceTypes.map((t) => t.label).join(", ")}.</li>
+				{/each}
+			</ul>
+			<Button onclick={addSource}>Add a source</Button>
+			<p class="notice" role="status" aria-live="polite">{sourceNotice}</p>
+		{/if}
 	</section>
 
 	<section aria-labelledby="okm-stores-heading">
@@ -177,6 +267,16 @@
 	</section>
 </div>
 
+<SourceDialog
+	bind:open={sourceDialogOpen}
+	source={editingSource}
+	takenNames={[
+		...sources.map((s) => s.label),
+		...settings.sources.filter((s) => s.id !== editingSource?.id).map((s) => s.name),
+	]}
+	onsave={savedSource}
+/>
+
 <StoreDialog
 	bind:open={dialogOpen}
 	store={editing}
@@ -230,7 +330,24 @@
 		list-style: none;
 	}
 
-	.sources li label {
+	h3 {
+		margin: var(--space-6) 0 var(--space-2);
+		font-size: var(--font-size-md);
+		color: var(--color-heading);
+	}
+
+	.own li {
+		padding: var(--space-2) 0;
+		border-bottom: 1px solid var(--color-border);
+
+		& label {
+			display: flex;
+			gap: var(--space-3);
+			align-items: baseline;
+		}
+	}
+
+	.sources:not(.own) li label {
 		display: flex;
 		gap: var(--space-3);
 		align-items: baseline;

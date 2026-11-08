@@ -56,6 +56,7 @@ export {
 } from "./places/index.js";
 export type { PubmedOptions, PubmedParams } from "./pubmed.js";
 export { buildPubmedTerm, parseEsummary, parsePubmedXml, searchPubmed, toPubmedRecords } from "./pubmed.js";
+export * from "./sparql/index.js";
 export type { SourceRecord, SourceResult } from "./types.js";
 export type { XmlElement, XmlNode } from "./xml.js";
 export { childElements, findAll, findFirst, parseXml, textOf } from "./xml.js";

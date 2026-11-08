@@ -63,6 +63,7 @@
 
 	/* Typography */
 	--font-sans: "Open Sans", "Helvetica Neue", Helvetica, sans-serif;
+	--font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
 	--font-weight-light: 300;
 	--font-weight-regular: 400;
 	--font-weight-semibold: 600;
