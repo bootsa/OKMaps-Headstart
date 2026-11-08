@@ -1,0 +1,6742 @@
+{
+ "meta": {
+  "count": 4521,
+  "db_response_time_ms": 38,
+  "page": null,
+  "per_page": 20,
+  "next_cursor": null,
+  "groups_count": null
+ },
+ "results": [
+  {
+   "id": "https://openalex.org/W2127753553",
+   "doi": "https://doi.org/10.1007/s00338-015-1280-4",
+   "display_name": "Coral reef recovery in the Galápagos Islands: the northernmost islands (Darwin and Wenman)",
+   "publication_year": 2015,
+   "publication_date": "2015-03-04",
+   "type": "article",
+   "language": "en",
+   "cited_by_count": 76,
+   "abstract_inverted_index": null,
+   "authorships": [
+    {
+     "author": {
+      "display_name": "Peter W. Glynn"
+     },
+     "raw_author_name": "Peter W. Glynn"
+    },
+    {
+     "author": {
+      "display_name": "Bernhard Riegl"
+     },
+     "raw_author_name": "Bernhard Riegl"
+    },
+    {
+     "author": {
+      "display_name": "Samuel J. Purkis"
+     },
+     "raw_author_name": "Samuel Purkis"
+    },
+    {
+     "author": {
+      "display_name": "Jeremy M. Kerr"
+     },
+     "raw_author_name": "Jeremy M. Kerr"
+    },
+    {
+     "author": {
+      "display_name": "Tyler Burton Smith"
+     },
+     "raw_author_name": "Tyler B. Smith"
+    }
+   ],
+   "primary_location": {
+    "landing_page_url": "https://doi.org/10.1007/s00338-015-1280-4",
+    "pdf_url": null,
+    "source": {
+     "display_name": "Coral Reefs"
+    }
+   },
+   "best_oa_location": null,
+   "open_access": {
+    "is_oa": false,
+    "oa_url": null
+   },
+   "primary_topic": {
+    "display_name": "Coral and Marine Ecosystems Studies",
+    "score": 1.0
+   },
+   "topics": [
+    {
+     "display_name": "Coral and Marine Ecosystems Studies",
+     "score": 1.0
+    },
+    {
+     "display_name": "Marine Biology and Ecology Research",
+     "score": 0.0
+    },
+    {
+     "display_name": "Marine and coastal plant biology",
+     "score": 0.0
+    }
+   ],
+   "keywords": [
+    {
+     "display_name": "coral reef recovery",
+     "score": 0.9990000128746033
+    },
+    {
+     "display_name": "Galápagos Islands",
+     "score": 0.8870000243186951
+    },
+    {
+     "display_name": "Darwin Island",
+     "score": 0.9039999842643738
+    },
+    {
+     "display_name": "1982-1983 El Niño",
+     "score": 0.9459999799728394
+    },
+    {
+     "display_name": "ENSO",
+     "score": 0.6909999847412109
+    },
+    {
+     "display_name": "coral bleaching",
+     "score": 0.9010000228881836
+    },
+    {
+     "display_name": "Porites lobata",
+     "score": 0.8859999775886536
+    },
+    {
+     "display_name": "Pavona clavus",
+     "score": 0.9610000252723694
+    },
+    {
+     "display_name": "radiocarbon dating",
+     "score": 0.8820000290870667
+    },
+    {
+     "display_name": "coral growth rate",
+     "score": 0.875
+    },
+    {
+     "display_name": "grazing intensity",
+     "score": 0.6899999976158142
+    }
+   ],
+   "concepts": [
+    {
+     "display_name": "Reef",
+     "score": 0.8092173337936401,
+     "level": 2
+    },
+    {
+     "display_name": "Coral",
+     "score": 0.7856392860412598,
+     "level": 2
+    },
+    {
+     "display_name": "Porites",
+     "score": 0.6968327760696411,
+     "level": 3
+    },
+    {
+     "display_name": "Oceanography",
+     "score": 0.6137281656265259,
+     "level": 1
+    },
+    {
+     "display_name": "Scleractinia",
+     "score": 0.6065831184387207,
+     "level": 4
+    },
+    {
+     "display_name": "Environmental issues with coral reefs",
+     "score": 0.5761295557022095,
+     "level": 3
+    },
+    {
+     "display_name": "Coral reef",
+     "score": 0.5210760831832886,
+     "level": 2
+    },
+    {
+     "display_name": "Fringing reef",
+     "score": 0.4986567497253418,
+     "level": 3
+    }
+   ]
+  },
+  {
+   "id": "https://openalex.org/W2147038227",
+   "doi": "https://doi.org/10.1111/j.1365-2486.2009.02043.x",
+   "display_name": "Century‐scale records of coral growth rates indicate that local stressors reduce coral thermal tolerance threshold",
+   "publication_year": 2009,
+   "publication_date": "2009-07-31",
+   "type": "article",
+   "language": "en",
+   "cited_by_count": 129,
+   "abstract_inverted_index": {
+    "Abstract": [
+     0
+    ],
+    "Coral": [
+     1
+    ],
+    "bleaching,": [
+     2
+    ],
+    "during": [
+     3
+    ],
+    "which": [
+     4
+    ],
+    "corals": [
+     5
+    ],
+    "lose": [
+     6
+    ],
+    "their": [
+     7
+    ],
+    "symbiotic": [
+     8
+    ],
+    "dinoflagellates,": [
+     9
+    ],
+    "appears": [
+     10,
+     188
+    ],
+    "to": [
+     11,
+     49,
+     189,
+     196
+    ],
+    "be": [
+     12
+    ],
+    "increasing": [
+     13
+    ],
+    "in": [
+     14,
+     34,
+     63,
+     92,
+     104,
+     114,
+     161,
+     186
+    ],
+    "frequency": [
+     15
+    ],
+    "and": [
+     16,
+     19,
+     28,
+     101,
+     133
+    ],
+    "geographic": [
+     17
+    ],
+    "extent,": [
+     18
+    ],
+    "is": [
+     20,
+     38,
+     170
+    ],
+    "typically": [
+     21
+    ],
+    "associated": [
+     22
+    ],
+    "with": [
+     23,
+     138
+    ],
+    "abnormally": [
+     24
+    ],
+    "high": [
+     25,
+     109
+    ],
+    "water": [
+     26,
+     99
+    ],
+    "temperatures": [
+     27,
+     100
+    ],
+    "solar": [
+     29,
+     102
+    ],
+    "irradiance.": [
+     30
+    ],
+    "A": [
+     31
+    ],
+    "key": [
+     32
+    ],
+    "question": [
+     33
+    ],
+    "coral": [
+     35,
+     44,
+     123
+    ],
+    "reef": [
+     36,
+     66,
+     185
+    ],
+    "ecology": [
+     37
+    ],
+    "whether": [
+     39
+    ],
+    "local": [
+     40,
+     149,
+     202
+    ],
+    "stressors": [
+     41
+    ],
+    "reduce": [
+     42
+    ],
+    "the": [
+     43,
+     64,
+     73,
+     78,
+     85,
+     93,
+     105,
+     120,
+     127,
+     145,
+     173,
+     177,
+     183,
+     197
+    ],
+    "thermal": [
+     45,
+     134,
+     193
+    ],
+    "tolerance": [
+     46,
+     194
+    ],
+    "threshold,": [
+     47
+    ],
+    "leading": [
+     48
+    ],
+    "increased": [
+     50
+    ],
+    "bleaching": [
+     51,
+     88,
+     181
+    ],
+    "incidence.": [
+     52
+    ],
+    "Using": [
+     53
+    ],
+    "tree‐ring": [
+     54
+    ],
+    "techniques,": [
+     55
+    ],
+    "we": [
+     56
+    ],
+    "produced": [
+     57
+    ],
+    "master": [
+     58
+    ],
+    "chronologies": [
+     59
+    ],
+    "of": [
+     60,
+     130,
+     147,
+     179,
+     200
+    ],
+    "growth": [
+     61
+    ],
+    "rates": [
+     62
+    ],
+    "dominant": [
+     65
+    ],
+    "builder,": [
+     67
+    ],
+    "massive": [
+     68
+    ],
+    "Montastraea": [
+     69
+    ],
+    "faveolata": [
+     70
+    ],
+    "corals,": [
+     71
+    ],
+    "over": [
+     72
+    ],
+    "past": [
+     74,
+     94
+    ],
+    "75–150": [
+     75
+    ],
+    "years": [
+     76
+    ],
+    "from": [
+     77,
+     126,
+     191
+    ],
+    "Mesoamerican": [
+     79,
+     184
+    ],
+    "Reef.": [
+     80
+    ],
+    "Our": [
+     81
+    ],
+    "records": [
+     82
+    ],
+    "indicate": [
+     83
+    ],
+    "that": [
+     84,
+     98,
+     143
+    ],
+    "1998": [
+     86,
+     187
+    ],
+    "mass": [
+     87,
+     180
+    ],
+    "event": [
+     89
+    ],
+    "was": [
+     90
+    ],
+    "unprecedented": [
+     91
+    ],
+    "century,": [
+     95
+    ],
+    "despite": [
+     96
+    ],
+    "evidence": [
+     97
+    ],
+    "irradiance": [
+     103
+    ],
+    "region": [
+     106
+    ],
+    "were": [
+     107
+    ],
+    "as": [
+     108,
+     172
+    ],
+    "or": [
+     110
+    ],
+    "higher": [
+     111
+    ],
+    "mid‐century": [
+     112
+    ],
+    "than": [
+     113,
+     167
+    ],
+    "more": [
+     115
+    ],
+    "recent": [
+     116,
+     159
+    ],
+    "decades.": [
+     117
+    ],
+    "We": [
+     118,
+     141
+    ],
+    "tested": [
+     119
+    ],
+    "influence": [
+     121
+    ],
+    "on": [
+     122,
+     182
+    ],
+    "extension": [
+     124,
+     162
+    ],
+    "rate": [
+     125,
+     163
+    ],
+    "interactive": [
+     128
+    ],
+    "effects": [
+     129,
+     146
+    ],
+    "human": [
+     131,
+     153
+    ],
+    "populations": [
+     132
+    ],
+    "stress,": [
+     135
+    ],
+    "calculated": [
+     136
+    ],
+    "here": [
+     137
+    ],
+    "degree‐heating‐months": [
+     139
+    ],
+    "(DHM).": [
+     140
+    ],
+    "find": [
+     142
+    ],
+    "when": [
+     144,
+     168
+    ],
+    "chronic": [
+     148,
+     201
+    ],
+    "stressors,": [
+     150
+    ],
+    "represented": [
+     151
+    ],
+    "by": [
+     152
+    ],
+    "population,": [
+     154
+    ],
+    "are": [
+     155,
+     164
+    ],
+    "taken": [
+     156
+    ],
+    "into": [
+     157
+    ],
+    "account,": [
+     158
+    ],
+    "reductions": [
+     160
+    ],
+    "better": [
+     165
+    ],
+    "explained": [
+     166
+    ],
+    "DHM": [
+     169
+    ],
+    "used": [
+     171
+    ],
+    "sole": [
+     174
+    ],
+    "predictor.": [
+     175
+    ],
+    "Therefore,": [
+     176
+    ],
+    "occurrence": [
+     178
+    ],
+    "stem": [
+     190
+    ],
+    "reduced": [
+     192
+    ],
+    "due": [
+     195
+    ],
+    "synergistic": [
+     198
+    ],
+    "impacts": [
+     199
+    ],
+    "stressors.": [
+     203
+    ]
+   },
+   "authorships": [
+    {
+     "author": {
+      "display_name": "Jessica Carilli"
+     },
+     "raw_author_name": "JESSICA E. CARILLI"
+    },
+    {
+     "author": {
+      "display_name": "Richard D. Norris"
+     },
+     "raw_author_name": "RICHARD D. NORRIS"
+    },
+    {
+     "author": {
+      "display_name": "Bryan A. Black"
+     },
+     "raw_author_name": "BRYAN BLACK"
+    },
+    {
+     "author": {
+      "display_name": "Sheila M. Walsh"
+     },
+     "raw_author_name": "SHEILA M. WALSH"
+    },
+    {
+     "author": {
+      "display_name": "Melanie McField"
+     },
+     "raw_author_name": "MELANIE McFIELD"
+    }
+   ],
+   "primary_location": {
+    "landing_page_url": "https://doi.org/10.1111/j.1365-2486.2009.02043.x",
+    "pdf_url": null,
+    "source": {
+     "display_name": "Global Change Biology"
+    }
+   },
+   "best_oa_location": null,
+   "open_access": {
+    "is_oa": false,
+    "oa_url": null
+   },
+   "primary_topic": {
+    "display_name": "Coral and Marine Ecosystems Studies",
+    "score": 1.0
+   },
+   "topics": [
+    {
+     "display_name": "Coral and Marine Ecosystems Studies",
+     "score": 1.0
+    },
+    {
+     "display_name": "Tree-ring climate responses",
+     "score": 0.0
+    },
+    {
+     "display_name": "Ocean Acidification Effects and Responses",
+     "score": 0.0
+    }
+   ],
+   "keywords": [
+    {
+     "display_name": "coral bleaching",
+     "score": 0.8920000195503235
+    },
+    {
+     "display_name": "coral thermal tolerance",
+     "score": 0.7609999775886536
+    },
+    {
+     "display_name": "Montastraea faveolata",
+     "score": 0.949999988079071
+    },
+    {
+     "display_name": "coral growth rate",
+     "score": 0.9409999847412109
+    },
+    {
+     "display_name": "local stressors",
+     "score": 0.6539999842643738
+    },
+    {
+     "display_name": "human population pressure",
+     "score": 0.781000018119812
+    },
+    {
+     "display_name": "Mesoamerican Reef",
+     "score": 0.9610000252723694
+    },
+    {
+     "display_name": "coral reef degradation",
+     "score": 0.5099999904632568
+    }
+   ],
+   "concepts": [
+    {
+     "display_name": "Coral",
+     "score": 0.8138214349746704,
+     "level": 2
+    },
+    {
+     "display_name": "Reef",
+     "score": 0.8076471090316772,
+     "level": 2
+    },
+    {
+     "display_name": "Coral bleaching",
+     "score": 0.7458639740943909,
+     "level": 3
+    },
+    {
+     "display_name": "Coral reef",
+     "score": 0.6022566556930542,
+     "level": 2
+    },
+    {
+     "display_name": "Ecology",
+     "score": 0.5964733362197876,
+     "level": 1
+    },
+    {
+     "display_name": "Environmental science",
+     "score": 0.4800792336463928,
+     "level": 0
+    },
+    {
+     "display_name": "Population",
+     "score": 0.44378969073295593,
+     "level": 2
+    },
+    {
+     "display_name": "Oceanography",
+     "score": 0.41704797744750977,
+     "level": 1
+    }
+   ]
+  },
+  {
+   "id": "https://openalex.org/W2148447618",
+   "doi": "https://doi.org/10.3354/meps237133",
+   "display_name": "Mortality, growth and reproduction in scleractinian corals following bleaching on the Great Barrier Reef",
+   "publication_year": 2002,
+   "publication_date": "2002-01-01",
+   "type": "article",
+   "language": "en",
+   "cited_by_count": 620,
+   "abstract_inverted_index": {
+    "Despite": [
+     0
+    ],
+    "extensive": [
+     1
+    ],
+    "research": [
+     2
+    ],
+    "into": [
+     3
+    ],
+    "the": [
+     4,
+     15,
+     29,
+     56,
+     75,
+     125,
+     194,
+     197,
+     219,
+     239,
+     270
+    ],
+    "coral": [
+     5,
+     45
+    ],
+    "bleaching": [
+     6,
+     78,
+     222,
+     249
+    ],
+    "phenomena": [
+     7
+    ],
+    "there": [
+     8
+    ],
+    "are": [
+     9,
+     23
+    ],
+    "very": [
+     10
+    ],
+    "few": [
+     11,
+     161
+    ],
+    "data": [
+     12,
+     22
+    ],
+    "which": [
+     13
+    ],
+    "examine": [
+     14,
+     74
+    ],
+    "population": [
+     16
+    ],
+    "biology": [
+     17
+    ],
+    "of": [
+     18,
+     31,
+     42,
+     77,
+     124,
+     128,
+     151,
+     168,
+     187,
+     199,
+     218,
+     221,
+     225,
+     229,
+     238,
+     241,
+     255,
+     273,
+     282
+    ],
+    "affected": [
+     19
+    ],
+    "species.": [
+     20,
+     86
+    ],
+    "These": [
+     21
+    ],
+    "required": [
+     24
+    ],
+    "in": [
+     25,
+     60,
+     83,
+     135,
+     269
+    ],
+    "order": [
+     26
+    ],
+    "to": [
+     27,
+     33,
+     35,
+     62,
+     73,
+     95,
+     98,
+     102,
+     248,
+     260,
+     279,
+     286
+    ],
+    "predict": [
+     28
+    ],
+    "capacity": [
+     30
+    ],
+    "corals": [
+     32
+    ],
+    "respond": [
+     34
+    ],
+    "environmental": [
+     36
+    ],
+    "change.": [
+     37
+    ],
+    "We": [
+     38
+    ],
+    "monitored": [
+     39
+    ],
+    "individual": [
+     40
+    ],
+    "colonies": [
+     41,
+     92,
+     111,
+     150,
+     163,
+     231,
+     257
+    ],
+    "4": [
+     43
+    ],
+    "common": [
+     44
+    ],
+    "species": [
+     46,
+     188
+    ],
+    "for": [
+     47
+    ],
+    "8": [
+     48
+    ],
+    "mo": [
+     49
+    ],
+    "following": [
+     50
+    ],
+    "historically": [
+     51
+    ],
+    "high": [
+     52,
+     134
+    ],
+    "sea-surface": [
+     53
+    ],
+    "temperatures": [
+     54
+    ],
+    "on": [
+     55,
+     79,
+     193,
+     215
+    ],
+    "Great": [
+     57
+    ],
+    "Barrier": [
+     58
+    ],
+    "Reef": [
+     59
+    ],
+    "1998": [
+     61
+    ],
+    "compare": [
+     63
+    ],
+    "their": [
+     64
+    ],
+    "response": [
+     65
+    ],
+    "to,": [
+     66
+    ],
+    "and": [
+     67,
+     72,
+     81,
+     89,
+     100,
+     108,
+     114,
+     139,
+     143,
+     154,
+     160,
+     178,
+     201,
+     206,
+     235
+    ],
+    "recovery": [
+     68,
+     278
+    ],
+    "from,": [
+     69
+    ],
+    "thermal": [
+     70
+    ],
+    "stress": [
+     71,
+     200
+    ],
+    "effect": [
+     76
+    ],
+    "growth": [
+     80
+    ],
+    "reproduction": [
+     82
+    ],
+    "2": [
+     84
+    ],
+    "Acropora": [
+     85,
+     106,
+     230,
+     275
+    ],
+    "Platygyra": [
+     87
+    ],
+    "daedalea": [
+     88,
+     153
+    ],
+    "P.": [
+     90,
+     152,
+     155
+    ],
+    "lobata": [
+     91,
+     156
+    ],
+    "took": [
+     93
+    ],
+    "longer": [
+     94,
+     97,
+     101
+    ],
+    "bleach,": [
+     96
+    ],
+    "recover": [
+     99
+    ],
+    "die.": [
+     103
+    ],
+    "In": [
+     104,
+     147
+    ],
+    "contrast,": [
+     105,
+     148
+    ],
+    "hyacinthus": [
+     107,
+     137,
+     244
+    ],
+    "A.": [
+     109,
+     136,
+     140,
+     243,
+     251
+    ],
+    "millepora": [
+     110,
+     141,
+     252
+    ],
+    "bleached": [
+     112
+    ],
+    "quickly": [
+     113
+    ],
+    "most": [
+     115,
+     149
+    ],
+    "had": [
+     116
+    ],
+    "either": [
+     117
+    ],
+    "recovered,": [
+     118
+    ],
+    "or": [
+     119
+    ],
+    "died,": [
+     120
+    ],
+    "within": [
+     121
+    ],
+    "14": [
+     122
+    ],
+    "wk": [
+     123
+    ],
+    "initial": [
+     126
+    ],
+    "reports": [
+     127
+    ],
+    "bleaching.": [
+     129,
+     242
+    ],
+    "Whole": [
+     130
+    ],
+    "colony": [
+     131,
+     172,
+     208
+    ],
+    "mortality": [
+     132,
+     145,
+     211,
+     264
+    ],
+    "was": [
+     133,
+     173,
+     212,
+     245
+    ],
+    "(88%)": [
+     138
+    ],
+    "(32%)": [
+     142
+    ],
+    "partial": [
+     144,
+     207
+    ],
+    "rare.": [
+     146
+    ],
+    "lost": [
+     157,
+     170
+    ],
+    "some": [
+     158
+    ],
+    "tissue": [
+     159,
+     169
+    ],
+    "whole": [
+     162,
+     205
+    ],
+    "died.": [
+     164
+    ],
+    "The": [
+     165
+    ],
+    "mean": [
+     166
+    ],
+    "proportion": [
+     167
+    ],
+    "per": [
+     171
+    ],
+    "43": [
+     174
+    ],
+    "±": [
+     175,
+     180
+    ],
+    "6.6": [
+     176
+    ],
+    "%": [
+     177,
+     182
+    ],
+    "11": [
+     179
+    ],
+    "1.1": [
+     181
+    ],
+    "respectively.": [
+     183
+    ],
+    "Consequently,": [
+     184
+    ],
+    "observed": [
+     185
+    ],
+    "hierarchies": [
+     186
+    ],
+    "susceptibility": [
+     189
+    ],
+    "will": [
+     190
+    ],
+    "depend": [
+     191
+    ],
+    "critically": [
+     192
+    ],
+    "time": [
+     195
+    ],
+    "since": [
+     196
+    ],
+    "onset": [
+     198
+    ],
+    "must": [
+     202
+    ],
+    "consider": [
+     203
+    ],
+    "both": [
+     204
+    ],
+    "mortality.": [
+     209
+    ],
+    "Colony": [
+     210
+    ],
+    "highly": [
+     213,
+     233
+    ],
+    "dependent": [
+     214
+    ],
+    "visual": [
+     216
+    ],
+    "estimates": [
+     217
+    ],
+    "severity": [
+     220,
+     240
+    ],
+    "but": [
+     223
+    ],
+    "independent": [
+     224,
+     237
+    ],
+    "size.": [
+     226
+    ],
+    "Growth": [
+     227
+    ],
+    "rates": [
+     228
+    ],
+    "were": [
+     232
+    ],
+    "variable": [
+     234
+    ],
+    "largely": [
+     236
+    ],
+    "more": [
+     246
+    ],
+    "susceptible": [
+     247
+    ],
+    "than": [
+     250
+    ],
+    "with": [
+     253,
+     266
+    ],
+    "45%": [
+     254
+    ],
+    "surviving": [
+     256,
+     274
+    ],
+    "gravid": [
+     258
+    ],
+    "compared": [
+     259
+    ],
+    "88%.": [
+     261
+    ],
+    "High": [
+     262
+    ],
+    "whole-colony": [
+     263
+    ],
+    "combined": [
+     265
+    ],
+    "a": [
+     267
+    ],
+    "reduction": [
+     268
+    ],
+    "reproductive": [
+     271
+    ],
+    "output": [
+     272
+    ],
+    "suggests": [
+     276
+    ],
+    "that": [
+     277
+    ],
+    "former": [
+     280
+    ],
+    "levels": [
+     281
+    ],
+    "abundance": [
+     283
+    ],
+    "is": [
+     284
+    ],
+    "likely": [
+     285
+    ],
+    "be": [
+     287
+    ],
+    "slow.": [
+     288
+    ]
+   },
+   "authorships": [
+    {
+     "author": {
+      "display_name": "AH Baird"
+     },
+     "raw_author_name": "AH Baird"
+    },
+    {
+     "author": {
+      "display_name": "PA Marshall"
+     },
+     "raw_author_name": "PA Marshall"
+    }
+   ],
+   "primary_location": {
+    "landing_page_url": "https://doi.org/10.3354/meps237133",
+    "pdf_url": "https://www.int-res.com/articles/meps2002/237/m237p133.pdf",
+    "source": {
+     "display_name": "Marine Ecology Progress Series"
+    }
+   },
+   "best_oa_location": {
+    "landing_page_url": "https://doi.org/10.3354/meps237133",
+    "pdf_url": "https://www.int-res.com/articles/meps2002/237/m237p133.pdf",
+    "source": {
+     "display_name": "Marine Ecology Progress Series"
+    }
+   },
+   "open_access": {
+    "is_oa": true,
+    "oa_url": "https://www.int-res.com/articles/meps2002/237/m237p133.pdf"
+   },
+   "primary_topic": {
+    "display_name": "Coral and Marine Ecosystems Studies",
+    "score": 1.0
+   },
+   "topics": [
+    {
+     "display_name": "Coral and Marine Ecosystems Studies",
+     "score": 1.0
+    },
+    {
+     "display_name": "Marine Invertebrate Physiology and Ecology",
+     "score": 0.0
+    },
+    {
+     "display_name": "Ocean Acidification Effects and Responses",
+     "score": 0.0
+    }
+   ],
+   "keywords": [
+    {
+     "display_name": "coral bleaching",
+     "score": 0.9980000257492065
+    },
+    {
+     "display_name": "scleractinian corals",
+     "score": 0.972000002861023
+    },
+    {
+     "display_name": "Acropora",
+     "score": 0.8140000104904175
+    },
+    {
+     "display_name": "Platygyra daedalea",
+     "score": 0.9100000262260437
+    },
+    {
+     "display_name": "Acropora hyacinthus",
+     "score": 0.9950000047683716
+    },
+    {
+     "display_name": "Acropora millepora",
+     "score": 1.0
+    },
+    {
+     "display_name": "thermal stress (biology)",
+     "score": 0.7990000247955322
+    },
+    {
+     "display_name": "colony mortality",
+     "score": 0.777999997138977
+    },
+    {
+     "display_name": "tissue loss",
+     "score": 0.7409999966621399
+    },
+    {
+     "display_name": "coral growth",
+     "score": 0.8040000200271606
+    },
+    {
+     "display_name": "coral reproduction",
+     "score": 0.953000009059906
+    },
+    {
+     "display_name": "reproductive output",
+     "score": 0.6140000224113464
+    },
+    {
+     "display_name": "Great Barrier Reef",
+     "score": 0.6819999814033508
+    },
+    {
+     "display_name": "coral recovery",
+     "score": 0.47999998927116394
+    }
+   ],
+   "concepts": [
+    {
+     "display_name": "Biology",
+     "score": 0.7210846543312073,
+     "level": 0
+    },
+    {
+     "display_name": "Coral",
+     "score": 0.6708928346633911,
+     "level": 2
+    },
+    {
+     "display_name": "Reef",
+     "score": 0.5908688902854919,
+     "level": 2
+    },
+    {
+     "display_name": "Cnidaria",
+     "score": 0.5879440307617188,
+     "level": 3
+    },
+    {
+     "display_name": "Ecology",
+     "score": 0.5761610269546509,
+     "level": 1
+    },
+    {
+     "display_name": "Coral reef",
+     "score": 0.5224782228469849,
+     "level": 2
+    },
+    {
+     "display_name": "Population",
+     "score": 0.47736382484436035,
+     "level": 2
+    },
+    {
+     "display_name": "Coral bleaching",
+     "score": 0.4479936957359314,
+     "level": 3
+    }
+   ]
+  },
+  {
+   "id": "https://openalex.org/W2154785741",
+   "doi": "https://doi.org/10.3354/meps239093",
+   "display_name": "Recovery of coral populations after the 1998 bleaching on Shiraho Reef, in the southern Ryukyus, NW Pacific",
+   "publication_year": 2002,
+   "publication_date": "2002-01-01",
+   "type": "article",
+   "language": "en",
+   "cited_by_count": 127,
+   "abstract_inverted_index": {
+    "MEPS": [
+     0,
+     25,
+     433
+    ],
+    "Marine": [
+     1
+    ],
+    "Ecology": [
+     2
+    ],
+    "Progress": [
+     3
+    ],
+    "Series": [
+     4
+    ],
+    "Contact": [
+     5
+    ],
+    "the": [
+     6,
+     22,
+     35,
+     42,
+     138,
+     161,
+     183,
+     196,
+     205,
+     248,
+     261,
+     274,
+     281,
+     284,
+     312,
+     369,
+     371,
+     383,
+     391,
+     397
+    ],
+    "journal": [
+     7
+    ],
+    "Facebook": [
+     8,
+     424
+    ],
+    "Twitter": [
+     9
+    ],
+    "RSS": [
+     10,
+     422
+    ],
+    "Mailing": [
+     11
+    ],
+    "List": [
+     12
+    ],
+    "Subscribe": [
+     13
+    ],
+    "to": [
+     14,
+     147,
+     169,
+     191,
+     234,
+     251,
+     267,
+     292,
+     317,
+     336,
+     364,
+     368
+    ],
+    "our": [
+     15
+    ],
+    "mailing": [
+     16
+    ],
+    "list": [
+     17
+    ],
+    "via": [
+     18
+    ],
+    "Mailchimp": [
+     19
+    ],
+    "HomeLatest": [
+     20
+    ],
+    "VolumeAbout": [
+     21
+    ],
+    "JournalEditorsTheme": [
+     23
+    ],
+    "Sections": [
+     24
+    ],
+    "239:93-103": [
+     26
+    ],
+    "(2002)": [
+     27
+    ],
+    "-": [
+     28,
+     423,
+     425,
+     427
+    ],
+    "doi:10.3354/meps239093": [
+     29
+    ],
+    "Recovery": [
+     30,
+     409
+    ],
+    "of": [
+     31,
+     56,
+     62,
+     69,
+     76,
+     120,
+     132,
+     164,
+     199,
+     208,
+     324,
+     334,
+     341,
+     351,
+     362,
+     385,
+     388,
+     399
+    ],
+    "coral": [
+     32,
+     121,
+     165,
+     372
+    ],
+    "populations": [
+     33,
+     166
+    ],
+    "after": [
+     34,
+     182,
+     260,
+     273,
+     311
+    ],
+    "1998": [
+     36,
+     128
+    ],
+    "bleaching": [
+     37,
+     119,
+     142,
+     184,
+     252,
+     275,
+     293,
+     313,
+     365,
+     380
+    ],
+    "on": [
+     38,
+     156,
+     390
+    ],
+    "Shiraho": [
+     39,
+     200,
+     400
+    ],
+    "Reef,": [
+     40,
+     201
+    ],
+    "in": [
+     41,
+     125,
+     150,
+     204,
+     396,
+     417,
+     432
+    ],
+    "southern": [
+     43
+    ],
+    "Ryukyus,": [
+     44
+    ],
+    "NW": [
+     45
+    ],
+    "Pacific": [
+     46
+    ],
+    "Hajime": [
+     47
+    ],
+    "Kayanne1,*,": [
+     48
+    ],
+    "Saki": [
+     49
+    ],
+    "Harii2,": [
+     50
+    ],
+    "Yoichi": [
+     51
+    ],
+    "Ide3,**,": [
+     52
+    ],
+    "Fujio": [
+     53
+    ],
+    "Akimoto4": [
+     54
+    ],
+    "1Department": [
+     55
+    ],
+    "Earth": [
+     57
+    ],
+    "and": [
+     58,
+     71,
+     117,
+     127,
+     179,
+     218,
+     223,
+     237,
+     243,
+     253,
+     259,
+     276,
+     288,
+     294,
+     356,
+     378
+    ],
+    "Planetary": [
+     59
+    ],
+    "Science,": [
+     60
+    ],
+    "University": [
+     61
+    ],
+    "Tokyo,": [
+     63
+    ],
+    "Hongo,": [
+     64
+    ],
+    "Tokyo": [
+     65,
+     74,
+     79,
+     99
+    ],
+    "113-0033,": [
+     66
+    ],
+    "Japan": [
+     67,
+     81,
+     90,
+     101,
+     112
+    ],
+    "2Department": [
+     68
+    ],
+    "Mechanical": [
+     70
+    ],
+    "Environmental": [
+     72
+    ],
+    "Informatics,": [
+     73
+    ],
+    "Institute": [
+     75,
+     84
+    ],
+    "Technology,": [
+     77
+    ],
+    "Ookayama,": [
+     78
+    ],
+    "152-8552,": [
+     80
+    ],
+    "3Marine": [
+     82
+    ],
+    "Ecological": [
+     83
+    ],
+    "Co.": [
+     85,
+     96
+    ],
+    "Ltd.,": [
+     86,
+     97
+    ],
+    "Haradamotomachi,": [
+     87
+    ],
+    "Osaka": [
+     88
+    ],
+    "561-0808,": [
+     89
+    ],
+    "4Fuyo": [
+     91
+    ],
+    "Ocean": [
+     92
+    ],
+    "Development": [
+     93
+    ],
+    "&": [
+     94
+    ],
+    "Engineering": [
+     95
+    ],
+    "Kuramae,": [
+     98
+    ],
+    "111-0051,": [
+     100
+    ],
+    "*E-mail:": [
+     102
+    ],
+    "kayanne@eps.s.u-tokyo.ac.jp": [
+     103
+    ],
+    "**Present": [
+     104
+    ],
+    "address:": [
+     105
+    ],
+    "Oceanic": [
+     106
+    ],
+    "Planning": [
+     107
+    ],
+    "Corporation,": [
+     108
+    ],
+    "Kasuya,": [
+     109
+    ],
+    "Fukuoka": [
+     110
+    ],
+    "811-2304,": [
+     111
+    ],
+    "ABSTRACT:": [
+     113
+    ],
+    "The": [
+     114,
+     210,
+     360
+    ],
+    "most": [
+     115
+    ],
+    "extensive": [
+     116,
+     141
+    ],
+    "severe": [
+     118,
+     379
+    ],
+    "ever": [
+     122
+    ],
+    "recorded": [
+     123
+    ],
+    "occurred": [
+     124,
+     143
+    ],
+    "1997": [
+     126
+    ],
+    "as": [
+     129,
+     395
+    ],
+    "a": [
+     130,
+     157,
+     330,
+     347
+    ],
+    "result": [
+     131
+    ],
+    "anomalously": [
+     133
+    ],
+    "high": [
+     134
+    ],
+    "sea-surface": [
+     135
+    ],
+    "temperatures.": [
+     136
+    ],
+    "In": [
+     137
+    ],
+    "Ryukyu": [
+     139,
+     206,
+     413
+    ],
+    "Islands,": [
+     140
+    ],
+    "from": [
+     144
+    ],
+    "late": [
+     145
+    ],
+    "July": [
+     146
+    ],
+    "early": [
+     148
+    ],
+    "October": [
+     149
+    ],
+    "1998.": [
+     151
+    ],
+    "A": [
+     152
+    ],
+    "time-series": [
+     153
+    ],
+    "transect": [
+     154
+    ],
+    "study": [
+     155
+    ],
+    "reef": [
+     158,
+     197,
+     393,
+     405
+    ],
+    "flat": [
+     159,
+     198
+    ],
+    "revealed": [
+     160
+    ],
+    "different": [
+     162
+    ],
+    "responses": [
+     163
+    ],
+    "among": [
+     167
+    ],
+    "species": [
+     168,
+     235
+    ],
+    "this": [
+     170
+    ],
+    "event.": [
+     171
+    ],
+    "Coral": [
+     172,
+     404
+    ],
+    "cover": [
+     173
+    ],
+    "was": [
+     174,
+     247,
+     296,
+     302
+    ],
+    "monitored": [
+     175
+    ],
+    "just": [
+     176
+    ],
+    "before,": [
+     177
+    ],
+    "during,": [
+     178
+    ],
+    "6": [
+     180
+    ],
+    "times": [
+     181
+    ],
+    "occurred,": [
+     185
+    ],
+    "along": [
+     186,
+     329,
+     346
+    ],
+    "5": [
+     187
+    ],
+    "fixed": [
+     188
+    ],
+    "transects,": [
+     189
+    ],
+    "710": [
+     190
+    ],
+    "800": [
+     192
+    ],
+    "m": [
+     193,
+     328,
+     345
+    ],
+    "long,": [
+     194
+    ],
+    "across": [
+     195
+    ],
+    "Ishigaki": [
+     202
+    ],
+    "Island,": [
+     203
+    ],
+    "Islands": [
+     207,
+     414
+    ],
+    "Japan.": [
+     209
+    ],
+    "dominant": [
+     211
+    ],
+    "corals": [
+     212,
+     363,
+     389
+    ],
+    "were": [
+     213,
+     265,
+     290
+    ],
+    "Heliopora": [
+     214
+    ],
+    "coerulea,": [
+     215
+    ],
+    "massive": [
+     216
+    ],
+    "Porites,": [
+     217,
+     220,
+     286
+    ],
+    "branching": [
+     219,
+     285,
+     300
+    ],
+    "Montipora,": [
+     221,
+     287
+    ],
+    "Acropora,": [
+     222
+    ],
+    "Pavona": [
+     224
+    ],
+    "(these": [
+     225
+    ],
+    "latter": [
+     226
+    ],
+    "4": [
+     227
+    ],
+    "genera": [
+     228
+    ],
+    "could": [
+     229
+    ],
+    "not": [
+     230,
+     358
+    ],
+    "always": [
+     231
+    ],
+    "be": [
+     232
+    ],
+    "distinguished": [
+     233
+    ],
+    "level,": [
+     236
+    ],
+    "are": [
+     238
+    ],
+    "thus": [
+     239
+    ],
+    "grouped": [
+     240
+    ],
+    "by": [
+     241,
+     299,
+     305,
+     308,
+     430
+    ],
+    "genus": [
+     242
+    ],
+    "ecoform).": [
+     244
+    ],
+    "H.": [
+     245
+    ],
+    "coerulea": [
+     246
+    ],
+    "least": [
+     249
+    ],
+    "susceptible": [
+     250,
+     266,
+     291
+    ],
+    "maintained": [
+     254
+    ],
+    "almost": [
+     255
+    ],
+    "constant": [
+     256
+    ],
+    "coverage": [
+     257,
+     333,
+     350
+    ],
+    "before": [
+     258
+    ],
+    "bleaching.": [
+     262
+    ],
+    "Massive": [
+     263
+    ],
+    "Porites": [
+     264
+    ],
+    "bleaching,": [
+     268
+    ],
+    "but": [
+     269,
+     307
+    ],
+    "regained": [
+     270
+    ],
+    "their": [
+     271,
+     278
+    ],
+    "algae": [
+     272
+    ],
+    "sustained": [
+     277
+    ],
+    "coverage.": [
+     279,
+     319
+    ],
+    "On": [
+     280
+    ],
+    "other": [
+     282
+    ],
+    "hand,": [
+     283
+    ],
+    "Acropora": [
+     289
+    ],
+    "mortality": [
+     295
+    ],
+    "high.": [
+     297
+    ],
+    "Coverage": [
+     298
+    ],
+    "Montipora": [
+     301
+    ],
+    "initially": [
+     303
+    ],
+    "reduced": [
+     304
+    ],
+    "66%,": [
+     306
+    ],
+    "2": [
+     309
+    ],
+    "yr": [
+     310
+    ],
+    "it": [
+     314
+    ],
+    "had": [
+     315
+    ],
+    "recovered": [
+     316
+    ],
+    "pre-bleaching": [
+     318
+    ],
+    "However,": [
+     320
+    ],
+    "only": [
+     321
+    ],
+    "large": [
+     322
+    ],
+    "patches": [
+     323,
+     340
+    ],
+    "more": [
+     325
+    ],
+    "than": [
+     326,
+     343,
+     353
+    ],
+    "70": [
+     327
+    ],
+    "transect,": [
+     331,
+     348
+    ],
+    "with": [
+     332,
+     349
+    ],
+    "10": [
+     335
+    ],
+    "40%,": [
+     337
+    ],
+    "recovered.": [
+     338
+    ],
+    "Small": [
+     339
+    ],
+    "less": [
+     342,
+     352
+    ],
+    "30": [
+     344
+    ],
+    "10%,": [
+     354
+    ],
+    "died": [
+     355
+    ],
+    "did": [
+     357
+    ],
+    "recover.": [
+     359
+    ],
+    "response": [
+     361
+    ],
+    "differs": [
+     366
+    ],
+    "according": [
+     367
+    ],
+    "strategy": [
+     370
+    ],
+    "uses": [
+     373
+    ],
+    "against": [
+     374
+    ],
+    "bleaching;": [
+     375
+    ],
+    "moderately": [
+     376
+    ],
+    "frequent": [
+     377
+    ],
+    "might": [
+     381
+    ],
+    "permit": [
+     382
+    ],
+    "coexistence": [
+     384
+    ],
+    "both": [
+     386
+    ],
+    "types": [
+     387
+    ],
+    "same": [
+     392
+    ],
+    "flat,": [
+     394
+    ],
+    "case": [
+     398
+    ],
+    "Reef.": [
+     401
+    ],
+    "KEY": [
+     402
+    ],
+    "WORDS:": [
+     403
+    ],
+    "·": [
+     406,
+     408,
+     410,
+     412
+    ],
+    "Bleaching": [
+     407
+    ],
+    "Population": [
+     411
+    ],
+    "Full": [
+     415
+    ],
+    "text": [
+     416
+    ],
+    "pdf": [
+     418
+    ],
+    "format": [
+     419
+    ],
+    "PreviousNextExport": [
+     420
+    ],
+    "citation": [
+     421
+    ],
+    "Tweet": [
+     426
+    ],
+    "linkedIn": [
+     428
+    ],
+    "Cited": [
+     429
+    ],
+    "Published": [
+     431
+    ],
+    "Vol.": [
+     434
+    ],
+    "239.": [
+     435
+    ],
+    "Online": [
+     436,
+     445
+    ],
+    "publication": [
+     437
+    ],
+    "date:": [
+     438
+    ],
+    "August": [
+     439
+    ],
+    "23,": [
+     440
+    ],
+    "2002": [
+     441,
+     450
+    ],
+    "Print": [
+     442
+    ],
+    "ISSN:": [
+     443,
+     446
+    ],
+    "0171-8630;": [
+     444
+    ],
+    "1616-1599": [
+     447
+    ],
+    "Copyright": [
+     448
+    ],
+    "©": [
+     449
+    ],
+    "Inter-Research.": [
+     451
+    ]
+   },
+   "authorships": [
+    {
+     "author": {
+      "display_name": "Hajime Kayanne"
+     },
+     "raw_author_name": "H Kayanne"
+    },
+    {
+     "author": {
+      "display_name": "Saki Harii"
+     },
+     "raw_author_name": "S Harii"
+    },
+    {
+     "author": {
+      "display_name": "Y Ide"
+     },
+     "raw_author_name": "Y Ide"
+    },
+    {
+     "author": {
+      "display_name": "Fujio Akimoto"
+     },
+     "raw_author_name": "F Akimoto"
+    }
+   ],
+   "primary_location": {
+    "landing_page_url": "https://doi.org/10.3354/meps239093",
+    "pdf_url": null,
+    "source": {
+     "display_name": "Marine Ecology Progress Series"
+    }
+   },
+   "best_oa_location": null,
+   "open_access": {
+    "is_oa": false,
+    "oa_url": null
+   },
+   "primary_topic": {
+    "display_name": "Coral and Marine Ecosystems Studies",
+    "score": 1.0
+   },
+   "topics": [
+    {
+     "display_name": "Coral and Marine Ecosystems Studies",
+     "score": 1.0
+    },
+    {
+     "display_name": "Marine Biology and Ecology Research",
+     "score": 0.0
+    },
+    {
+     "display_name": "Marine Invertebrate Physiology and Ecology",
+     "score": 0.0
+    }
+   ],
+   "keywords": [
+    {
+     "display_name": "coral bleaching",
+     "score": 0.8209999799728394
+    },
+    {
+     "display_name": "1998 El Niño",
+     "score": 0.871999979019165
+    },
+    {
+     "display_name": "Ryukyu Islands",
+     "score": 0.7400000095367432
+    },
+    {
+     "display_name": "Heliopora coerulea",
+     "score": 0.8840000033378601
+    },
+    {
+     "display_name": "Porites",
+     "score": 0.9210000038146973
+    },
+    {
+     "display_name": "Montipora",
+     "score": 0.7319999933242798
+    },
+    {
+     "display_name": "Acropora",
+     "score": 0.9039999842643738
+    },
+    {
+     "display_name": "Pavona",
+     "score": 0.8489999771118164
+    },
+    {
+     "display_name": "coral cover",
+     "score": 0.6869999766349792
+    },
+    {
+     "display_name": "sea surface temperature",
+     "score": 0.6259999871253967
+    },
+    {
+     "display_name": "coral resilience",
+     "score": 0.32100000977516174
+    },
+    {
+     "display_name": "reef flat",
+     "score": 0.6470000147819519
+    },
+    {
+     "display_name": "coral reef ecology",
+     "score": 0.3659999966621399
+    }
+   ],
+   "concepts": [
+    {
+     "display_name": "Reef",
+     "score": 0.806876540184021,
+     "level": 2
+    },
+    {
+     "display_name": "Porites",
+     "score": 0.7259606122970581,
+     "level": 3
+    },
+    {
+     "display_name": "Coral",
+     "score": 0.6948246359825134,
+     "level": 2
+    },
+    {
+     "display_name": "Coral bleaching",
+     "score": 0.6947556734085083,
+     "level": 3
+    },
+    {
+     "display_name": "Oceanography",
+     "score": 0.649499773979187,
+     "level": 1
+    },
+    {
+     "display_name": "Acropora",
+     "score": 0.645287811756134,
+     "level": 3
+    },
+    {
+     "display_name": "Coral reef",
+     "score": 0.551682710647583,
+     "level": 2
+    },
+    {
+     "display_name": "Transect",
+     "score": 0.4951898157596588,
+     "level": 2
+    }
+   ]
+  },
+  {
+   "id": "https://openalex.org/W2277596638",
+   "doi": "https://doi.org/10.1126/science.aad0349",
+   "display_name": "Warm-water coral reefs and climate change",
+   "publication_year": 2015,
+   "publication_date": "2015-11-12",
+   "type": "article",
+   "language": "en",
+   "cited_by_count": 295,
+   "abstract_inverted_index": {
+    "Coral": [
+     0
+    ],
+    "reefs": [
+     1,
+     79,
+     96
+    ],
+    "are": [
+     2,
+     7,
+     32,
+     45
+    ],
+    "highly": [
+     3
+    ],
+    "dynamic": [
+     4
+    ],
+    "ecosystems": [
+     5
+    ],
+    "that": [
+     6,
+     51
+    ],
+    "regularly": [
+     8
+    ],
+    "exposed": [
+     9
+    ],
+    "to": [
+     10,
+     24,
+     54,
+     80
+    ],
+    "natural": [
+     11
+    ],
+    "perturbations.": [
+     12
+    ],
+    "Human": [
+     13
+    ],
+    "activities": [
+     14
+    ],
+    "have": [
+     15
+    ],
+    "increased": [
+     16
+    ],
+    "the": [
+     17,
+     55,
+     70,
+     76,
+     92
+    ],
+    "range,": [
+     18
+    ],
+    "intensity,": [
+     19
+    ],
+    "and": [
+     20,
+     30,
+     40,
+     61,
+     74
+    ],
+    "frequency": [
+     21
+    ],
+    "of": [
+     22,
+     57,
+     72,
+     78,
+     94
+    ],
+    "disturbance": [
+     23
+    ],
+    "reefs.": [
+     25
+    ],
+    "Threats": [
+     26
+    ],
+    "such": [
+     27,
+     85
+    ],
+    "as": [
+     28
+    ],
+    "overfishing": [
+     29
+    ],
+    "pollution": [
+     31
+    ],
+    "being": [
+     33
+    ],
+    "compounded": [
+     34
+    ],
+    "by": [
+     35
+    ],
+    "climate": [
+     36
+    ],
+    "change,": [
+     37
+    ],
+    "notably": [
+     38
+    ],
+    "warming": [
+     39
+    ],
+    "ocean": [
+     41
+    ],
+    "acidification.": [
+     42
+    ],
+    "Elevated": [
+     43
+    ],
+    "temperatures": [
+     44
+    ],
+    "driving": [
+     46
+    ],
+    "increasingly": [
+     47,
+     98
+    ],
+    "frequent": [
+     48
+    ],
+    "bleaching": [
+     49
+    ],
+    "events": [
+     50
+    ],
+    "can": [
+     52
+    ],
+    "lead": [
+     53
+    ],
+    "loss": [
+     56
+    ],
+    "both": [
+     58
+    ],
+    "coral": [
+     59,
+     95
+    ],
+    "cover": [
+     60
+    ],
+    "reef": [
+     62
+    ],
+    "structural": [
+     63
+    ],
+    "complexity.": [
+     64
+    ],
+    "There": [
+     65
+    ],
+    "remains": [
+     66
+    ],
+    "considerable": [
+     67
+    ],
+    "variability": [
+     68
+    ],
+    "in": [
+     69,
+     75
+    ],
+    "distribution": [
+     71
+    ],
+    "threats": [
+     73
+    ],
+    "ability": [
+     77
+    ],
+    "survive": [
+     81
+    ],
+    "or": [
+     82
+    ],
+    "recover": [
+     83
+    ],
+    "from": [
+     84
+    ],
+    "disturbances.": [
+     86
+    ],
+    "Without": [
+     87
+    ],
+    "significant": [
+     88
+    ],
+    "emissions": [
+     89
+    ],
+    "reductions,": [
+     90
+    ],
+    "however,": [
+     91
+    ],
+    "future": [
+     93
+    ],
+    "is": [
+     97
+    ],
+    "bleak.": [
+     99
+    ]
+   },
+   "authorships": [
+    {
+     "author": {
+      "display_name": "Mark D. Spalding"
+     },
+     "raw_author_name": "Mark D. Spalding"
+    },
+    {
+     "author": {
+      "display_name": "Barbara E. Brown"
+     },
+     "raw_author_name": "Barbara E. Brown"
+    }
+   ],
+   "primary_location": {
+    "landing_page_url": "https://doi.org/10.1126/science.aad0349",
+    "pdf_url": null,
+    "source": {
+     "display_name": "Science"
+    }
+   },
+   "best_oa_location": null,
+   "open_access": {
+    "is_oa": false,
+    "oa_url": null
+   },
+   "primary_topic": {
+    "display_name": "Coral and Marine Ecosystems Studies",
+    "score": 1.0
+   },
+   "topics": [
+    {
+     "display_name": "Coral and Marine Ecosystems Studies",
+     "score": 1.0
+    },
+    {
+     "display_name": "Ocean Acidification Effects and Responses",
+     "score": 0.0
+    },
+    {
+     "display_name": "Marine Biology and Ecology Research",
+     "score": 0.0
+    }
+   ],
+   "keywords": [
+    {
+     "display_name": "coral reefs",
+     "score": 0.8569999933242798
+    },
+    {
+     "display_name": "climate change",
+     "score": 0.9750000238418579
+    },
+    {
+     "display_name": "ocean warming",
+     "score": 0.8619999885559082
+    },
+    {
+     "display_name": "ocean acidification",
+     "score": 0.9940000176429749
+    },
+    {
+     "display_name": "coral bleaching",
+     "score": 0.996999979019165
+    },
+    {
+     "display_name": "coral reef degradation",
+     "score": 0.5260000228881836
+    },
+    {
+     "display_name": "overfishing",
+     "score": 0.8130000233650208
+    },
+    {
+     "display_name": "pollution",
+     "score": 0.9769999980926514
+    },
+    {
+     "display_name": "reef recovery",
+     "score": 0.6309999823570251
+    },
+    {
+     "display_name": "emission reduction",
+     "score": 0.5820000171661377
+    },
+    {
+     "display_name": "reef structural complexity",
+     "score": 0.6790000200271606
+    }
+   ],
+   "concepts": [
+    {
+     "display_name": "Resilience of coral reefs",
+     "score": 0.8340904116630554,
+     "level": 3
+    },
+    {
+     "display_name": "Coral reef",
+     "score": 0.8158542513847351,
+     "level": 2
+    },
+    {
+     "display_name": "Reef",
+     "score": 0.8105045557022095,
+     "level": 2
+    },
+    {
+     "display_name": "Overfishing",
+     "score": 0.6574125289916992,
+     "level": 3
+    },
+    {
+     "display_name": "Environmental issues with coral reefs",
+     "score": 0.6521284580230713,
+     "level": 3
+    },
+    {
+     "display_name": "Environmental science",
+     "score": 0.6510565280914307,
+     "level": 0
+    },
+    {
+     "display_name": "Climate change",
+     "score": 0.639268159866333,
+     "level": 2
+    },
+    {
+     "display_name": "Coral bleaching",
+     "score": 0.6163527965545654,
+     "level": 3
+    }
+   ]
+  },
+  {
+   "id": "https://openalex.org/W2345173250",
+   "doi": "https://doi.org/10.1038/nclimate3009",
+   "display_name": "Snow white coral",
+   "publication_year": 2016,
+   "publication_date": "2016-04-27",
+   "type": "article",
+   "language": "en",
+   "cited_by_count": 7,
+   "abstract_inverted_index": null,
+   "authorships": [
+    {
+     "author": {
+      "display_name": "Bronwyn D. Wake"
+     },
+     "raw_author_name": "Bronwyn Wake"
+    }
+   ],
+   "primary_location": {
+    "landing_page_url": "https://doi.org/10.1038/nclimate3009",
+    "pdf_url": null,
+    "source": {
+     "display_name": "Nature Climate Change"
+    }
+   },
+   "best_oa_location": null,
+   "open_access": {
+    "is_oa": false,
+    "oa_url": null
+   },
+   "primary_topic": {
+    "display_name": "Coral and Marine Ecosystems Studies",
+    "score": 1.0
+   },
+   "topics": [
+    {
+     "display_name": "Coral and Marine Ecosystems Studies",
+     "score": 1.0
+    },
+    {
+     "display_name": "Ocean Acidification Effects and Responses",
+     "score": 0.0
+    },
+    {
+     "display_name": "Climate Change and Environmental Impact",
+     "score": 0.0
+    }
+   ],
+   "keywords": [
+    {
+     "display_name": "coral bleaching",
+     "score": 0.9990000128746033
+    },
+    {
+     "display_name": "climate change",
+     "score": 0.8939999938011169
+    },
+    {
+     "display_name": "El Niño",
+     "score": 0.875
+    },
+    {
+     "display_name": "sea surface temperature",
+     "score": 0.8610000014305115
+    },
+    {
+     "display_name": "coral reefs",
+     "score": 0.7789999842643738
+    }
+   ],
+   "concepts": [
+    {
+     "display_name": "Coral",
+     "score": 0.7990224361419678,
+     "level": 2
+    },
+    {
+     "display_name": "Snow",
+     "score": 0.7405292987823486,
+     "level": 2
+    },
+    {
+     "display_name": "White (mutation)",
+     "score": 0.5732076168060303,
+     "level": 3
+    },
+    {
+     "display_name": "Climatology",
+     "score": 0.4422224462032318,
+     "level": 1
+    },
+    {
+     "display_name": "Oceanography",
+     "score": 0.4190581440925598,
+     "level": 1
+    },
+    {
+     "display_name": "Physical geography",
+     "score": 0.4179130494594574,
+     "level": 1
+    },
+    {
+     "display_name": "Environmental science",
+     "score": 0.4137345850467682,
+     "level": 0
+    },
+    {
+     "display_name": "Geography",
+     "score": 0.3857465386390686,
+     "level": 0
+    }
+   ]
+  },
+  {
+   "id": "https://openalex.org/W2560236436",
+   "doi": "https://doi.org/10.1038/srep38402",
+   "display_name": "Warming Trends and Bleaching Stress of the World’s Coral Reefs 1985–2012",
+   "publication_year": 2016,
+   "publication_date": "2016-12-06",
+   "type": "article",
+   "language": "en",
+   "cited_by_count": 604,
+   "abstract_inverted_index": {
+    "Coral": [
+     0
+    ],
+    "reefs": [
+     1,
+     28,
+     178
+    ],
+    "across": [
+     2
+    ],
+    "the": [
+     3,
+     8,
+     11,
+     26,
+     54,
+     59,
+     94,
+     112,
+     121,
+     128
+    ],
+    "world's": [
+     4,
+     27
+    ],
+    "oceans": [
+     5
+    ],
+    "are": [
+     6,
+     29
+    ],
+    "in": [
+     7,
+     69
+    ],
+    "midst": [
+     9
+    ],
+    "of": [
+     10,
+     25,
+     114,
+     127,
+     136
+    ],
+    "longest": [
+     12
+    ],
+    "bleaching": [
+     13,
+     168
+    ],
+    "event": [
+     14
+    ],
+    "on": [
+     15,
+     35
+    ],
+    "record": [
+     16
+    ],
+    "(from": [
+     17
+    ],
+    "2014": [
+     18
+    ],
+    "to": [
+     19,
+     61,
+     167,
+     181
+    ],
+    "at": [
+     20,
+     78,
+     106
+    ],
+    "least": [
+     21
+    ],
+    "2016).": [
+     22
+    ],
+    "As": [
+     23
+    ],
+    "many": [
+     24
+    ],
+    "remote,": [
+     30
+    ],
+    "there": [
+     31
+    ],
+    "is": [
+     32,
+     58
+    ],
+    "limited": [
+     33
+    ],
+    "information": [
+     34
+    ],
+    "how": [
+     36
+    ],
+    "past": [
+     37
+    ],
+    "thermal": [
+     38,
+     72,
+     138,
+     156,
+     165,
+     182
+    ],
+    "conditions": [
+     39
+    ],
+    "have": [
+     40
+    ],
+    "influenced": [
+     41
+    ],
+    "reef": [
+     42,
+     65,
+     85
+    ],
+    "composition": [
+     43
+    ],
+    "and": [
+     44,
+     75,
+     144,
+     170
+    ],
+    "current": [
+     45
+    ],
+    "stress": [
+     46,
+     73,
+     139
+    ],
+    "responses.": [
+     47
+    ],
+    "Using": [
+     48
+    ],
+    "satellite": [
+     49
+    ],
+    "temperature": [
+     50,
+     76
+    ],
+    "data": [
+     51,
+     158
+    ],
+    "for": [
+     52,
+     63
+    ],
+    "1985-2012,": [
+     53
+    ],
+    "analysis": [
+     55
+    ],
+    "we": [
+     56
+    ],
+    "present": [
+     57
+    ],
+    "first": [
+     60
+    ],
+    "quantify,": [
+     62
+    ],
+    "global": [
+     64
+    ],
+    "locations,": [
+     66
+    ],
+    "spatial": [
+     67
+    ],
+    "variations": [
+     68
+    ],
+    "warming": [
+     70,
+     99
+    ],
+    "trends,": [
+     71
+    ],
+    "events": [
+     74
+    ],
+    "variability": [
+     77
+    ],
+    "reef-scale": [
+     79
+    ],
+    "(~4": [
+     80
+    ],
+    "km).": [
+     81
+    ],
+    "Among": [
+     82
+    ],
+    "over": [
+     83
+    ],
+    "60,000": [
+     84
+    ],
+    "pixels": [
+     86
+    ],
+    "globally,": [
+     87
+    ],
+    "97%": [
+     88
+    ],
+    "show": [
+     89
+    ],
+    "positive": [
+     90
+    ],
+    "SST": [
+     91
+    ],
+    "trends": [
+     92,
+     102,
+     105
+    ],
+    "during": [
+     93
+    ],
+    "study": [
+     95
+    ],
+    "period": [
+     96,
+     113
+    ],
+    "with": [
+     97,
+     123
+    ],
+    "60%": [
+     98
+    ],
+    "significantly.": [
+     100
+    ],
+    "Annual": [
+     101
+    ],
+    "exceeded": [
+     103
+    ],
+    "summertime": [
+     104
+    ],
+    "most": [
+     107
+    ],
+    "locations.": [
+     108
+    ],
+    "This": [
+     109
+    ],
+    "indicates": [
+     110
+    ],
+    "that": [
+     111
+    ],
+    "summer-like": [
+     115
+    ],
+    "temperatures": [
+     116
+    ],
+    "has": [
+     117
+    ],
+    "become": [
+     118
+    ],
+    "longer": [
+     119
+    ],
+    "through": [
+     120
+    ],
+    "record,": [
+     122
+    ],
+    "a": [
+     124,
+     147
+    ],
+    "corresponding": [
+     125
+    ],
+    "shortening": [
+     126
+    ],
+    "'winter'": [
+     129
+    ],
+    "reprieve": [
+     130
+    ],
+    "from": [
+     131
+    ],
+    "warm": [
+     132
+    ],
+    "temperatures.": [
+     133
+    ],
+    "The": [
+     134,
+     155
+    ],
+    "frequency": [
+     135
+    ],
+    "bleaching-level": [
+     137
+    ],
+    "increased": [
+     140
+    ],
+    "three-fold": [
+     141
+    ],
+    "between": [
+     142
+    ],
+    "1985-91": [
+     143
+    ],
+    "2006-12": [
+     145
+    ],
+    "-": [
+     146
+    ],
+    "trend": [
+     148
+    ],
+    "climate": [
+     149
+    ],
+    "model": [
+     150
+    ],
+    "projections": [
+     151
+    ],
+    "suggest": [
+     152
+    ],
+    "will": [
+     153
+    ],
+    "continue.": [
+     154
+    ],
+    "history": [
+     157,
+     166
+    ],
+    "products": [
+     159
+    ],
+    "developed": [
+     160
+    ],
+    "enable": [
+     161
+    ],
+    "needed": [
+     162
+    ],
+    "studies": [
+     163
+    ],
+    "relating": [
+     164
+    ],
+    "resistance": [
+     169
+    ],
+    "community": [
+     171
+    ],
+    "composition.": [
+     172
+    ],
+    "Such": [
+     173
+    ],
+    "analyses": [
+     174
+    ],
+    "can": [
+     175
+    ],
+    "help": [
+     176
+    ],
+    "identify": [
+     177
+    ],
+    "more": [
+     179
+    ],
+    "resilient": [
+     180
+    ],
+    "stress.": [
+     183
+    ]
+   },
+   "authorships": [
+    {
+     "author": {
+      "display_name": "Scott F. Heron"
+     },
+     "raw_author_name": "Scott F. Heron"
+    },
+    {
+     "author": {
+      "display_name": "Jeffrey Allen Maynard"
+     },
+     "raw_author_name": "Jeffrey A. Maynard"
+    },
+    {
+     "author": {
+      "display_name": "Ruben J. van Hooidonk"
+     },
+     "raw_author_name": "Ruben van Hooidonk"
+    },
+    {
+     "author": {
+      "display_name": "C. Mark Eakin"
+     },
+     "raw_author_name": "C. Mark Eakin"
+    }
+   ],
+   "primary_location": {
+    "landing_page_url": "https://doi.org/10.1038/srep38402",
+    "pdf_url": "https://www.nature.com/articles/srep38402.pdf",
+    "source": {
+     "display_name": "Scientific Reports"
+    }
+   },
+   "best_oa_location": {
+    "landing_page_url": "https://doi.org/10.1038/srep38402",
+    "pdf_url": "https://www.nature.com/articles/srep38402.pdf",
+    "source": {
+     "display_name": "Scientific Reports"
+    }
+   },
+   "open_access": {
+    "is_oa": true,
+    "oa_url": "https://www.nature.com/articles/srep38402.pdf"
+   },
+   "primary_topic": {
+    "display_name": "Coral and Marine Ecosystems Studies",
+    "score": 1.0
+   },
+   "topics": [
+    {
+     "display_name": "Coral and Marine Ecosystems Studies",
+     "score": 1.0
+    },
+    {
+     "display_name": "Coastal and Marine Dynamics",
+     "score": 0.0
+    },
+    {
+     "display_name": "Ocean Acidification Effects and Responses",
+     "score": 0.0
+    }
+   ],
+   "keywords": [
+    {
+     "display_name": "coral reefs",
+     "score": 0.7689999938011169
+    },
+    {
+     "display_name": "ocean warming",
+     "score": 0.6200000047683716
+    },
+    {
+     "display_name": "coral bleaching",
+     "score": 0.8259999752044678
+    },
+    {
+     "display_name": "thermal stress (biology)",
+     "score": 0.8489999771118164
+    },
+    {
+     "display_name": "sea surface temperature trends",
+     "score": 0.972000002861023
+    },
+    {
+     "display_name": "thermal history",
+     "score": 0.6679999828338623
+    },
+    {
+     "display_name": "satellite SST",
+     "score": 0.5080000162124634
+    },
+    {
+     "display_name": "bleaching resistance",
+     "score": 0.6779999732971191
+    },
+    {
+     "display_name": "climate change",
+     "score": 0.6510000228881836
+    }
+   ],
+   "concepts": [
+    {
+     "display_name": "Reef",
+     "score": 0.901963472366333,
+     "level": 2
+    },
+    {
+     "display_name": "Coral reef",
+     "score": 0.7392985224723816,
+     "level": 2
+    },
+    {
+     "display_name": "Coral bleaching",
+     "score": 0.669840395450592,
+     "level": 3
+    },
+    {
+     "display_name": "Environmental science",
+     "score": 0.6085792779922485,
+     "level": 0
+    },
+    {
+     "display_name": "Climate change",
+     "score": 0.5832641124725342,
+     "level": 2
+    },
+    {
+     "display_name": "Oceanography",
+     "score": 0.5733072757720947,
+     "level": 1
+    },
+    {
+     "display_name": "Sea surface temperature",
+     "score": 0.5477494597434998,
+     "level": 2
+    },
+    {
+     "display_name": "Effects of global warming on oceans",
+     "score": 0.525933563709259,
+     "level": 4
+    }
+   ]
+  },
+  {
+   "id": "https://openalex.org/W2609766695",
+   "doi": "https://doi.org/10.1371/journal.pone.0175490",
+   "display_name": "A new, high-resolution global mass coral bleaching database",
+   "publication_year": 2017,
+   "publication_date": "2017-04-26",
+   "type": "article",
+   "language": "en",
+   "cited_by_count": 161,
+   "abstract_inverted_index": {
+    "Episodes": [
+     0
+    ],
+    "of": [
+     1,
+     18,
+     41,
+     45,
+     66,
+     80,
+     133,
+     158,
+     174,
+     188,
+     198,
+     220,
+     230,
+     250,
+     257
+    ],
+    "mass": [
+     2,
+     46,
+     251,
+     259
+    ],
+    "coral": [
+     3,
+     19,
+     32,
+     47,
+     94,
+     175,
+     224,
+     252,
+     260,
+     265
+    ],
+    "bleaching": [
+     4,
+     48,
+     81,
+     95,
+     104,
+     135,
+     162,
+     189,
+     231,
+     253
+    ],
+    "have": [
+     5,
+     12,
+     87
+    ],
+    "been": [
+     6
+    ],
+    "reported": [
+     7
+    ],
+    "in": [
+     8,
+     70,
+     76,
+     108,
+     118,
+     194,
+     247
+    ],
+    "recent": [
+     9
+    ],
+    "decades": [
+     10,
+     53
+    ],
+    "and": [
+     11,
+     30,
+     36,
+     73,
+     114,
+     121,
+     262
+    ],
+    "raised": [
+     13
+    ],
+    "concerns": [
+     14
+    ],
+    "about": [
+     15
+    ],
+    "the": [
+     16,
+     26,
+     42,
+     50,
+     63,
+     74,
+     77,
+     89,
+     126,
+     131,
+     159,
+     172,
+     195,
+     199,
+     204,
+     239,
+     245,
+     248
+    ],
+    "future": [
+     17
+    ],
+    "reefs": [
+     20,
+     176,
+     225,
+     266
+    ],
+    "on": [
+     21
+    ],
+    "a": [
+     22,
+     100,
+     178,
+     218,
+     227
+    ],
+    "warming": [
+     23
+    ],
+    "planet.": [
+     24
+    ],
+    "Despite": [
+     25
+    ],
+    "efforts": [
+     27
+    ],
+    "to": [
+     28,
+     141,
+     149,
+     269
+    ],
+    "enhance": [
+     29
+    ],
+    "coordinate": [
+     31
+    ],
+    "reef": [
+     33
+    ],
+    "monitoring": [
+     34,
+     117
+    ],
+    "within": [
+     35
+    ],
+    "across": [
+     37
+    ],
+    "countries,": [
+     38
+    ],
+    "our": [
+     39
+    ],
+    "knowledge": [
+     40
+    ],
+    "geographic": [
+     43
+    ],
+    "extent": [
+     44
+    ],
+    "over": [
+     49,
+     233
+    ],
+    "past": [
+     51
+    ],
+    "few": [
+     52
+    ],
+    "is": [
+     54
+    ],
+    "incomplete.": [
+     55
+    ],
+    "Existing": [
+     56
+    ],
+    "databases,": [
+     57
+    ],
+    "like": [
+     58
+    ],
+    "ReefBase,": [
+     59
+    ],
+    "are": [
+     60,
+     267
+    ],
+    "limited": [
+     61
+    ],
+    "by": [
+     62,
+     110,
+     122,
+     137
+    ],
+    "voluntary": [
+     64
+    ],
+    "nature": [
+     65
+    ],
+    "contributions,": [
+     67
+    ],
+    "geographical": [
+     68
+    ],
+    "biases": [
+     69
+    ],
+    "data": [
+     71,
+     124
+    ],
+    "collection,": [
+     72
+    ],
+    "variations": [
+     75
+    ],
+    "spatial": [
+     78,
+     146
+    ],
+    "scale": [
+     79
+    ],
+    "reports.": [
+     82
+    ],
+    "In": [
+     83
+    ],
+    "this": [
+     84
+    ],
+    "study,": [
+     85
+    ],
+    "we": [
+     86,
+     98,
+     144
+    ],
+    "developed": [
+     88
+    ],
+    "first-ever": [
+     90
+    ],
+    "gridded,": [
+     91
+    ],
+    "global-scale": [
+     92
+    ],
+    "historical": [
+     93
+    ],
+    "database.": [
+     96
+    ],
+    "First,": [
+     97
+    ],
+    "conducted": [
+     99
+    ],
+    "targeted": [
+     101
+    ],
+    "search": [
+     102,
+     129
+    ],
+    "for": [
+     103,
+     164,
+     223
+    ],
+    "reports": [
+     105,
+     136
+    ],
+    "not": [
+     106,
+     182
+    ],
+    "included": [
+     107
+    ],
+    "ReefBase": [
+     109
+    ],
+    "personally": [
+     111
+    ],
+    "contacting": [
+     112
+    ],
+    "scientists": [
+     113
+    ],
+    "divers": [
+     115
+    ],
+    "conducting": [
+     116
+    ],
+    "under-reported": [
+     119
+    ],
+    "locations": [
+     120
+    ],
+    "extracting": [
+     123
+    ],
+    "from": [
+     125,
+     139
+    ],
+    "literature.": [
+     127
+    ],
+    "This": [
+     128
+    ],
+    "increased": [
+     130,
+     232
+    ],
+    "number": [
+     132
+    ],
+    "observed": [
+     134
+    ],
+    "79%,": [
+     138
+    ],
+    "4146": [
+     140
+    ],
+    "7429.": [
+     142
+    ],
+    "Second,": [
+     143
+    ],
+    "employed": [
+     145
+    ],
+    "interpolation": [
+     147
+    ],
+    "techniques": [
+     148
+    ],
+    "develop": [
+     150
+    ],
+    "annual": [
+     151,
+     213
+    ],
+    "0.04°": [
+     152,
+     154
+    ],
+    "×": [
+     153
+    ],
+    "latitude-longitude": [
+     155
+    ],
+    "global": [
+     156
+    ],
+    "maps": [
+     157
+    ],
+    "probability": [
+     160,
+     187,
+     229
+    ],
+    "that": [
+     161,
+     171,
+     212
+    ],
+    "occurred": [
+     163
+    ],
+    "1985": [
+     165
+    ],
+    "through": [
+     166
+    ],
+    "2010.": [
+     167
+    ],
+    "Initial": [
+     168
+    ],
+    "results": [
+     169,
+     209
+    ],
+    "indicate": [
+     170,
+     211
+    ],
+    "area": [
+     173
+    ],
+    "with": [
+     177,
+     226
+    ],
+    "more": [
+     179,
+     242
+    ],
+    "likely": [
+     180,
+     185
+    ],
+    "than": [
+     181
+    ],
+    "(>50%)": [
+     183
+    ],
+    "or": [
+     184
+    ],
+    "(>66%)": [
+     186
+    ],
+    "was": [
+     190
+    ],
+    "eight": [
+     191
+    ],
+    "times": [
+     192
+    ],
+    "higher": [
+     193
+    ],
+    "second": [
+     196
+    ],
+    "half": [
+     197
+    ],
+    "assessed": [
+     200
+    ],
+    "time": [
+     201
+    ],
+    "period,": [
+     202
+    ],
+    "after": [
+     203
+    ],
+    "1997/1998": [
+     205
+    ],
+    "El": [
+     206
+    ],
+    "Niño.": [
+     207
+    ],
+    "The": [
+     208,
+     235
+    ],
+    "also": [
+     210
+    ],
+    "maximum": [
+     214
+    ],
+    "Degree": [
+     215
+    ],
+    "Heating": [
+     216
+    ],
+    "Weeks,": [
+     217
+    ],
+    "measure": [
+     219
+    ],
+    "thermal": [
+     221
+    ],
+    "stress,": [
+     222
+    ],
+    "high": [
+     228
+    ],
+    "time.": [
+     234
+    ],
+    "database": [
+     236
+    ],
+    "will": [
+     237
+    ],
+    "help": [
+     238
+    ],
+    "scientific": [
+     240
+    ],
+    "community": [
+     241
+    ],
+    "accurately": [
+     243
+    ],
+    "assess": [
+     244
+    ],
+    "change": [
+     246
+    ],
+    "frequency": [
+     249
+    ],
+    "events,": [
+     254
+    ],
+    "validate": [
+     255
+    ],
+    "methods": [
+     256
+    ],
+    "predicting": [
+     258
+    ],
+    "bleaching,": [
+     261
+    ],
+    "test": [
+     263
+    ],
+    "whether": [
+     264
+    ],
+    "adjusting": [
+     268
+    ],
+    "rising": [
+     270
+    ],
+    "ocean": [
+     271
+    ],
+    "temperatures.": [
+     272
+    ]
+   },
+   "authorships": [
+    {
+     "author": {
+      "display_name": "Simon D. Donner"
+     },
+     "raw_author_name": "Simon D. Donner"
+    },
+    {
+     "author": {
+      "display_name": "Gregory J. M. Rickbeil"
+     },
+     "raw_author_name": "Gregory J. M. Rickbeil"
+    },
+    {
+     "author": {
+      "display_name": "Scott F. Heron"
+     },
+     "raw_author_name": "Scott F. Heron"
+    }
+   ],
+   "primary_location": {
+    "landing_page_url": "https://doi.org/10.1371/journal.pone.0175490",
+    "pdf_url": "https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0175490&type=printable",
+    "source": {
+     "display_name": "PLoS ONE"
+    }
+   },
+   "best_oa_location": {
+    "landing_page_url": "https://doi.org/10.1371/journal.pone.0175490",
+    "pdf_url": "https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0175490&type=printable",
+    "source": {
+     "display_name": "PLoS ONE"
+    }
+   },
+   "open_access": {
+    "is_oa": true,
+    "oa_url": "https://journals.plos.org/plosone/article/file?id=10.1371/journal.pone.0175490&type=printable"
+   },
+   "primary_topic": {
+    "display_name": "Coral and Marine Ecosystems Studies",
+    "score": 1.0
+   },
+   "topics": [
+    {
+     "display_name": "Coral and Marine Ecosystems Studies",
+     "score": 1.0
+    },
+    {
+     "display_name": "Ocean Acidification Effects and Responses",
+     "score": 0.0
+    },
+    {
+     "display_name": "Marine Biology and Ecology Research",
+     "score": 0.0
+    }
+   ],
+   "keywords": [
+    {
+     "display_name": "coral bleaching",
+     "score": 0.8190000057220459
+    },
+    {
+     "display_name": "coral reef monitoring",
+     "score": 0.7710000276565552
+    },
+    {
+     "display_name": "spatial interpolation",
+     "score": 0.7710000276565552
+    },
+    {
+     "display_name": "degree heating weeks",
+     "score": 0.7369999885559082
+    },
+    {
+     "display_name": "thermal stress (biology)",
+     "score": 0.8149999976158142
+    },
+    {
+     "display_name": "1997-1998 El Niño",
+     "score": 0.9319999814033508
+    }
+   ],
+   "concepts": [
+    {
+     "display_name": "Coral reef",
+     "score": 0.8058159351348877,
+     "level": 2
+    },
+    {
+     "display_name": "Coral bleaching",
+     "score": 0.8043079376220703,
+     "level": 3
+    },
+    {
+     "display_name": "Coral",
+     "score": 0.8015545606613159,
+     "level": 2
+    },
+    {
+     "display_name": "Reef",
+     "score": 0.6964756846427917,
+     "level": 2
+    },
+    {
+     "display_name": "Longitude",
+     "score": 0.6775998473167419,
+     "level": 3
+    },
+    {
+     "display_name": "Latitude",
+     "score": 0.6142710447311401,
+     "level": 2
+    },
+    {
+     "display_name": "Geographic coordinate system",
+     "score": 0.5447834134101868,
+     "level": 2
+    },
+    {
+     "display_name": "Database",
+     "score": 0.4865928888320923,
+     "level": 1
+    }
+   ]
+  },
+  {
+   "id": "https://openalex.org/W2619701599",
+   "doi": "https://doi.org/10.1038/nature22901",
+   "display_name": "Coral reefs in the Anthropocene",
+   "publication_year": 2017,
+   "publication_date": "2017-05-30",
+   "type": "review",
+   "language": "en",
+   "cited_by_count": 2265,
+   "abstract_inverted_index": null,
+   "authorships": [
+    {
+     "author": {
+      "display_name": "Terry P. Hughes"
+     },
+     "raw_author_name": "Terry P. Hughes"
+    },
+    {
+     "author": {
+      "display_name": "Michele L. Barnes"
+     },
+     "raw_author_name": "Michele L. Barnes"
+    },
+    {
+     "author": {
+      "display_name": "David R. Bellwood"
+     },
+     "raw_author_name": "David R. Bellwood"
+    },
+    {
+     "author": {
+      "display_name": "Joshua E. Cinner"
+     },
+     "raw_author_name": "Joshua E. Cinner"
+    },
+    {
+     "author": {
+      "display_name": "Graeme S. Cumming"
+     },
+     "raw_author_name": "Graeme S. Cumming"
+    },
+    {
+     "author": {
+      "display_name": "Jeremy B. C. Jackson"
+     },
+     "raw_author_name": "Jeremy B. C. Jackson"
+    },
+    {
+     "author": {
+      "display_name": "Joanie A. Kleypas"
+     },
+     "raw_author_name": "Joanie Kleypas"
+    },
+    {
+     "author": {
+      "display_name": "Ingrid A. van de Leemput"
+     },
+     "raw_author_name": "Ingrid A. van de Leemput"
+    },
+    {
+     "author": {
+      "display_name": "Janice Lough"
+     },
+     "raw_author_name": "Janice M. Lough"
+    },
+    {
+     "author": {
+      "display_name": "Tiffany Hope Morrison"
+     },
+     "raw_author_name": "Tiffany H. Morrison"
+    },
+    {
+     "author": {
+      "display_name": "Stephen R. Palumbi"
+     },
+     "raw_author_name": "Stephen R. Palumbi"
+    },
+    {
+     "author": {
+      "display_name": "Egbert H. van Nes"
+     },
+     "raw_author_name": "Egbert H. van Nes"
+    },
+    {
+     "author": {
+      "display_name": "Marten Scheffer"
+     },
+     "raw_author_name": "Marten Scheffer"
+    }
+   ],
+   "primary_location": {
+    "landing_page_url": "https://doi.org/10.1038/nature22901",
+    "pdf_url": null,
+    "source": {
+     "display_name": "Nature"
+    }
+   },
+   "best_oa_location": {
+    "landing_page_url": "https://research.wur.nl/en/publications/coral-reefs-in-the-anthropocene",
+    "pdf_url": null,
+    "source": {
+     "display_name": "Socio-Environmental Systems Modeling"
+    }
+   },
+   "open_access": {
+    "is_oa": true,
+    "oa_url": "https://research.wur.nl/en/publications/coral-reefs-in-the-anthropocene"
+   },
+   "primary_topic": {
+    "display_name": "Coral and Marine Ecosystems Studies",
+    "score": 1.0
+   },
+   "topics": [
+    {
+     "display_name": "Coral and Marine Ecosystems Studies",
+     "score": 1.0
+    },
+    {
+     "display_name": "Coastal and Marine Management",
+     "score": 0.0
+    },
+    {
+     "display_name": "Ocean Acidification Effects and Responses",
+     "score": 0.0
+    }
+   ],
+   "keywords": [
+    {
+     "display_name": "coral reefs",
+     "score": 0.9710000157356262
+    },
+    {
+     "display_name": "Anthropocene",
+     "score": 0.9950000047683716
+    },
+    {
+     "display_name": "coral reef degradation",
+     "score": 0.7300000190734863
+    },
+    {
+     "display_name": "climate change",
+     "score": 0.7229999899864197
+    },
+    {
+     "display_name": "ocean warming",
+     "score": 0.781000018119812
+    },
+    {
+     "display_name": "anthropogenic factors",
+     "score": 0.8339999914169312
+    },
+    {
+     "display_name": "ecosystem services",
+     "score": 0.8640000224113464
+    },
+    {
+     "display_name": "reef management",
+     "score": 0.6579999923706055
+    },
+    {
+     "display_name": "reef conservation",
+     "score": 0.38499999046325684
+    }
+   ],
+   "concepts": [
+    {
+     "display_name": "Anthropocene",
+     "score": 0.9442216753959656,
+     "level": 2
+    },
+    {
+     "display_name": "Coral reef",
+     "score": 0.8469564914703369,
+     "level": 2
+    },
+    {
+     "display_name": "Reef",
+     "score": 0.8342389464378357,
+     "level": 2
+    },
+    {
+     "display_name": "Resilience of coral reefs",
+     "score": 0.6622433662414551,
+     "level": 3
+    },
+    {
+     "display_name": "Biodiversity",
+     "score": 0.5306025147438049,
+     "level": 2
+    },
+    {
+     "display_name": "Climate change",
+     "score": 0.5166642665863037,
+     "level": 2
+    },
+    {
+     "display_name": "Ecosystem",
+     "score": 0.4830682575702667,
+     "level": 2
+    },
+    {
+     "display_name": "Ecosystem services",
+     "score": 0.472025066614151,
+     "level": 3
+    }
+   ]
+  },
+  {
+   "id": "https://openalex.org/W3159975152",
+   "doi": "https://doi.org/10.5194/egusphere-egu21-2353",
+   "display_name": "Tropical Climate Variability and Coral Reefs - A Past to Future Perspective on Current Rates of Change at Ultra-High Resolution",
+   "publication_year": 2021,
+   "publication_date": "2021-03-03",
+   "type": "conference-abstract",
+   "language": "en",
+   "cited_by_count": 0,
+   "abstract_inverted_index": {
+    "Climate": [
+     0,
+     170,
+     347
+    ],
+    "change,": [
+     1,
+     264
+    ],
+    "in": [
+     2,
+     6,
+     92,
+     218,
+     278,
+     297,
+     314,
+     361,
+     370,
+     403
+    ],
+    "particular": [
+     3
+    ],
+    "the": [
+     4,
+     12,
+     25,
+     50,
+     67,
+     83,
+     93,
+     193,
+     230,
+     251,
+     362
+    ],
+    "rise": [
+     5
+    ],
+    "tropical": [
+     7,
+     28,
+     51,
+     156,
+     207,
+     268,
+     298,
+     393
+    ],
+    "sea": [
+     8,
+     120
+    ],
+    "surface": [
+     9,
+     121
+    ],
+    "temperatures,": [
+     10
+    ],
+    "is": [
+     11,
+     123,
+     159,
+     307
+    ],
+    "greatest": [
+     13
+    ],
+    "threat": [
+     14
+    ],
+    "to": [
+     15,
+     102,
+     178,
+     201,
+     249,
+     259,
+     265,
+     274,
+     316,
+     335,
+     376,
+     382,
+     390
+    ],
+    "coral": [
+     16,
+     47,
+     55,
+     113,
+     133,
+     143,
+     152,
+     215,
+     244,
+     257,
+     301,
+     398
+    ],
+    "reef": [
+     17,
+     134,
+     144,
+     153,
+     216,
+     302,
+     342,
+     399
+    ],
+    "ecosystems": [
+     18,
+     154,
+     217,
+     400
+    ],
+    "today": [
+     19
+    ],
+    "and": [
+     20,
+     36,
+     46,
+     71,
+     89,
+     96,
+     136,
+     155,
+     172,
+     211,
+     225,
+     233,
+     256,
+     262,
+     270,
+     273,
+     287,
+     300,
+     339,
+     367,
+     374,
+     397
+    ],
+    "causes": [
+     21
+    ],
+    "climatic": [
+     22,
+     224
+    ],
+    "extremes": [
+     23
+    ],
+    "affecting": [
+     24
+    ],
+    "livelihood": [
+     26
+    ],
+    "of": [
+     27,
+     32,
+     59,
+     87,
+     131,
+     161,
+     184,
+     192,
+     206,
+     254,
+     294,
+     364,
+     388
+    ],
+    "societies.": [
+     29
+    ],
+    "The": [
+     30,
+     108,
+     164,
+     304,
+     352
+    ],
+    "combination": [
+     31
+    ],
+    "long-term": [
+     33
+    ],
+    "global": [
+     34,
+     78,
+     99
+    ],
+    "warming": [
+     35,
+     149,
+     220,
+     232,
+     405
+    ],
+    "interannual": [
+     37
+    ],
+    "El": [
+     38,
+     69,
+     84
+    ],
+    "Niño-related": [
+     39
+    ],
+    "warm": [
+     40,
+     235
+    ],
+    "events": [
+     41,
+     81,
+     115
+    ],
+    "has": [
+     42
+    ],
+    "severely": [
+     43
+    ],
+    "affected": [
+     44
+    ],
+    "corals": [
+     45,
+     255
+    ],
+    "reefs": [
+     48,
+     258
+    ],
+    "throughout": [
+     49
+    ],
+    "ocean": [
+     52
+    ],
+    "basins.": [
+     53
+    ],
+    "Mass": [
+     54
+    ],
+    "bleaching,": [
+     56
+    ],
+    "a": [
+     57,
+     128,
+     219,
+     247,
+     371,
+     404
+    ],
+    "result": [
+     58
+    ],
+    "large-scale": [
+     60
+    ],
+    "temperature": [
+     61
+    ],
+    "stress,": [
+     62,
+     338
+    ],
+    "was": [
+     63,
+     72
+    ],
+    "first": [
+     64
+    ],
+    "observed": [
+     65,
+     288
+    ],
+    "during": [
+     66,
+     82,
+     228
+    ],
+    "1982/83": [
+     68
+    ],
+    "Niño,": [
+     70
+    ],
+    "followed": [
+     73
+    ],
+    "by": [
+     74,
+     117,
+     222
+    ],
+    "much": [
+     75
+    ],
+    "more": [
+     76
+    ],
+    "severe,": [
+     77
+    ],
+    "scale": [
+     79
+    ],
+    "bleaching": [
+     80,
+     100,
+     114
+    ],
+    "Niño": [
+     85
+    ],
+    "years": [
+     86
+    ],
+    "1997/98": [
+     88
+    ],
+    "2010,": [
+     90
+    ],
+    "culminating": [
+     91
+    ],
+    "most": [
+     94,
+     97
+    ],
+    "wide-spread": [
+     95
+    ],
+    "destructive": [
+     98
+    ],
+    "episode": [
+     101
+    ],
+    "date,": [
+     103
+    ],
+    "which": [
+     104
+    ],
+    "lasted": [
+     105
+    ],
+    "from": [
+     106
+    ],
+    "2014-2017.": [
+     107
+    ],
+    "interval": [
+     109
+    ],
+    "between": [
+     110
+    ],
+    "recurrent": [
+     111
+    ],
+    "mass": [
+     112
+    ],
+    "driven": [
+     116
+    ],
+    "anomalously": [
+     118
+    ],
+    "high": [
+     119
+    ],
+    "temperatures": [
+     122
+    ],
+    "becoming": [
+     124
+    ],
+    "too": [
+     125
+    ],
+    "short": [
+     126
+    ],
+    "for": [
+     127,
+     240,
+     291
+    ],
+    "full": [
+     129
+    ],
+    "recovery": [
+     130
+    ],
+    "mature": [
+     132
+    ],
+    "assemblages": [
+     135
+    ],
+    "will": [
+     137,
+     150,
+     357,
+     401
+    ],
+    "have": [
+     138
+    ],
+    "dramatic": [
+     139
+    ],
+    "effects": [
+     140
+    ],
+    "on": [
+     141,
+     181,
+     214,
+     237,
+     385
+    ],
+    "future": [
+     142,
+     148,
+     295,
+     383
+    ],
+    "growth.": [
+     145
+    ],
+    "Assessing": [
+     146
+    ],
+    "how": [
+     147,
+     392
+    ],
+    "change": [
+     151,
+     389,
+     402
+    ],
+    "climate": [
+     157,
+     209,
+     261,
+     269,
+     299,
+     326,
+     395
+    ],
+    "variability": [
+     158,
+     210,
+     272,
+     396
+    ],
+    "therefore": [
+     160
+    ],
+    "extreme": [
+     162
+    ],
+    "urgency.": [
+     163
+    ],
+    "recently": [
+     165
+    ],
+    "established": [
+     166
+    ],
+    "Priority": [
+     167,
+     305,
+     355
+    ],
+    "Programme": [
+     168,
+     306,
+     356
+    ],
+    "„Tropical": [
+     169
+    ],
+    "Variability": [
+     171
+    ],
+    "Coral": [
+     173,
+     331
+    ],
+    "Reefs": [
+     174
+    ],
+    "–": [
+     175,
+     346
+    ],
+    "A": [
+     176
+    ],
+    "Past": [
+     177
+    ],
+    "Future": [
+     179
+    ],
+    "Perspective": [
+     180
+    ],
+    "Current": [
+     182
+    ],
+    "Rates": [
+     183
+    ],
+    "Change": [
+     185
+    ],
+    "at": [
+     186
+    ],
+    "Ultra-High": [
+     187
+    ],
+    "Resolution“": [
+     188
+    ],
+    "(SPP": [
+     189
+    ],
+    "2299;": [
+     190
+    ],
+    "https://www.spp2299.tropicalclimatecorals.de/)": [
+     191
+    ],
+    "Deutsche": [
+     194
+    ],
+    "Forschungsgemeinschaft": [
+     195
+    ],
+    "(DFG,": [
+     196
+    ],
+    "German": [
+     197
+    ],
+    "Research": [
+     198
+    ],
+    "Foundation)": [
+     199
+    ],
+    "aims": [
+     200,
+     375
+    ],
+    "enhance": [
+     202
+    ],
+    "our": [
+     203
+    ],
+    "current": [
+     204,
+     336,
+     386
+    ],
+    "understanding": [
+     205
+    ],
+    "marine": [
+     208,
+     394
+    ],
+    "its": [
+     212
+    ],
+    "impact": [
+     213
+    ],
+    "world,": [
+     221
+    ],
+    "quantifying": [
+     223
+    ],
+    "environmental": [
+     226,
+     263,
+     271,
+     337,
+     366
+    ],
+    "changes": [
+     227,
+     296
+    ],
+    "both": [
+     229
+    ],
+    "ongoing": [
+     231,
+     260
+    ],
+    "past": [
+     234,
+     267,
+     381
+    ],
+    "periods": [
+     236
+    ],
+    "timescales": [
+     238
+    ],
+    "relevant": [
+     239
+    ],
+    "society.": [
+     241
+    ],
+    "Ultra-high": [
+     242
+    ],
+    "resolution": [
+     243,
+     380
+    ],
+    "geochemistry": [
+     245
+    ],
+    "provides": [
+     246
+    ],
+    "tool": [
+     248
+    ],
+    "understand": [
+     250
+    ],
+    "temporal": [
+     252
+    ],
+    "response": [
+     253,
+     334
+    ],
+    "reconstruct": [
+     266
+    ],
+    "use": [
+     275
+    ],
+    "these": [
+     276
+    ],
+    "data": [
+     277
+    ],
+    "conjunction": [
+     279
+    ],
+    "with": [
+     280
+    ],
+    "advanced": [
+     281,
+     350
+    ],
+    "statistical": [
+     282
+    ],
+    "methods,": [
+     283
+    ],
+    "earth": [
+     284
+    ],
+    "system": [
+     285
+    ],
+    "modelling": [
+     286,
+     345
+    ],
+    "ecosystem": [
+     289
+    ],
+    "responses": [
+     290
+    ],
+    "improved": [
+     292
+    ],
+    "projections": [
+     293
+    ],
+    "ecosystems.": [
+     303
+    ],
+    "organised": [
+     308
+    ],
+    "around": [
+     309
+    ],
+    "three": [
+     310
+    ],
+    "major": [
+     311
+    ],
+    "research": [
+     312,
+     369
+    ],
+    "topics": [
+     313
+    ],
+    "order": [
+     315
+    ],
+    "fuel": [
+     317
+    ],
+    "interdisciplinary": [
+     318,
+     354
+    ],
+    "collaboration": [
+     319
+    ],
+    "among": [
+     320
+    ],
+    "various": [
+     321
+    ],
+    "disciplines:": [
+     322
+    ],
+    "(a)": [
+     323
+    ],
+    "Large-scale": [
+     324
+    ],
+    "ocean,": [
+     325
+    ],
+    "&": [
+     327,
+     332,
+     343,
+     348
+    ],
+    "environment": [
+     328
+    ],
+    "reconstructions,": [
+     329
+    ],
+    "(b)": [
+     330
+    ],
+    "reef-scale": [
+     333
+    ],
+    "(c)": [
+     340
+    ],
+    "Climate,": [
+     341
+    ],
+    "proxy": [
+     344,
+     349
+    ],
+    "statistics.": [
+     351
+    ],
+    "strongly": [
+     353
+    ],
+    "bring": [
+     358
+    ],
+    "together": [
+     359
+    ],
+    "expertise": [
+     360
+    ],
+    "fields": [
+     363
+    ],
+    "climate,": [
+     365
+    ],
+    "ecosytem": [
+     368
+    ],
+    "sustainable": [
+     372
+    ],
+    "manner,": [
+     373
+    ],
+    "provide": [
+     377
+    ],
+    "an": [
+     378
+    ],
+    "ultra-high": [
+     379
+    ],
+    "perspective": [
+     384
+    ],
+    "rates": [
+     387
+    ],
+    "project": [
+     391
+    ],
+    "world.": [
+     406
+    ]
+   },
+   "authorships": [
+    {
+     "author": {
+      "display_name": "Thomas Felis"
+     },
+     "raw_author_name": "Thomas Felis"
+    },
+    {
+     "author": {
+      "display_name": "Miriam Pfeiffer"
+     },
+     "raw_author_name": "Miriam Pfeiffer"
+    }
+   ],
+   "primary_location": {
+    "landing_page_url": "https://doi.org/10.5194/egusphere-egu21-2353",
+    "pdf_url": null,
+    "source": {
+     "display_name": "EGU General Assembly Conference Abstracts"
+    }
+   },
+   "best_oa_location": {
+    "landing_page_url": "https://doi.org/10.5194/egusphere-egu21-2353",
+    "pdf_url": null,
+    "source": {
+     "display_name": "EGU General Assembly Conference Abstracts"
+    }
+   },
+   "open_access": {
+    "is_oa": true,
+    "oa_url": "https://doi.org/10.5194/egusphere-egu21-2353"
+   },
+   "primary_topic": {
+    "display_name": "Coral and Marine Ecosystems Studies",
+    "score": 0.9970999956130981
+   },
+   "topics": [
+    {
+     "display_name": "Coral and Marine Ecosystems Studies",
+     "score": 0.9970999956130981
+    },
+    {
+     "display_name": "Geology and Paleoclimatology Research",
+     "score": 0.0019000000320374966
+    },
+    {
+     "display_name": "Climate variability and models",
+     "score": 0.00019999999494757503
+    }
+   ],
+   "keywords": [
+    {
+     "display_name": "reefs",
+     "score": 0.3540000021457672
+    },
+    {
+     "display_name": "tropical climate variability",
+     "score": 0.9340000152587891
+    },
+    {
+     "display_name": "coral bleaching",
+     "score": 0.7940000295639038
+    },
+    {
+     "display_name": "sea surface temperature",
+     "score": 0.9390000104904175
+    },
+    {
+     "display_name": "El Niño",
+     "score": 0.9290000200271606
+    },
+    {
+     "display_name": "coral reefs",
+     "score": 0.5350000262260437
+    },
+    {
+     "display_name": "coral geochemistry",
+     "score": 0.8209999799728394
+    },
+    {
+     "display_name": "paleoclimate reconstruction",
+     "score": 0.9269999861717224
+    },
+    {
+     "display_name": "climate change projections",
+     "score": 0.4830000102519989
+    },
+    {
+     "display_name": "coral reef recovery",
+     "score": 0.5389999747276306
+    },
+    {
+     "display_name": "coral reef growth",
+     "score": 0.4779999852180481
+    },
+    {
+     "display_name": "ocean warming",
+     "score": 0.3869999945163727
+    },
+    {
+     "display_name": "Earth system modeling",
+     "score": 0.6809999942779541
+    },
+    {
+     "display_name": "coral reef ecosystem services",
+     "score": 0.34700000286102295
+    }
+   ],
+   "concepts": [
+    {
+     "display_name": "Coral reef",
+     "score": 0.8247287273406982,
+     "level": 2
+    },
+    {
+     "display_name": "Reef",
+     "score": 0.7069398164749146,
+     "level": 2
+    },
+    {
+     "display_name": "Climate change",
+     "score": 0.6859523057937622,
+     "level": 2
+    },
+    {
+     "display_name": "Coral",
+     "score": 0.6729190349578857,
+     "level": 2
+    },
+    {
+     "display_name": "Oceanography",
+     "score": 0.6035736203193665,
+     "level": 1
+    },
+    {
+     "display_name": "Coral bleaching",
+     "score": 0.5945563316345215,
+     "level": 3
+    },
+    {
+     "display_name": "Environmental issues with coral reefs",
+     "score": 0.5840133428573608,
+     "level": 3
+    },
+    {
+     "display_name": "Representative Concentration Pathways",
+     "score": 0.5500893592834473,
+     "level": 4
+    }
+   ]
+  },
+  {
+   "id": "https://openalex.org/W3209456951",
+   "doi": "https://doi.org/10.1016/j.cub.2021.10.046",
+   "display_name": "Emergent properties in the responses of tropical corals to recurrent climate extremes",
+   "publication_year": 2021,
+   "publication_date": "2021-11-04",
+   "type": "article",
+   "language": "en",
+   "cited_by_count": 153,
+   "abstract_inverted_index": null,
+   "authorships": [
+    {
+     "author": {
+      "display_name": "Terry P. Hughes"
+     },
+     "raw_author_name": "Terry P. Hughes"
+    },
+    {
+     "author": {
+      "display_name": "James T. Kerry"
+     },
+     "raw_author_name": "James T. Kerry"
+    },
+    {
+     "author": {
+      "display_name": "Sean R. Connolly"
+     },
+     "raw_author_name": "Sean R. Connolly"
+    },
+    {
+     "author": {
+      "display_name": "Jorge Gabriel Álvarez-Romero"
+     },
+     "raw_author_name": "Jorge G. Álvarez-Romero"
+    },
+    {
+     "author": {
+      "display_name": "C. Mark Eakin"
+     },
+     "raw_author_name": "C. Mark Eakin"
+    },
+    {
+     "author": {
+      "display_name": "Scott F. Heron"
+     },
+     "raw_author_name": "Scott F. Heron"
+    },
+    {
+     "author": {
+      "display_name": "Migdonio A. Gonzalez"
+     },
+     "raw_author_name": "Migdonio A. Gonzalez"
+    },
+    {
+     "author": {
+      "display_name": "Joanne Moneghetti"
+     },
+     "raw_author_name": "Joanne Moneghetti"
+    }
+   ],
+   "primary_location": {
+    "landing_page_url": "https://doi.org/10.1016/j.cub.2021.10.046",
+    "pdf_url": null,
+    "source": {
+     "display_name": "Current Biology"
+    }
+   },
+   "best_oa_location": {
+    "landing_page_url": "https://doi.org/10.1016/j.cub.2021.10.046",
+    "pdf_url": null,
+    "source": {
+     "display_name": "Current Biology"
+    }
+   },
+   "open_access": {
+    "is_oa": true,
+    "oa_url": "https://doi.org/10.1016/j.cub.2021.10.046"
+   },
+   "primary_topic": {
+    "display_name": "Coral and Marine Ecosystems Studies",
+    "score": 1.0
+   },
+   "topics": [
+    {
+     "display_name": "Coral and Marine Ecosystems Studies",
+     "score": 1.0
+    },
+    {
+     "display_name": "Marine Biology and Ecology Research",
+     "score": 0.0
+    },
+    {
+     "display_name": "Ocean Acidification Effects and Responses",
+     "score": 0.0
+    }
+   ],
+   "keywords": [
+    {
+     "display_name": "coral bleaching",
+     "score": 0.9620000123977661
+    },
+    {
+     "display_name": "heat stress",
+     "score": 0.5019999742507935
+    },
+    {
+     "display_name": "temperature thresholds",
+     "score": 0.41100001335144043
+    },
+    {
+     "display_name": "emergent dynamics",
+     "score": 0.5360000133514404
+    },
+    {
+     "display_name": "contingency",
+     "score": 0.5379999876022339
+    },
+    {
+     "display_name": "disturbance interactions",
+     "score": 0.5630000233650208
+    },
+    {
+     "display_name": "coral recovery",
+     "score": 0.3700000047683716
+    },
+    {
+     "display_name": "Great Barrier Reef",
+     "score": 0.6639999747276306
+    },
+    {
+     "display_name": "coral resilience",
+     "score": 0.35199999809265137
+    },
+    {
+     "display_name": "anthropogenic climate change",
+     "score": 0.6449999809265137
+    }
+   ],
+   "concepts": [
+    {
+     "display_name": "Coral bleaching",
+     "score": 0.7726091146469116,
+     "level": 3
+    },
+    {
+     "display_name": "Climate change",
+     "score": 0.6126946806907654,
+     "level": 2
+    },
+    {
+     "display_name": "Ecosystem",
+     "score": 0.6106906533241272,
+     "level": 2
+    },
+    {
+     "display_name": "Cumulative effects",
+     "score": 0.5867267847061157,
+     "level": 2
+    },
+    {
+     "display_name": "Reef",
+     "score": 0.5844175815582275,
+     "level": 2
+    },
+    {
+     "display_name": "Ecology",
+     "score": 0.5702189207077026,
+     "level": 1
+    },
+    {
+     "display_name": "Coral reef",
+     "score": 0.5581045150756836,
+     "level": 2
+    },
+    {
+     "display_name": "Great barrier reef",
+     "score": 0.544181227684021,
+     "level": 3
+    }
+   ]
+  },
+  {
+   "id": "https://openalex.org/W4253922419",
+   "doi": "https://doi.org/10.1007/978-3-319-75393-5_3",
+   "display_name": "Coral Bleaching in Space and Time",
+   "publication_year": 2018,
+   "publication_date": "2018-01-01",
+   "type": "book-chapter",
+   "language": "en",
+   "cited_by_count": 77,
+   "abstract_inverted_index": null,
+   "authorships": [
+    {
+     "author": {
+      "display_name": "Jamie Oliver"
+     },
+     "raw_author_name": "J. K. Oliver"
+    },
+    {
+     "author": {
+      "display_name": "Ray Berkelmans"
+     },
+     "raw_author_name": "R. Berkelmans"
+    },
+    {
+     "author": {
+      "display_name": "C. Mark Eakin"
+     },
+     "raw_author_name": "C. M. Eakin"
+    }
+   ],
+   "primary_location": {
+    "landing_page_url": "https://doi.org/10.1007/978-3-319-75393-5_3",
+    "pdf_url": null,
+    "source": {
+     "display_name": "Ecological studies"
+    }
+   },
+   "best_oa_location": null,
+   "open_access": {
+    "is_oa": false,
+    "oa_url": null
+   },
+   "primary_topic": {
+    "display_name": "Coral and Marine Ecosystems Studies",
+    "score": 1.0
+   },
+   "topics": [
+    {
+     "display_name": "Coral and Marine Ecosystems Studies",
+     "score": 1.0
+    },
+    {
+     "display_name": "Ocean Acidification Effects and Responses",
+     "score": 0.0
+    },
+    {
+     "display_name": "Marine Biology and Ecology Research",
+     "score": 0.0
+    }
+   ],
+   "keywords": [
+    {
+     "display_name": "coral bleaching",
+     "score": 1.0
+    },
+    {
+     "display_name": "sea surface temperature",
+     "score": 0.9240000247955322
+    },
+    {
+     "display_name": "El Niño",
+     "score": 0.8679999709129333
+    },
+    {
+     "display_name": "coral mortality",
+     "score": 0.8009999990463257
+    },
+    {
+     "display_name": "climate change",
+     "score": 0.46299999952316284
+    },
+    {
+     "display_name": "spatial and temporal patterns",
+     "score": 0.7170000076293945
+    }
+   ],
+   "concepts": [
+    {
+     "display_name": "Coral bleaching",
+     "score": 0.944466233253479,
+     "level": 3
+    },
+    {
+     "display_name": "Coral",
+     "score": 0.8658645749092102,
+     "level": 2
+    },
+    {
+     "display_name": "Environmental science",
+     "score": 0.5001230239868164,
+     "level": 0
+    },
+    {
+     "display_name": "Oceanography",
+     "score": 0.4865916967391968,
+     "level": 1
+    },
+    {
+     "display_name": "Geography",
+     "score": 0.35370635986328125,
+     "level": 0
+    },
+    {
+     "display_name": "Climatology",
+     "score": 0.34239351749420166,
+     "level": 1
+    },
+    {
+     "display_name": "Geology",
+     "score": 0.15648025274276733,
+     "level": 0
+    }
+   ]
+  },
+  {
+   "id": "https://openalex.org/W4408083694",
+   "doi": "https://doi.org/10.1038/s44358-025-00027-y",
+   "display_name": "Finding inspiration in frustration: lessons from reef science",
+   "publication_year": 2025,
+   "publication_date": "2025-03-03",
+   "type": "article",
+   "language": "en",
+   "cited_by_count": 4,
+   "abstract_inverted_index": null,
+   "authorships": [
+    {
+     "author": {
+      "display_name": "Thomás Nei Soto Banha."
+     },
+     "raw_author_name": "Thomás Banha"
+    }
+   ],
+   "primary_location": {
+    "landing_page_url": "https://doi.org/10.1038/s44358-025-00027-y",
+    "pdf_url": null,
+    "source": {
+     "display_name": "Nature Reviews Biodiversity"
+    }
+   },
+   "best_oa_location": null,
+   "open_access": {
+    "is_oa": false,
+    "oa_url": null
+   },
+   "primary_topic": {
+    "display_name": "Coral and Marine Ecosystems Studies",
+    "score": 1.0
+   },
+   "topics": [
+    {
+     "display_name": "Coral and Marine Ecosystems Studies",
+     "score": 1.0
+    },
+    {
+     "display_name": "Marine Biology and Ecology Research",
+     "score": 0.0
+    },
+    {
+     "display_name": "Coastal and Marine Management",
+     "score": 0.0
+    }
+   ],
+   "keywords": [
+    {
+     "display_name": "coral bleaching",
+     "score": 0.8489999771118164
+    },
+    {
+     "display_name": "coral reefs",
+     "score": 0.7699999809265137
+    },
+    {
+     "display_name": "Anthropocene",
+     "score": 0.6869999766349792
+    },
+    {
+     "display_name": "climate change adaptation",
+     "score": 0.5440000295639038
+    },
+    {
+     "display_name": "reef conservation",
+     "score": 0.3050000071525574
+    }
+   ],
+   "concepts": [
+    {
+     "display_name": "Frustration",
+     "score": 0.9171323776245117,
+     "level": 2
+    },
+    {
+     "display_name": "Reef",
+     "score": 0.6003935933113098,
+     "level": 2
+    },
+    {
+     "display_name": "Great barrier reef",
+     "score": 0.5268216133117676,
+     "level": 3
+    },
+    {
+     "display_name": "Psychology",
+     "score": 0.4796717166900635,
+     "level": 0
+    },
+    {
+     "display_name": "Oceanography",
+     "score": 0.30791908502578735,
+     "level": 1
+    },
+    {
+     "display_name": "Geology",
+     "score": 0.2840501070022583,
+     "level": 0
+    },
+    {
+     "display_name": "Social psychology",
+     "score": 0.20416533946990967,
+     "level": 1
+    }
+   ]
+  },
+  {
+   "id": "https://openalex.org/W7168371281",
+   "doi": "https://doi.org/10.5670/oceanog.2026.e210",
+   "display_name": "Quantifying the Role of Climate Change in Driving Mass Coral Bleaching",
+   "publication_year": 2026,
+   "publication_date": "2026-01-01",
+   "type": "article",
+   "language": "en",
+   "cited_by_count": 0,
+   "abstract_inverted_index": {
+    "Four": [
+     0
+    ],
+    "global": [
+     1,
+     71,
+     88,
+     119,
+     129
+    ],
+    "mass": [
+     2
+    ],
+    "coral": [
+     3,
+     89,
+     130
+    ],
+    "bleaching": [
+     4,
+     24,
+     90,
+     126,
+     131
+    ],
+    "events": [
+     5,
+     41
+    ],
+    "have": [
+     6
+    ],
+    "now": [
+     7
+    ],
+    "been": [
+     8
+    ],
+    "recorded.": [
+     9
+    ],
+    "The": [
+     10
+    ],
+    "first,": [
+     11
+    ],
+    "in": [
+     12,
+     26,
+     106
+    ],
+    "1998,": [
+     13,
+     107
+    ],
+    "was": [
+     14
+    ],
+    "associated": [
+     15
+    ],
+    "with": [
+     16,
+     44
+    ],
+    "that": [
+     17,
+     84,
+     118,
+     128
+    ],
+    "year’s": [
+     18
+    ],
+    "strong": [
+     19,
+     109
+    ],
+    "El": [
+     20,
+     45,
+     55
+    ],
+    "Niño.": [
+     21
+    ],
+    "Subsequent": [
+     22
+    ],
+    "global-scale": [
+     23
+    ],
+    "occurred": [
+     25,
+     65
+    ],
+    "2010": [
+     27
+    ],
+    "and": [
+     28,
+     34,
+     127
+    ],
+    "then": [
+     29
+    ],
+    "over": [
+     30
+    ],
+    "the": [
+     31,
+     52,
+     85,
+     103,
+     122
+    ],
+    "periods": [
+     32
+    ],
+    "2014–2017": [
+     33
+    ],
+    "2018–2025": [
+     35
+    ],
+    "(and": [
+     36
+    ],
+    "likely": [
+     37
+    ],
+    "ongoing).": [
+     38
+    ],
+    "All": [
+     39
+    ],
+    "these": [
+     40
+    ],
+    "also": [
+     42,
+     64
+    ],
+    "coincided": [
+     43
+    ],
+    "Niños": [
+     46
+    ],
+    "for": [
+     47
+    ],
+    "at": [
+     48
+    ],
+    "least": [
+     49
+    ],
+    "part": [
+     50
+    ],
+    "of": [
+     51,
+     69,
+     77,
+     111,
+     125
+    ],
+    "period.": [
+     53
+    ],
+    "While": [
+     54
+    ],
+    "Niño": [
+     56
+    ],
+    "is": [
+     57,
+     92,
+     121
+    ],
+    "an": [
+     58
+    ],
+    "important": [
+     59
+    ],
+    "factor,": [
+     60
+    ],
+    "each": [
+     61
+    ],
+    "event": [
+     62,
+     91
+    ],
+    "has": [
+     63
+    ],
+    "during": [
+     66
+    ],
+    "a": [
+     67
+    ],
+    "period": [
+     68
+    ],
+    "rising": [
+     70
+    ],
+    "temperatures.": [
+     72
+    ],
+    "Here,": [
+     73
+    ],
+    "we": [
+     74
+    ],
+    "use": [
+     75
+    ],
+    "attribution": [
+     76
+    ],
+    "daily": [
+     78
+    ],
+    "sea": [
+     79
+    ],
+    "surface": [
+     80
+    ],
+    "temperatures": [
+     81
+    ],
+    "to": [
+     82,
+     95
+    ],
+    "show": [
+     83
+    ],
+    "most": [
+     86
+    ],
+    "recent": [
+     87
+    ],
+    "entirely": [
+     93
+    ],
+    "due": [
+     94
+    ],
+    "human-caused": [
+     96,
+     137
+    ],
+    "warming.": [
+     97
+    ],
+    "Furthermore,": [
+     98
+    ],
+    "all": [
+     99
+    ],
+    "previous": [
+     100
+    ],
+    "events,": [
+     101
+    ],
+    "including": [
+     102
+    ],
+    "original": [
+     104
+    ],
+    "one": [
+     105
+    ],
+    "had": [
+     108
+    ],
+    "fingerprints": [
+     110
+    ],
+    "anthropogenic": [
+     112
+    ],
+    "climate": [
+     113,
+     138
+    ],
+    "change.": [
+     114,
+     139
+    ],
+    "Our": [
+     115
+    ],
+    "analysis": [
+     116
+    ],
+    "shows": [
+     117
+    ],
+    "warming": [
+     120
+    ],
+    "main": [
+     123
+    ],
+    "driver": [
+     124
+    ],
+    "simply": [
+     132
+    ],
+    "would": [
+     133
+    ],
+    "not": [
+     134
+    ],
+    "occur": [
+     135
+    ],
+    "without": [
+     136
+    ]
+   },
+   "authorships": [
+    {
+     "author": {
+      "display_name": "Andrew J. Pershing"
+     },
+     "raw_author_name": "Andrew Pershing"
+    },
+    {
+     "author": {
+      "display_name": "John F. Bruno"
+     },
+     "raw_author_name": "John Bruno"
+    },
+    {
+     "author": {
+      "display_name": "Joseph Giguere"
+     },
+     "raw_author_name": "Joseph Giguere"
+    },
+    {
+     "author": {
+      "display_name": "Alexandra Khrizman"
+     },
+     "raw_author_name": "Alexandra Khrizman"
+    }
+   ],
+   "primary_location": {
+    "landing_page_url": "https://doi.org/10.5670/oceanog.2026.e210",
+    "pdf_url": "https://tos.org/oceanography/assets/docs/39-2-pershing.pdf",
+    "source": {
+     "display_name": "Oceanography"
+    }
+   },
+   "best_oa_location": {
+    "landing_page_url": "https://doi.org/10.5670/oceanog.2026.e210",
+    "pdf_url": "https://tos.org/oceanography/assets/docs/39-2-pershing.pdf",
+    "source": {
+     "display_name": "Oceanography"
+    }
+   },
+   "open_access": {
+    "is_oa": true,
+    "oa_url": "https://tos.org/oceanography/assets/docs/39-2-pershing.pdf"
+   },
+   "primary_topic": {
+    "display_name": "Coral and Marine Ecosystems Studies",
+    "score": 0.9990000128746033
+   },
+   "topics": [
+    {
+     "display_name": "Coral and Marine Ecosystems Studies",
+     "score": 0.9990000128746033
+    },
+    {
+     "display_name": "Climate variability and models",
+     "score": 0.00019999999494757503
+    },
+    {
+     "display_name": "Climate Change and Environmental Impact",
+     "score": 0.00019999999494757503
+    }
+   ],
+   "keywords": [
+    {
+     "display_name": "coral bleaching",
+     "score": 0.9039999842643738
+    },
+    {
+     "display_name": "climate change attribution",
+     "score": 0.7739999890327454
+    },
+    {
+     "display_name": "anthropogenic climate change",
+     "score": 0.718999981880188
+    },
+    {
+     "display_name": "El Niño",
+     "score": 0.8450000286102295
+    },
+    {
+     "display_name": "sea surface temperature",
+     "score": 0.9259999990463257
+    }
+   ],
+   "concepts": [
+    {
+     "display_name": "Coral bleaching",
+     "score": 0.9395999908447266,
+     "level": 3
+    },
+    {
+     "display_name": "Environmental science",
+     "score": 0.722100019454956,
+     "level": 0
+    },
+    {
+     "display_name": "Coral",
+     "score": 0.667900025844574,
+     "level": 2
+    },
+    {
+     "display_name": "Climate change",
+     "score": 0.6599000096321106,
+     "level": 2
+    },
+    {
+     "display_name": "Global warming",
+     "score": 0.5852000117301941,
+     "level": 3
+    },
+    {
+     "display_name": "Global change",
+     "score": 0.5432000160217285,
+     "level": 3
+    },
+    {
+     "display_name": "Climatology",
+     "score": 0.5167999863624573,
+     "level": 1
+    },
+    {
+     "display_name": "Sea surface temperature",
+     "score": 0.46209999918937683,
+     "level": 2
+    }
+   ]
+  }
+ ],
+ "group_by": []
+}

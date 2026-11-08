@@ -82,6 +82,10 @@ export function fakeAnswer(url: string): { body: string; type: string } | null {
 		if (/^\/groups\/4846685\/(collections\/8UG7PVLY\/)?items\/top$/.test(u.pathname))
 			return json(read("zotero/pastas-references.json"));
 	}
+	if (u.hostname === "api.openalex.org" && u.pathname === "/works") {
+		const first = u.searchParams.get("cursor") === "*";
+		return json(read(`openalex/works-coral-bleaching-${first ? 1 : 2}.json`));
+	}
 	if (u.hostname === "api.openaire.eu") {
 		const kind = u.pathname.replace(/^.*\/search\//, "");
 		const file = { projects: "project.xml", publications: "publications.xml", datasets: "datasets.xml" }[kind];

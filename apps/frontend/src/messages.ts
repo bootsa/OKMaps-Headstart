@@ -33,6 +33,10 @@ const OWN_MESSAGE = new Set([
 	"Zotero access denied",
 	"Zotero library not found",
 	"unexpected Zotero response",
+	"API error: OpenAlex not reachable",
+	"API error: OpenAlex rate limited",
+	"OpenAlex query error",
+	"unexpected OpenAlex response",
 ]);
 
 export function errorMessage(reasons: string[], fallback: string): string {

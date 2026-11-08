@@ -12,6 +12,7 @@ import {
 	type SourceType,
 	text,
 } from "@okmaps/ui-svelte";
+import { openalexSourceType } from "./openalex-source.ts";
 import { type PlaceSourceConfig, placeSettings } from "./places.ts";
 import type { SearchRequest } from "./search.ts";
 import { settings } from "./settings.ts";
@@ -139,10 +140,11 @@ export function appSources(): SourceModule<SearchRequest>[] {
 	return [pubmedSource, baseSource, openaireSource, ...placeSettings().map(placeModule)];
 }
 
-/** The site's sources, and the kinds of source people can add themselves (SPARQL, Zenodo, Zotero). */
+/** The site's sources, and the kinds of source people can add themselves (SPARQL, Zenodo, Zotero, OpenAlex). */
 export function registerAppSources(): void {
 	for (const s of appSources()) registerSource(s);
 	registerSourceType(sparqlSourceType as SourceType);
 	registerSourceType(zenodoSourceType as SourceType);
 	registerSourceType(zoteroSourceType as SourceType);
+	registerSourceType(openalexSourceType as SourceType);
 }

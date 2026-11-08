@@ -1,5 +1,6 @@
 import { loadDefaultResources } from "@okmaps/pipeline";
 import { describe, expect, it } from "vitest";
+import { openalexConfig, openalexSecrets } from "../src/openalex-source.ts";
 import { buildMap, type SearchRequest, type Stage, timestamp, visTypeOf } from "../src/search.ts";
 import { sparqlConfig, sparqlSourceType } from "../src/sparql-source.ts";
 import { zenodoConfig } from "../src/zenodo-source.ts";
@@ -183,6 +184,42 @@ describe("buildMap", () => {
 		expect(map.context.params).not.toContain("secret");
 		expectLaidOut(map.documents);
 		expect(map.documents.find((d) => d.id === "VTMZZWFA")?.doi).toBe("10.1111/gwat.13486");
+	});
+
+	it("makes a map from an OpenAlex source, with the key kept out of the map", async () => {
+		const urls: string[] = [];
+		const fetch = (url: string) => {
+			urls.push(url);
+			return fakeFetch(url);
+		};
+		const openalex = openalexSecrets([
+			{ id: "oa1", type: "openalex", name: "My OpenAlex", config: { api_key: "SECRET", email: "me@example.org" } },
+		]);
+		const config = openalexConfig({ search_in: "all", limit: "30", filter: "type:article" });
+		const map = await buildMap(
+			{ service: "openalex", source: "My OpenAlex", sourceId: "oa1", config, q: "coral bleaching", from: "2000-01-01" },
+			{ ...settings, fetch, openalex },
+			loadDefaultResources,
+			() => {},
+			NOW,
+		);
+		expect(urls).toHaveLength(2);
+		const first = new URL(urls[0]).searchParams;
+		expect(first.get("api_key")).toBe("SECRET");
+		expect(first.get("mailto")).toBe("me@example.org");
+		expect(first.get("filter")).toBe("from_publication_date:2000-01-01,type:article");
+		expect(map.context).toMatchObject({ query: "coral bleaching", service: "openalex" });
+		expect(map.context.params).not.toContain("SECRET");
+		expect(map.context.params).not.toContain("me@example.org");
+		expect(JSON.parse(map.context.params)).toMatchObject({
+			source: "My OpenAlex",
+			openalex: { limit: 30, filter: "type:article" },
+		});
+		expect(map.documents).toHaveLength(30);
+		expectLaidOut(map.documents);
+		const hughes = map.documents.find((d) => d.doi === "10.1126/science.1085046");
+		expect(hughes?.authors).toMatch(/^Hughes, Terry P\.;/);
+		expect(Number(hughes?.readers)).toBeGreaterThan(1000);
 	});
 
 	it("reports provider errors with their reasons", async () => {
