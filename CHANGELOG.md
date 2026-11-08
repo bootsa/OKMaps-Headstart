@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.1.40](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.39...v7.1.40) (2026-11-08)
+
+
+### Bug Fixes
+
+* name each area once for screen readers ([2efbd6c](https://github.com/bootsa/OKMaps-Headstart/commit/2efbd6c9aea0d9b537e881a0079a9160753c16d1))
+
 ## [7.1.39](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.38...v7.1.39) (2026-11-08)
 
 
