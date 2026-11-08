@@ -22,7 +22,8 @@ PREFIX bd: <http://www.bigdata.com/rdf#>
 PREFIX mwapi: <https://www.mediawiki.org/ontology#API/>
 PREFIX schema: <http://schema.org/>
 PREFIX wdt: <http://www.wikidata.org/prop/direct/>
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>`;
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>`;
 
 /** Wikipedia's own search, with each article's Wikidata description, kind, topics and dates. */
 export const WIKIPEDIA_QUERY = `${WIKIDATA_PREFIXES}
@@ -37,17 +38,22 @@ SELECT ?item ?title ?abstract ?url ?year ?subjects WHERE {
                     mwapi:gsrlimit "max".
     ?item wikibase:apiOutputItem mwapi:item.
     ?title wikibase:apiOutput mwapi:title.
-    ?ordinal wikibase:apiOrdinal true.
+    ?rank wikibase:apiOutput "@index".
   }
   BIND(IRI(CONCAT("https://{{lang}}.wikipedia.org/wiki/", ENCODE_FOR_URI(REPLACE(?title, " ", "_")))) AS ?url)
   OPTIONAL { ?item schema:description ?abstract FILTER(LANG(?abstract) = "{{lang}}") }
   OPTIONAL { ?item (wdt:P31|wdt:P921|wdt:P101)/rdfs:label ?subjects FILTER(LANG(?subjects) = "{{lang}}") }
   OPTIONAL { ?item wdt:P577|wdt:P571|wdt:P580|wdt:P585 ?year }
 }
-ORDER BY ?ordinal`;
+ORDER BY xsd:integer(?rank)`;
 
-/** Scholarly articles in Wikidata whose title or label matches, with authors, venue, DOI and topics. */
+/**
+ * Scholarly articles in Wikidata whose title or label matches, with authors,
+ * venue, DOI and topics. They live in their own graph since 2025; the labels
+ * of their topics and journals come from the main graph (wdsubgraph).
+ */
 export const WIKIDATA_SCHOLARLY_QUERY = `${WIKIDATA_PREFIXES}
+PREFIX wdsubgraph: <https://query.wikidata.org/subgraph/>
 SELECT ?item ?title ?url ?year ?doi ?authors ?published_in ?subjects WHERE {
   SERVICE wikibase:mwapi {
     bd:serviceParam wikibase:endpoint "www.wikidata.org";
@@ -57,17 +63,23 @@ SELECT ?item ?title ?url ?year ?doi ?authors ?published_in ?subjects WHERE {
                     mwapi:gsrsearch "haswbstatement:P31=Q13442814 {{q}}";
                     mwapi:gsrlimit "max".
     ?item wikibase:apiOutputItem mwapi:title.
-    ?ordinal wikibase:apiOrdinal true.
+    ?rank wikibase:apiOutput "@index".
   }
   BIND(?item AS ?url)
   OPTIONAL { ?item wdt:P1476 ?title }
   OPTIONAL { ?item wdt:P577 ?year }
   OPTIONAL { ?item wdt:P356 ?doi }
   OPTIONAL { ?item wdt:P2093 ?authors }
-  OPTIONAL { ?item wdt:P1433/rdfs:label ?published_in FILTER(LANG(?published_in) = "{{lang}}") }
-  OPTIONAL { ?item wdt:P921/rdfs:label ?subjects FILTER(LANG(?subjects) = "{{lang}}") }
+  OPTIONAL {
+    ?item wdt:P1433 ?venue.
+    SERVICE wdsubgraph:wikidata_main { ?venue rdfs:label ?published_in FILTER(LANG(?published_in) = "{{lang}}") }
+  }
+  OPTIONAL {
+    ?item wdt:P921 ?topic.
+    SERVICE wdsubgraph:wikidata_main { ?topic rdfs:label ?subjects FILTER(LANG(?subjects) = "{{lang}}") }
+  }
 }
-ORDER BY ?ordinal`;
+ORDER BY xsd:integer(?rank)`;
 
 /** DBpedia resources whose name matches, with their Wikipedia article and categories. */
 export const DBPEDIA_QUERY = `PREFIX dbo: <http://dbpedia.org/ontology/>
