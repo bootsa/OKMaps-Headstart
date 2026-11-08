@@ -3,6 +3,8 @@
  * authors as "Last, First", keywords and topics as subjects, citation
  * counts as readers.
  */
+
+import { normalizeDoi } from "../doi.js";
 import type { SourceRecord } from "../types.js";
 
 /** The parts of an OpenAlex work this adaptor reads (https://docs.openalex.org/api-entities/works/work-object). */
@@ -130,7 +132,7 @@ export function toOpenalexRecords(works: OpenalexWork[]): {
 			.filter((n) => n.trim())
 			.map(lastFirst)
 			.join("; ");
-		const doi = w.doi ? (DOI.exec(w.doi)?.[0] ?? "") : "";
+		const doi = normalizeDoi(w.doi ? DOI.exec(w.doi)?.[0] : "");
 		const landing = w.primary_location?.landing_page_url ?? "";
 		const url = landing || (doi ? `https://doi.org/${doi}` : w.id);
 		const oaLink = w.best_oa_location?.pdf_url ?? w.open_access?.oa_url ?? "";

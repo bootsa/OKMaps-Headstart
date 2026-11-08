@@ -3,6 +3,8 @@
  * field of a map record; rows with the same id are merged, so a query can
  * return one row per author or keyword instead of GROUP_CONCAT-ing them.
  */
+
+import { normalizeDoi } from "../doi.js";
 import type { SourceRecord } from "../types.js";
 import type { SparqlRow } from "./client.js";
 
@@ -155,7 +157,7 @@ export function toSparqlRecords(
 			published_in: d.first.published_in ? label(d.first.published_in) : null,
 			url,
 			link: url,
-			doi: doiMatch ? doiMatch[0] : "",
+			doi: normalizeDoi(doiMatch?.[0]),
 			oa_state: 2,
 			resulttype: [],
 		};

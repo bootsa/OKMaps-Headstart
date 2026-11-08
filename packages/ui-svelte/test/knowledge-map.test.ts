@@ -44,6 +44,24 @@ describe("highlighting", () => {
 		]);
 		expect(highlightParts("a (b) c", ["(b)"])).toHaveLength(3);
 	});
+
+	it("marks words whatever their accents, keeping the original text", () => {
+		expect(highlightParts("Zoë Müller", ["zoe", "muller"])).toEqual([
+			{ text: "Zoë", mark: "search" },
+			{ text: " ", mark: null },
+			{ text: "Müller", mark: "search" },
+		]);
+		// Decomposed text keeps its combining marks inside the mark.
+		expect(highlightParts("Mu\u0308ller und Co", ["müller"])).toEqual([
+			{ text: "Mu\u0308ller", mark: "search" },
+			{ text: " und Co", mark: null },
+		]);
+		expect(highlightParts("Café, cafe", [], ["cafe"])).toEqual([
+			{ text: "Café", mark: "query" },
+			{ text: ", ", mark: null },
+			{ text: "cafe", mark: "query" },
+		]);
+	});
 });
 
 describe("knowledge map geometry", () => {

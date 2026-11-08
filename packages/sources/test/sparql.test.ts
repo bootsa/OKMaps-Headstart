@@ -143,7 +143,7 @@ describe("records", () => {
 			url: "http://www.wikidata.org/entity/Q1",
 			doi: "",
 		});
-		expect(papers[1]).toMatchObject({ title: "Reef", doi: "10.1000/XYZ.1", paper_abstract: null, year: null });
+		expect(papers[1]).toMatchObject({ title: "Reef", doi: "10.1000/xyz.1", paper_abstract: null, year: null });
 		expect(content["http://www.wikidata.org/entity/Q1"]).toBe(
 			"Coral bleaching loss of algae Coral reefs; climate change",
 		);
