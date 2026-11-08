@@ -1,5 +1,14 @@
 # Changelog
 
+## [7.1.42](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.41...v7.1.42) (2026-11-08)
+
+
+### Features
+
+* export a store's maps to a file and import maps from one ([26f375c](https://github.com/bootsa/OKMaps-Headstart/commit/26f375c449a9379ad0f66f7a214ba6400c984e5e))
+* export a store's maps to a file and import maps from one ([76ad789](https://github.com/bootsa/OKMaps-Headstart/commit/76ad789072726e08fe3a0fbf426d53e71909ec16))
+* export and import saved maps as a file ([#104](https://github.com/bootsa/OKMaps-Headstart/issues/104)) ([26f375c](https://github.com/bootsa/OKMaps-Headstart/commit/26f375c449a9379ad0f66f7a214ba6400c984e5e))
+
 ## [7.1.41](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.40...v7.1.41) (2026-11-08)
 
 
