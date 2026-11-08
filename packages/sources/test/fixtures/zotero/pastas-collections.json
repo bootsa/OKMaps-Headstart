@@ -1,0 +1,110 @@
+[
+    {
+        "key": "U2VMBBBA",
+        "version": 40,
+        "library": {
+            "type": "group",
+            "id": 4846685,
+            "name": "pastas",
+            "links": {
+                "alternate": {
+                    "href": "https://www.zotero.org/groups/pastas",
+                    "type": "text/html"
+                }
+            }
+        },
+        "links": {
+            "self": {
+                "href": "https://api.zotero.org/groups/4846685/collections/U2VMBBBA",
+                "type": "application/json"
+            },
+            "alternate": {
+                "href": "https://www.zotero.org/groups/pastas/collections/U2VMBBBA",
+                "type": "text/html"
+            }
+        },
+        "meta": {
+            "numCollections": 0,
+            "numItems": 5
+        },
+        "data": {
+            "key": "U2VMBBBA",
+            "version": 40,
+            "name": "theses",
+            "parentCollection": false,
+            "relations": {}
+        }
+    },
+    {
+        "key": "8UG7PVLY",
+        "version": 6,
+        "library": {
+            "type": "group",
+            "id": 4846685,
+            "name": "pastas",
+            "links": {
+                "alternate": {
+                    "href": "https://www.zotero.org/groups/pastas",
+                    "type": "text/html"
+                }
+            }
+        },
+        "links": {
+            "self": {
+                "href": "https://api.zotero.org/groups/4846685/collections/8UG7PVLY",
+                "type": "application/json"
+            },
+            "alternate": {
+                "href": "https://www.zotero.org/groups/pastas/collections/8UG7PVLY",
+                "type": "text/html"
+            }
+        },
+        "meta": {
+            "numCollections": 0,
+            "numItems": 51
+        },
+        "data": {
+            "key": "8UG7PVLY",
+            "version": 6,
+            "name": "references",
+            "parentCollection": false,
+            "relations": {}
+        }
+    },
+    {
+        "key": "Q4F7R59G",
+        "version": 2,
+        "library": {
+            "type": "group",
+            "id": 4846685,
+            "name": "pastas",
+            "links": {
+                "alternate": {
+                    "href": "https://www.zotero.org/groups/pastas",
+                    "type": "text/html"
+                }
+            }
+        },
+        "links": {
+            "self": {
+                "href": "https://api.zotero.org/groups/4846685/collections/Q4F7R59G",
+                "type": "application/json"
+            },
+            "alternate": {
+                "href": "https://www.zotero.org/groups/pastas/collections/Q4F7R59G",
+                "type": "text/html"
+            }
+        },
+        "meta": {
+            "numCollections": 0,
+            "numItems": 38
+        },
+        "data": {
+            "key": "Q4F7R59G",
+            "version": 2,
+            "name": "publications",
+            "parentCollection": false,
+            "relations": {}
+        }
+    }
+]

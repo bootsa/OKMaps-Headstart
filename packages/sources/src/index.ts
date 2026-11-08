@@ -61,3 +61,4 @@ export type { SourceRecord, SourceResult } from "./types.js";
 export type { XmlElement, XmlNode } from "./xml.js";
 export { childElements, findAll, findFirst, parseXml, textOf } from "./xml.js";
 export * from "./zenodo/index.js";
+export * from "./zotero/index.js";
