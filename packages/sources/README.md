@@ -260,3 +260,37 @@ longer ones say how long to wait), `API error: timeout`, `SPARQL query
 error` (with the endpoint's own one-line message) and `unexpected SPARQL
 response`. Outside a browser pass `headers: { "User-Agent": "tool/1.0 (contact)" }`:
 Wikimedia refuses requests without one.
+
+## Zenodo
+
+`searchZenodo(config, { q })` searches the records of [Zenodo](https://zenodo.org)
+(or any other InvenioRDM site, `baseUrl`) and returns map records. Zenodo
+answers with CORS headers for every origin, so it runs in the browser
+without a gateway.
+
+```ts
+const result = await searchZenodo(
+	{ community: "dryad", type: "dataset", limit: 200, accessToken: undefined },
+	{ q: "coral reef" },
+);
+buildOverviewMap({ papers: result.papers, content: result.content, service: "zenodo" }, resources);
+```
+
+- `community`: a community's id or its URL; searches `/api/communities/<id>/records`
+  (an unknown community is a 404, "Zenodo community not found"). Search terms can be
+  empty then: the community's newest records.
+- `type` / `subtype`: resource type filters (`ZENODO_TYPES`), `filter`: extra
+  search syntax added with AND (e.g. `access_status:open`), `sort`: `ZENODO_SORTS`.
+- `limit` (default 100, at most 1000): pages of 25 without a token, 100 with one.
+- `accessToken`: sent as `Authorization: Bearer`, never in the URL. The app keeps
+  it in the source's settings only and drops it from maps (`withoutToken`).
+- Rate limits (30 searches a minute without a token): a 429 or an empty
+  window is waited out when it ends within `maxRetryWaitMs` (default 60 s);
+  otherwise the search fails ("API error: Zenodo rate limited") or keeps the
+  pages it already has.
+- Records: creators as "Family, Given; …", the publication date as `year`,
+  keywords and subjects as `subject`, the description as plain text,
+  `resulttype` from the resource type, `oa_state` from `access_right`,
+  links to the record page.
+- Outside a browser, pass a `User-Agent` in `headers`: Zenodo may answer
+  requests without one with an HTML 403 ("unusual traffic").
