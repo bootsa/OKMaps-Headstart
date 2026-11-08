@@ -9,17 +9,25 @@ Head Start is a web-based knowledge mapping software intended to give anyone a h
 Maps are made in the browser. A search goes straight to the provider (or
 through a small gateway where the provider needs one), the map is computed
 in a Web Worker, and the person's maps are kept where they choose: in the
-browser, a WebDAV folder, a Solid Pod or an Atomic Data server. It works
+browser, WebDAV folders, Solid Pods or Atomic Data servers. It works
 offline once installed as a web app.
 
 | Folder | What |
 |---|---|
-| `apps/frontend` | the browser app (Vite): search, map list, storage choice, share links, offline |
-| `packages/pipeline` | turns records into a map: clustering, layout, area titles (a TypeScript port of the R scripts) |
-| `packages/sources` | the providers: PubMed, BASE, OpenAIRE, Crossref citation counts |
-| `packages/storage` | where maps are kept: one interface, an adaptor per storage system |
+| `apps/frontend` | the browser app (Vite): search page, map page and settings page, the worker that makes maps, share links, offline use |
+| `packages/pipeline` | turns records into a map: clustering, layout, area titles, the streamgraph step (a TypeScript port of the R scripts) |
+| `packages/sources` | the metadata sources: PubMed, BASE, OpenAIRE, OpenAlex, Zenodo, Zotero, any SPARQL endpoint (Wikidata, DBpedia presets), place tables for geo maps, and Crossref citation counts |
+| `packages/storage` | where maps are kept: one interface, an adaptor per storage system (this browser, WebDAV, Solid Pod, Atomic Data), and the folder tree the map explorer uses |
 | `packages/gateway` | the small server some providers need (BASE's registered IP and key) and the store for share links |
-| `packages/ui-svelte` | the map interface in Svelte 5 and plain CSS, with its Storybook |
+| `packages/ui-svelte` | the interface in Svelte 5 and plain CSS: the map views (knowledge map, streamgraph, geo map), search form, settings page and map explorer, with its Storybook |
+
+The parts are registered modules, so a deployment includes only what it
+needs: map views with `registerView`, metadata sources with `registerSource`
+and `registerSourceType`, kinds of store with `registerStoreType` (all from
+`@okmaps/ui-svelte`). On the settings page a person turns sources on or off,
+adds their own (an OpenAlex key, a Zotero library, a SPARQL endpoint, …) and
+sets up as many stores as they like; the search form shows the fields of the
+enabled sources and asks where to save the new map.
 
 It is a [pnpm](https://pnpm.io/) workspace (Node 22.18 or newer; `corepack enable`
 gives you the pnpm version in `package.json`). Each package has a README with
