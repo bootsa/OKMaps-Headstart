@@ -5,6 +5,8 @@ import { defineConfig } from "vitest/config";
 export default defineConfig({
 	plugins: [svelte(), svelteTesting()],
 	test: {
+		// The lowest coverage `pnpm coverage` accepts, a few points under today's.
+		coverage: { thresholds: { lines: 90, branches: 70, functions: 88 } },
 		globals: true,
 		environment: "jsdom",
 		setupFiles: ["./test/setup.ts"],
