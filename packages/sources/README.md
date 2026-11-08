@@ -13,6 +13,7 @@ browser, a Web Worker or Node 18+.
 | Crossref citations | done | Crossref REST API (CORS allowed) | `metrics.R` (`add_citations`) |
 | Places (geo maps), AQUANAVI preset | done | any CSV or JSON table, cached | `workers/common/common/aquanavi` |
 | SPARQL (Wikidata, Wikidata scholarly, DBpedia presets) | done | any SPARQL endpoint that allows CORS | new |
+| Zotero (personal and group libraries, collections) | done | Zotero Web API v3 (CORS allowed) | new |
 
 ## PubMed
 
@@ -294,3 +295,40 @@ buildOverviewMap({ papers: result.papers, content: result.content, service: "zen
   links to the record page.
 - Outside a browser, pass a `User-Agent` in `headers`: Zenodo may answer
   requests without one with an HTML 403 ("unusual traffic").
+
+## Zotero
+
+A Zotero library (a person's or a group's), or one collection of it, through
+the [Web API v3](https://www.zotero.org/support/dev/web_api/v3/start). Plain
+JSON config, no UI code.
+
+```ts
+import { searchZotero, zoteroCollections, zoteroLibraries } from "@okmaps/sources";
+
+// A public group's collection; the library can also be "user:45", a bare group ID or a zotero.org link.
+await searchZotero({ library: "group:4846685", collection: "8UG7PVLY" }, { q: "groundwater" });
+
+// Private libraries need a key with read access (zotero.org/settings/keys).
+const libraries = await zoteroLibraries(apiKey); // the key's own library and its groups
+const collections = await zoteroCollections(libraries[0].library, { apiKey }); // as a tree, with paths
+await searchZotero({ library: libraries[0].library, apiKey, subcollections: true, collection: collections[0].key }, {});
+```
+
+- Search terms go to the API's quick search (`qmode` `titleCreatorYear`, or
+  `everything` for all fields and full texts); no terms take every item.
+  Top-level items only, 100 per page, up to `limit` (default 100, at most 1000).
+  With `subcollections`, each collection below the chosen one is searched too.
+- Records: title, abstract, authors (`Last, First`; every creator when there
+  are no authors), year (`meta.parsedDate`, else the first four digits of
+  the date), DOI (the field, or `DOI: …` in Extra), link (URL, else the DOI,
+  else the item's zotero.org page), tags as keywords, where it appeared
+  (journal, book, proceedings, website, university, publisher, …) and the
+  item type. Notes and attachments are left out.
+- The key goes in the `Zotero-API-Key` header, never the URL. Use
+  `withoutApiKey(config)` before keeping a config with a map.
+- Errors are `SourceError`s with reasons `Zotero access denied` (403: a
+  private library without a key, or a key that cannot read it), `Zotero
+  library not found` (404), `API error: Zotero rate limited` (429/503; a
+  short `Retry-After` is waited for once, and a `Backoff` header delays the
+  next requests), `API error: Zotero not reachable`, `API error: timeout`
+  and `unexpected Zotero response`.

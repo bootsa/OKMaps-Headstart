@@ -38,6 +38,14 @@ registerService("zenodo", {
 	urlPrefix: null,
 	citePapers: false,
 });
+// Zotero sources: links go to the item's URL or DOI.
+registerService("zotero", {
+	language: "eng",
+	sortOptions: ["relevance", "title", "authors", "year"],
+	contentBased: true,
+	urlPrefix: null,
+	citePapers: false,
+});
 // Place sources other than AQUANAVI get AQUANAVI's map settings.
 for (const p of placeSettings()) {
 	if (p.id !== "aquanavi")

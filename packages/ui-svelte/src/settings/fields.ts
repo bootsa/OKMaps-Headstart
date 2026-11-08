@@ -33,6 +33,15 @@ export interface FieldSpec {
 	lines?: number;
 	/** Monospaced text (code, queries). */
 	code?: boolean;
+	/**
+	 * For select: options read from somewhere (a library's collections, ...),
+	 * from the form's other values. Loaded when the form opens and again,
+	 * shortly after, when a field named in `dependsOn` changes; `options`
+	 * are shown until then. Throw to show why nothing could be loaded.
+	 */
+	loadOptions?: (values: FieldValues, signal: AbortSignal) => Promise<FieldOption[]>;
+	/** The fields whose values `loadOptions` reads. */
+	dependsOn?: string[];
 }
 
 /** The starting values of a form. */

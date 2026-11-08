@@ -1,0 +1,2342 @@
+[
+    {
+        "key": "VTMZZWFA",
+        "version": 211,
+        "library": {
+            "type": "group",
+            "id": 4846685,
+            "name": "pastas",
+            "links": {
+                "alternate": {
+                    "href": "https://www.zotero.org/groups/pastas",
+                    "type": "text/html"
+                }
+            }
+        },
+        "links": {
+            "self": {
+                "href": "https://api.zotero.org/groups/4846685/items/VTMZZWFA",
+                "type": "application/json"
+            },
+            "alternate": {
+                "href": "https://www.zotero.org/groups/pastas/items/VTMZZWFA",
+                "type": "text/html"
+            }
+        },
+        "meta": {
+            "createdByUser": {
+                "id": 7137894,
+                "username": "raoulcollenteur",
+                "name": "",
+                "links": {
+                    "alternate": {
+                        "href": "https://www.zotero.org/raoulcollenteur",
+                        "type": "text/html"
+                    }
+                }
+            },
+            "creatorSummary": "Collenteur et al.",
+            "parsedDate": "2025-04-17",
+            "numChildren": 0
+        },
+        "data": {
+            "key": "VTMZZWFA",
+            "version": 211,
+            "itemType": "journalArticle",
+            "title": "Colle",
+            "creators": [
+                {
+                    "creatorType": "author",
+                    "firstName": "Raoul A.",
+                    "lastName": "Collenteur"
+                },
+                {
+                    "creatorType": "author",
+                    "firstName": "Martin A.",
+                    "lastName": "Vonk"
+                },
+                {
+                    "creatorType": "author",
+                    "firstName": "Ezra",
+                    "lastName": "Haaf"
+                }
+            ],
+            "abstractNote": "Abstract The study of hydraulic head changes over time is a common task for groundwater hydrologists. Groundwater signatures are numerical metrics, or statistical aggregates, that quantify the behavior observed in hydraulic head hydrographs. Signatures can be helpful in a number of classical hydrological tasks, such as hydrograph classification, clustering, change detection, and model evaluation, selection, and calibration. Despite the potential benefits of using signatures in groundwater studies, their application has not yet been thoroughly explored. To support research into the application of signatures in groundwater studies, we introduce the new groundwater signatures module from the Pastas software. The signatures module is written in Python, fully tested and documented, and available as open-source software under the MIT license. In this paper, it is shown how the signatures are tested and can be used in practical applications through two examples. In the first example, signatures are used to characterize and cluster monitoring wells in a nationwide monitoring network in Switzerland. In the second example, signatures are used to evaluate how well different groundwater model structures simulate the heads. Future research opportunities involving groundwater signatures are discussed.",
+            "publicationTitle": "Groundwater",
+            "publisher": "John Wiley & Sons, Ltd",
+            "place": "",
+            "date": "2025-04-17",
+            "volume": "n/a",
+            "issue": "n/a",
+            "section": "",
+            "partNumber": "",
+            "partTitle": "",
+            "pages": "",
+            "series": "",
+            "seriesTitle": "",
+            "seriesText": "",
+            "journalAbbreviation": "Groundwater",
+            "DOI": "10.1111/gwat.13486",
+            "citationKey": "",
+            "url": "https://doi.org/10.1111/gwat.13486",
+            "accessDate": "2025-04-23",
+            "PMID": "",
+            "PMCID": "",
+            "ISSN": "0017-467X",
+            "archive": "",
+            "archiveLocation": "",
+            "shortTitle": "",
+            "language": "",
+            "libraryCatalog": "",
+            "callNumber": "",
+            "rights": "",
+            "extra": "",
+            "tags": [],
+            "collections": [
+                "8UG7PVLY",
+                "Q4F7R59G"
+            ],
+            "relations": {},
+            "dateAdded": "2025-04-23T21:53:46Z",
+            "dateModified": "2026-08-31T08:02:25Z"
+        }
+    },
+    {
+        "key": "DWPN8ZIH",
+        "version": 195,
+        "library": {
+            "type": "group",
+            "id": 4846685,
+            "name": "pastas",
+            "links": {
+                "alternate": {
+                    "href": "https://www.zotero.org/groups/pastas",
+                    "type": "text/html"
+                }
+            }
+        },
+        "links": {
+            "self": {
+                "href": "https://api.zotero.org/groups/4846685/items/DWPN8ZIH",
+                "type": "application/json"
+            },
+            "alternate": {
+                "href": "https://www.zotero.org/groups/pastas/items/DWPN8ZIH",
+                "type": "text/html"
+            }
+        },
+        "meta": {
+            "createdByUser": {
+                "id": 7137894,
+                "username": "raoulcollenteur",
+                "name": "",
+                "links": {
+                    "alternate": {
+                        "href": "https://www.zotero.org/raoulcollenteur",
+                        "type": "text/html"
+                    }
+                }
+            },
+            "creatorSummary": "Bakker et al.",
+            "parsedDate": "2008",
+            "numChildren": 0
+        },
+        "data": {
+            "key": "DWPN8ZIH",
+            "version": 195,
+            "itemType": "journalArticle",
+            "title": "Calibration of transient groundwater models using time series analysis and moment matching",
+            "creators": [
+                {
+                    "creatorType": "author",
+                    "firstName": "Mark",
+                    "lastName": "Bakker"
+                },
+                {
+                    "creatorType": "author",
+                    "firstName": "Kees",
+                    "lastName": "Maas"
+                },
+                {
+                    "creatorType": "author",
+                    "firstName": "Jos R.",
+                    "lastName": "Von Asmuth"
+                }
+            ],
+            "abstractNote": "A comprehensive and efficient approach is presented for the calibration of transient groundwater models. The approach starts with the time series analysis of the measured heads in observation wells using all active stresses as input series, which may include rainfall, evaporation, surface water levels, and pumping. The time series analysis results in the impulse response function of each stress at the observation well. For each impulse response function, the temporal moments M0 and M1 may be computed. Both moments fulfill differential equations that are equivalent to the differential equation for steady groundwater flow, with known values along physical boundaries. The model of M0 may be calibrated for the transmissivity, as it does not depend on the storage coefficient; the computed values of M0 at the observation wells are used for calibration. The model of M1 may be calibrated for the storage coefficient, once the transmissivity is known from the M0 model; the computed values of M1 at the observation wells are used for calibration. The approach is intended for systems that may be approximated as linear. In summary, our proposed calibration process for transient models reduces to the calibration of only two steady models. Several examples are given to demonstrate the accuracy and efficiency of the proposed approach.",
+            "publicationTitle": "Water Resources Research",
+            "publisher": "",
+            "place": "",
+            "date": "2008",
+            "volume": "44",
+            "issue": "4",
+            "section": "",
+            "partNumber": "",
+            "partTitle": "",
+            "pages": "",
+            "series": "",
+            "seriesTitle": "",
+            "seriesText": "",
+            "journalAbbreviation": "",
+            "DOI": "https://doi.org/10.1029/2007WR006239",
+            "citationKey": "",
+            "url": "https://agupubs.onlinelibrary.wiley.com/doi/abs/10.1029/2007WR006239",
+            "accessDate": "",
+            "PMID": "",
+            "PMCID": "",
+            "ISSN": "",
+            "archive": "",
+            "archiveLocation": "",
+            "shortTitle": "",
+            "language": "",
+            "libraryCatalog": "",
+            "callNumber": "",
+            "rights": "",
+            "extra": "_eprint: https://agupubs.onlinelibrary.wiley.com/doi/pdf/10.1029/2007WR006239",
+            "tags": [
+                {
+                    "tag": "calibration"
+                },
+                {
+                    "tag": "time series modeling"
+                },
+                {
+                    "tag": "transient groundwater modeling"
+                }
+            ],
+            "collections": [
+                "8UG7PVLY"
+            ],
+            "relations": {},
+            "dateAdded": "2025-11-11T21:13:01Z",
+            "dateModified": "2025-11-11T21:13:01Z"
+        }
+    },
+    {
+        "key": "SX2Q7VNN",
+        "version": 192,
+        "library": {
+            "type": "group",
+            "id": 4846685,
+            "name": "pastas",
+            "links": {
+                "alternate": {
+                    "href": "https://www.zotero.org/groups/pastas",
+                    "type": "text/html"
+                }
+            }
+        },
+        "links": {
+            "self": {
+                "href": "https://api.zotero.org/groups/4846685/items/SX2Q7VNN",
+                "type": "application/json"
+            },
+            "alternate": {
+                "href": "https://www.zotero.org/groups/pastas/items/SX2Q7VNN",
+                "type": "text/html"
+            }
+        },
+        "meta": {
+            "createdByUser": {
+                "id": 7137894,
+                "username": "raoulcollenteur",
+                "name": "",
+                "links": {
+                    "alternate": {
+                        "href": "https://www.zotero.org/raoulcollenteur",
+                        "type": "text/html"
+                    }
+                }
+            },
+            "creatorSummary": "Mathevet et al.",
+            "parsedDate": "2006",
+            "numChildren": 1
+        },
+        "data": {
+            "key": "SX2Q7VNN",
+            "version": 192,
+            "itemType": "bookSection",
+            "title": "A bounded version of the Nash-Sutcliffe criterion for better model assessment on large sets of basins",
+            "creators": [
+                {
+                    "creatorType": "author",
+                    "firstName": "Thibault",
+                    "lastName": "Mathevet"
+                },
+                {
+                    "creatorType": "author",
+                    "firstName": "Claude",
+                    "lastName": "Michel"
+                },
+                {
+                    "creatorType": "author",
+                    "firstName": "Vazken",
+                    "lastName": "Andr\u00e9assian"
+                },
+                {
+                    "creatorType": "author",
+                    "firstName": "Charles",
+                    "lastName": "Perrin"
+                }
+            ],
+            "abstractNote": "",
+            "bookTitle": "Large Sample Basin Experiments for Hydrological Model Parameterization: Results of the Model Parameter ExperimentMOPEX. IAHS Publ. 307",
+            "series": "",
+            "seriesNumber": "",
+            "volume": "",
+            "numberOfVolumes": "",
+            "edition": "",
+            "date": "2006",
+            "publisher": "AISH",
+            "place": "",
+            "originalDate": "",
+            "originalPublisher": "",
+            "originalPlace": "",
+            "format": "",
+            "pages": "211-219",
+            "ISBN": "",
+            "DOI": "",
+            "citationKey": "",
+            "url": "https://hal.inrae.fr/hal-02588691",
+            "accessDate": "",
+            "ISSN": "",
+            "archive": "",
+            "archiveLocation": "",
+            "shortTitle": "",
+            "language": "",
+            "libraryCatalog": "",
+            "callNumber": "",
+            "rights": "",
+            "extra": "",
+            "tags": [
+                {
+                    "tag": "LARGE SAMPLE OF BASINS"
+                },
+                {
+                    "tag": "NASH-SUTCLIFFE CRITERION"
+                },
+                {
+                    "tag": "RAINFALL-RUNOFF MODELING"
+                }
+            ],
+            "collections": [
+                "8UG7PVLY"
+            ],
+            "relations": {},
+            "dateAdded": "2025-09-11T09:45:26Z",
+            "dateModified": "2025-09-11T09:45:26Z"
+        }
+    },
+    {
+        "key": "KWR7DI4A",
+        "version": 188,
+        "library": {
+            "type": "group",
+            "id": 4846685,
+            "name": "pastas",
+            "links": {
+                "alternate": {
+                    "href": "https://www.zotero.org/groups/pastas",
+                    "type": "text/html"
+                }
+            }
+        },
+        "links": {
+            "self": {
+                "href": "https://api.zotero.org/groups/4846685/items/KWR7DI4A",
+                "type": "application/json"
+            },
+            "alternate": {
+                "href": "https://www.zotero.org/groups/pastas/items/KWR7DI4A",
+                "type": "text/html"
+            }
+        },
+        "meta": {
+            "createdByUser": {
+                "id": 7137894,
+                "username": "raoulcollenteur",
+                "name": "",
+                "links": {
+                    "alternate": {
+                        "href": "https://www.zotero.org/raoulcollenteur",
+                        "type": "text/html"
+                    }
+                }
+            },
+            "creatorSummary": "Smith et al.",
+            "parsedDate": "2015",
+            "numChildren": 0
+        },
+        "data": {
+            "key": "KWR7DI4A",
+            "version": 188,
+            "itemType": "journalArticle",
+            "title": "Modeling residual hydrologic errors with Bayesian inference",
+            "creators": [
+                {
+                    "creatorType": "author",
+                    "firstName": "Tyler",
+                    "lastName": "Smith"
+                },
+                {
+                    "creatorType": "author",
+                    "firstName": "Lucy",
+                    "lastName": "Marshall"
+                },
+                {
+                    "creatorType": "author",
+                    "firstName": "Ashish",
+                    "lastName": "Sharma"
+                }
+            ],
+            "abstractNote": "Summary Hydrologic modelers are confronted with the challenge of producing estimates of the uncertainty associated with model predictions across an array of catchments and hydrologic flow regimes. Formal Bayesian approaches are commonly employed for parameter calibration and uncertainty analysis, but are often criticized for making strong assumptions about the nature of model residuals via the likelihood function that may not be well satisfied (or even checked). This technical note outlines a residual error model (likelihood function) specification framework that aims to provide guidance for the application of more appropriate residual error models through a nested approach that is both flexible and extendible. The framework synthesizes many previously employed residual error models and has been applied to four synthetic datasets (of differing error structure) and a real dataset from the Black River catchment in Queensland, Australia. Each residual error model was investigated and assessed under a top-down approach focused on its ability to properly characterize the errors. The results of these test applications indicate that a multifaceted assessment strategy is necessary to determine the adequacy of an individual likelihood function.",
+            "publicationTitle": "Journal of Hydrology",
+            "publisher": "",
+            "place": "",
+            "date": "2015",
+            "volume": "528",
+            "issue": "",
+            "section": "",
+            "partNumber": "",
+            "partTitle": "",
+            "pages": "29 - 37",
+            "series": "",
+            "seriesTitle": "",
+            "seriesText": "",
+            "journalAbbreviation": "",
+            "DOI": "https://doi.org/10.1016/j.jhydrol.2015.05.051",
+            "citationKey": "",
+            "url": "http://www.sciencedirect.com/science/article/pii/S0022169415004011",
+            "accessDate": "",
+            "PMID": "",
+            "PMCID": "",
+            "ISSN": "0022-1694",
+            "archive": "",
+            "archiveLocation": "",
+            "shortTitle": "",
+            "language": "",
+            "libraryCatalog": "",
+            "callNumber": "",
+            "rights": "",
+            "extra": "",
+            "tags": [
+                {
+                    "tag": "Bayesian inference"
+                },
+                {
+                    "tag": "Formal likelihood function"
+                },
+                {
+                    "tag": "Rainfall\u2013runoff modeling"
+                },
+                {
+                    "tag": "Residual error"
+                }
+            ],
+            "collections": [
+                "8UG7PVLY"
+            ],
+            "relations": {},
+            "dateAdded": "2025-03-04T14:04:52Z",
+            "dateModified": "2025-03-04T14:04:52Z"
+        }
+    },
+    {
+        "key": "QESIWQD2",
+        "version": 200,
+        "library": {
+            "type": "group",
+            "id": 4846685,
+            "name": "pastas",
+            "links": {
+                "alternate": {
+                    "href": "https://www.zotero.org/groups/pastas",
+                    "type": "text/html"
+                }
+            }
+        },
+        "links": {
+            "self": {
+                "href": "https://api.zotero.org/groups/4846685/items/QESIWQD2",
+                "type": "application/json"
+            },
+            "alternate": {
+                "href": "https://www.zotero.org/groups/pastas/items/QESIWQD2",
+                "type": "text/html"
+            }
+        },
+        "meta": {
+            "createdByUser": {
+                "id": 7137894,
+                "username": "raoulcollenteur",
+                "name": "",
+                "links": {
+                    "alternate": {
+                        "href": "https://www.zotero.org/raoulcollenteur",
+                        "type": "text/html"
+                    }
+                }
+            },
+            "lastModifiedByUser": {
+                "id": 8792906,
+                "username": "dbrakenhoff",
+                "name": "Dav\u00edd Brakenhoff",
+                "links": {
+                    "alternate": {
+                        "href": "https://www.zotero.org/dbrakenhoff",
+                        "type": "text/html"
+                    }
+                }
+            },
+            "creatorSummary": "Sugiura",
+            "parsedDate": "1978",
+            "numChildren": 0
+        },
+        "data": {
+            "key": "QESIWQD2",
+            "version": 200,
+            "itemType": "journalArticle",
+            "title": "Further analysis of the data by Akaike's information criterion and the finite corrections",
+            "creators": [
+                {
+                    "creatorType": "author",
+                    "firstName": "Nariaki",
+                    "lastName": "Sugiura"
+                }
+            ],
+            "abstractNote": "",
+            "publicationTitle": "Communications in Statistics - Theory and Methods",
+            "publisher": "Taylor & Francis",
+            "place": "",
+            "date": "1978",
+            "volume": "7",
+            "issue": "1",
+            "section": "",
+            "partNumber": "",
+            "partTitle": "",
+            "pages": "13\u201326",
+            "series": "",
+            "seriesTitle": "",
+            "seriesText": "",
+            "journalAbbreviation": "",
+            "DOI": "10.1080/03610927808827599",
+            "citationKey": "",
+            "url": "",
+            "accessDate": "",
+            "PMID": "",
+            "PMCID": "",
+            "ISSN": "",
+            "archive": "",
+            "archiveLocation": "",
+            "shortTitle": "",
+            "language": "",
+            "libraryCatalog": "",
+            "callNumber": "",
+            "rights": "",
+            "extra": "",
+            "tags": [],
+            "collections": [
+                "8UG7PVLY"
+            ],
+            "relations": {},
+            "dateAdded": "2024-04-11T09:00:44Z",
+            "dateModified": "2024-04-11T09:00:44Z"
+        }
+    },
+    {
+        "key": "8ECX29Z3",
+        "version": 170,
+        "library": {
+            "type": "group",
+            "id": 4846685,
+            "name": "pastas",
+            "links": {
+                "alternate": {
+                    "href": "https://www.zotero.org/groups/pastas",
+                    "type": "text/html"
+                }
+            }
+        },
+        "links": {
+            "self": {
+                "href": "https://api.zotero.org/groups/4846685/items/8ECX29Z3",
+                "type": "application/json"
+            },
+            "alternate": {
+                "href": "https://www.zotero.org/groups/pastas/items/8ECX29Z3",
+                "type": "text/html"
+            }
+        },
+        "meta": {
+            "createdByUser": {
+                "id": 7137894,
+                "username": "raoulcollenteur",
+                "name": "",
+                "links": {
+                    "alternate": {
+                        "href": "https://www.zotero.org/raoulcollenteur",
+                        "type": "text/html"
+                    }
+                }
+            },
+            "creatorSummary": "Fisher",
+            "parsedDate": "1995",
+            "numChildren": 0
+        },
+        "data": {
+            "key": "8ECX29Z3",
+            "version": 170,
+            "itemType": "book",
+            "title": "Statistical analysis of circular data",
+            "creators": [
+                {
+                    "creatorType": "author",
+                    "firstName": "Nicholas I",
+                    "lastName": "Fisher"
+                }
+            ],
+            "abstractNote": "",
+            "series": "",
+            "seriesNumber": "",
+            "volume": "",
+            "numberOfVolumes": "",
+            "edition": "",
+            "date": "1995",
+            "publisher": "cambridge university press",
+            "place": "",
+            "originalDate": "",
+            "originalPublisher": "",
+            "originalPlace": "",
+            "format": "",
+            "numPages": "",
+            "ISBN": "",
+            "DOI": "",
+            "citationKey": "",
+            "url": "",
+            "accessDate": "",
+            "ISSN": "",
+            "archive": "",
+            "archiveLocation": "",
+            "shortTitle": "",
+            "language": "",
+            "libraryCatalog": "",
+            "callNumber": "",
+            "rights": "",
+            "extra": "",
+            "tags": [],
+            "collections": [
+                "8UG7PVLY"
+            ],
+            "relations": {},
+            "dateAdded": "2023-12-13T08:31:33Z",
+            "dateModified": "2023-12-13T08:31:33Z"
+        }
+    },
+    {
+        "key": "22842DU4",
+        "version": 196,
+        "library": {
+            "type": "group",
+            "id": 4846685,
+            "name": "pastas",
+            "links": {
+                "alternate": {
+                    "href": "https://www.zotero.org/groups/pastas",
+                    "type": "text/html"
+                }
+            }
+        },
+        "links": {
+            "self": {
+                "href": "https://api.zotero.org/groups/4846685/items/22842DU4",
+                "type": "application/json"
+            },
+            "alternate": {
+                "href": "https://www.zotero.org/groups/pastas/items/22842DU4",
+                "type": "text/html"
+            }
+        },
+        "meta": {
+            "createdByUser": {
+                "id": 7137894,
+                "username": "raoulcollenteur",
+                "name": "",
+                "links": {
+                    "alternate": {
+                        "href": "https://www.zotero.org/raoulcollenteur",
+                        "type": "text/html"
+                    }
+                }
+            },
+            "creatorSummary": "Collenteur et al.",
+            "parsedDate": "2023-11-01",
+            "numChildren": 0
+        },
+        "data": {
+            "key": "22842DU4",
+            "version": 196,
+            "itemType": "journalArticle",
+            "title": "Analysis of nationwide groundwater monitoring networks using lumped-parameter models",
+            "creators": [
+                {
+                    "creatorType": "author",
+                    "firstName": "Raoul A.",
+                    "lastName": "Collenteur"
+                },
+                {
+                    "creatorType": "author",
+                    "firstName": "Christian",
+                    "lastName": "Moeck"
+                },
+                {
+                    "creatorType": "author",
+                    "firstName": "Mario",
+                    "lastName": "Schirmer"
+                },
+                {
+                    "creatorType": "author",
+                    "firstName": "Steffen",
+                    "lastName": "Birk"
+                }
+            ],
+            "abstractNote": "Many countries maintain nationwide groundwater networks to monitor the status of their groundwater resources. For effective groundwater resource management, it is fundamental to understand the groundwater dynamics measured in the individual monitoring wells. Nationwide monitoring networks typically cover multiple aquifer systems with different degrees of environmental complexity. The analysis of the data of such networks thus requires flexible modeling approaches. In this study, we assessed the applicability and performance of lumped-parameter models using impulse response functions, as implemented in the Pastas software, to simulate hydraulic head data from the nationwide groundwater monitoring network in Switzerland. The selected 28 monitoring wells in the network are situated in unconsolidated, relatively shallow aquifers across Switzerland. Given the very diverse topography in the study area, snowmelt processes affect some aquifers, while groundwater\u2013surface water interactions are important in the valleys. Different linear and nonlinear models were tested to take precipitation and potential evaporation into account, with a new model developed as part of this study to account for the effect of snow processes on recharge generation. After generally good fits in both the calibration and evaluation were achieved, the models were used to identify and quantify which stresses (e.g., precipitation, river stages) control the groundwater dynamics. The results show that precipitation and evaporation explain large parts of the measured dynamics, and about half of the monitoring wells in the network appear to be influenced by river stages. Explicitly accounting for snow processes in the recharge generating process is found to improve the simulation of the head dynamics across Switzerland, particularly for wells in high-altitude aquifers. This study demonstrates for the first time the applicability of lumped-parameter models using impulse response functions to model heads in Switzerland, and more generally, in climatic settings where snow processes are impacting the head dynamics.",
+            "publicationTitle": "Journal of Hydrology",
+            "publisher": "",
+            "place": "",
+            "date": "2023-11-01",
+            "volume": "626",
+            "issue": "",
+            "section": "",
+            "partNumber": "",
+            "partTitle": "",
+            "pages": "130120",
+            "series": "",
+            "seriesTitle": "",
+            "seriesText": "",
+            "journalAbbreviation": "Journal of Hydrology",
+            "DOI": "10.1016/j.jhydrol.2023.130120",
+            "citationKey": "",
+            "url": "https://www.sciencedirect.com/science/article/pii/S0022169423010624",
+            "accessDate": "",
+            "PMID": "",
+            "PMCID": "",
+            "ISSN": "0022-1694",
+            "archive": "",
+            "archiveLocation": "",
+            "shortTitle": "",
+            "language": "",
+            "libraryCatalog": "",
+            "callNumber": "",
+            "rights": "",
+            "extra": "",
+            "tags": [
+                {
+                    "tag": "Groundwater"
+                },
+                {
+                    "tag": "Hydraulic heads"
+                },
+                {
+                    "tag": "Impulse response functions"
+                },
+                {
+                    "tag": "Pastas"
+                }
+            ],
+            "collections": [
+                "8UG7PVLY",
+                "Q4F7R59G"
+            ],
+            "relations": {},
+            "dateAdded": "2023-09-25T16:22:42Z",
+            "dateModified": "2023-09-25T16:22:42Z"
+        }
+    },
+    {
+        "key": "VVXANV7B",
+        "version": 160,
+        "library": {
+            "type": "group",
+            "id": 4846685,
+            "name": "pastas",
+            "links": {
+                "alternate": {
+                    "href": "https://www.zotero.org/groups/pastas",
+                    "type": "text/html"
+                }
+            }
+        },
+        "links": {
+            "self": {
+                "href": "https://api.zotero.org/groups/4846685/items/VVXANV7B",
+                "type": "application/json"
+            },
+            "alternate": {
+                "href": "https://www.zotero.org/groups/pastas/items/VVXANV7B",
+                "type": "text/html"
+            }
+        },
+        "meta": {
+            "createdByUser": {
+                "id": 7137894,
+                "username": "raoulcollenteur",
+                "name": "",
+                "links": {
+                    "alternate": {
+                        "href": "https://www.zotero.org/raoulcollenteur",
+                        "type": "text/html"
+                    }
+                }
+            },
+            "creatorSummary": "Foreman-Mackey et al.",
+            "parsedDate": "2013-03",
+            "numChildren": 0
+        },
+        "data": {
+            "key": "VVXANV7B",
+            "version": 160,
+            "itemType": "journalArticle",
+            "title": "emcee: The MCMC Hammer",
+            "creators": [
+                {
+                    "creatorType": "author",
+                    "firstName": "Daniel",
+                    "lastName": "Foreman-Mackey"
+                },
+                {
+                    "creatorType": "author",
+                    "firstName": "David W.",
+                    "lastName": "Hogg"
+                },
+                {
+                    "creatorType": "author",
+                    "firstName": "Dustin",
+                    "lastName": "Lang"
+                },
+                {
+                    "creatorType": "author",
+                    "firstName": "Jonathan",
+                    "lastName": "Goodman"
+                }
+            ],
+            "abstractNote": "",
+            "publicationTitle": "\\pasp",
+            "publisher": "",
+            "place": "",
+            "date": "2013-03",
+            "volume": "125",
+            "issue": "925",
+            "section": "",
+            "partNumber": "",
+            "partTitle": "",
+            "pages": "306",
+            "series": "",
+            "seriesTitle": "",
+            "seriesText": "",
+            "journalAbbreviation": "",
+            "DOI": "10.1086/670067",
+            "citationKey": "",
+            "url": "",
+            "accessDate": "",
+            "PMID": "",
+            "PMCID": "",
+            "ISSN": "",
+            "archive": "",
+            "archiveLocation": "",
+            "shortTitle": "",
+            "language": "",
+            "libraryCatalog": "",
+            "callNumber": "",
+            "rights": "",
+            "extra": "_eprint: 1202.3665",
+            "tags": [
+                {
+                    "tag": "Astrophysics - Instrumentation and Methods for Astrophysics"
+                },
+                {
+                    "tag": "Physics - Computational Physics"
+                },
+                {
+                    "tag": "Statistics - Computation"
+                }
+            ],
+            "collections": [
+                "8UG7PVLY"
+            ],
+            "relations": {},
+            "dateAdded": "2023-06-22T14:59:27Z",
+            "dateModified": "2023-06-22T14:59:27Z"
+        }
+    },
+    {
+        "key": "JDYSX2UY",
+        "version": 200,
+        "library": {
+            "type": "group",
+            "id": 4846685,
+            "name": "pastas",
+            "links": {
+                "alternate": {
+                    "href": "https://www.zotero.org/groups/pastas",
+                    "type": "text/html"
+                }
+            }
+        },
+        "links": {
+            "self": {
+                "href": "https://api.zotero.org/groups/4846685/items/JDYSX2UY",
+                "type": "application/json"
+            },
+            "alternate": {
+                "href": "https://www.zotero.org/groups/pastas/items/JDYSX2UY",
+                "type": "text/html"
+            }
+        },
+        "meta": {
+            "createdByUser": {
+                "id": 7137894,
+                "username": "raoulcollenteur",
+                "name": "",
+                "links": {
+                    "alternate": {
+                        "href": "https://www.zotero.org/raoulcollenteur",
+                        "type": "text/html"
+                    }
+                }
+            },
+            "lastModifiedByUser": {
+                "id": 8792906,
+                "username": "dbrakenhoff",
+                "name": "Dav\u00edd Brakenhoff",
+                "links": {
+                    "alternate": {
+                        "href": "https://www.zotero.org/dbrakenhoff",
+                        "type": "text/html"
+                    }
+                }
+            },
+            "creatorSummary": "Houska et al.",
+            "parsedDate": "2015-12-17",
+            "numChildren": 0
+        },
+        "data": {
+            "key": "JDYSX2UY",
+            "version": 200,
+            "itemType": "journalArticle",
+            "title": "SPOTting Model Parameters Using a Ready-Made Python Package",
+            "creators": [
+                {
+                    "creatorType": "author",
+                    "firstName": "Tobias",
+                    "lastName": "Houska"
+                },
+                {
+                    "creatorType": "author",
+                    "firstName": "Philipp",
+                    "lastName": "Kraft"
+                },
+                {
+                    "creatorType": "author",
+                    "firstName": "Alejandro",
+                    "lastName": "Chamorro-Chavez"
+                },
+                {
+                    "creatorType": "author",
+                    "firstName": "Lutz",
+                    "lastName": "Breuer"
+                }
+            ],
+            "abstractNote": "The choice for specific parameter estimation methods is often more dependent on its availability than its performance. We developed SPOTPY (Statistical Parameter Optimization Tool), an open source python package containing a comprehensive set of methods typically used to calibrate, analyze and optimize parameters for a wide range of ecological models. SPOTPY currently contains eight widely used algorithms, 11 objective functions, and can sample from eight parameter distributions. SPOTPY has a model-independent structure and can be run in parallel from the workstation to large computation clusters using the Message Passing Interface (MPI). We tested SPOTPY in five different case studies to parameterize the Rosenbrock, Griewank and Ackley functions, a one-dimensional physically based soil moisture routine, where we searched for parameters of the van Genuchten-Mualem function and a calibration of a biogeochemistry model with different objective functions. The case studies reveal that the implemented SPOTPY methods can be used for any model with just a minimal amount of code for maximal power of parameter optimization. They further show the benefit of having one package at hand that includes number of well performing parameter search methods, since not every case study can be solved sufficiently with every algorithm or every objective function.",
+            "publicationTitle": "PLOS ONE",
+            "publisher": "Public Library of Science",
+            "place": "",
+            "date": "17 Dec 2015",
+            "volume": "10",
+            "issue": "12",
+            "section": "",
+            "partNumber": "",
+            "partTitle": "",
+            "pages": "e0145180",
+            "series": "",
+            "seriesTitle": "",
+            "seriesText": "",
+            "journalAbbreviation": "PLOS ONE",
+            "DOI": "10.1371/journal.pone.0145180",
+            "citationKey": "",
+            "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0145180",
+            "accessDate": "2023-02-16T12:45:55Z",
+            "PMID": "",
+            "PMCID": "",
+            "ISSN": "1932-6203",
+            "archive": "",
+            "archiveLocation": "",
+            "shortTitle": "",
+            "language": "en",
+            "libraryCatalog": "PLoS Journals",
+            "callNumber": "",
+            "rights": "",
+            "extra": "",
+            "tags": [
+                {
+                    "tag": "Algorithms",
+                    "type": 1
+                },
+                {
+                    "tag": "Artificial intelligence",
+                    "type": 1
+                },
+                {
+                    "tag": "Carbon dioxide",
+                    "type": 1
+                },
+                {
+                    "tag": "Convergent evolution",
+                    "type": 1
+                },
+                {
+                    "tag": "Evolutionary algorithms",
+                    "type": 1
+                },
+                {
+                    "tag": "Optimization",
+                    "type": 1
+                },
+                {
+                    "tag": "Programming languages",
+                    "type": 1
+                },
+                {
+                    "tag": "Simulation and modeling",
+                    "type": 1
+                }
+            ],
+            "collections": [
+                "8UG7PVLY"
+            ],
+            "relations": {},
+            "dateAdded": "2023-02-16T12:45:55Z",
+            "dateModified": "2023-02-16T12:45:55Z"
+        }
+    },
+    {
+        "key": "LGERP7P5",
+        "version": 200,
+        "library": {
+            "type": "group",
+            "id": 4846685,
+            "name": "pastas",
+            "links": {
+                "alternate": {
+                    "href": "https://www.zotero.org/groups/pastas",
+                    "type": "text/html"
+                }
+            }
+        },
+        "links": {
+            "self": {
+                "href": "https://api.zotero.org/groups/4846685/items/LGERP7P5",
+                "type": "application/json"
+            },
+            "alternate": {
+                "href": "https://www.zotero.org/groups/pastas/items/LGERP7P5",
+                "type": "text/html"
+            }
+        },
+        "meta": {
+            "createdByUser": {
+                "id": 7137894,
+                "username": "raoulcollenteur",
+                "name": "",
+                "links": {
+                    "alternate": {
+                        "href": "https://www.zotero.org/raoulcollenteur",
+                        "type": "text/html"
+                    }
+                }
+            },
+            "lastModifiedByUser": {
+                "id": 8792906,
+                "username": "dbrakenhoff",
+                "name": "Dav\u00edd Brakenhoff",
+                "links": {
+                    "alternate": {
+                        "href": "https://www.zotero.org/dbrakenhoff",
+                        "type": "text/html"
+                    }
+                }
+            },
+            "creatorSummary": "Kirchner",
+            "parsedDate": "2009-02-01",
+            "numChildren": 1
+        },
+        "data": {
+            "key": "LGERP7P5",
+            "version": 200,
+            "itemType": "journalArticle",
+            "title": "Catchments as simple dynamical systems: Catchment characterization, rainfall-runoff modeling, and doing hydrology backward",
+            "creators": [
+                {
+                    "creatorType": "author",
+                    "firstName": "James W.",
+                    "lastName": "Kirchner"
+                }
+            ],
+            "abstractNote": "Water fluxes in catchments are controlled by physical processes and material properties that are complex, heterogeneous, and poorly characterized by direct measurement. As a result, parsimonious theories of catchment hydrology remain elusive. Here I describe how one class of catchments (those in which discharge is determined by the volume of water in storage) can be characterized as simple first-order nonlinear dynamical systems, and I show that the form of their governing equations can be inferred directly from measurements of streamflow fluctuations. I illustrate this approach using data from the headwaters of the Severn and Wye rivers at Plynlimon in mid-Wales. This approach leads to quantitative estimates of catchment dynamic storage, recession time scales, and sensitivity to antecedent moisture, suggesting that it is useful for catchment characterization. It also yields a first-order nonlinear differential equation that can be used to directly simulate the streamflow hydrograph from precipitation and evapotranspiration time series. This single-equation rainfall-runoff model predicts streamflow at Plynlimon as accurately as other models that are much more highly parameterized. It can also be analytically inverted; thus, it can be used to ?do hydrology backward,? that is, to infer time series of whole-catchment precipitation directly from fluctuations in streamflow. At Plynlimon, precipitation rates inferred from streamflow fluctuations agree with rain gauge measurements as closely as two rain gauges in each catchment agree with each other. These inferred precipitation rates are not calibrated to precipitation measurements in any way, making them a strong test of the underlying theory. The same approach can be used to estimate whole-catchment evapotranspiration rates during rainless periods. At Plynlimon, evapotranspiration rates inferred from streamflow fluctuations exhibit seasonal and diurnal cycles that agree semiquantitatively with Penman-Monteith estimates. Thus, streamflow hydrographs may be useful for reconstructing precipitation and evapotranspiration records where direct measurements are unavailable, unreliable, or unrepresentative at the scale of the landscape.",
+            "publicationTitle": "Water Resources Research",
+            "publisher": "John Wiley & Sons, Ltd",
+            "place": "",
+            "date": "2009-02-01",
+            "volume": "45",
+            "issue": "2",
+            "section": "",
+            "partNumber": "",
+            "partTitle": "",
+            "pages": "",
+            "series": "",
+            "seriesTitle": "",
+            "seriesText": "",
+            "journalAbbreviation": "Water Resources Research",
+            "DOI": "10.1029/2008WR006912",
+            "citationKey": "",
+            "url": "https://doi.org/10.1029/2008WR006912",
+            "accessDate": "2023-01-17",
+            "PMID": "",
+            "PMCID": "",
+            "ISSN": "0043-1397",
+            "archive": "",
+            "archiveLocation": "",
+            "shortTitle": "",
+            "language": "",
+            "libraryCatalog": "",
+            "callNumber": "",
+            "rights": "",
+            "extra": "",
+            "tags": [
+                {
+                    "tag": "catchment characterization"
+                },
+                {
+                    "tag": "catchment hydrology"
+                },
+                {
+                    "tag": "evapotranspiration"
+                },
+                {
+                    "tag": "precipitation"
+                },
+                {
+                    "tag": "rainfall-runoff modeling"
+                },
+                {
+                    "tag": "streamflow generation"
+                },
+                {
+                    "tag": "watershed hydrology"
+                }
+            ],
+            "collections": [
+                "8UG7PVLY"
+            ],
+            "relations": {},
+            "dateAdded": "2023-01-17T16:28:06Z",
+            "dateModified": "2023-01-17T16:28:06Z"
+        }
+    },
+    {
+        "key": "2AV9642P",
+        "version": 150,
+        "library": {
+            "type": "group",
+            "id": 4846685,
+            "name": "pastas",
+            "links": {
+                "alternate": {
+                    "href": "https://www.zotero.org/groups/pastas",
+                    "type": "text/html"
+                }
+            }
+        },
+        "links": {
+            "self": {
+                "href": "https://api.zotero.org/groups/4846685/items/2AV9642P",
+                "type": "application/json"
+            },
+            "alternate": {
+                "href": "https://www.zotero.org/groups/pastas/items/2AV9642P",
+                "type": "text/html"
+            }
+        },
+        "meta": {
+            "createdByUser": {
+                "id": 7137894,
+                "username": "raoulcollenteur",
+                "name": "",
+                "links": {
+                    "alternate": {
+                        "href": "https://www.zotero.org/raoulcollenteur",
+                        "type": "text/html"
+                    }
+                }
+            },
+            "creatorSummary": "Organization",
+            "parsedDate": "2008",
+            "numChildren": 0
+        },
+        "data": {
+            "key": "2AV9642P",
+            "version": 150,
+            "itemType": "book",
+            "title": "Manual on low-flow estimation and prediction",
+            "creators": [
+                {
+                    "creatorType": "author",
+                    "firstName": "World Meteorological",
+                    "lastName": "Organization"
+                }
+            ],
+            "abstractNote": "",
+            "series": "",
+            "seriesNumber": "",
+            "volume": "",
+            "numberOfVolumes": "",
+            "edition": "",
+            "date": "2008",
+            "publisher": "World meteorological organization",
+            "place": "",
+            "originalDate": "",
+            "originalPublisher": "",
+            "originalPlace": "",
+            "format": "",
+            "numPages": "",
+            "ISBN": "",
+            "DOI": "",
+            "citationKey": "",
+            "url": "",
+            "accessDate": "",
+            "ISSN": "",
+            "archive": "",
+            "archiveLocation": "",
+            "shortTitle": "",
+            "language": "",
+            "libraryCatalog": "",
+            "callNumber": "",
+            "rights": "",
+            "extra": "",
+            "tags": [],
+            "collections": [
+                "8UG7PVLY"
+            ],
+            "relations": {},
+            "dateAdded": "2023-01-17T16:26:16Z",
+            "dateModified": "2023-01-17T16:26:16Z"
+        }
+    },
+    {
+        "key": "WRLW4D4Y",
+        "version": 149,
+        "library": {
+            "type": "group",
+            "id": 4846685,
+            "name": "pastas",
+            "links": {
+                "alternate": {
+                    "href": "https://www.zotero.org/groups/pastas",
+                    "type": "text/html"
+                }
+            }
+        },
+        "links": {
+            "self": {
+                "href": "https://api.zotero.org/groups/4846685/items/WRLW4D4Y",
+                "type": "application/json"
+            },
+            "alternate": {
+                "href": "https://www.zotero.org/groups/pastas/items/WRLW4D4Y",
+                "type": "text/html"
+            }
+        },
+        "meta": {
+            "createdByUser": {
+                "id": 7137894,
+                "username": "raoulcollenteur",
+                "name": "",
+                "links": {
+                    "alternate": {
+                        "href": "https://www.zotero.org/raoulcollenteur",
+                        "type": "text/html"
+                    }
+                }
+            },
+            "creatorSummary": "Richards",
+            "parsedDate": "1990-01-01",
+            "numChildren": 0
+        },
+        "data": {
+            "key": "WRLW4D4Y",
+            "version": 149,
+            "itemType": "journalArticle",
+            "title": "Measures of Flow Variability and a New Flow-Based Classification of Great Lakes Tributaries",
+            "creators": [
+                {
+                    "creatorType": "author",
+                    "firstName": "R. Peter",
+                    "lastName": "Richards"
+                }
+            ],
+            "abstractNote": "In tributaries impacted by non-point source pollution, flux rates often are proportional to flow. Since adequate pollutant concentration data are lacking for many river systems, but flow data are often available, measures of flow variability may be the only source of information for planning monitoring programs or evaluating the behavior of tributaries on a basin-wide scale. Seven measures of flow variability were developed, and their characteristics were examined using flow data from Great Lakes tributaries. Classifications of the tributaries based on flow variability were compared with an event-responsiveness classification of earlier investigators. Lack of agreement is conspicuous, and can be attributed in part to an inadequate chemical data base for many rivers when the earlier classification was established. Cluster analysis was used to reveal the natural groupings of 118 U.S. and Canadian Great Lakes tributaries, based on measures of flow variability. The resulting classification of the tributaries is geographically coherent, and demonstrates that large areas of high flow variability are found in the western and central Lake Erie drainage basin, probably as a result of intense agricultural land use in association with heavy soils. Tributaries draining urban areas also tend to have high flow variability. Most of the tributaries which drain the northern Great Lakes watershed have low flow variability.",
+            "publicationTitle": "Journal of Great Lakes Research",
+            "publisher": "",
+            "place": "",
+            "date": "1990-01-01",
+            "volume": "16",
+            "issue": "1",
+            "section": "",
+            "partNumber": "",
+            "partTitle": "",
+            "pages": "53-70",
+            "series": "",
+            "seriesTitle": "",
+            "seriesText": "",
+            "journalAbbreviation": "Journal of Great Lakes Research",
+            "DOI": "10.1016/S0380-1330(90)71398-6",
+            "citationKey": "",
+            "url": "https://www.sciencedirect.com/science/article/pii/S0380133090713986",
+            "accessDate": "",
+            "PMID": "",
+            "PMCID": "",
+            "ISSN": "0380-1330",
+            "archive": "",
+            "archiveLocation": "",
+            "shortTitle": "",
+            "language": "",
+            "libraryCatalog": "",
+            "callNumber": "",
+            "rights": "",
+            "extra": "",
+            "tags": [
+                {
+                    "tag": "Statistical analysis"
+                },
+                {
+                    "tag": "flow characteristics"
+                },
+                {
+                    "tag": "flow discharge"
+                },
+                {
+                    "tag": "flow pattern"
+                },
+                {
+                    "tag": "nonpoint pollution sources"
+                },
+                {
+                    "tag": "stream discharge"
+                },
+                {
+                    "tag": "tributaries"
+                }
+            ],
+            "collections": [
+                "8UG7PVLY"
+            ],
+            "relations": {},
+            "dateAdded": "2023-01-17T16:23:52Z",
+            "dateModified": "2023-01-17T16:23:52Z"
+        }
+    },
+    {
+        "key": "IBHQME9M",
+        "version": 201,
+        "library": {
+            "type": "group",
+            "id": 4846685,
+            "name": "pastas",
+            "links": {
+                "alternate": {
+                    "href": "https://www.zotero.org/groups/pastas",
+                    "type": "text/html"
+                }
+            }
+        },
+        "links": {
+            "self": {
+                "href": "https://api.zotero.org/groups/4846685/items/IBHQME9M",
+                "type": "application/json"
+            },
+            "alternate": {
+                "href": "https://www.zotero.org/groups/pastas/items/IBHQME9M",
+                "type": "text/html"
+            }
+        },
+        "meta": {
+            "createdByUser": {
+                "id": 7137894,
+                "username": "raoulcollenteur",
+                "name": "",
+                "links": {
+                    "alternate": {
+                        "href": "https://www.zotero.org/raoulcollenteur",
+                        "type": "text/html"
+                    }
+                }
+            },
+            "lastModifiedByUser": {
+                "id": 8792906,
+                "username": "dbrakenhoff",
+                "name": "Dav\u00edd Brakenhoff",
+                "links": {
+                    "alternate": {
+                        "href": "https://www.zotero.org/dbrakenhoff",
+                        "type": "text/html"
+                    }
+                }
+            },
+            "creatorSummary": "Oudin et al.",
+            "parsedDate": "2010-11-01",
+            "numChildren": 1
+        },
+        "data": {
+            "key": "IBHQME9M",
+            "version": 201,
+            "itemType": "journalArticle",
+            "title": "Are seemingly physically similar catchments truly hydrologically similar?",
+            "creators": [
+                {
+                    "creatorType": "author",
+                    "firstName": "Ludovic",
+                    "lastName": "Oudin"
+                },
+                {
+                    "creatorType": "author",
+                    "firstName": "Alison",
+                    "lastName": "Kay"
+                },
+                {
+                    "creatorType": "author",
+                    "firstName": "Vazken",
+                    "lastName": "Andr\u00e9assian"
+                },
+                {
+                    "creatorType": "author",
+                    "firstName": "Charles",
+                    "lastName": "Perrin"
+                }
+            ],
+            "abstractNote": "This paper discusses the notion of similarity often used in the regionalization studies of hydrological models. We compare two different visions of similarity: the apparent similarity defined on the basis of observable catchment properties, and behavioral similarity judged through the use of hydrological models. These two visions are generally assumed to be merged in regionalization studies: Catchments having apparently similar physical characteristics are assumed to have a similar hydrological behavior. In this paper, we wished to test the validity of this assumption. To this aim, we defined behavioral (hydrological) similarity on the basis of model parameter transferability. Then pools of hydrologically similar catchments are compared with pools of apparently physically similar catchments, as identified on the basis of physiographic catchment descriptors. The overlap between the two pools of similar catchments is analyzed, making it possible to judge the efficiency of the physical similarity measure and to identify hydrologically similar catchments in an ungauged context. The results show that the overlap between the two pools is significant for only 60% of the catchments. For the other catchments, two major reasons were identified as contributing to the lack of overlap: (1) these catchments often have a quite specific hydrological behavior and (2) the role of the underground properties of the catchment on its hydrological behavior was not found to be accurately described by the available physical descriptors, meaning that more relevant catchment descriptors should be sought to better describe the geological and lithological context in hydrological terms.",
+            "publicationTitle": "Water Resources Research",
+            "publisher": "John Wiley & Sons, Ltd",
+            "place": "",
+            "date": "2010-11-01",
+            "volume": "46",
+            "issue": "11",
+            "section": "",
+            "partNumber": "",
+            "partTitle": "",
+            "pages": "",
+            "series": "",
+            "seriesTitle": "",
+            "seriesText": "",
+            "journalAbbreviation": "Water Resources Research",
+            "DOI": "10.1029/2009WR008887",
+            "citationKey": "",
+            "url": "https://doi.org/10.1029/2009WR008887",
+            "accessDate": "2023-01-17",
+            "PMID": "",
+            "PMCID": "",
+            "ISSN": "0043-1397",
+            "archive": "",
+            "archiveLocation": "",
+            "shortTitle": "",
+            "language": "",
+            "libraryCatalog": "",
+            "callNumber": "",
+            "rights": "",
+            "extra": "",
+            "tags": [
+                {
+                    "tag": "catchment similarity"
+                },
+                {
+                    "tag": "rainfall-runoff modeling"
+                },
+                {
+                    "tag": "regionalization"
+                },
+                {
+                    "tag": "ungauged basins"
+                }
+            ],
+            "collections": [
+                "8UG7PVLY"
+            ],
+            "relations": {},
+            "dateAdded": "2023-01-17T16:23:00Z",
+            "dateModified": "2023-01-17T16:23:00Z"
+        }
+    },
+    {
+        "key": "7LN9JEWR",
+        "version": 201,
+        "library": {
+            "type": "group",
+            "id": 4846685,
+            "name": "pastas",
+            "links": {
+                "alternate": {
+                    "href": "https://www.zotero.org/groups/pastas",
+                    "type": "text/html"
+                }
+            }
+        },
+        "links": {
+            "self": {
+                "href": "https://api.zotero.org/groups/4846685/items/7LN9JEWR",
+                "type": "application/json"
+            },
+            "alternate": {
+                "href": "https://www.zotero.org/groups/pastas/items/7LN9JEWR",
+                "type": "text/html"
+            }
+        },
+        "meta": {
+            "createdByUser": {
+                "id": 7137894,
+                "username": "raoulcollenteur",
+                "name": "",
+                "links": {
+                    "alternate": {
+                        "href": "https://www.zotero.org/raoulcollenteur",
+                        "type": "text/html"
+                    }
+                }
+            },
+            "lastModifiedByUser": {
+                "id": 8792906,
+                "username": "dbrakenhoff",
+                "name": "Dav\u00edd Brakenhoff",
+                "links": {
+                    "alternate": {
+                        "href": "https://www.zotero.org/dbrakenhoff",
+                        "type": "text/html"
+                    }
+                }
+            },
+            "creatorSummary": "Hannah et al.",
+            "parsedDate": "2000-02-15",
+            "numChildren": 1
+        },
+        "data": {
+            "key": "7LN9JEWR",
+            "version": 201,
+            "itemType": "journalArticle",
+            "title": "An approach to hydrograph classification",
+            "creators": [
+                {
+                    "creatorType": "author",
+                    "firstName": "David M.",
+                    "lastName": "Hannah"
+                },
+                {
+                    "creatorType": "author",
+                    "firstName": "Barnaby P. G.",
+                    "lastName": "Smith"
+                },
+                {
+                    "creatorType": "author",
+                    "firstName": "Angela M.",
+                    "lastName": "Gurnell"
+                },
+                {
+                    "creatorType": "author",
+                    "firstName": "Glenn R.",
+                    "lastName": "McGregor"
+                }
+            ],
+            "abstractNote": "Abstract The stream hydrograph is an integration of spatial and temporal variations in water input, storage and transfer processes within a catchment. For glacier basins in particular, inferences concerning catchment-scale processes have been developed from the varying form and magnitude of the diurnal hydrograph in the proglacial river. To date, however, such classifications of proglacial diurnal hydrographs have developed in a relatively subjective manner. This paper develops an objective approach to the classification of diurnal discharge hydrograph ?shape? and ?magnitude? using a combination of principal components analysis and cluster analysis applied to proglacial discharge time-series and to diurnal bulk flow indices. The procedure is applied to discharge time-series from two different glacier basins and four separate ablation seasons representing a gradient of increasing hydrological perturbation as a result of (i) variable water inputs generated by rainstorm activity and (ii) variable location and response of hydrological stores through a systematic decrease in catchment glacierized area. The potential of the technique for application in non-glacial hydrological contexts is discussed. Copyright ? 2000 John Wiley & Sons, Ltd.",
+            "publicationTitle": "Hydrological Processes",
+            "publisher": "John Wiley & Sons, Ltd",
+            "place": "",
+            "date": "2000-02-15",
+            "volume": "14",
+            "issue": "2",
+            "section": "",
+            "partNumber": "",
+            "partTitle": "",
+            "pages": "317-338",
+            "series": "",
+            "seriesTitle": "",
+            "seriesText": "",
+            "journalAbbreviation": "Hydrological Processes",
+            "DOI": "10.1002/(SICI)1099-1085(20000215)14:2<317::AID-HYP929>3.0.CO;2-T",
+            "citationKey": "",
+            "url": "https://doi.org/10.1002/(SICI)1099-1085(20000215)14:2<317::AID-HYP929>3.0.CO;2-T",
+            "accessDate": "2023-01-17",
+            "PMID": "",
+            "PMCID": "",
+            "ISSN": "0885-6087",
+            "archive": "",
+            "archiveLocation": "",
+            "shortTitle": "",
+            "language": "",
+            "libraryCatalog": "",
+            "callNumber": "",
+            "rights": "",
+            "extra": "",
+            "tags": [
+                {
+                    "tag": "alpine glacierized basins"
+                },
+                {
+                    "tag": "hydrological time-series"
+                },
+                {
+                    "tag": "meltwater runoff"
+                },
+                {
+                    "tag": "snow and glacier hydrology"
+                }
+            ],
+            "collections": [
+                "8UG7PVLY"
+            ],
+            "relations": {},
+            "dateAdded": "2023-01-17T16:20:56Z",
+            "dateModified": "2023-01-17T16:20:56Z"
+        }
+    },
+    {
+        "key": "JX6KA2I3",
+        "version": 146,
+        "library": {
+            "type": "group",
+            "id": 4846685,
+            "name": "pastas",
+            "links": {
+                "alternate": {
+                    "href": "https://www.zotero.org/groups/pastas",
+                    "type": "text/html"
+                }
+            }
+        },
+        "links": {
+            "self": {
+                "href": "https://api.zotero.org/groups/4846685/items/JX6KA2I3",
+                "type": "application/json"
+            },
+            "alternate": {
+                "href": "https://www.zotero.org/groups/pastas/items/JX6KA2I3",
+                "type": "text/html"
+            }
+        },
+        "meta": {
+            "createdByUser": {
+                "id": 7137894,
+                "username": "raoulcollenteur",
+                "name": "",
+                "links": {
+                    "alternate": {
+                        "href": "https://www.zotero.org/raoulcollenteur",
+                        "type": "text/html"
+                    }
+                }
+            },
+            "creatorSummary": "Clausen and Biggs",
+            "parsedDate": "2000-11-21",
+            "numChildren": 0
+        },
+        "data": {
+            "key": "JX6KA2I3",
+            "version": 146,
+            "itemType": "journalArticle",
+            "title": "Flow variables for ecological studies in temperate streams: groupings based on covariance",
+            "creators": [
+                {
+                    "creatorType": "author",
+                    "firstName": "B",
+                    "lastName": "Clausen"
+                },
+                {
+                    "creatorType": "author",
+                    "firstName": "B.J.F",
+                    "lastName": "Biggs"
+                }
+            ],
+            "abstractNote": "In this paper we investigate similarities in streamflow variables, identify groups of variables that represent different aspects of the flow regime, and we discuss the ecological relevance of these groups. For the study we used 35 flow variables for 62 New Zealand perennial rivers, which cover a wide range of flow regimes. All flow variables were calculated using daily mean flows from a common 7-year period. They included general flow variables (which express general features without focusing on extreme flows, such as mean flow and coefficient of variation), high flow variables and low flow variables. Four groups of variables were identified based on covariance among the sites through a principal components analysis. These groups were: (1) the size of the river (central tendency of magnitude); (2) the overall variability of flow (including magnitude of high and low flows); (3) the volume of high flows; and (4) the frequency of high flow events. The ecological relevance of each of the four groups is discussed. We also examined statistical properties of the flow variables such as the inter-annual variability, which was low for the general flow variables and high for variables that characterize the highest floods. We recommend that a suite of different variables representing each of the identified groups be used in riverine ecological studies in order that the different facets of flow regimes be adequately represented.",
+            "publicationTitle": "Journal of Hydrology",
+            "publisher": "",
+            "place": "",
+            "date": "2000-11-21",
+            "volume": "237",
+            "issue": "3",
+            "section": "",
+            "partNumber": "",
+            "partTitle": "",
+            "pages": "184-197",
+            "series": "",
+            "seriesTitle": "",
+            "seriesText": "",
+            "journalAbbreviation": "Journal of Hydrology",
+            "DOI": "10.1016/S0022-1694(00)00306-1",
+            "citationKey": "",
+            "url": "https://www.sciencedirect.com/science/article/pii/S0022169400003061",
+            "accessDate": "",
+            "PMID": "",
+            "PMCID": "",
+            "ISSN": "0022-1694",
+            "archive": "",
+            "archiveLocation": "",
+            "shortTitle": "",
+            "language": "",
+            "libraryCatalog": "",
+            "callNumber": "",
+            "rights": "",
+            "extra": "",
+            "tags": [
+                {
+                    "tag": "Ecology"
+                },
+                {
+                    "tag": "Flow regimes"
+                },
+                {
+                    "tag": "Hydrology"
+                },
+                {
+                    "tag": "Rivers and streams"
+                },
+                {
+                    "tag": "Statistical analysis"
+                },
+                {
+                    "tag": "Streamflow variables"
+                }
+            ],
+            "collections": [
+                "8UG7PVLY"
+            ],
+            "relations": {},
+            "dateAdded": "2023-01-17T16:19:22Z",
+            "dateModified": "2023-01-17T16:19:22Z"
+        }
+    },
+    {
+        "key": "EX2HEKN2",
+        "version": 201,
+        "library": {
+            "type": "group",
+            "id": 4846685,
+            "name": "pastas",
+            "links": {
+                "alternate": {
+                    "href": "https://www.zotero.org/groups/pastas",
+                    "type": "text/html"
+                }
+            }
+        },
+        "links": {
+            "self": {
+                "href": "https://api.zotero.org/groups/4846685/items/EX2HEKN2",
+                "type": "application/json"
+            },
+            "alternate": {
+                "href": "https://www.zotero.org/groups/pastas/items/EX2HEKN2",
+                "type": "text/html"
+            }
+        },
+        "meta": {
+            "createdByUser": {
+                "id": 7137894,
+                "username": "raoulcollenteur",
+                "name": "",
+                "links": {
+                    "alternate": {
+                        "href": "https://www.zotero.org/raoulcollenteur",
+                        "type": "text/html"
+                    }
+                }
+            },
+            "lastModifiedByUser": {
+                "id": 8792906,
+                "username": "dbrakenhoff",
+                "name": "Dav\u00edd Brakenhoff",
+                "links": {
+                    "alternate": {
+                        "href": "https://www.zotero.org/dbrakenhoff",
+                        "type": "text/html"
+                    }
+                }
+            },
+            "creatorSummary": "Ellison",
+            "parsedDate": "1987-08-01",
+            "numChildren": 1
+        },
+        "data": {
+            "key": "EX2HEKN2",
+            "version": 201,
+            "itemType": "journalArticle",
+            "title": "EFFECT OF SEED DIMORPHISM ON THE DENSITY-DEPENDENT DYNAMICS OF EXPERIMENTAL POPULATIONS OF ATRIPLEX TRIANGULARIS (CHENOPODIACEAE)",
+            "creators": [
+                {
+                    "creatorType": "author",
+                    "firstName": "Aaron M.",
+                    "lastName": "Ellison"
+                }
+            ],
+            "abstractNote": "The importance of seed size and density in determining individual plant performance and plant population dynamics in experimental populations of the halophyte Atriplex triangularis was studied. Two distinct seed morphs?large, light seeds and small, dark seeds?are produced by individual A. triangularis plants. Experimental populations consisting of seed size monocultures (large or small seeds) and seed size mixtures were established at three different densities, and the time of germination, plant size, plant survivorship, and plant fecundity were monitored. Marked variation in time of germination was observed among treatments and between seed sizes, but germination within any given treatment occurred over a five- to ten-day period. Large seeds produced larger plants than small seeds did, and this dichotomy was maintained over the course of the entire experiment. Germination date and seed size interacted such that larger plants grew from seeds which germinated earlier than those which germinated later, regardless of seed size. Germination date had a more pronounced effect than seed size did on plant mortality in high density populations. At high density, large seed monocultures experienced greater mortality than small seed monocultures did, but in seed size mixtures, the mortality was evenly distributed between plants from the two seed sizes. Regardless of density conditions and parentage, large and small seeds were produced in equal proportion by the plants. Total seed production, however, was dramatically affected by plant density, and to a lesser degree by germination date. Although seed size effects alone did not appear to affect directly final plant biomass and fecundity, effects of seed size early in ontogeny may have contributed to differences in fecundity.",
+            "publicationTitle": "American Journal of Botany",
+            "publisher": "John Wiley & Sons, Ltd",
+            "place": "",
+            "date": "1987-08-01",
+            "volume": "74",
+            "issue": "8",
+            "section": "",
+            "partNumber": "",
+            "partTitle": "",
+            "pages": "1280-1288",
+            "series": "",
+            "seriesTitle": "",
+            "seriesText": "",
+            "journalAbbreviation": "American Journal of Botany",
+            "DOI": "10.1002/j.1537-2197.1987.tb08741.x",
+            "citationKey": "",
+            "url": "https://doi.org/10.1002/j.1537-2197.1987.tb08741.x",
+            "accessDate": "2023-01-17",
+            "PMID": "",
+            "PMCID": "",
+            "ISSN": "0002-9122",
+            "archive": "",
+            "archiveLocation": "",
+            "shortTitle": "",
+            "language": "",
+            "libraryCatalog": "",
+            "callNumber": "",
+            "rights": "",
+            "extra": "",
+            "tags": [],
+            "collections": [
+                "8UG7PVLY"
+            ],
+            "relations": {},
+            "dateAdded": "2023-01-17T16:18:07Z",
+            "dateModified": "2023-01-17T16:18:07Z"
+        }
+    },
+    {
+        "key": "KV4BVP4W",
+        "version": 201,
+        "library": {
+            "type": "group",
+            "id": 4846685,
+            "name": "pastas",
+            "links": {
+                "alternate": {
+                    "href": "https://www.zotero.org/groups/pastas",
+                    "type": "text/html"
+                }
+            }
+        },
+        "links": {
+            "self": {
+                "href": "https://api.zotero.org/groups/4846685/items/KV4BVP4W",
+                "type": "application/json"
+            },
+            "alternate": {
+                "href": "https://www.zotero.org/groups/pastas/items/KV4BVP4W",
+                "type": "text/html"
+            }
+        },
+        "meta": {
+            "createdByUser": {
+                "id": 7137894,
+                "username": "raoulcollenteur",
+                "name": "",
+                "links": {
+                    "alternate": {
+                        "href": "https://www.zotero.org/raoulcollenteur",
+                        "type": "text/html"
+                    }
+                }
+            },
+            "lastModifiedByUser": {
+                "id": 8792906,
+                "username": "dbrakenhoff",
+                "name": "Dav\u00edd Brakenhoff",
+                "links": {
+                    "alternate": {
+                        "href": "https://www.zotero.org/dbrakenhoff",
+                        "type": "text/html"
+                    }
+                }
+            },
+            "creatorSummary": "Silverman",
+            "parsedDate": "1981-09-01",
+            "numChildren": 1
+        },
+        "data": {
+            "key": "KV4BVP4W",
+            "version": 201,
+            "itemType": "journalArticle",
+            "title": "Using Kernel Density Estimates to Investigate Multimodality",
+            "creators": [
+                {
+                    "creatorType": "author",
+                    "firstName": "B. W.",
+                    "lastName": "Silverman"
+                }
+            ],
+            "abstractNote": "Summary A technique for using kernel density estimates to investigate the number of modes in a population is described and discussed. The amount of smoothing is chosen automatically in a natural way.",
+            "publicationTitle": "Journal of the Royal Statistical Society: Series B (Methodological)",
+            "publisher": "John Wiley & Sons, Ltd",
+            "place": "",
+            "date": "1981-09-01",
+            "volume": "43",
+            "issue": "1",
+            "section": "",
+            "partNumber": "",
+            "partTitle": "",
+            "pages": "97-99",
+            "series": "",
+            "seriesTitle": "",
+            "seriesText": "",
+            "journalAbbreviation": "Journal of the Royal Statistical Society: Series B (Methodological)",
+            "DOI": "10.1111/j.2517-6161.1981.tb01155.x",
+            "citationKey": "",
+            "url": "https://doi.org/10.1111/j.2517-6161.1981.tb01155.x",
+            "accessDate": "2023-01-17",
+            "PMID": "",
+            "PMCID": "",
+            "ISSN": "0035-9246",
+            "archive": "",
+            "archiveLocation": "",
+            "shortTitle": "",
+            "language": "",
+            "libraryCatalog": "",
+            "callNumber": "",
+            "rights": "",
+            "extra": "",
+            "tags": [
+                {
+                    "tag": "bootstrap"
+                },
+                {
+                    "tag": "bump hunting"
+                },
+                {
+                    "tag": "chondrites"
+                },
+                {
+                    "tag": "density estimate"
+                },
+                {
+                    "tag": "mode"
+                },
+                {
+                    "tag": "total positivity"
+                }
+            ],
+            "collections": [
+                "8UG7PVLY"
+            ],
+            "relations": {},
+            "dateAdded": "2023-01-17T16:15:49Z",
+            "dateModified": "2023-01-17T16:15:49Z"
+        }
+    },
+    {
+        "key": "342ZFL8L",
+        "version": 201,
+        "library": {
+            "type": "group",
+            "id": 4846685,
+            "name": "pastas",
+            "links": {
+                "alternate": {
+                    "href": "https://www.zotero.org/groups/pastas",
+                    "type": "text/html"
+                }
+            }
+        },
+        "links": {
+            "self": {
+                "href": "https://api.zotero.org/groups/4846685/items/342ZFL8L",
+                "type": "application/json"
+            },
+            "alternate": {
+                "href": "https://www.zotero.org/groups/pastas/items/342ZFL8L",
+                "type": "text/html"
+            }
+        },
+        "meta": {
+            "createdByUser": {
+                "id": 7137894,
+                "username": "raoulcollenteur",
+                "name": "",
+                "links": {
+                    "alternate": {
+                        "href": "https://www.zotero.org/raoulcollenteur",
+                        "type": "text/html"
+                    }
+                }
+            },
+            "lastModifiedByUser": {
+                "id": 8792906,
+                "username": "dbrakenhoff",
+                "name": "Dav\u00edd Brakenhoff",
+                "links": {
+                    "alternate": {
+                        "href": "https://www.zotero.org/dbrakenhoff",
+                        "type": "text/html"
+                    }
+                }
+            },
+            "creatorSummary": "Hartigan and Hartigan",
+            "parsedDate": "1985",
+            "numChildren": 0
+        },
+        "data": {
+            "key": "342ZFL8L",
+            "version": 201,
+            "itemType": "journalArticle",
+            "title": "The Dip Test of Unimodality",
+            "creators": [
+                {
+                    "creatorType": "author",
+                    "firstName": "J. A.",
+                    "lastName": "Hartigan"
+                },
+                {
+                    "creatorType": "author",
+                    "firstName": "P. M.",
+                    "lastName": "Hartigan"
+                }
+            ],
+            "abstractNote": "[The dip test measures multimodality in a sample by the maximum difference, over all sample points, between the empirical distribution function, and the unimodal distribution function that minimizes that maximum difference. The uniform distribution is the asymptotically least favorable unimodal distribution, and the distribution of the test statistic is determined asymptotically and empirically when sampling from the uniform.]",
+            "publicationTitle": "The Annals of Statistics",
+            "publisher": "Institute of Mathematical Statistics",
+            "place": "",
+            "date": "1985",
+            "volume": "13",
+            "issue": "1",
+            "section": "",
+            "partNumber": "",
+            "partTitle": "",
+            "pages": "70-84",
+            "series": "",
+            "seriesTitle": "",
+            "seriesText": "",
+            "journalAbbreviation": "",
+            "DOI": "",
+            "citationKey": "",
+            "url": "http://www.jstor.org/stable/2241144",
+            "accessDate": "2023-01-17",
+            "PMID": "",
+            "PMCID": "",
+            "ISSN": "00905364",
+            "archive": "JSTOR",
+            "archiveLocation": "",
+            "shortTitle": "",
+            "language": "",
+            "libraryCatalog": "",
+            "callNumber": "",
+            "rights": "",
+            "extra": "",
+            "tags": [],
+            "collections": [
+                "8UG7PVLY"
+            ],
+            "relations": {},
+            "dateAdded": "2023-01-17T16:14:38Z",
+            "dateModified": "2023-01-17T16:14:38Z"
+        }
+    },
+    {
+        "key": "74AG4CUE",
+        "version": 201,
+        "library": {
+            "type": "group",
+            "id": 4846685,
+            "name": "pastas",
+            "links": {
+                "alternate": {
+                    "href": "https://www.zotero.org/groups/pastas",
+                    "type": "text/html"
+                }
+            }
+        },
+        "links": {
+            "self": {
+                "href": "https://api.zotero.org/groups/4846685/items/74AG4CUE",
+                "type": "application/json"
+            },
+            "alternate": {
+                "href": "https://www.zotero.org/groups/pastas/items/74AG4CUE",
+                "type": "text/html"
+            }
+        },
+        "meta": {
+            "createdByUser": {
+                "id": 7137894,
+                "username": "raoulcollenteur",
+                "name": "",
+                "links": {
+                    "alternate": {
+                        "href": "https://www.zotero.org/raoulcollenteur",
+                        "type": "text/html"
+                    }
+                }
+            },
+            "lastModifiedByUser": {
+                "id": 8792906,
+                "username": "dbrakenhoff",
+                "name": "Dav\u00edd Brakenhoff",
+                "links": {
+                    "alternate": {
+                        "href": "https://www.zotero.org/dbrakenhoff",
+                        "type": "text/html"
+                    }
+                }
+            },
+            "creatorSummary": "Ga\u00e1l et al.",
+            "parsedDate": "2012-04-01",
+            "numChildren": 1
+        },
+        "data": {
+            "key": "74AG4CUE",
+            "version": 201,
+            "itemType": "journalArticle",
+            "title": "Flood timescales: Understanding the interplay of climate and catchment processes through comparative hydrology",
+            "creators": [
+                {
+                    "creatorType": "author",
+                    "firstName": "Ladislav",
+                    "lastName": "Ga\u00e1l"
+                },
+                {
+                    "creatorType": "author",
+                    "firstName": "J\u00e1n",
+                    "lastName": "Szolgay"
+                },
+                {
+                    "creatorType": "author",
+                    "firstName": "Silvia",
+                    "lastName": "Kohnov\u00e1"
+                },
+                {
+                    "creatorType": "author",
+                    "firstName": "Juraj",
+                    "lastName": "Parajka"
+                },
+                {
+                    "creatorType": "author",
+                    "firstName": "Ralf",
+                    "lastName": "Merz"
+                },
+                {
+                    "creatorType": "author",
+                    "firstName": "Alberto",
+                    "lastName": "Viglione"
+                },
+                {
+                    "creatorType": "author",
+                    "firstName": "G\u00fcnter",
+                    "lastName": "Bl\u00f6schl"
+                }
+            ],
+            "abstractNote": "We analyze the controls on flood duration based on the concept of comparative hydrology. Rather than modeling a single catchment in detail, we compare catchments with contrasting characteristics in order to understand the controls in a holistic way. We analyze the hydrographs of 9223 maximum annual flood events in 396 Austrian catchments ranging from 5 to ?10,000 km2 as a function of climatic controls such as storm type (synoptic and convective storms, rain-on-snow, snowmelt), and catchment controls such as soils, soil moisture, geology, and land form. The ratio of the flood volume and the flood peak is used as a measure of the flood duration or flood timescale. The results indicate that, spatially, the median flood timescales range from 16 h in the hilly catchments, where convective storms prevail, to 104 h in the lowland catchments where substantial inundation into the floodplain occurs. The range is even larger for different flood types, from 7 h for flash floods in the hilly catchments to 200 h for snowmelt floods in an Alpine area with deeply weathered rocks and deep soils. The results also indicate that the catchment area is not the most important control on the flood timescales. For the range of catchments considered here, climate is very important through storm type and antecedent soil moisture, and geology is very important through soil characteristics. The concept of comparative hydrology is also used to interpret the interplay of the processes controlling the flood duration at timescales from hours to millennia. It is argued that the flood timescale is a rich fingerprint of the hydrological processes in a catchment because it integrates a range of climate and catchment characteristics by a time parameter.",
+            "publicationTitle": "Water Resources Research",
+            "publisher": "John Wiley & Sons, Ltd",
+            "place": "",
+            "date": "2012-04-01",
+            "volume": "48",
+            "issue": "4",
+            "section": "",
+            "partNumber": "",
+            "partTitle": "",
+            "pages": "",
+            "series": "",
+            "seriesTitle": "",
+            "seriesText": "",
+            "journalAbbreviation": "Water Resources Research",
+            "DOI": "10.1029/2011WR011509",
+            "citationKey": "",
+            "url": "https://doi.org/10.1029/2011WR011509",
+            "accessDate": "2023-01-17",
+            "PMID": "",
+            "PMCID": "",
+            "ISSN": "0043-1397",
+            "archive": "",
+            "archiveLocation": "",
+            "shortTitle": "",
+            "language": "",
+            "libraryCatalog": "",
+            "callNumber": "",
+            "rights": "",
+            "extra": "",
+            "tags": [
+                {
+                    "tag": "co-evolution in hydrology"
+                },
+                {
+                    "tag": "comparative hydrology"
+                },
+                {
+                    "tag": "flood time scales"
+                },
+                {
+                    "tag": "flood volume"
+                },
+                {
+                    "tag": "hydrological processes"
+                },
+                {
+                    "tag": "regional analysis"
+                }
+            ],
+            "collections": [
+                "8UG7PVLY"
+            ],
+            "relations": {},
+            "dateAdded": "2023-01-17T16:13:04Z",
+            "dateModified": "2023-01-17T16:13:04Z"
+        }
+    },
+    {
+        "key": "YCSCBFY4",
+        "version": 201,
+        "library": {
+            "type": "group",
+            "id": 4846685,
+            "name": "pastas",
+            "links": {
+                "alternate": {
+                    "href": "https://www.zotero.org/groups/pastas",
+                    "type": "text/html"
+                }
+            }
+        },
+        "links": {
+            "self": {
+                "href": "https://api.zotero.org/groups/4846685/items/YCSCBFY4",
+                "type": "application/json"
+            },
+            "alternate": {
+                "href": "https://www.zotero.org/groups/pastas/items/YCSCBFY4",
+                "type": "text/html"
+            }
+        },
+        "meta": {
+            "createdByUser": {
+                "id": 7137894,
+                "username": "raoulcollenteur",
+                "name": "",
+                "links": {
+                    "alternate": {
+                        "href": "https://www.zotero.org/raoulcollenteur",
+                        "type": "text/html"
+                    }
+                }
+            },
+            "lastModifiedByUser": {
+                "id": 8792906,
+                "username": "dbrakenhoff",
+                "name": "Dav\u00edd Brakenhoff",
+                "links": {
+                    "alternate": {
+                        "href": "https://www.zotero.org/dbrakenhoff",
+                        "type": "text/html"
+                    }
+                }
+            },
+            "creatorSummary": "Baker et al.",
+            "parsedDate": "2004-04-01",
+            "numChildren": 1
+        },
+        "data": {
+            "key": "YCSCBFY4",
+            "version": 201,
+            "itemType": "journalArticle",
+            "title": "A NEW FLASHINESS INDEX: CHARACTERISTICS AND APPLICATIONS TO MIDWESTERN RIVERS AND STREAMS1",
+            "creators": [
+                {
+                    "creatorType": "author",
+                    "firstName": "David B.",
+                    "lastName": "Baker"
+                },
+                {
+                    "creatorType": "author",
+                    "firstName": "R. Peter",
+                    "lastName": "Richards"
+                },
+                {
+                    "creatorType": "author",
+                    "firstName": "Timothy T.",
+                    "lastName": "Loftus"
+                },
+                {
+                    "creatorType": "author",
+                    "firstName": "Jack W.",
+                    "lastName": "Kramer"
+                }
+            ],
+            "abstractNote": "ABSTRACT: The term flashiness reflects the frequency and rapidity of short term changes in streamflow, especially during runoff events. Flashiness is an important component of a stream's hydrologic regime. A variety of land use and land management changes may lead to increased or decreased flashiness, often to the detriment of aquatic life. This paper presents a newly developed flashiness index, which is based on mean daily flows. The index is calculated by dividing the pathlength of flow oscillations for a time interval (i.e., the sum of the absolute values of day-to-day changes in mean daily flow) by total discharge during that time interval. This index has low interannual variability, relative to most flow regime indicators, and thus greater power to detect trends. Index values were calculated for 515 Midwestern streams for the 27-year period from 1975 through 2001. Statistically significant increases were present in 22 percent of the streams, primarily in the eastern portion of the study area, while decreases were present in 9 percent, primarily in the western portion. Index values tend to decrease with increasing watershed area and with increasing unit area ground water inputs. Area compensated index values often shift at ecoregion boundaries. Potential index applications include evaluation of programs to restore more natural flow regimes.",
+            "publicationTitle": "JAWRA Journal of the American Water Resources Association",
+            "publisher": "John Wiley & Sons, Ltd",
+            "place": "",
+            "date": "2004-04-01",
+            "volume": "40",
+            "issue": "2",
+            "section": "",
+            "partNumber": "",
+            "partTitle": "",
+            "pages": "503-522",
+            "series": "",
+            "seriesTitle": "",
+            "seriesText": "",
+            "journalAbbreviation": "JAWRA Journal of the American Water Resources Association",
+            "DOI": "10.1111/j.1752-1688.2004.tb01046.x",
+            "citationKey": "",
+            "url": "https://doi.org/10.1111/j.1752-1688.2004.tb01046.x",
+            "accessDate": "2023-01-17",
+            "PMID": "",
+            "PMCID": "",
+            "ISSN": "1093-474X",
+            "archive": "",
+            "archiveLocation": "",
+            "shortTitle": "",
+            "language": "",
+            "libraryCatalog": "",
+            "callNumber": "",
+            "rights": "",
+            "extra": "",
+            "tags": [
+                {
+                    "tag": "Indicators of Hydrological Alteration"
+                },
+                {
+                    "tag": "agricultural hydrology"
+                },
+                {
+                    "tag": "flashiness index"
+                },
+                {
+                    "tag": "stormwater management"
+                },
+                {
+                    "tag": "stream flashiness"
+                },
+                {
+                    "tag": "surface water hydrology"
+                },
+                {
+                    "tag": "watershed management"
+                }
+            ],
+            "collections": [
+                "8UG7PVLY"
+            ],
+            "relations": {},
+            "dateAdded": "2023-01-17T16:11:19Z",
+            "dateModified": "2023-01-17T16:11:19Z"
+        }
+    }
+]

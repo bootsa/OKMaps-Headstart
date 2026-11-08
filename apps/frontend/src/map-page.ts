@@ -120,6 +120,14 @@ function requestOf(map: SharedMap): SavedMap["request"] {
 			q: map.context.query,
 			...(p.vis_type === "timeline" ? { vis_type: "timeline" as const } : {}),
 		};
+	if (map.context.service === "zotero" && p.zotero?.library)
+		return {
+			service: "zotero",
+			source: String(p.source ?? "Zotero"),
+			config: p.zotero,
+			q: map.context.query ?? "",
+			...(p.vis_type === "timeline" ? { vis_type: "timeline" as const } : {}),
+		};
 	if (map.context.service === "openaire")
 		return { service: "openaire", project_id: p.project_id ?? "", funder: p.funder ?? "" };
 	const common = { q: map.context.query, from: p.from ?? "", to: p.to ?? "", sorting: p.sorting ?? "most-relevant" };

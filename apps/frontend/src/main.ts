@@ -23,6 +23,7 @@ import {
 	storeById,
 } from "./store.ts";
 import { withoutToken } from "./zenodo-source.ts";
+import { keptRequest } from "./zotero-source.ts";
 
 const $ = <T extends HTMLElement>(id: string) => document.getElementById(id) as T;
 registerAppSources();
@@ -39,6 +40,7 @@ const SERVICES: Record<string, string> = {
 	openaire: "OpenAIRE",
 	sparql: "SPARQL",
 	zenodo: "Zenodo",
+	zotero: "Zotero",
 	...Object.fromEntries(places.map((p) => [p.id, p.label])),
 };
 const VIEWS: Record<string, string> = {
@@ -86,7 +88,7 @@ async function makeMap({ request, title, saveTo, progress }: SearchSubmit): Prom
 		...map,
 		id,
 		created: new Date().toISOString(),
-		request: withoutToken(request as SearchRequest),
+		request: keptRequest(withoutToken(request as SearchRequest)),
 		title,
 	};
 	if (saveTo === "none") {

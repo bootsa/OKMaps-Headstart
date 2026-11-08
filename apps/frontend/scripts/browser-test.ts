@@ -1,5 +1,5 @@
 // End-to-end check of the built app (VITE_GATEWAY_URL=https://gateway.test npm run build)
-// in headless Chromium: makes a PubMed, a BASE and an OpenAIRE map from recorded
+// in headless Chromium: makes a PubMed, a BASE, an OpenAIRE and a Zotero map from recorded
 // provider answers, checks the map draws them, that they are listed
 // and can be deleted, that a share link opens (and a crafted one runs no script),
 // and that saved maps open offline. Screenshots go to test-results/.
@@ -133,6 +133,16 @@ async function answer(route: Route) {
 		await route.fulfill({ status: res.status, body: await res.text(), headers: Object.fromEntries(res.headers) });
 		return;
 	}
+	// Zotero's API takes its version and key as headers, so browsers ask first (as api.zotero.org answers).
+	if (url.startsWith("https://api.zotero.org/") && route.request().method() === "OPTIONS")
+		return route.fulfill({
+			status: 200,
+			headers: {
+				"access-control-allow-origin": "*",
+				"access-control-allow-methods": "HEAD, GET",
+				"access-control-allow-headers": "Zotero-API-Key, Zotero-API-Version",
+			},
+		});
 	const answer = fakeAnswer(url);
 	if (answer) {
 		await route.fulfill({
@@ -317,6 +327,27 @@ await makeMap(async () => {
 	console.log(JSON.stringify({ map: "geomap", title, pins: made, sharedPins: shared }));
 	// 98 facilities; pins at the same spot may be clustered, but some must show.
 	if (made === 0 || shared !== made) throw new Error("geomap: pins missing");
+	await page.goto(home);
+	await page.waitForSelector(MAP);
+	await deleteFirstMap(page);
+}
+// A Zotero collection, set up on the settings page from a pasted link: the
+// collection list loads, and without search terms the map shows it all.
+{
+	await page.goto(`${home}settings.html`);
+	await page.getByRole("button", { name: "Add a source" }).click();
+	await page.getByRole("radio", { name: /Zotero library/ }).click();
+	await page.fill("#okm-source-other_library", "https://www.zotero.org/groups/4846685/pastas");
+	await page.locator("#okm-source-collection option", { hasText: "references" }).waitFor({ state: "attached" });
+	await page.selectOption("#okm-source-collection", "8UG7PVLY");
+	await page.fill("#okm-source-name", "Pastas references");
+	await page.screenshot({ path: path.join(shots, "zotero-source.png") });
+	await page.getByRole("button", { name: "Check and save" }).click();
+	await page.getByText("Pastas references was added").waitFor();
+	const counts = await makeMap(async () => {
+		await page.getByRole("radio", { name: /Pastas references/ }).check();
+	}, "zotero");
+	if (!counts.title.includes("Pastas references")) throw new Error(`zotero: title is "${counts.title}"`);
 	await page.goto(home);
 	await page.waitForSelector(MAP);
 	await deleteFirstMap(page);

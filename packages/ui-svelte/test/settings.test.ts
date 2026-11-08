@@ -175,6 +175,53 @@ describe("settings page", () => {
 		expect(screen.getByText("Please fill in: Endpoint, Query.")).toBeInTheDocument();
 	});
 
+	it("loads a select's options from the other fields, and again when they change", async () => {
+		const loads: string[] = [];
+		registerSourceType({
+			type: "shelf",
+			label: "A shelf",
+			fields: [
+				{ name: "owner", label: "Owner", kind: "text" },
+				{
+					name: "box",
+					label: "Box",
+					kind: "select",
+					options: [{ value: "", label: "Every box" }],
+					dependsOn: ["owner"],
+					loadOptions: async (v) => {
+						const owner = String(v.owner ?? "");
+						loads.push(owner);
+						if (owner === "nobody") throw new Error("Nobody has boxes.");
+						return [
+							{ value: "", label: "Every box" },
+							{ value: `${owner}-1`, label: `${owner || "public"} box 1` },
+						];
+					},
+				},
+			],
+			module: () => ({ fields: [], request: () => ({}), title: () => "" }),
+		});
+		try {
+			const settings = new AppSettings({ storage: memory() });
+			render(SettingsPage, { settings });
+			await fireEvent.click(screen.getByRole("button", { name: "Add a source" }));
+			await fireEvent.click(screen.getByRole("radio", { name: /A shelf/ }));
+			await waitFor(() => expect(screen.getByRole("option", { name: "public box 1" })).toBeInTheDocument());
+			await fireEvent.change(screen.getByLabelText("Box"), { target: { value: "-1" } });
+			await fireEvent.input(screen.getByLabelText(/Owner/), { target: { value: "ann" } });
+			await waitFor(() => expect(screen.getByRole("option", { name: "ann box 1" })).toBeInTheDocument());
+			// The old library's box is gone, so the first option is picked.
+			expect(screen.getByLabelText("Box")).toHaveValue("");
+			expect(loads).toEqual(["", "ann"]);
+			await fireEvent.input(screen.getByLabelText(/Owner/), { target: { value: "nobody" } });
+			await waitFor(() => expect(screen.getByText("Nobody has boxes.")).toBeInTheDocument());
+			await fireEvent.click(screen.getByRole("button", { name: "Load box again" }));
+			expect(loads.at(-1)).toBe("nobody");
+		} finally {
+			unregisterSourceType("shelf");
+		}
+	});
+
 	it("switches sources on and off, but not ones this site cannot use", async () => {
 		const settings = new AppSettings({ storage: memory() });
 		render(SettingsPage, { settings });
