@@ -113,7 +113,7 @@
 </script>
 
 <Dialog bind:open title={source ? `Edit ${source.name}` : "Add a source"}>
-	<!-- Only while open, so its fields don't clash with other forms on the page. -->
+	<!-- Only while open, so its fields and buttons don't clash with the store dialog's. -->
 	{#if open}
 		<form id="okm-source-form" onsubmit={submit} novalidate>
 			{#if !source && types.length > 1}
@@ -179,8 +179,10 @@
 		</form>
 	{/if}
 	{#snippet footer()}
-		<Button variant="ghost" onclick={() => (open = false)}>Cancel</Button>
-		<Button type="submit" form="okm-source-form" disabled={busy || !current}>Check and save</Button>
+		{#if open}
+			<Button variant="ghost" onclick={() => (open = false)}>Cancel</Button>
+			<Button type="submit" form="okm-source-form" disabled={busy || !current}>Check and save</Button>
+		{/if}
 	{/snippet}
 </Dialog>
 
