@@ -1,0 +1,41 @@
+# Dependency update PRs. Minor and patch updates come grouped in one PR per
+# ecosystem each week; every major update gets its own PR. Commit prefixes are
+# chore/ci, so release-please does not cut a release for them on their own.
+version: 2
+updates:
+  - package-ecosystem: npm # the pnpm workspace (all apps/* and packages/*)
+    directory: /
+    schedule:
+      interval: weekly
+    open-pull-requests-limit: 10
+    commit-message:
+      prefix: chore
+      include: scope
+    groups:
+      minor-and-patch:
+        update-types: [minor, patch]
+    ignore:
+      # @types/node follows the Node version the project runs on (engines and CI).
+      - dependency-name: "@types/node"
+        update-types: [version-update:semver-major]
+      # svelte-check supports TypeScript 5 and 6 only.
+      - dependency-name: typescript
+        versions: [">=7"]
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: ci
+    groups:
+      minor-and-patch:
+        update-types: [minor, patch]
+
+  - package-ecosystem: docker # the gateway image
+    directory: /packages/gateway
+    schedule:
+      interval: weekly
+    commit-message:
+      prefix: chore
+      include: scope
