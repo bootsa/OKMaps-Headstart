@@ -1,5 +1,14 @@
 # Changelog
 
+## [7.1.38](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.37...v7.1.38) (2026-11-08)
+
+
+### Features
+
+* search OpenAlex with your own API key and filters, set up on the settings page ([c3cedf9](https://github.com/bootsa/OKMaps-Headstart/commit/c3cedf9669d200d9e52593d9eefcb9cc186346d3))
+* search OpenAlex with your own API key and filters, set up on the settings page ([64c503c](https://github.com/bootsa/OKMaps-Headstart/commit/64c503ca40871bee333fefdc476f61d3304af518))
+* **sources:** search OpenAlex works, with filters, cursor paging and rebuilt abstracts ([d4d3e63](https://github.com/bootsa/OKMaps-Headstart/commit/d4d3e63e24cc4225d41527b37b050ce72092d559))
+
 ## [7.1.37](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.36...v7.1.37) (2026-11-08)
 
 
