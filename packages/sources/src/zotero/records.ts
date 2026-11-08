@@ -3,6 +3,8 @@
  * tags and where it was published. Notes, attachments and annotations are
  * not documents and are left out.
  */
+
+import { normalizeDoi } from "../doi.js";
 import type { SourceRecord } from "../types.js";
 
 export interface ZoteroCreator {
@@ -100,7 +102,7 @@ export function doiOf(data: ZoteroItem["data"]): string {
 	const m = DOI.exec(data.DOI ?? "") ?? /^\s*DOI:\s*(\S+)/im.exec(data.extra ?? "");
 	if (!m) return "";
 	const d = DOI.exec(m[0]);
-	return d ? d[0].replace(/[.,;]+$/, "") : "";
+	return d ? normalizeDoi(d[0].replace(/[.,;]+$/, "")) : "";
 }
 
 /** "2025-04-17", "Spring 1999", "3/2/2011" → the year, or "" when there is none. */

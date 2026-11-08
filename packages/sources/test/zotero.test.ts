@@ -158,6 +158,7 @@ describe("Zotero items to records", () => {
 		expect(zoteroYear({ data: { itemType: "book", date: "" } })).toBe("");
 		expect(doiOf({ itemType: "x", DOI: "https://doi.org/10.1000/xyz" })).toBe("10.1000/xyz");
 		expect(doiOf({ itemType: "x" })).toBe("");
+		expect(doiOf({ itemType: "x", DOI: " 10.1000/ABC.Def " })).toBe("10.1000/abc.def");
 		expect(creatorNames([{ creatorType: "author", lastName: "Solo" }])).toEqual(["Solo"]);
 	});
 

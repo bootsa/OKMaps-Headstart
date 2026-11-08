@@ -10,6 +10,7 @@ export {
 } from "./base/index.js";
 export type { CrossrefOptions } from "./crossref.js";
 export { addCitationCounts, CROSSREF_BASE, fetchCitationCounts } from "./crossref.js";
+export { normalizeDoi } from "./doi.js";
 export { errorReasons, SourceError } from "./errors.js";
 export type { FetchFn, HttpOptions } from "./http.js";
 export type {

@@ -1,4 +1,6 @@
 /** Zenodo search hits to map records. */
+
+import { normalizeDoi } from "../doi.js";
 import type { SourceRecord } from "../types.js";
 import type { ZenodoHit } from "./client.js";
 
@@ -95,7 +97,7 @@ export function toZenodoRecord(hit: ZenodoHit, base = "https://zenodo.org"): Zen
 		published_in: publishedIn,
 		url,
 		link: url,
-		doi: hit.doi || m.doi || "",
+		doi: normalizeDoi(hit.doi || m.doi),
 		oa_state: m.access_right && m.access_right in OA ? OA[m.access_right] : 2,
 		resulttype: m.resource_type?.title ? [m.resource_type.title] : [],
 		downloads: hit.stats?.unique_downloads ?? hit.stats?.downloads ?? 0,
