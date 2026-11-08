@@ -29,7 +29,7 @@ adds their own (an OpenAlex key, a Zotero library, a SPARQL endpoint, …) and
 sets up as many stores as they like; the search form shows the fields of the
 enabled sources and asks where to save the new map.
 
-It is a [pnpm](https://pnpm.io/) workspace (Node 22.18 or newer; `corepack enable`
+It is a [pnpm](https://pnpm.io/) workspace (Node 22.18 or newer, CI and the gateway image use Node 26; `corepack enable`
 gives you the pnpm version in `package.json`). Each package has a README with
 how to run and test it. From the repository root:
 

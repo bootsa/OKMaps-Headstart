@@ -1,7 +1,7 @@
 # The gateway has no runtime dependencies; Node runs the TypeScript sources directly.
 # Build from the packages folder, as the gateway uses packages/storage:
 #   docker build -f gateway/Dockerfile -t okmaps-gateway packages
-FROM node:22-alpine
+FROM node:26-alpine
 WORKDIR /app
 COPY gateway/package.json ./gateway/
 COPY gateway/src ./gateway/src
