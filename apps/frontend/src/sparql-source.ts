@@ -1,8 +1,8 @@
 /**
  * SPARQL sources people set up on the settings page: any endpoint, a query
  * template and which variables hold which map field. Presets for
- * Wikipedia (through the Wikidata Query Service), Wikidata's scholarly
- * articles and DBpedia. The adaptor itself is @okmaps/sources (sparql/),
+ * Wikidata items, Wikidata's scholarly articles and DBpedia. The adaptor
+ * itself is @okmaps/sources (sparql/),
  * so it works without this UI too. src/sources.ts registers the type.
  */
 import {
@@ -110,8 +110,7 @@ const host = (url: string) => {
 export const sparqlSourceType: SourceType<SparqlRequest> = {
 	type: "sparql",
 	label: "SPARQL endpoint",
-	description:
-		"Any SPARQL endpoint, such as Wikidata (and through it Wikipedia) or DBpedia, with a query you can change.",
+	description: "Any SPARQL endpoint, such as Wikidata or DBpedia, with a query you can change.",
 	fields,
 	presets: SPARQL_PRESETS.map((p) => ({
 		id: p.id,

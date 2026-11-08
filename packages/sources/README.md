@@ -12,7 +12,7 @@ browser, a Web Worker or Node 18+.
 | OpenAIRE | done | OpenAIRE search API (CORS not yet checked; a gateway URL can be passed) | `openaire.R`, `run_openaire_projectdata.R` |
 | Crossref citations | done | Crossref REST API (CORS allowed) | `metrics.R` (`add_citations`) |
 | Places (geo maps), AQUANAVI preset | done | any CSV or JSON table, cached | `workers/common/common/aquanavi` |
-| SPARQL (Wikipedia via Wikidata, Wikidata scholarly, DBpedia presets) | done | any SPARQL endpoint that allows CORS | new |
+| SPARQL (Wikidata, Wikidata scholarly, DBpedia presets) | done | any SPARQL endpoint that allows CORS | new |
 
 ## PubMed
 
@@ -211,7 +211,7 @@ settings page, a Web Worker or a server can use it alike.
 
 ```ts
 import { searchSparql, sparqlPreset } from "@okmaps/sources";
-const { papers, content } = await searchSparql(sparqlPreset("wikipedia")!.config, { q: "coral bleaching" });
+const { papers, content } = await searchSparql(sparqlPreset("wikidata")!.config, { q: "coral bleaching" });
 
 // Your own endpoint and query:
 await searchSparql(
@@ -233,18 +233,18 @@ Placeholders (`src/sparql/template.ts`): `{{q}}` is the search, escaped for a
 Default variables: `?item` (id; rows with the same id are merged, so one
 row per author or keyword is fine), `?title`, `?abstract`, `?authors`,
 `?year` (a year or any xsd date), `?url`, `?doi`, `?subjects`,
-`?published_in`. Several values in one cell may be separated by `;`
+`?published_in`. Records without a title are left out. Several values in one cell may be separated by `;`
 (keywords also `|`); URIs become their last segment (`Category:Coral_reefs`
 → "Coral reefs").
 
-Presets (`src/sparql/presets.ts`). Wikipedia has no SPARQL endpoint of its own, so:
-- `wikipedia`: the Wikidata Query Service runs Wikipedia's own search
-  (`wikibase:mwapi`) and adds each article's Wikidata description, kinds,
-  main subjects and dates; abstracts are filled in from the articles'
-  introductions (MediaWiki API, `origin=*`).
+Presets (`src/sparql/presets.ts`):
+- `wikidata`: Wikidata items found by Wikidata's own search
+  (`wikibase:mwapi`), with label (falling back to `mul`), description,
+  kinds/topics/genres as keywords, creators/founders as authors and dates.
+  Scholarly articles are left to the next preset.
 - `wikidata-scholarly`: scholarly articles on `query-scholarly.wikidata.org`
   (the graph split off in 2025), with author names, venue, DOI and date.
-- `dbpedia`: DBpedia resources whose name matches (`bif:contains`), with
+- `dbpedia`: DBpedia (Wikipedia as linked data) resources whose name matches (`bif:contains`), with
   their categories as keywords and Wikipedia introductions as abstracts
   (DBpedia's own abstracts are often missing).
 

@@ -1,7 +1,7 @@
 /**
  * SPARQL sources: any SPARQL endpoint as a source of map records, with a
- * query template and a mapping of its variables, and presets for Wikipedia
- * (through Wikidata), Wikidata's scholarly articles and DBpedia. No UI
+ * query template and a mapping of its variables, and presets for Wikidata
+ * items, Wikidata's scholarly articles and DBpedia. No UI
  * code: the app's settings page and a server can use it alike.
  */
 export {
@@ -20,8 +20,8 @@ export {
 	SPARQL_PRESETS,
 	type SparqlPreset,
 	sparqlPreset,
+	WIKIDATA_QUERY,
 	WIKIDATA_SCHOLARLY_QUERY,
-	WIKIPEDIA_QUERY,
 } from "./presets.js";
 export {
 	DEFAULT_SPARQL_MAPPING,

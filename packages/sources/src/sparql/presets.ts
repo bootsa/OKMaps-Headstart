@@ -1,8 +1,8 @@
 /**
- * Ready-made SPARQL sources. Wikipedia has no SPARQL endpoint of its own,
- * so "search Wikipedia" goes through the Wikidata Query Service (which can
- * call Wikipedia's search and joins the articles' Wikidata facts) or
- * DBpedia (Wikipedia's infoboxes and categories as linked data).
+ * Ready-made SPARQL sources: Wikidata items and Wikidata's scholarly
+ * articles (both found with Wikidata's own search through the Wikidata
+ * Query Service), and DBpedia (Wikipedia's infoboxes and categories as
+ * linked data).
  *
  * The queries avoid SERVICE wikibase:label (Blazegraph only) and read
  * labels with rdfs:label, so they move more easily to another Wikidata
@@ -25,24 +25,37 @@ PREFIX wdt: <http://www.wikidata.org/prop/direct/>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>`;
 
-/** Wikipedia's own search, with each article's Wikidata description, kind, topics and dates. */
-export const WIKIPEDIA_QUERY = `${WIKIDATA_PREFIXES}
-SELECT ?item ?title ?abstract ?url ?year ?subjects WHERE {
+/**
+ * Wikidata items found by Wikidata's own search (scholarly articles left to
+ * their own preset), with label, description, kinds, topics, makers and dates.
+ * Labels fall back to "mul", Wikidata's language-neutral labels.
+ */
+export const WIKIDATA_QUERY = `${WIKIDATA_PREFIXES}
+SELECT ?item ?title ?abstract ?url ?year ?subjects ?authors WHERE {
   SERVICE wikibase:mwapi {
-    bd:serviceParam wikibase:endpoint "{{lang}}.wikipedia.org";
+    bd:serviceParam wikibase:endpoint "www.wikidata.org";
                     wikibase:api "Generator";
                     wikibase:limit {{limit}};
                     mwapi:generator "search";
-                    mwapi:gsrsearch "{{q}}";
+                    mwapi:gsrsearch "{{q}} -haswbstatement:P31=Q13442814";
                     mwapi:gsrnamespace "0";
                     mwapi:gsrlimit "max".
-    ?item wikibase:apiOutputItem mwapi:item.
-    ?title wikibase:apiOutput mwapi:title.
+    ?item wikibase:apiOutputItem mwapi:title.
     ?rank wikibase:apiOutput "@index".
   }
-  BIND(IRI(CONCAT("https://{{lang}}.wikipedia.org/wiki/", ENCODE_FOR_URI(REPLACE(?title, " ", "_")))) AS ?url)
+  BIND(?item AS ?url)
+  OPTIONAL { ?item rdfs:label ?label FILTER(LANG(?label) = "{{lang}}") }
+  OPTIONAL { ?item rdfs:label ?mul FILTER(LANG(?mul) = "mul") }
+  BIND(COALESCE(?label, ?mul) AS ?title)
   OPTIONAL { ?item schema:description ?abstract FILTER(LANG(?abstract) = "{{lang}}") }
-  OPTIONAL { ?item (wdt:P31|wdt:P921|wdt:P101)/rdfs:label ?subjects FILTER(LANG(?subjects) = "{{lang}}") }
+  OPTIONAL {
+    ?item wdt:P31|wdt:P279|wdt:P921|wdt:P101|wdt:P361|wdt:P136 ?kind.
+    ?kind rdfs:label ?subjects FILTER(LANG(?subjects) = "{{lang}}")
+  }
+  OPTIONAL {
+    ?item wdt:P50|wdt:P170|wdt:P112|wdt:P61|wdt:P178 ?maker.
+    ?maker rdfs:label ?authors FILTER(LANG(?authors) = "{{lang}}")
+  }
   OPTIONAL { ?item wdt:P577|wdt:P571|wdt:P580|wdt:P585 ?year }
 }
 ORDER BY xsd:integer(?rank)`;
@@ -103,16 +116,15 @@ SELECT ?item ?title ?abstract ?url ?subjects WHERE {
 
 export const SPARQL_PRESETS: SparqlPreset[] = [
 	{
-		id: "wikipedia",
-		label: "Wikipedia (through Wikidata)",
+		id: "wikidata",
+		label: "Wikidata",
 		description:
-			"Searches Wikipedia's articles with the Wikidata Query Service, adds their Wikidata facts and the articles' introductions.",
+			"Wikidata items that match the search, with their labels, descriptions, kinds, topics, makers and dates.",
 		config: {
 			endpoint: "https://query.wikidata.org/sparql",
-			query: WIKIPEDIA_QUERY,
+			query: WIKIDATA_QUERY,
 			limit: 100,
 			lang: "en",
-			wikipediaIntros: true,
 		},
 	},
 	{

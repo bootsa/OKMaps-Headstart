@@ -3,7 +3,7 @@
  * variables to map fields. The config is plain JSON, so it can be kept in
  * settings, posted to a Web Worker or used by a server.
  *
- *   const result = await searchSparql(sparqlPreset("wikipedia")!.config, { q: "coral bleaching" });
+ *   const result = await searchSparql(sparqlPreset("wikidata")!.config, { q: "coral bleaching" });
  *   buildOverviewMap({ papers: result.papers, content: result.content, service: "sparql" }, resources);
  */
 import { SourceError } from "../errors.js";
@@ -80,13 +80,15 @@ export async function searchSparql(
 		...opts,
 		service,
 	});
-	const { papers } = toSparqlRecords(results.rows, sparqlMapping(config.mapping));
-	if (papers.length > 0 && papers.every((p) => !p.title))
+	const all = toSparqlRecords(results.rows, sparqlMapping(config.mapping)).papers;
+	if (all.length > 0 && all.every((p) => !p.title))
 		throw new SourceError(
 			service,
 			`No result has a title: map the title to one of the query's variables (${results.vars.join(", ")}).`,
 			[SPARQL_REASONS.queryError],
 		);
+	// Untitled records (e.g. Wikidata items with no label in this language) can't be shown.
+	const papers = all.filter((p) => p.title);
 	if (config.wikipediaIntros) await addWikipediaIntros(papers, { fetch: opts.fetch, signal: opts.signal });
 	const content: Record<string, string> = {};
 	for (const p of papers) content[p.id] = contentOf(p);

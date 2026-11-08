@@ -6,7 +6,7 @@
  *   {{q}}        the search terms, escaped for a "..." string literal
  *   {{q_words}}  the terms as 'word' AND 'word' (Virtuoso bif:contains, DBpedia)
  *   {{limit}}    the most results to ask for (a whole number)
- *   {{lang}}     a language code (en, de, ...), for labels and Wikipedia
+ *   {{lang}}     a language code (en, de, ...), for labels and descriptions
  */
 
 export interface TemplateValues {

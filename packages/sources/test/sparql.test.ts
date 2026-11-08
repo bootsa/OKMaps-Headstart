@@ -334,6 +334,39 @@ describe("searchSparql", () => {
 		expect(new Set(map.documents.map((d) => d.area)).size).toBeGreaterThan(1);
 	});
 
+	it("runs the Wikidata preset (a real answer)", async () => {
+		const f = fakeFetch([
+			(call) => {
+				// A long query goes as a form POST.
+				const query = new URLSearchParams(String(call.init?.body)).get("query") ?? "";
+				expect(query).toContain('mwapi:gsrsearch "coral bleaching -haswbstatement:P31=Q13442814"');
+				return new Response(read("wikidata-coral-bleaching.json"));
+			},
+		]);
+		const result = await searchSparql(sparqlPreset("wikidata")!.config, { q: "coral bleaching" }, { fetch: f });
+		expect(f.calls).toHaveLength(1);
+		const first = result.papers[0];
+		expect(first).toMatchObject({
+			id: "http://www.wikidata.org/entity/Q568916",
+			title: "coral bleaching",
+			url: "http://www.wikidata.org/entity/Q568916",
+		});
+		expect(first.paper_abstract).toContain("zooxanthallae");
+		expect(result.papers.every((p) => p.title)).toBe(true);
+		expect(result.papers.some((p) => p.subject)).toBe(true);
+	});
+
+	it("leaves out records without a title", async () => {
+		const f = fakeFetch([results(["item", "title"], [{ item: "http://x/1", title: "One" }, { item: "http://x/2" }])]);
+		const r = await searchSparql(
+			{ endpoint: "https://x.org/sparql", query: 'SELECT * { "{{q}}" }' },
+			{ q: "a" },
+			{ fetch: f },
+		);
+		expect(r.papers.map((p) => p.id)).toEqual(["http://x/1"]);
+		expect(Object.keys(r.content)).toEqual(["http://x/1"]);
+	});
+
 	it("says which variables there are when no title is mapped", async () => {
 		const f = fakeFetch([results(["thing", "name"], [{ thing: "http://x/1", name: "One" }])]);
 		const err = await searchSparql(
