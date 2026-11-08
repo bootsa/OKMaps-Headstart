@@ -1,5 +1,14 @@
 # Changelog
 
+## [7.1.44](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.43...v7.1.44) (2026-11-08)
+
+
+### Features
+
+* name the sources of a combined map on its context line ([6f86b25](https://github.com/bootsa/OKMaps-Headstart/commit/6f86b25d4936e95a18e71e90c13aeaf2dce1e9f1))
+* name the sources of a combined map on its context line ([7016b6d](https://github.com/bootsa/OKMaps-Headstart/commit/7016b6da8b3c53edf72ef7b2fc2712c0a2f29f2b))
+* name the sources of a combined map on its context line ([#108](https://github.com/bootsa/OKMaps-Headstart/issues/108)) ([6f86b25](https://github.com/bootsa/OKMaps-Headstart/commit/6f86b25d4936e95a18e71e90c13aeaf2dce1e9f1))
+
 ## [7.1.43](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.42...v7.1.43) (2026-11-08)
 
 
