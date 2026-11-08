@@ -103,11 +103,11 @@ function loadCitationJs(): Promise<CiteClass> {
 			import("./csl/chicago.csl?raw"),
 			import("./csl/acm.csl?raw"),
 		]);
-		const templates = core.plugins.config.get("@csl").templates;
-		templates.add("okm-apa", apa.default);
-		templates.add("okm-mla", mla.default);
-		templates.add("okm-chi", chi.default);
-		templates.add("okm-acm", acm.default);
+		const styles = core.plugins.config.get("@csl").styles;
+		styles.add("okm-apa", apa.default);
+		styles.add("okm-mla", mla.default);
+		styles.add("okm-chi", chi.default);
+		styles.add("okm-acm", acm.default);
 		return core.Cite;
 	})();
 	return loading;
@@ -116,7 +116,7 @@ function loadCitationJs(): Promise<CiteClass> {
 /** The paper's citation in a style, as plain text. */
 export async function paperCitation(paper: Paper, style: CitationStyle): Promise<string> {
 	const Cite = await loadCitationJs();
-	const text = new Cite(cslRecord(paper)).format("bibliography", { template: `okm-${style.id}` }).trim();
+	const text = new Cite(cslRecord(paper)).format("bibliography", { style: `okm-${style.id}` }).trim();
 	return text + (style.append?.(paper) ?? "");
 }
 

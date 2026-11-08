@@ -39,6 +39,7 @@
 	class:zoomed
 	class:dimmed
 	role="button"
+	aria-label={title}
 	tabindex={zoomed ? -1 : 0}
 	{onclick}
 	{ondblclick}
