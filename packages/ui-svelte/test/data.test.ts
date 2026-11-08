@@ -2,7 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { describe, expect, it } from "vitest";
 import { mapConfig } from "../src/data/config";
-import { listPapers } from "../src/data/filter";
+import { listPapers, searchWords } from "../src/data/filter";
 import { decodeEntities, parseAuthors, processPaper, safeId } from "../src/data/papers";
 import { processMap, resizeMap } from "../src/data/process";
 import type { MapRecord } from "../src/data/types";
@@ -151,5 +151,17 @@ describe("listPapers", () => {
 		expect(listPapers(map.papers, { ...all, area: uri })).toHaveLength(map.areas[0].papers.length);
 		const id = map.papers[3].safeId;
 		expect(listPapers(map.papers, { ...all, paper: id }).map((p) => p.safeId)).toEqual([id]);
+	});
+
+	it("ignores case and accents, and splits at any white space", () => {
+		expect(searchWords("  Müller\tCAFÉ\u00a0naïve ")).toEqual(["muller", "cafe", "naive"]);
+		const p = map.papers[0];
+		const papers = [{ ...p, title: "Ökologie der Küste", authorsString: "Zoë Müller" }, ...map.papers.slice(1)];
+		const hit = (search: string) => listPapers(papers, { ...all, search }).map((x) => x.safeId);
+		expect(hit("okologie")).toEqual([p.safeId]);
+		expect(hit("KUSTE muller")).toEqual([p.safeId]);
+		expect(hit("zoe")).toEqual([p.safeId]);
+		// A decomposed ü (u + combining diaeresis) matches too.
+		expect(hit("mu\u0308ller")).toEqual([p.safeId]);
 	});
 });

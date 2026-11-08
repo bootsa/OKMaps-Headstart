@@ -1,4 +1,5 @@
 /** Search, filter and sort of the paper list (old utils/data.ts). */
+import { fold } from "./fold";
 import type { Paper } from "./types";
 
 export interface ListQuery {
@@ -16,11 +17,9 @@ export interface ListQuery {
 	paper?: string | null;
 }
 
+/** The words of the list search, folded (lower case, no accents), split at any white space. */
 export function searchWords(text: string): string[] {
-	return text
-		.split(" ")
-		.map((w) => w.trim().toLowerCase())
-		.filter(Boolean);
+	return fold(text).split(/\s+/u).filter(Boolean);
 }
 
 const NON_TEXT_TYPES = [
@@ -54,7 +53,7 @@ function haystack(p: Paper): string {
 		p.comments.map((c) => `${c.comment} ${c.author ?? ""}`).join(" "),
 		p.resultType.join(","),
 		p.abstract,
-	].map((s) => s.toLowerCase().trim());
+	].map((s) => fold(s).trim());
 	const nonText = isNonText(p);
 	if (p.oa) {
 		parts.push("open access");
@@ -62,7 +61,7 @@ function haystack(p: Paper): string {
 	}
 	if (p.freeAccess) parts.push("free access");
 	if (nonText) parts.push("file");
-	if (p.place?.country) parts.push(p.place.country.toLowerCase());
+	if (p.place?.country) parts.push(fold(p.place.country));
 	return parts.join(" ");
 }
 
