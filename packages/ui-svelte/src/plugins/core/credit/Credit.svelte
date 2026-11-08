@@ -69,6 +69,10 @@
 		align-items: center;
 		gap: var(--space-1) var(--space-3);
 		max-width: calc(100% - 2 * var(--space-4) - 4rem);
+		/* Readable over a map's tiles too (geo map). */
+		padding: var(--space-1) var(--space-2);
+		border-radius: var(--radius-sm);
+		background: color-mix(in srgb, var(--color-surface) 90%, transparent);
 		color: var(--color-text-muted);
 		font-family: var(--font-sans);
 		font-size: var(--font-size-xs);

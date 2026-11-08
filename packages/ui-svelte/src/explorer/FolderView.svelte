@@ -70,7 +70,7 @@
 {:else if !listing || (listing.status === "loading" && !listing.folders.length && !listing.maps.length)}
 	<p class="quiet">Reading…</p>
 {:else}
-	<ul class="items" role="group">
+	<ul class="items">
 		{#each listing.folders as name (name)}
 			{@const sub = [...path, name]}
 			{@const open = explorer.isExpanded(store, sub)}
@@ -267,7 +267,6 @@
 	.actions {
 		display: flex;
 		flex: none;
-		opacity: 0.85;
 	}
 
 	.nested {
