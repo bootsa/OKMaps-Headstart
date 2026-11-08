@@ -1,5 +1,15 @@
 # Changelog
 
+## [7.1.36](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.35...v7.1.36) (2026-11-08)
+
+
+### Features
+
+* add Zenodo sources on the settings page, with community, type and access token ([554e847](https://github.com/bootsa/OKMaps-Headstart/commit/554e847274b6c1afffb7749f34150a1326d46b6a))
+* add Zenodo sources on the settings page, with community, type and access token ([e0d49c7](https://github.com/bootsa/OKMaps-Headstart/commit/e0d49c79701167ea1ed7ff5e4b6fcc9557331f22))
+* add Zenodo sources on the settings page, with community, type and access token ([#88](https://github.com/bootsa/OKMaps-Headstart/issues/88)) ([554e847](https://github.com/bootsa/OKMaps-Headstart/commit/554e847274b6c1afffb7749f34150a1326d46b6a))
+* **sources:** search Zenodo records, in one community and of one type if you like ([a6b4b4d](https://github.com/bootsa/OKMaps-Headstart/commit/a6b4b4d6bdc35a065ebbb25955ab65081bbea29a))
+
 ## [7.1.35](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.34...v7.1.35) (2026-11-08)
 
 
