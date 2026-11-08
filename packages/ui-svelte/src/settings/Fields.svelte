@@ -5,7 +5,8 @@
   folded under its name. Bind `values`.
 -->
 <script lang="ts">
-	import type { FieldSpec, FieldValues } from "./fields";
+	import { onDestroy, untrack } from "svelte";
+	import type { FieldOption, FieldSpec, FieldValues } from "./fields";
 
 	interface Props {
 		fields: FieldSpec[];
@@ -40,6 +41,67 @@
 	});
 
 	const id = (f: FieldSpec) => (idPrefix ? `${idPrefix}-${f.name}` : f.name);
+
+	// Options loaded by loadOptions, per field.
+	interface Loaded {
+		options?: FieldOption[];
+		busy: boolean;
+		error?: string;
+	}
+	let loaded: Record<string, Loaded> = $state({});
+	const lastKey: Record<string, string> = {};
+	const timers: Record<string, ReturnType<typeof setTimeout>> = {};
+	const running: Record<string, AbortController> = {};
+
+	async function load(f: FieldSpec) {
+		if (!f.loadOptions) return;
+		running[f.name]?.abort();
+		const ctrl = new AbortController();
+		running[f.name] = ctrl;
+		loaded[f.name] = { options: loaded[f.name]?.options, busy: true };
+		try {
+			const options = await f.loadOptions($state.snapshot(values) as FieldValues, ctrl.signal);
+			if (ctrl.signal.aborted) return;
+			loaded[f.name] = { options, busy: false };
+			// A value the new options don't have (another library's collection) gives way to the first.
+			const v = String(values[f.name] ?? "");
+			if (options.length && !options.some((o) => o.value === v)) values[f.name] = options[0].value;
+		} catch (err) {
+			if (ctrl.signal.aborted) return;
+			loaded[f.name] = {
+				options: loaded[f.name]?.options,
+				busy: false,
+				error: err instanceof Error ? err.message : String(err),
+			};
+		}
+	}
+
+	// Load when the form opens, and again a moment after a field it depends on changes.
+	$effect(() => {
+		for (const f of fields) {
+			if (!f.loadOptions) continue;
+			const key = JSON.stringify((f.dependsOn ?? []).map((n) => values[n] ?? ""));
+			if (lastKey[f.name] === key) continue;
+			const first = lastKey[f.name] === undefined;
+			lastKey[f.name] = key;
+			untrack(() => {
+				clearTimeout(timers[f.name]);
+				timers[f.name] = setTimeout(() => load(f), first ? 0 : 600);
+			});
+		}
+	});
+
+	onDestroy(() => {
+		for (const t of Object.values(timers)) clearTimeout(t);
+		for (const c of Object.values(running)) c.abort();
+	});
+
+	/** A select's options: loaded ones (or the spec's), and the current value if they lack it. */
+	function optionsOf(f: FieldSpec): FieldOption[] {
+		const list = loaded[f.name]?.options ?? f.options ?? [];
+		const v = String(values[f.name] ?? "");
+		return v && !list.some((o) => o.value === v) ? [...list, { value: v, label: v }] : list;
+	}
 
 	function toggle(name: string, value: string, on: boolean) {
 		const list = Array.isArray(values[name]) ? (values[name] as string[]) : [];
@@ -93,11 +155,30 @@
 							{/if}</label
 						>
 						{#if f.kind === "select"}
-							<select id={id(f)} name={f.name} {disabled} bind:value={values[f.name]}>
-								{#each f.options ?? [] as o (o.value)}
-									<option value={o.value}>{o.label}</option>
-								{/each}
-							</select>
+							<div class="select-row">
+								<select id={id(f)} name={f.name} {disabled} bind:value={values[f.name]}>
+									{#each optionsOf(f) as o (o.value)}
+										<option value={o.value}>{o.label}</option>
+									{/each}
+								</select>
+								{#if f.loadOptions}
+									<button
+										type="button"
+										class="reload"
+										aria-label="Load {f.label.toLowerCase()} again"
+										title="Load again"
+										disabled={disabled || loaded[f.name]?.busy}
+										onclick={() => load(f)}
+									>
+										↻
+									</button>
+								{/if}
+							</div>
+							{#if loaded[f.name]?.busy}
+								<p class="hint" role="status">Loading…</p>
+							{:else if loaded[f.name]?.error}
+								<p class="hint error" role="status">{loaded[f.name]?.error}</p>
+							{/if}
 						{:else if f.kind === "textarea"}
 							<textarea
 								id={id(f)}
@@ -231,5 +312,37 @@
 		margin: var(--space-1) 0 0;
 		font-size: var(--font-size-sm);
 		color: var(--color-text-muted);
+
+		&.error {
+			color: var(--color-danger);
+		}
+	}
+
+	.select-row {
+		display: flex;
+		gap: var(--space-2);
+		align-items: flex-end;
+
+		& > select {
+			flex: 1 1 auto;
+			min-width: 0;
+		}
+	}
+
+	.reload {
+		flex: none;
+		min-width: 2.5rem;
+		padding: var(--space-2);
+		border: 1px solid var(--color-border-strong, var(--color-border));
+		border-radius: var(--radius-sm);
+		font: inherit;
+		color: var(--color-text);
+		background: var(--color-surface);
+		cursor: pointer;
+
+		&:disabled {
+			cursor: default;
+			opacity: 0.5;
+		}
 	}
 </style>
