@@ -28,6 +28,11 @@ const OWN_MESSAGE = new Set([
 	"Zenodo community not found",
 	"Zenodo access token refused",
 	"unexpected Zenodo response",
+	"API error: Zotero not reachable",
+	"API error: Zotero rate limited",
+	"Zotero access denied",
+	"Zotero library not found",
+	"unexpected Zotero response",
 ]);
 
 export function errorMessage(reasons: string[], fallback: string): string {

@@ -25,8 +25,11 @@ import {
 	searchPubmed,
 	searchSparql,
 	searchZenodo,
+	searchZotero,
 	type TableCache,
+	withoutApiKey,
 	type ZenodoSourceConfig,
+	type ZoteroSourceConfig,
 } from "@okmaps/sources";
 import { placeSource } from "./place-source.ts";
 import type { PlaceSourceConfig } from "./places.ts";
@@ -35,7 +38,7 @@ import { visTypeOf } from "./vis-type.ts";
 export type { VisType } from "./vis-type.ts";
 export { visTypeOf } from "./vis-type.ts";
 
-export type Service = "pubmed" | "base" | "openaire" | "places" | "sparql" | "zenodo";
+export type Service = "pubmed" | "base" | "openaire" | "places" | "sparql" | "zenodo" | "zotero";
 
 /** The views a search can ask for; place sources make geo maps. */
 type SearchView = "overview" | "timeline";
@@ -97,13 +100,26 @@ export interface ZenodoRequest {
 	vis_type?: SearchView;
 }
 
+/** A search in a Zotero library someone set up on the settings page (src/zotero-source.ts). */
+export interface ZoteroRequest {
+	service: "zotero";
+	/** The source's name, kept with the map. */
+	source: string;
+	/** May hold an API key: it is used here but never kept with the map. */
+	config: ZoteroSourceConfig;
+	/** Empty takes every item. */
+	q: string;
+	vis_type?: SearchView;
+}
+
 export type SearchRequest =
 	| PubmedRequest
 	| BaseSearchRequest
 	| OpenaireRequest
 	| PlacesRequest
 	| SparqlRequest
-	| ZenodoRequest;
+	| ZenodoRequest
+	| ZoteroRequest;
 
 export interface SearchSettings {
 	/** Gateway base URL (packages/gateway), for BASE and the OpenAIRE fallback. */
@@ -166,6 +182,19 @@ async function fetchSource(
 		// The config says how the map was made; never the access token (maps are shared and stored elsewhere).
 		const { accessToken: _, ...zenodo } = req.config;
 		const params = { source: req.source, zenodo, ...visType };
+		return { result, query: req.q, params };
+	}
+	if (req.service === "zotero") {
+		const result = await searchZotero(req.config, { q: req.q }, http);
+		if (result.papers.length === 0) throw Object.assign(new Error("no results"), { reasons: ["not enough results"] });
+		// How the map was made, without the API key (maps get shared).
+		// Without search terms the map shows the whole library or collection: name it after the source.
+		const params = {
+			source: req.source,
+			zotero: withoutApiKey(req.config),
+			...(req.q.trim() ? {} : { custom_title: req.source }),
+			...visType,
+		};
 		return { result, query: req.q, params };
 	}
 	if (req.service === "pubmed") {

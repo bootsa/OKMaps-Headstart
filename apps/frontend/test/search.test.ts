@@ -3,6 +3,7 @@ import { describe, expect, it } from "vitest";
 import { buildMap, type SearchRequest, type Stage, timestamp, visTypeOf } from "../src/search.ts";
 import { sparqlConfig, sparqlSourceType } from "../src/sparql-source.ts";
 import { zenodoConfig } from "../src/zenodo-source.ts";
+import { zoteroConfig } from "../src/zotero-source.ts";
 import { fakeFetch, GATEWAY, PLACES } from "./fake-net.ts";
 
 const places = [{ id: "aquanavi", label: "AQUANAVI", preset: "aquanavi" as const, url: PLACES }];
@@ -157,6 +158,31 @@ describe("buildMap", () => {
 		expect(JSON.stringify(map)).not.toContain("secret");
 		expectLaidOut(map.documents);
 		expect(map.documents.find((d) => d.id === "4963256")?.url).toBe("https://zenodo.org/records/4963256");
+	});
+
+	it("makes a map from a Zotero collection, without keeping the API key", async () => {
+		const config = zoteroConfig({
+			api_key: "secret",
+			library: "other",
+			other_library: "https://www.zotero.org/groups/4846685/pastas/collections/8UG7PVLY",
+		});
+		const { map } = await make({ service: "zotero", source: "pastas", config, q: "" });
+		expect(map.context).toMatchObject({ query: "", service: "zotero" });
+		const params = JSON.parse(map.context.params);
+		expect(params).toEqual({
+			source: "pastas",
+			custom_title: "pastas",
+			zotero: {
+				library: "group:4846685",
+				collection: "8UG7PVLY",
+				subcollections: false,
+				qmode: "titleCreatorYear",
+				limit: 100,
+			},
+		});
+		expect(map.context.params).not.toContain("secret");
+		expectLaidOut(map.documents);
+		expect(map.documents.find((d) => d.id === "VTMZZWFA")?.doi).toBe("10.1111/gwat.13486");
 	});
 
 	it("reports provider errors with their reasons", async () => {

@@ -73,6 +73,15 @@ export function fakeAnswer(url: string): { body: string; type: string } | null {
 		const pages = titles.map((title) => ({ title, extract: `${title} is a thing about coral reefs and the sea.` }));
 		return json(JSON.stringify({ query: { pages } }));
 	}
+	if (u.hostname === "api.zotero.org") {
+		// The public "pastas" group, and a key that can read it and a library of its own.
+		if (u.pathname === "/keys/current")
+			return json(JSON.stringify({ userID: 45, username: "steph", access: { user: { library: true } } }));
+		if (u.pathname === "/users/45/groups") return json(JSON.stringify([{ id: 4846685, data: { name: "pastas" } }]));
+		if (u.pathname === "/groups/4846685/collections") return json(read("zotero/pastas-collections.json"));
+		if (/^\/groups\/4846685\/(collections\/8UG7PVLY\/)?items\/top$/.test(u.pathname))
+			return json(read("zotero/pastas-references.json"));
+	}
 	if (u.hostname === "api.openaire.eu") {
 		const kind = u.pathname.replace(/^.*\/search\//, "");
 		const file = { projects: "project.xml", publications: "publications.xml", datasets: "datasets.xml" }[kind];
