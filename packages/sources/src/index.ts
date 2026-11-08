@@ -28,6 +28,7 @@ export {
 	searchOpenaire,
 	toOpenaireRecords,
 } from "./openaire.js";
+export * from "./openalex/index.js";
 export {
 	AQUANAVI_MAPPING,
 	aquanaviSource,
