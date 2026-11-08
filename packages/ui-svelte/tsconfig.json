@@ -10,7 +10,7 @@
 		"allowImportingTsExtensions": true,
 		"verbatimModuleSyntax": true,
 		"isolatedModules": true,
-		"types": ["vitest/globals", "@testing-library/jest-dom", "svelte"]
+		"types": ["vitest/globals", "@testing-library/jest-dom/vitest", "svelte"]
 	},
 	"include": ["src/**/*", "test/**/*", ".storybook/**/*", "*.config.ts"]
 }
