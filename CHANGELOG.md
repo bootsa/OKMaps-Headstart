@@ -1,5 +1,15 @@
 # Changelog
 
+## [7.1.39](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.38...v7.1.39) (2026-11-08)
+
+
+### Bug Fixes
+
+* find and mark list matches whatever their accents ([ca66268](https://github.com/bootsa/OKMaps-Headstart/commit/ca662686d7b43d8b5b4436a3fd7aa9d57bf5ce4d))
+* keep DOIs in lower case for OpenAlex, Zenodo, Zotero and SPARQL records ([6105935](https://github.com/bootsa/OKMaps-Headstart/commit/61059358dcd614670dfeead1e274dcdf36b7a3c5))
+* lowercase DOIs in the newer sources and accent-aware list search ([43850c1](https://github.com/bootsa/OKMaps-Headstart/commit/43850c13a74877261b6c06fa377b744c038cf612))
+* lowercase DOIs in the newer sources and accent-aware list search ([#97](https://github.com/bootsa/OKMaps-Headstart/issues/97)) ([43850c1](https://github.com/bootsa/OKMaps-Headstart/commit/43850c13a74877261b6c06fa377b744c038cf612))
+
 ## [7.1.38](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.37...v7.1.38) (2026-11-08)
 
 
