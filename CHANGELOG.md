@@ -1,5 +1,14 @@
 # Changelog
 
+## [7.1.41](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.40...v7.1.41) (2026-11-08)
+
+
+### Bug Fixes
+
+* accessibility fixes from a new axe check, plus coverage in CI ([60e039d](https://github.com/bootsa/OKMaps-Headstart/commit/60e039dfc0dc96cbf215c41fc6ba42335ea6cbd7))
+* accessibility fixes from a new axe check, plus coverage in CI ([#102](https://github.com/bootsa/OKMaps-Headstart/issues/102)) ([60e039d](https://github.com/bootsa/OKMaps-Headstart/commit/60e039dfc0dc96cbf215c41fc6ba42335ea6cbd7))
+* readable map credit over geo map tiles and clearer map drawer for assistive tech ([aa2d2fa](https://github.com/bootsa/OKMaps-Headstart/commit/aa2d2fa18801142fc3ff669feba1472d1d1e48ed))
+
 ## [7.1.40](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.39...v7.1.40) (2026-11-08)
 
 
