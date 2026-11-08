@@ -16,6 +16,7 @@ import {
 	SourceError,
 	SPARQL_PRESETS,
 	SPARQL_REASONS,
+	type SparqlRow,
 	searchSparql,
 	sparqlMapping,
 	sparqlPreset,
@@ -111,7 +112,7 @@ describe("query templates", () => {
 
 describe("records", () => {
 	it("merges rows of one item and maps variables", () => {
-		const rows = [
+		const rows: SparqlRow[] = [
 			{
 				item: "http://www.wikidata.org/entity/Q1",
 				name: "Coral bleaching",
