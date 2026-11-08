@@ -1,9 +1,8 @@
 <script module lang="ts">
+	import { AppSettings, registerStoreType, type StoreInstance } from "@okmaps/core";
+	import { memoryStoreType } from "@okmaps/core/testing";
 	import { memoryStorage, treeStore } from "@okmaps/storage";
 	import { defineMeta } from "@storybook/addon-svelte-csf";
-	import { registerStoreType, type StoreInstance } from "../settings/registry";
-	import { AppSettings } from "../settings/settings.svelte";
-	import { memoryStoreType } from "../settings/testing/fakes";
 	import MapExplorer from "./MapExplorer.svelte";
 	import { ExplorerState } from "./state.svelte";
 

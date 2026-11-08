@@ -1,8 +1,8 @@
 <!-- @component Info page of a BASE map (knowledge map or streamgraph). -->
 <script lang="ts">
+	import { contextParams } from "@okmaps/core";
 	import logo from "../../../assets/base_logo.png";
 	import type { MapState } from "../../../data/state.svelte";
-	import { contextParams } from "../../../header/context";
 	import DataSourceInfo from "./DataSourceInfo.svelte";
 	import MapInfo from "./MapInfo.svelte";
 

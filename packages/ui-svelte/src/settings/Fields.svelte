@@ -5,8 +5,8 @@
   folded under its name. Bind `values`.
 -->
 <script lang="ts">
+	import type { FieldOption, FieldSpec, FieldValues } from "@okmaps/core";
 	import { onDestroy, untrack } from "svelte";
-	import type { FieldOption, FieldSpec, FieldValues } from "./fields";
 
 	interface Props {
 		fields: FieldSpec[];

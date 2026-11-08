@@ -1,3 +1,4 @@
+import { davLikeStoreType, demoSource, endpointSourceType, gatewaySource, memoryStoreType } from "@okmaps/core/testing";
 import { fireEvent, render, screen, waitFor, within } from "@testing-library/svelte";
 import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import {
@@ -14,13 +15,6 @@ import {
 	unregisterSourceType,
 	unregisterStoreType,
 } from "../src/index";
-import {
-	davLikeStoreType,
-	demoSource,
-	endpointSourceType,
-	gatewaySource,
-	memoryStoreType,
-} from "../src/settings/testing/fakes";
 
 const memory = () => {
 	const data = new Map<string, string>();

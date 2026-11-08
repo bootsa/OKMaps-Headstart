@@ -5,8 +5,7 @@
   and mentorship counts (old OrcidResearcherMetricsInfo).
 -->
 <script lang="ts">
-	import { contextParams } from "../../../header/context";
-	import { t } from "../../../i18n/strings";
+	import { contextParams, t } from "@okmaps/core";
 	import type { ModalProps } from "../../index";
 	import { authorNumber } from "./researcher";
 

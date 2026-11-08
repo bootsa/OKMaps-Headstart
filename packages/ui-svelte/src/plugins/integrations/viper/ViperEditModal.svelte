@@ -4,10 +4,9 @@
   page, which the map is made from.
 -->
 <script lang="ts">
+	import { contextParams, t } from "@okmaps/core";
 	import screenshot from "../../../assets/viper-project-screenshot.png";
 	import Button from "../../../components/Button.svelte";
-	import { contextParams } from "../../../header/context";
-	import { t } from "../../../i18n/strings";
 	import type { ModalProps } from "../../index";
 	import { projectPage } from "./project";
 

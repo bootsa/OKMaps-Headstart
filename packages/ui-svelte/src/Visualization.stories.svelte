@@ -1,10 +1,10 @@
 <script module lang="ts">
+	import type { MapRecord } from "@okmaps/core";
+	import { registerLanguages } from "@okmaps/core";
 	import { defineMeta } from "@storybook/addon-svelte-csf";
 	import aquanavi from "../test/fixtures/aquanavi-geomap.json";
 	import base from "../test/fixtures/base-map.json";
 	import { MapState } from "./data/state.svelte";
-	import type { MapRecord } from "./data/types";
-	import { registerLanguages } from "./i18n/languages";
 	import { registerPlugin } from "./plugins";
 	import { creditPlugin, registerCorePlugins } from "./plugins/core";
 	import { orcidPlugin } from "./plugins/integrations";

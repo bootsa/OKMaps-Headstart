@@ -7,10 +7,10 @@
   only when a geo map is shown.
 -->
 <script lang="ts">
+	import type { Paper } from "@okmaps/core";
+	import { pinLabel, tileLayers } from "@okmaps/core";
 	import type * as Leaflet from "leaflet";
 	import type { MapState } from "../../data/state.svelte";
-	import type { Paper } from "../../data/types";
-	import { pinLabel, tileLayers } from "./layers";
 
 	interface Props {
 		state: MapState;

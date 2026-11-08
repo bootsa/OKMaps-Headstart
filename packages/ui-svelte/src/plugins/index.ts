@@ -8,10 +8,10 @@
  *   import { registerPlugin } from "@okmaps/ui-svelte";
  *   registerPlugin(myPlugin);
  */
+
+import type { ContextItem, MapTitle, Paper } from "@okmaps/core";
 import type { Component } from "svelte";
 import type { MapState } from "../data/state.svelte";
-import type { Paper } from "../data/types";
-import type { ContextItem, MapTitle } from "../header/context";
 
 /** A button in the map's toolbar (next to the title). */
 export interface MapAction {

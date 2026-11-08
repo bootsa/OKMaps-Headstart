@@ -1,7 +1,7 @@
 <!-- @component An OpenAIRE project's details (from the map's search parameters), as text. -->
 <script lang="ts">
+	import { contextParams } from "@okmaps/core";
 	import type { MapState } from "../../../data/state.svelte";
-	import { contextParams } from "../../../header/context";
 
 	let { state: map }: { state: MapState } = $props();
 

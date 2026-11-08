@@ -8,13 +8,11 @@
   keyword sources the person picks, each run with its own defaults.
 -->
 <script lang="ts">
+	import type { AppSettings, SaveTarget, SearchSubmit } from "@okmaps/core";
+	import { allSources, defaultValues, type FieldValues, missingFields, type SourceModule, text } from "@okmaps/core";
 	import Button from "../components/Button.svelte";
 	import Fields from "../settings/Fields.svelte";
-	import { defaultValues, type FieldValues, missingFields, text } from "../settings/fields";
-	import { allSources, type SourceModule } from "../settings/registry";
-	import type { AppSettings, SaveTarget } from "../settings/settings.svelte";
 	import { getView, hasView } from "../views/registry";
-	import type { SearchSubmit } from "./types";
 
 	interface Props {
 		settings: AppSettings;

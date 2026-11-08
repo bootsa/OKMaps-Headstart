@@ -5,8 +5,8 @@
   and the share links.
 -->
 <script lang="ts">
+	import { t } from "@okmaps/core";
 	import CopyButton from "../../../components/CopyButton.svelte";
-	import { t } from "../../../i18n/strings";
 	import type { ModalProps } from "../../index";
 	import { embedCode, isWebUrl, type LinkRequest, shareTargets } from "./links";
 

@@ -1,5 +1,5 @@
+import { declutter, labelWidth } from "@okmaps/core";
 import Bubble from "../../Bubble.svelte";
-import { declutter, labelWidth } from "../../geometry";
 import { circleShape } from "../shapes";
 import type { MapTheme } from "../types";
 import LabelPaper from "./LabelPaper.svelte";

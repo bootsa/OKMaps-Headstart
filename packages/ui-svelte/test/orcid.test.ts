@@ -1,9 +1,9 @@
 import fs from "node:fs";
 import path from "node:path";
+import { citedBySum } from "@okmaps/core";
 import { fireEvent, render, screen, within } from "@testing-library/svelte";
 import { flushSync } from "svelte";
 import { afterEach, describe, expect, it } from "vitest";
-import { citedBySum } from "../src/data/papers";
 import {
 	infoPlugin,
 	MapState,

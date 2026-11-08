@@ -5,8 +5,8 @@
   shown as text; only web and mail addresses become links.
 -->
 <script lang="ts">
+	import { contextParams } from "@okmaps/core";
 	import type { MapState } from "../../../data/state.svelte";
-	import { contextParams } from "../../../header/context";
 	import AboutSoftware from "../../core/info/AboutSoftware.svelte";
 
 	let { state: map }: { state: MapState } = $props();

@@ -149,7 +149,7 @@ export function ownSource(instance: SourceInstance): SourceModule | undefined {
 }
 
 /** The site's sources, then the person's own (of the registered types). */
-export function allSources(own: SourceInstance[] = []): SourceModule[] {
+export function allSources(own: readonly SourceInstance[] = []): SourceModule[] {
 	return [...sources.values(), ...own.map(ownSource).filter((s): s is SourceModule => !!s)];
 }
 

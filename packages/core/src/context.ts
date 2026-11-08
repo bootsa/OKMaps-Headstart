@@ -4,10 +4,10 @@
  * the old reducers/heading.ts, contextLine.ts and timespan.ts did. All of it
  * is plain text.
  */
-import type { MapConfig } from "../data/config";
-import type { MapContext, Paper } from "../data/types";
-import { type Strings, t } from "../i18n/strings";
-import { getView } from "../views/registry";
+import type { MapConfig } from "./data/config";
+import type { MapContext, Paper } from "./data/types";
+import { type Strings, t } from "./i18n/strings";
+import { getViewType } from "./views/registry";
 
 export type MapTitle =
 	| { kind: "basic"; text: string }
@@ -53,7 +53,7 @@ const MAX_LENGTH_VIPER = 47;
 const MAX_LENGTH_CUSTOM = 100;
 
 function headingLabel(config: MapConfig, s: Strings): string {
-	const { heading, authorHeading } = getView(config.visType).strings;
+	const { heading, authorHeading } = getViewType(config.visType).strings;
 	return t(s, config.isAuthorview ? (authorHeading ?? heading) : heading);
 }
 
@@ -132,7 +132,7 @@ export function timespan(config: MapConfig, context: MapContext, now = new Date(
 	if (to.getTime() > now.getTime()) to = now;
 	const until = `Until ${showDate(to, service)}`;
 	const mostRecentOverTime =
-		getView(config.visType).overTime && modifier(config, context, Number.POSITIVE_INFINITY) === "most-recent";
+		getViewType(config.visType).overTime && modifier(config, context, Number.POSITIVE_INFINITY) === "most-recent";
 	if (mostRecentOverTime) return until;
 	const start = SERVICE_START[service] ?? "1970-01-01";
 	return isoDate(from, service) === start ? until : `${showDate(from, service)} - ${showDate(to, service)}`;
@@ -174,7 +174,7 @@ export function contextItems(config: MapConfig, context: MapContext, papers: Pap
 	if (!config.showContext || !params) return [];
 	const items: ContextItem[] = [];
 	const service = String(context.service ?? config.service);
-	const view = getView(config.visType);
+	const view = getViewType(config.visType);
 	const overTime = !!view.overTime;
 
 	const living = config.isAuthorview ? str(params.living_dates) : null;

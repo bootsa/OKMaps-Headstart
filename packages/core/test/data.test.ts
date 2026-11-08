@@ -1,14 +1,22 @@
 import fs from "node:fs";
 import path from "node:path";
+import type { MapRecord } from "@okmaps/core";
+import {
+	decodeEntities,
+	listPapers,
+	mapConfig,
+	parseAuthors,
+	processMap,
+	processPaper,
+	resizeMap,
+	safeId,
+	searchWords,
+	strings,
+} from "@okmaps/core";
 import { describe, expect, it } from "vitest";
-import { mapConfig } from "../src/data/config";
-import { listPapers, searchWords } from "../src/data/filter";
-import { decodeEntities, parseAuthors, processPaper, safeId } from "../src/data/papers";
-import { processMap, resizeMap } from "../src/data/process";
-import type { MapRecord } from "../src/data/types";
-import { strings } from "../src/i18n/strings";
 
-const fixture = (name: string) => JSON.parse(fs.readFileSync(path.join(__dirname, "fixtures", name), "utf8"));
+const fixture = (name: string) =>
+	JSON.parse(fs.readFileSync(path.join(__dirname, "../../ui-svelte/test/fixtures", name), "utf8"));
 // A BASE map from the pipeline (60 papers of known case 3), and what the old
 // DataManager made of it at 600 px (packages/ui, written once).
 const record: MapRecord = fixture("base-map.json");

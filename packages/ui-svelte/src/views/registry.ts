@@ -6,8 +6,10 @@
  *   registerView(knowledgeMapView);
  *
  * registerCoreViews() (./core.ts) registers every view this package ships.
+ * Registering a view also registers its type (the framework-free half) in
+ * @okmaps/core, which processes the map and words the interface.
  */
-import type { MapRecord } from "../data/types";
+import { type MapRecord, registerViewType, unregisterViewType } from "@okmaps/core";
 import type { MapView } from "./types";
 
 const views = new Map<string, MapView>();
@@ -15,10 +17,12 @@ const views = new Map<string, MapView>();
 /** Adds a view; registering the same id again replaces it. */
 export function registerView(view: MapView): void {
 	views.set(view.id, view);
+	registerViewType(view);
 }
 
 export function unregisterView(id: string): void {
 	views.delete(id);
+	unregisterViewType(id);
 }
 
 /** The registered views, in the order they were first registered. */

@@ -3,7 +3,7 @@
  * service (server/workers/api/src/apis/export.py on the legacy-server
  * branch): the same entry types, fields and layout as bibtexparser wrote.
  */
-import type { Paper } from "../../../data/types";
+import type { Paper } from "@okmaps/core";
 
 /**
  * Document type (BASE, PubMed, ORCID) to BibTeX entry type. Later entries

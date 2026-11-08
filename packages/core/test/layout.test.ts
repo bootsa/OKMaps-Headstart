@@ -1,12 +1,14 @@
 import fs from "node:fs";
 import path from "node:path";
+import type { Area, Paper } from "@okmaps/core";
+import { layoutAreas, layoutPapers } from "@okmaps/core";
 import { describe, expect, it } from "vitest";
-import type { Area, Paper } from "../src/data/types";
-import { layoutAreas, layoutPapers } from "../src/views/knowledge-map/layout";
 
 // Areas and papers of the BASE fixture at 600 px, before and after the old
 // d3 v3 force layout (packages/ui utils/force.ts, area alpha 0.02, papers 0.1).
-const golden = JSON.parse(fs.readFileSync(path.join(__dirname, "fixtures", "force.legacy.json"), "utf8"));
+const golden = JSON.parse(
+	fs.readFileSync(path.join(__dirname, "../../ui-svelte/test/fixtures", "force.legacy.json"), "utf8"),
+);
 
 describe("knowledge map layout", () => {
 	it("moves areas and papers exactly like the old force layout", () => {

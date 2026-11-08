@@ -1,0 +1,47 @@
+{
+	"name": "@okmaps/elements",
+	"version": "0.1.0",
+	"description": "OKMaps for any framework, or none: web components (<okmaps-map>, <okmaps-search>, <okmaps-settings>, <okmaps-explorer>) and a small plain JavaScript API, built into one JS and one CSS file with Svelte inside.",
+	"license": "MIT",
+	"type": "module",
+	"private": true,
+	"sideEffects": [
+		"*.css",
+		"./src/bundle.ts",
+		"./src/index.ts"
+	],
+	"exports": {
+		".": {
+			"types": "./src/index.ts",
+			"svelte": "./src/index.ts",
+			"default": "./src/index.ts"
+		},
+		"./okmaps-elements.js": "./dist/okmaps-elements.js",
+		"./okmaps-elements.css": "./dist/okmaps-elements.css"
+	},
+	"scripts": {
+		"build": "vite build",
+		"test": "vitest run",
+		"test:browser": "node scripts/browser-test.ts",
+		"typecheck": "svelte-check --tsconfig ./tsconfig.json --fail-on-warnings"
+	},
+	"engines": {
+		"node": ">=22.18"
+	},
+	"dependencies": {
+		"@okmaps/core": "workspace:*",
+		"@okmaps/storage": "workspace:*",
+		"@okmaps/ui-svelte": "workspace:*",
+		"svelte": "^5.57.3"
+	},
+	"devDependencies": {
+		"@sveltejs/vite-plugin-svelte": "^7.3.1",
+		"jsdom": "^31.0.0",
+		"@types/node": "^22.10.0",
+		"playwright": "1.65.0",
+		"svelte-check": "^4.7.8",
+		"typescript": "^5.9.3",
+		"vite": "^8.3.6",
+		"vitest": "^5.1.0"
+	}
+}

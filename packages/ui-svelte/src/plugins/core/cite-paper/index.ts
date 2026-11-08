@@ -1,4 +1,4 @@
-import { t } from "../../../i18n/strings";
+import { t } from "@okmaps/core";
 import type { OkmPlugin } from "../../index";
 import CitePaperModal from "./CitePaperModal.svelte";
 import { canCite } from "./citation";
