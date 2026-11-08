@@ -7,6 +7,7 @@
 import { execSync } from "node:child_process";
 import fs from "node:fs";
 import http from "node:http";
+import { createRequire } from "node:module";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { createGateway, memoryStore } from "@okmaps/gateway";
@@ -56,6 +57,27 @@ const server = http.createServer((req, res) => {
 await new Promise<void>((r) => server.listen(0, "127.0.0.1", r));
 const origin = `http://127.0.0.1:${(server.address() as import("node:net").AddressInfo).port}`;
 const home = `${origin}${base}`;
+
+// Accessibility: axe-core (WCAG 2.1 A and AA rules) on each kind of page. Serious and
+// critical findings fail the test; the rest are listed.
+const axeSource = fs.readFileSync(createRequire(import.meta.url).resolve("axe-core/axe.min.js"), "utf8");
+const a11yFailures: string[] = [];
+async function checkA11y(p: Page, name: string) {
+	await p.evaluate(axeSource); // evaluate, not a script tag: the pages' CSP allows no inline script
+	const violations = await p.evaluate(async () => {
+		const axe = (window as unknown as { axe: typeof import("axe-core") }).axe;
+		const result = await axe.run(document, { runOnly: ["wcag2a", "wcag2aa", "wcag21a", "wcag21aa"] });
+		return result.violations.map((v) => ({
+			id: v.id,
+			impact: v.impact,
+			nodes: v.nodes.length,
+			first: v.nodes[0]?.target.join(" "),
+		}));
+	});
+	console.log(JSON.stringify({ a11y: name, violations }));
+	for (const v of violations)
+		if (v.impact === "serious" || v.impact === "critical") a11yFailures.push(`${name}: ${v.id} (${v.first})`);
+}
 
 const browser = await chromium.launch();
 const page = await browser.newPage({ viewport: { width: 1280, height: 860 } });
@@ -183,6 +205,7 @@ async function makeMap(fill: () => Promise<void>, name: string) {
 	}));
 	await page.screenshot({ path: path.join(shots, `${name}.png`) });
 	console.log(JSON.stringify({ map: name, msToMap: made, ...counts }));
+	if (name === "pubmed") await checkA11y(page, "knowledge map");
 	if (counts.areas === 0) throw new Error(`${name}: no areas drawn`);
 	return counts;
 }
@@ -256,6 +279,7 @@ await makeMap(async () => {
 	};
 	const made = await streams(page);
 	await page.screenshot({ path: path.join(shots, "streamgraph.png") });
+	await checkA11y(page, "streamgraph");
 	const sharedSg = await shareLink(page);
 	const viewer = await browser.newPage({ viewport: { width: 1280, height: 860 } });
 	viewer.on("pageerror", (e) => errors.push(e.message));
@@ -317,6 +341,7 @@ await makeMap(async () => {
 	const made = await pins(page);
 	const title = await page.$eval(".okm-header h1", (h) => h.textContent.trim());
 	await page.screenshot({ path: path.join(shots, "geomap.png") });
+	await checkA11y(page, "geomap");
 	const sharedGeo = await shareLink(page);
 	const viewer = await browser.newPage({ viewport: { width: 1280, height: 860 } });
 	viewer.on("pageerror", (e) => errors.push(e.message));
@@ -418,6 +443,7 @@ const listed = await listedMaps(page);
 console.log(JSON.stringify({ listed }));
 if (listed.length !== 3) throw new Error("expected 3 saved maps");
 await page.screenshot({ path: path.join(shots, "home.png") });
+await checkA11y(page, "home");
 await deleteFirstMap(page);
 
 // More places to keep maps, added on the settings page. Each kind is checked
@@ -496,6 +522,7 @@ if (
 await page.screenshot({ path: path.join(shots, "settings-home.png") });
 await page.goto(`${home}settings.html`);
 await page.screenshot({ path: path.join(shots, "settings.png") });
+await checkA11y(page, "settings");
 
 // A Solid Pod: log in at the identity provider and come back to the settings
 // page, which adds okmaps/ at the top of the Pod the WebID names.
@@ -684,5 +711,9 @@ server.close();
 if (unknown.size) console.log(JSON.stringify({ blockedHosts: [...unknown] }));
 if (errors.length) {
 	console.error(errors);
+	process.exit(1);
+}
+if (a11yFailures.length) {
+	console.error("Accessibility (axe, serious or critical):", a11yFailures);
 	process.exit(1);
 }
