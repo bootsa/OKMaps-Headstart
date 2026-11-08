@@ -91,7 +91,7 @@ it("offers the person's own sources and hands over their request", async () => {
 		name: "My wiki",
 		config: { endpoint: "https://w/", query: "{{q}}" },
 	});
-	const onsearch = vi.fn(async () => {});
+	const onsearch = vi.fn(async (_s: SearchSubmit) => {});
 	render(SearchForm, { settings, onsearch });
 	await fireEvent.click(screen.getByRole("radio", { name: "My wiki" }));
 	await fireEvent.input(screen.getByLabelText("Search terms"), { target: { value: "coral" } });

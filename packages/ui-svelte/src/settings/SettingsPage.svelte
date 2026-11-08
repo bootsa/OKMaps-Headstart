@@ -190,9 +190,7 @@
 						{/if}
 					</li>
 				{:else}
-					<li class="empty">
-						None yet. You can add: {sourceTypes.map((t) => t.label).join(", ")}.
-					</li>
+					<li class="empty">None yet. You can add: {sourceTypes.map((t) => t.label).join(", ")}.</li>
 				{/each}
 			</ul>
 			<Button onclick={addSource}>Add a source</Button>
