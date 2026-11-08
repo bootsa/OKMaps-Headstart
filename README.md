@@ -35,7 +35,8 @@ how to run and test it. From the repository root:
 
     pnpm install
     pnpm test            # every package's tests
-    pnpm coverage        # the same, with a coverage summary per package
+    pnpm coverage        # the same, with coverage per package; fails below each
+                         # package's minimum (coverage.thresholds in its vitest config)
     pnpm typecheck
     pnpm lint            # Biome: lint and format check (pnpm lint:fix to apply)
     pnpm build           # the app into apps/frontend/dist
