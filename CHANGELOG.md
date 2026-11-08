@@ -1,5 +1,23 @@
 # Changelog
 
+## [7.1.35](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.34...v7.1.35) (2026-11-08)
+
+
+### Features
+
+* search Wikidata or any SPARQL endpoint, set up on the settings page ([8291f25](https://github.com/bootsa/OKMaps-Headstart/commit/8291f2586e9e7546edcddeafb8a4c355d56f2bed))
+* search Wikidata or any SPARQL endpoint, set up on the settings page ([#87](https://github.com/bootsa/OKMaps-Headstart/issues/87)) ([8291f25](https://github.com/bootsa/OKMaps-Headstart/commit/8291f2586e9e7546edcddeafb8a4c355d56f2bed))
+* search Wikipedia (through Wikidata) or any SPARQL endpoint, set up on the settings page ([ce43f54](https://github.com/bootsa/OKMaps-Headstart/commit/ce43f541f97ed1c5be5697be8df9b80d1c9747ab))
+* **sources:** make Wikidata items the main SPARQL preset, in place of Wikipedia through Wikidata ([890b39a](https://github.com/bootsa/OKMaps-Headstart/commit/890b39a9ad4a659183615e493c48533313a27905))
+* **sources:** query any SPARQL endpoint, with Wikipedia, Wikidata and DBpedia presets ([c20c979](https://github.com/bootsa/OKMaps-Headstart/commit/c20c9795b56003164e62da5dc0afadb0a97149b2))
+* **ui-svelte:** add your own sources on the settings page ([02a222b](https://github.com/bootsa/OKMaps-Headstart/commit/02a222b8990d49c961703d08b469d88d96db2ea4))
+
+
+### Bug Fixes
+
+* **sources:** order Wikidata presets by search rank and add scholarly topics from the main graph ([5fa1e23](https://github.com/bootsa/OKMaps-Headstart/commit/5fa1e23d85e432d4f3b6292a027b97f44a6e0b75))
+* **ui-svelte:** draw the source dialog's buttons only while it is open ([ec3ff8e](https://github.com/bootsa/OKMaps-Headstart/commit/ec3ff8e83e3f5ce4fff3225b06ac7eff190e6096))
+
 ## [7.1.34](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.33...v7.1.34) (2026-11-07)
 
 
