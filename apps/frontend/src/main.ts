@@ -22,6 +22,7 @@ import {
 	type StoreInstance,
 	storeById,
 } from "./store.ts";
+import { withoutToken } from "./zenodo-source.ts";
 
 const $ = <T extends HTMLElement>(id: string) => document.getElementById(id) as T;
 registerAppSources();
@@ -37,6 +38,7 @@ const SERVICES: Record<string, string> = {
 	base: "BASE",
 	openaire: "OpenAIRE",
 	sparql: "SPARQL",
+	zenodo: "Zenodo",
 	...Object.fromEntries(places.map((p) => [p.id, p.label])),
 };
 const VIEWS: Record<string, string> = {
@@ -80,7 +82,13 @@ async function makeMap({ request, title, saveTo, progress }: SearchSubmit): Prom
 		throw new Error(errorMessage(reasons, err instanceof Error ? err.message : String(err)));
 	}
 	const id = map.context.id;
-	const saved = { ...map, id, created: new Date().toISOString(), request: request as SearchRequest, title };
+	const saved = {
+		...map,
+		id,
+		created: new Date().toISOString(),
+		request: withoutToken(request as SearchRequest),
+		title,
+	};
 	if (saveTo === "none") {
 		await saveDraft(saved);
 		location.href = `map.html?draft=${encodeURIComponent(id)}`;

@@ -64,6 +64,8 @@ export function fakeAnswer(url: string): { body: string; type: string } | null {
 	if (url === PLACES) return { body: read("places/aquanavi.csv"), type: "text/csv" };
 	if (url.startsWith(`${GATEWAY}/base/search`)) return xml(base);
 	if (url.startsWith(`${GATEWAY}/base/repositories`)) return xml(repositories);
+	if (u.hostname === "zenodo.org" && /^\/api\/(communities\/[^/]+\/)?records$/.test(u.pathname))
+		return json(read("zenodo/coral-reef-datasets.json"));
 	if (u.hostname === "dbpedia.org" && u.pathname === "/sparql")
 		return { body: read("sparql/dbpedia-coral-reef.json"), type: "application/sparql-results+json" };
 	if (u.hostname === "en.wikipedia.org" && u.pathname === "/w/api.php") {

@@ -2,6 +2,7 @@ import { loadDefaultResources } from "@okmaps/pipeline";
 import { describe, expect, it } from "vitest";
 import { buildMap, type SearchRequest, type Stage, timestamp, visTypeOf } from "../src/search.ts";
 import { sparqlConfig, sparqlSourceType } from "../src/sparql-source.ts";
+import { zenodoConfig } from "../src/zenodo-source.ts";
 import { fakeFetch, GATEWAY, PLACES } from "./fake-net.ts";
 
 const places = [{ id: "aquanavi", label: "AQUANAVI", preset: "aquanavi" as const, url: PLACES }];
@@ -142,6 +143,20 @@ describe("buildMap", () => {
 		const adventure = map.documents.find((d) => d.title === "Coral Reef Adventure");
 		expect(adventure?.paper_abstract).toBe("Coral Reef Adventure is a thing about coral reefs and the sea.");
 		expect(adventure?.url).toBe("http://en.wikipedia.org/wiki/Coral_Reef_Adventure");
+	});
+
+	it("makes a map from a Zenodo source, without its access token in the map", async () => {
+		const config = zenodoConfig({ type: "dataset", limit: "5", token: "secret" });
+		const { map, stages } = await make({ service: "zenodo", source: "Zenodo datasets", config, q: "coral reef" });
+		expect(stages).toEqual(["searching", "layout"]);
+		expect(map.context).toMatchObject({ query: "coral reef", service: "zenodo" });
+		expect(JSON.parse(map.context.params)).toEqual({
+			source: "Zenodo datasets",
+			zenodo: { type: "dataset", limit: 5 },
+		});
+		expect(JSON.stringify(map)).not.toContain("secret");
+		expectLaidOut(map.documents);
+		expect(map.documents.find((d) => d.id === "4963256")?.url).toBe("https://zenodo.org/records/4963256");
 	});
 
 	it("reports provider errors with their reasons", async () => {

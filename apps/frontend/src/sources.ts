@@ -16,6 +16,7 @@ import { type PlaceSourceConfig, placeSettings } from "./places.ts";
 import type { SearchRequest } from "./search.ts";
 import { settings } from "./settings.ts";
 import { sparqlSourceType } from "./sparql-source.ts";
+import { zenodoSourceType } from "./zenodo-source.ts";
 
 const today = () => new Date().toISOString().slice(0, 10);
 
@@ -137,8 +138,9 @@ export function appSources(): SourceModule<SearchRequest>[] {
 	return [pubmedSource, baseSource, openaireSource, ...placeSettings().map(placeModule)];
 }
 
-/** The site's sources, and the kinds of source people can add themselves (SPARQL). */
+/** The site's sources, and the kinds of source people can add themselves (SPARQL, Zenodo). */
 export function registerAppSources(): void {
 	for (const s of appSources()) registerSource(s);
 	registerSourceType(sparqlSourceType as SourceType);
+	registerSourceType(zenodoSourceType as SourceType);
 }

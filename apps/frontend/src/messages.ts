@@ -22,6 +22,12 @@ const OWN_MESSAGE = new Set([
 	"API error: SPARQL rate limited",
 	"SPARQL query error",
 	"unexpected SPARQL response",
+	"API error: Zenodo not reachable",
+	"API error: Zenodo rate limited",
+	"Zenodo query error",
+	"Zenodo community not found",
+	"Zenodo access token refused",
+	"unexpected Zenodo response",
 ]);
 
 export function errorMessage(reasons: string[], fallback: string): string {

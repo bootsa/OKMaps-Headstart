@@ -30,6 +30,14 @@ registerService("sparql", {
 	urlPrefix: null,
 	citePapers: false,
 });
+// Zenodo sources: no citation data, links go to the record pages.
+registerService("zenodo", {
+	language: "eng",
+	sortOptions: ["relevance", "title", "authors", "year"],
+	contentBased: true,
+	urlPrefix: null,
+	citePapers: false,
+});
 // Place sources other than AQUANAVI get AQUANAVI's map settings.
 for (const p of placeSettings()) {
 	if (p.id !== "aquanavi")

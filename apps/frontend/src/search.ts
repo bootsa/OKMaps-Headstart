@@ -24,7 +24,9 @@ import {
 	searchPlaces,
 	searchPubmed,
 	searchSparql,
+	searchZenodo,
 	type TableCache,
+	type ZenodoSourceConfig,
 } from "@okmaps/sources";
 import { placeSource } from "./place-source.ts";
 import type { PlaceSourceConfig } from "./places.ts";
@@ -33,7 +35,7 @@ import { visTypeOf } from "./vis-type.ts";
 export type { VisType } from "./vis-type.ts";
 export { visTypeOf } from "./vis-type.ts";
 
-export type Service = "pubmed" | "base" | "openaire" | "places" | "sparql";
+export type Service = "pubmed" | "base" | "openaire" | "places" | "sparql" | "zenodo";
 
 /** The views a search can ask for; place sources make geo maps. */
 type SearchView = "overview" | "timeline";
@@ -84,7 +86,24 @@ export interface SparqlRequest {
 	vis_type?: SearchView;
 }
 
-export type SearchRequest = PubmedRequest | BaseSearchRequest | OpenaireRequest | PlacesRequest | SparqlRequest;
+/** A search on a Zenodo source someone set up on the settings page (src/zenodo-source.ts). */
+export interface ZenodoRequest {
+	service: "zenodo";
+	/** The source's name, kept with the map. */
+	source: string;
+	/** Its access token only travels to the worker; maps keep the config without it. */
+	config: ZenodoSourceConfig;
+	q: string;
+	vis_type?: SearchView;
+}
+
+export type SearchRequest =
+	| PubmedRequest
+	| BaseSearchRequest
+	| OpenaireRequest
+	| PlacesRequest
+	| SparqlRequest
+	| ZenodoRequest;
 
 export interface SearchSettings {
 	/** Gateway base URL (packages/gateway), for BASE and the OpenAIRE fallback. */
@@ -139,6 +158,14 @@ async function fetchSource(
 		if (result.papers.length === 0) throw Object.assign(new Error("no results"), { reasons: ["not enough results"] });
 		// The whole config, so the map says how it was made (and a shared copy can be made again).
 		const params = { source: req.source, sparql: req.config, ...visType };
+		return { result, query: req.q, params };
+	}
+	if (req.service === "zenodo") {
+		const result = await searchZenodo(req.config, { q: req.q }, http);
+		if (result.papers.length === 0) throw Object.assign(new Error("no results"), { reasons: ["not enough results"] });
+		// The config says how the map was made; never the access token (maps are shared and stored elsewhere).
+		const { accessToken: _, ...zenodo } = req.config;
+		const params = { source: req.source, zenodo, ...visType };
 		return { result, query: req.q, params };
 	}
 	if (req.service === "pubmed") {
