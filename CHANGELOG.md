@@ -1,5 +1,15 @@
 # Changelog
 
+## [7.1.37](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.36...v7.1.37) (2026-11-08)
+
+
+### Features
+
+* map a Zotero library, group or collection, set up on the settings page ([32c2614](https://github.com/bootsa/OKMaps-Headstart/commit/32c2614b71376fbf138ed090b48527d3968d3c4e))
+* map a Zotero library, group or collection, set up on the settings page ([05eaaf7](https://github.com/bootsa/OKMaps-Headstart/commit/05eaaf74c0858a6586796d169342a11b17924232))
+* **sources:** read Zotero libraries, groups and collections through the Web API ([dd832a5](https://github.com/bootsa/OKMaps-Headstart/commit/dd832a50a239ee2cb7687018b1ef48fe06f38e19))
+* **ui-svelte:** load a settings select's options from the other fields ([fa94906](https://github.com/bootsa/OKMaps-Headstart/commit/fa94906ec1b3317cf0e08c8fe1665329c82f2496))
+
 ## [7.1.36](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.35...v7.1.36) (2026-11-08)
 
 
