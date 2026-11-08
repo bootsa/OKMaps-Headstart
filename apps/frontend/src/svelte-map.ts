@@ -54,6 +54,14 @@ registerService("zotero", {
 	urlPrefix: null,
 	citePapers: false,
 });
+// Several sources in one map: each record keeps its own source's links (source_service).
+registerService("combined", {
+	language: "eng",
+	sortOptions: ["relevance", "readers", "title", "authors", "year"],
+	contentBased: true,
+	urlPrefix: null,
+	citePapers: false,
+});
 // Place sources other than AQUANAVI get AQUANAVI's map settings.
 for (const p of placeSettings()) {
 	if (p.id !== "aquanavi")

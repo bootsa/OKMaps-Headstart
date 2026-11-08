@@ -4,11 +4,13 @@
   settings: a choice of source, the map type where the source can make
   several, the source's own fields, and where to keep the new map (a store
   from the settings, or nowhere: it can be saved later from the map page).
+  With `combine`, it also offers "Several sources": one search on the
+  keyword sources the person picks, each run with its own defaults.
 -->
 <script lang="ts">
 	import Button from "../components/Button.svelte";
 	import Fields from "../settings/Fields.svelte";
-	import { defaultValues, type FieldValues, missingFields } from "../settings/fields";
+	import { defaultValues, type FieldValues, missingFields, text } from "../settings/fields";
 	import { allSources, type SourceModule } from "../settings/registry";
 	import type { AppSettings, SaveTarget } from "../settings/settings.svelte";
 	import { getView, hasView } from "../views/registry";
@@ -22,13 +24,61 @@
 		viewLabel?: (view: string) => string | undefined;
 		/** Where the settings are, for the hints. */
 		settingsHref?: string;
+		/**
+		 * Makes one request of several sources' requests; with it the form offers
+		 * "Several sources" when two or more keyword sources are on.
+		 */
+		combine?: (parts: { source: SourceModule; request: unknown }[], query: string, view: string) => unknown;
 	}
 
-	let { settings, onsearch, viewLabel, settingsHref }: Props = $props();
+	let { settings, onsearch, viewLabel, settingsHref, combine }: Props = $props();
 
-	const sources = $derived(
+	const enabled = $derived(
 		allSources(settings.sources).filter((s) => !s.unavailable?.() && settings.sourceEnabled(s.id)),
 	);
+
+	/** A keyword source: it takes search terms, makes knowledge maps and needs nothing else without a default. */
+	const combinable = (s: SourceModule) =>
+		s.fields.some((f) => f.name === "q") &&
+		(s.views ?? ["overview"]).includes("overview") &&
+		s.fields.every((f) => f.name === "q" || !f.required || f.default !== undefined);
+
+	const COMBINED = "okm:combined";
+	const combinedSource: SourceModule | undefined = $derived.by(() => {
+		const parts = combine ? enabled.filter(combinable) : [];
+		if (!combine || parts.length < 2) return undefined;
+		const join = combine;
+		return {
+			id: COMBINED,
+			label: "Several sources",
+			description: "One map from several sources; a work that more than one of them finds is shown once.",
+			views: ["overview", "timeline"].filter((v) => parts.every((s) => (s.views ?? ["overview"]).includes(v))),
+			fields: [
+				{ name: "q", label: "Search terms", kind: "search", required: true, placeholder: "e.g. climate change" },
+				{
+					name: "sources",
+					label: "Search in",
+					kind: "checkboxes",
+					required: true,
+					default: parts.map((s) => s.id),
+					options: parts.map((s) => ({ value: s.id, label: s.label })),
+				},
+			],
+			request: (v, view) => {
+				const picked = Array.isArray(v.sources) ? v.sources : [];
+				const q = text(v, "q");
+				return join(
+					parts
+						.filter((s) => picked.includes(s.id))
+						.map((s) => ({ source: s, request: s.request({ ...defaultValues(s.fields), q }, view) })),
+					q,
+					view,
+				);
+			},
+			title: (v) => text(v, "q"),
+		};
+	});
+	const sources = $derived(combinedSource ? [...enabled, combinedSource] : enabled);
 	let sourceId = $state("");
 	const source = $derived(sources.find((s) => s.id === sourceId) ?? sources[0]);
 	/** Each source keeps its own values while another is chosen. */
@@ -74,6 +124,11 @@
 		if (missing.length) {
 			error = true;
 			status = `Please fill in: ${missing.join(", ")}.`;
+			return;
+		}
+		if (source.id === COMBINED && (!Array.isArray(values.sources) || values.sources.length < 2)) {
+			error = true;
+			status = "Please pick at least two sources.";
 			return;
 		}
 		const view = views[source.id] ?? source.views?.[0] ?? "overview";

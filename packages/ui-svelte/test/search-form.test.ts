@@ -102,3 +102,43 @@ it("offers the person's own sources and hands over their request", async () => {
 		title: "coral",
 	});
 });
+
+describe("several sources", () => {
+	it("offers Several sources with combine, and hands over the picked sources' requests", async () => {
+		const settings = settingsWith();
+		const onsearch = vi.fn(async (_s: SearchSubmit) => {});
+		const combine = (parts: { source: { id: string }; request: unknown }[], q: string, view: string) => ({
+			service: "combined",
+			q,
+			view,
+			parts: parts.map((p) => p.request),
+		});
+		render(SearchForm, { settings, onsearch, combine });
+		await fireEvent.click(screen.getByRole("radio", { name: "Several sources" }));
+		await fireEvent.input(screen.getByLabelText("Search terms"), { target: { value: "sea ice" } });
+		expect(screen.getByRole("checkbox", { name: "Demo library" })).toBeChecked();
+		await fireEvent.click(screen.getByRole("checkbox", { name: "Other library" }));
+		await fireEvent.click(screen.getByRole("button", { name: "Make map" }));
+		expect(screen.getByRole("status")).toHaveTextContent("Please pick at least two sources.");
+		await fireEvent.click(screen.getByRole("checkbox", { name: "Other library" }));
+		await fireEvent.click(screen.getByRole("button", { name: "Make map" }));
+		await waitFor(() => expect(onsearch).toHaveBeenCalledTimes(1));
+		expect(onsearch.mock.calls[0][0]).toMatchObject({
+			request: {
+				service: "combined",
+				q: "sea ice",
+				view: "overview",
+				parts: [
+					{ service: "demo", q: "sea ice" },
+					{ service: "demo", q: "sea ice" },
+				],
+			},
+			title: "sea ice",
+		});
+	});
+
+	it("offers no Several sources without combine", () => {
+		render(SearchForm, { settings: settingsWith(), onsearch: async () => {} });
+		expect(screen.queryByRole("radio", { name: "Several sources" })).toBeNull();
+	});
+});

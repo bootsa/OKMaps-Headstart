@@ -14,7 +14,7 @@ import {
 } from "@okmaps/ui-svelte";
 import { openalexSourceType } from "./openalex-source.ts";
 import { type PlaceSourceConfig, placeSettings } from "./places.ts";
-import type { SearchRequest } from "./search.ts";
+import type { CombinableRequest, CombinedRequest, SearchRequest } from "./search.ts";
 import { settings } from "./settings.ts";
 import { sparqlSourceType } from "./sparql-source.ts";
 import { zenodoSourceType } from "./zenodo-source.ts";
@@ -147,4 +147,22 @@ export function registerAppSources(): void {
 	registerSourceType(zenodoSourceType as SourceType);
 	registerSourceType(zoteroSourceType as SourceType);
 	registerSourceType(openalexSourceType as SourceType);
+}
+
+const COMBINABLE = new Set(["pubmed", "base", "sparql", "zenodo", "zotero", "openalex"]);
+
+/** "Several sources" in the search form: one request that runs the parts' requests (src/search.ts). */
+export function combinedRequest(
+	parts: { source: SourceModule; request: unknown }[],
+	q: string,
+	view: string,
+): CombinedRequest {
+	return {
+		service: "combined",
+		q,
+		parts: parts
+			.filter((p) => COMBINABLE.has((p.request as SearchRequest).service))
+			.map((p) => ({ label: p.source.label, request: p.request as CombinableRequest })),
+		...timeline(view),
+	};
 }

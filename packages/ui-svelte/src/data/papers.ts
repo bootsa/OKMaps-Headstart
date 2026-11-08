@@ -8,7 +8,7 @@
  */
 
 import type { Strings } from "../i18n/strings";
-import type { MapConfig } from "./config";
+import { type MapConfig, mapConfig, type Service } from "./config";
 import type { Author, Comment, Link, MapContext, Paper, Place, RawDocument } from "./types";
 
 const str = (v: unknown): string | undefined =>
@@ -165,12 +165,17 @@ export function processPaper(doc: RawDocument, config: MapConfig, s: Strings, _c
 	}
 
 	const year = text("year");
+	// A map of several sources: each record links as its own source's maps do.
+	const own =
+		typeof doc.source_service === "string" && doc.source_service !== config.service
+			? mapConfig(doc.source_service as Service)
+			: config;
 	const oaState = [0, 1, 2, 3].includes(parseInt(String(doc.oa_state))) ? parseInt(String(doc.oa_state)) : 2;
 	const pmcid = text("pmcid");
-	const oa = config.service === "pubmed" ? pmcid !== "" : oaState === 1;
+	const oa = own.service === "pubmed" ? pmcid !== "" : oaState === 1;
 	const link = text("link");
 	const oaLink =
-		config.service === "pubmed" ? (pmcid ? `http://www.ncbi.nlm.nih.gov/pmc/articles/${pmcid}/pdf/` : "") : link;
+		own.service === "pubmed" ? (pmcid ? `http://www.ncbi.nlm.nih.gov/pmc/articles/${pmcid}/pdf/` : "") : link;
 
 	let resultType: string[] = [];
 	if (Array.isArray(doc.resulttype)) resultType = doc.resulttype.filter((r): r is string => typeof r === "string");
@@ -178,10 +183,9 @@ export function processPaper(doc: RawDocument, config: MapConfig, s: Strings, _c
 
 	const url = text("url", fallback("default_url"));
 	let outlink: string;
-	if (config.service === "base") outlink = oaLink;
-	else if (config.service === "openaire" && resultType.includes("dataset"))
-		outlink = (config.urlPrefixDatasets ?? "") + url;
-	else if (config.urlPrefix !== null) outlink = config.urlPrefix + url;
+	if (own.service === "base") outlink = oaLink;
+	else if (own.service === "openaire" && resultType.includes("dataset")) outlink = (own.urlPrefixDatasets ?? "") + url;
+	else if (own.urlPrefix !== null) outlink = own.urlPrefix + url;
 	else outlink = url;
 
 	const comments: Comment[] = Array.isArray(doc.comments)
