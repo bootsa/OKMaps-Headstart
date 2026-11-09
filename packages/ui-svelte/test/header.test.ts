@@ -123,4 +123,25 @@ describe("Header", () => {
 		expect(tip?.getAttribute("role")).toBe("tooltip");
 		expect(tip?.textContent).toContain("relevance ranking");
 	});
+
+	it("names the sources of a map made from several sources", () => {
+		const papers = [{ oa: false, resultType: [] }] as never[];
+		const params = JSON.stringify({
+			sources: [
+				{ label: "PubMed", service: "pubmed" },
+				{ label: "BASE", service: "base" },
+			],
+			duplicates: 3,
+			failed: [{ label: "Zenodo", error: "timeout" }],
+		});
+		const items = contextItems(mapConfig("combined"), { service: "combined", params }, papers, s);
+		expect(items.find((i) => i.id === "sources")).toEqual({
+			id: "sources",
+			text: "Sources: PubMed, BASE",
+			tooltip: "PubMed, BASE\nFound by more than one: 3\nNot reached: Zenodo",
+			more: true,
+		});
+		const one = contextItems(base, { service: "base", params: { sorting: "most-recent" } }, papers, s);
+		expect(one.some((i) => i.id === "sources")).toBe(false);
+	});
 });

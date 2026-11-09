@@ -168,6 +168,35 @@ export function metadataQuality(context: MapContext): "high" | "low" | null {
 	return null;
 }
 
+/**
+ * The sources of a map made from several sources (params.sources), with
+ * how many works more than one of them found and which ones failed.
+ */
+function combinedSources(params: Params, s: Strings): ContextItem | null {
+	if (!Array.isArray(params.sources)) return null;
+	const labels = params.sources.flatMap((p) => {
+		const label = p && typeof p === "object" ? str((p as Params).label) : null;
+		return label ? [label] : [];
+	});
+	if (!labels.length) return null;
+	const notes = [labels.join(", ")];
+	const duplicates = Number(params.duplicates);
+	if (duplicates > 0) notes.push(`${t(s, "duplicates_label")}: ${duplicates}`);
+	const failed = Array.isArray(params.failed)
+		? params.failed.flatMap((f) => {
+				const label = f && typeof f === "object" ? str((f as Params).label) : null;
+				return label ? [label] : [];
+			})
+		: [];
+	if (failed.length) notes.push(`${t(s, "failed_sources_label")}: ${failed.join(", ")}`);
+	return {
+		id: "sources",
+		text: `${t(s, "sources_label")}: ${sliceText(labels.join(", "), 40)}`,
+		tooltip: notes.join("\n"),
+		more: true,
+	};
+}
+
 /** The context line's items, in the old order. */
 export function contextItems(config: MapConfig, context: MapContext, papers: Paper[], s: Strings): ContextItem[] {
 	const params = contextParams(context);
@@ -213,6 +242,9 @@ export function contextItems(config: MapConfig, context: MapContext, papers: Pap
 				: { id: "source", text: `${t(s, "source_label")}: ${source}` },
 		);
 	}
+
+	const combined = combinedSources(params, s);
+	if (combined) items.push(combined);
 
 	const span = timespan(config, context);
 	if (span) {
