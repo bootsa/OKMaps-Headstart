@@ -14,8 +14,11 @@ export { default as ScalePicker } from "./components/ScalePicker.svelte";
 export { default as SchemeToggle } from "./components/SchemeToggle.svelte";
 export { default as Tag } from "./components/Tag.svelte";
 export { default as Tooltip } from "./components/Tooltip.svelte";
+// Svelte-reactive map state, rather than core's plain class of the same name.
 export { MapState } from "./data/state.svelte";
 export * from "./explorer";
+// Svelte-reactive explorer state, rather than core's plain class of the same name.
+export { ExplorerState } from "./explorer/state.svelte";
 export { default as Header } from "./header/Header.svelte";
 export { authorsLine, List, ListEntry, shortTitle } from "./list";
 export {

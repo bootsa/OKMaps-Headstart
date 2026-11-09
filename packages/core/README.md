@@ -12,6 +12,9 @@ Node, or a page without any framework.
 | view types | `ViewType` = what a kind of map needs (process, layout, accepts) and how the interface talks about it (label, strings, citation, flags). `knowledgeMapType`, `streamgraphType`, `geomapType`; `registerViewType`, `getViewType`, `viewTypesFor`, `registerCoreViewTypes()` |
 | sources and stores | `registerSource`, `registerSourceType`, `registerStoreType`, `allSources`, `openStore`, `FieldSpec` |
 | `AppSettings` | the person's sources, stores and save target, in localStorage; a plain class with `subscribe(listener)` |
+| `MapState` | the interface state of one map: zoom, selection, the list's search, filter and sort, hover, open modal; `listed` and `matching` papers worked out from them; methods `zoomIn`, `selectPaper`, `scale`, ... |
+| `ExplorerState` | the saved maps explorer: folder listings (loaded lazily), open folders, create, rename, delete, move, import, export |
+| `Observable` | the base of the two above: fields, `subscribe((field) => …)`, an `observe(field)` read hook, cached derived values |
 | wording | `strings(language)`, `t`, `registerLanguage`, `registerLanguages` |
 | `mapConfig`, `registerService` | per-service map settings |
 | `applyScheme`, `initialScheme` | light or dark mode on `<html>` |
@@ -32,11 +35,30 @@ calls nothing in this package directly.
 
 ## Reactivity
 
-Nothing here depends on a reactivity system. `AppSettings` tells
-subscribers about every change and replaces (never mutates) its arrays, so
-it fits React's `useSyncExternalStore`, Vue's `shallowRef`, or Svelte's
-`createSubscriber` (which is what `@okmaps/ui-svelte`'s `AppSettings` does,
-through the `observe()` hook).
+Nothing here depends on a reactivity system. `MapState` and `ExplorerState`
+(both `Observable`) call subscribers with the name of each field that
+changed, and replace (never mutate) their objects and arrays; `AppSettings`
+does the same with a plain `subscribe(listener)`. So:
+
+- **React**: `useSyncExternalStore(state.subscribe.bind(state), () => state.zoomedArea)`.
+- **Vue**: copy fields into a `shallowRef` in a subscriber.
+- **Web components / plain DOM**: re-render in a subscriber.
+- **Svelte**: `@okmaps/ui-svelte` overrides the `observe(field)` hook with
+  one `createSubscriber` per field (`src/data/reactive.ts`), so a component
+  that read `zoomedArea` updates when that field changes and not when the
+  pointer moves over a paper.
+
+```ts
+import { MapState, registerCoreViewTypes } from "@okmaps/core";
+
+registerCoreViewTypes();
+const state = new MapState(record, 600);
+state.subscribe((field) => {
+  if (field === "zoomedArea") console.log("zoomed into", state.area?.title);
+});
+state.zoomIn(state.map.areas[0].uri);
+console.log(state.listed.length); // the papers the list shows
+```
 
 ## Rules
 
