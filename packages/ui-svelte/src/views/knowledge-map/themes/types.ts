@@ -4,9 +4,9 @@
  * area is drawn, where papers go when zoomed in, how a paper is drawn and
  * what pops up next to it. Its components carry their own CSS.
  */
+
+import type { Circle, Paper, Rect } from "@okmaps/core";
 import type { Component } from "svelte";
-import type { Paper } from "../../../data/types";
-import type { Circle, Rect } from "../geometry";
 
 /** The outline of an area, drawn in the area's circle. */
 export interface AreaShape {

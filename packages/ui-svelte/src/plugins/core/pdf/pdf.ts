@@ -1,6 +1,7 @@
 /** Which papers get a "PDF" or "File" button, and where their PDF is (old usePdfLookup.ts). */
+
+import type { Paper } from "@okmaps/core";
 import type { MapState } from "../../../data/state.svelte";
-import type { Paper } from "../../../data/types";
 
 const NON_TEXT = [
 	"dataset",

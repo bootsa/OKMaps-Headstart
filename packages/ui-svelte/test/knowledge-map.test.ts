@@ -1,5 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
+import { dogEarPath, iconRect, labelWidth, paperPath, popupPlacement } from "@okmaps/core";
 import { fireEvent, render, screen } from "@testing-library/svelte";
 import { flushSync } from "svelte";
 import { describe, expect, it } from "vitest";
@@ -14,7 +15,6 @@ import {
 	queryTerms,
 	Visualization,
 } from "../src/index";
-import { dogEarPath, iconRect, labelWidth, paperPath, popupPlacement } from "../src/views/knowledge-map/geometry";
 
 const record = JSON.parse(fs.readFileSync(path.join(__dirname, "fixtures", "base-map.json"), "utf8"));
 

@@ -3,6 +3,9 @@
  * listed so far. Listing is lazy: a store or folder is read when it is
  * first expanded, and again after a change in it.
  */
+
+import type { AppSettings } from "@okmaps/core";
+import { openStore, type StoreInstance } from "@okmaps/core";
 import {
 	exportMaps,
 	type FolderListing,
@@ -12,8 +15,6 @@ import {
 	moveMap,
 	parseMapsFile,
 } from "@okmaps/storage";
-import { openStore, type StoreInstance } from "../settings/registry";
-import type { AppSettings } from "../settings/settings.svelte";
 
 export interface Listing {
 	status: "loading" | "ready" | "error";

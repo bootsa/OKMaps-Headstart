@@ -4,11 +4,17 @@ The OKMaps interface, in Svelte 5 with plain CSS. It replaced `@okmaps/ui`
 (React, Redux, d3 v3, jQuery, Bootstrap 3, SCSS) in 7.1.20; the app
 (`apps/frontend`) draws every map with it.
 
+What is not drawing (map processing, view types, the sources and stores
+registries, settings, wording) lives in the framework-free
+`@okmaps/core`; this package re-exports all of it, so imports from
+`@okmaps/ui-svelte` keep working. For pages that don't use Svelte,
+`@okmaps/elements` wraps this interface as web components.
+
 ```
 src/styles       tokens.css (design tokens), skins.css, base.css, fonts
 src/components   components, each with a .stories.svelte file
-src/data         map processing and the interface state (MapState)
-src/views        one folder per map view: its layout and components
+src/data         the interface state (MapState); processing is in @okmaps/core
+src/views        one folder per map view: its components (its type is in @okmaps/core)
 src/docs         Storybook pages for the foundations (tokens)
 test             Vitest + Testing Library
 ```
@@ -19,13 +25,16 @@ A map view is one way of drawing a map: the knowledge map (`visType`
 "overview"), the streamgraph ("timeline") and the geo map ("geomap"). Each is a
 `MapView` (`src/views/types.ts`) in its own folder, covering both halves:
 
-- **Processing** (`ViewProcessor`, no Svelte): `id` (the visType), `accepts(record)`
-  (can the record be drawn this way), `process({ record, papers, size, config })`
-  and an optional `layout(map, config)` pass.
-- **Presentation**: `label`, `component` (gets `state`, `width`, `height`),
+- **The view type** (`ViewType` from `@okmaps/core`, no Svelte): `id` (the
+  visType), `accepts(record)` (can the record be drawn this way),
+  `process({ record, papers, size, config })`, an optional `layout(map, config)`
+  pass, `label`, `areas`, `places`, `overTime`, `creatable`, `strings` (i18n
+  keys for the title and list) and `citation`.
+- **Presentation** (here): `component` (gets `state`, `width`, `height`),
   `start(state)`, `settings` (controls for the settings panel), `overlayInset`,
-  `areas`, `places`, `overTime`, `creatable`, `strings` (i18n keys for the title
-  and list), `citation` and `info` (its part of "More information").
+  `sections` (list shortcuts) and `info` (its part of "More information").
+
+`registerView` registers both halves (the type in `@okmaps/core`).
 
 Shared code never names a view: it asks `state.view` (the registered view for
 `config.visType`). A page registers the views it draws, and only those end up

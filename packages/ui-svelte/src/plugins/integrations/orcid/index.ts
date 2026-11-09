@@ -1,5 +1,4 @@
-import { registerService } from "../../../data/config";
-import { t } from "../../../i18n/strings";
+import { registerService, t } from "@okmaps/core";
 import type { OkmPlugin } from "../../index";
 import MetricsModal from "./MetricsModal.svelte";
 import OrcidInfo from "./OrcidInfo.svelte";

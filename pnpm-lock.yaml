@@ -64,6 +64,83 @@ importers:
         specifier: ^5.1.0
         version: 5.1.0(@types/node@22.20.5)(@vitest/coverage-v8@5.1.0)(jsdom@31.0.0)(vite@8.3.6(@types/node@22.20.5)(esbuild@0.28.2)(sass@1.108.0)(terser@5.51.2))
 
+  packages/core:
+    dependencies:
+      '@okmaps/pipeline':
+        specifier: workspace:*
+        version: link:../pipeline
+      '@okmaps/storage':
+        specifier: workspace:*
+        version: link:../storage
+      d3-array:
+        specifier: ^3.2.5
+        version: 3.2.5
+      d3-scale:
+        specifier: ^4.0.3
+        version: 4.0.3
+      d3-shape:
+        specifier: ^3.2.1
+        version: 3.2.1
+    devDependencies:
+      '@types/d3-array':
+        specifier: ^3.2.2
+        version: 3.2.2
+      '@types/d3-scale':
+        specifier: ^4.0.9
+        version: 4.0.9
+      '@types/d3-shape':
+        specifier: ^3.2.0
+        version: 3.2.0
+      jsdom:
+        specifier: ^31.0.0
+        version: 31.0.0
+      typescript:
+        specifier: ^5.9.3
+        version: 5.9.3
+      vitest:
+        specifier: ^5.1.0
+        version: 5.1.0(@types/node@22.20.5)(@vitest/coverage-v8@5.1.0)(jsdom@31.0.0)(vite@8.3.6(@types/node@22.20.5)(esbuild@0.28.2)(sass@1.108.0)(terser@5.51.2))
+
+  packages/elements:
+    dependencies:
+      '@okmaps/core':
+        specifier: workspace:*
+        version: link:../core
+      '@okmaps/storage':
+        specifier: workspace:*
+        version: link:../storage
+      '@okmaps/ui-svelte':
+        specifier: workspace:*
+        version: link:../ui-svelte
+      svelte:
+        specifier: ^5.57.3
+        version: 5.57.3(@typescript-eslint/types@8.72.1)
+    devDependencies:
+      '@sveltejs/vite-plugin-svelte':
+        specifier: ^7.3.1
+        version: 7.3.1(svelte@5.57.3(@typescript-eslint/types@8.72.1))(vite@8.3.6(@types/node@22.20.5)(esbuild@0.28.2)(sass@1.108.0)(terser@5.51.2))
+      '@types/node':
+        specifier: ^22.10.0
+        version: 22.20.5
+      jsdom:
+        specifier: ^31.0.0
+        version: 31.0.0
+      playwright:
+        specifier: 1.65.0
+        version: 1.65.0
+      svelte-check:
+        specifier: ^4.7.8
+        version: 4.7.8(picomatch@4.0.7)(svelte@5.57.3(@typescript-eslint/types@8.72.1))(typescript@5.9.3)
+      typescript:
+        specifier: ^5.9.3
+        version: 5.9.3
+      vite:
+        specifier: ^8.3.6
+        version: 8.3.6(@types/node@22.20.5)(esbuild@0.28.2)(sass@1.108.0)(terser@5.51.2)
+      vitest:
+        specifier: ^5.1.0
+        version: 5.1.0(@types/node@22.20.5)(@vitest/coverage-v8@5.1.0)(jsdom@31.0.0)(vite@8.3.6(@types/node@22.20.5)(esbuild@0.28.2)(sass@1.108.0)(terser@5.51.2))
+
   packages/gateway:
     dependencies:
       '@okmaps/storage':
@@ -136,6 +213,9 @@ importers:
       '@citation-js/plugin-csl':
         specifier: ^0.9.0
         version: 0.9.0(@citation-js/core@0.9.0)
+      '@okmaps/core':
+        specifier: workspace:*
+        version: link:../core
       '@okmaps/pipeline':
         specifier: workspace:*
         version: link:../pipeline

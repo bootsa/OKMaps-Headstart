@@ -1,11 +1,8 @@
 import fs from "node:fs";
 import path from "node:path";
+import { mapConfig, parsePlace, parseStreams, processMap } from "@okmaps/core";
 import { describe, expect, it } from "vitest";
-import { mapConfig } from "../src/data/config";
-import { parsePlace } from "../src/data/papers";
-import { processMap } from "../src/data/process";
 import { MapState } from "../src/data/state.svelte";
-import { parseStreams } from "../src/data/streams";
 
 const fixture = (name: string) => JSON.parse(fs.readFileSync(path.join(__dirname, "fixtures", name), "utf8"));
 

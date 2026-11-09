@@ -5,14 +5,21 @@
  * reducers.
  */
 
-import { type Strings, strings } from "../i18n/strings";
+import type { Area, MapRecord, Paper, ProcessedMap } from "@okmaps/core";
+import {
+	listPapers,
+	type MapConfig,
+	mapConfig,
+	processMap,
+	queryTerms,
+	resizeMap,
+	type Service,
+	type Strings,
+	searchWords,
+	strings,
+} from "@okmaps/core";
 import { getView } from "../views/registry";
 import type { MapView } from "../views/types";
-import { type MapConfig, mapConfig, type Service } from "./config";
-import { listPapers, searchWords } from "./filter";
-import { queryTerms } from "./highlight";
-import { processMap, resizeMap } from "./process";
-import type { Area, MapRecord, Paper, ProcessedMap } from "./types";
 
 export class MapState {
 	/** The map's settings; scale() changes what the papers are sized by. */

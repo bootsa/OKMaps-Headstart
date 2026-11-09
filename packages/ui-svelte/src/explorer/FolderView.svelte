@@ -5,8 +5,8 @@
   plus New folder where the store can hold folders.
 -->
 <script lang="ts">
+	import { getStoreType } from "@okmaps/core";
 	import type { MapSummary } from "@okmaps/storage";
-	import { getStoreType } from "../settings/registry";
 	import { type DraggedMap, dropTarget, startDrag } from "./dnd";
 	import FolderView from "./FolderView.svelte";
 	import type { ExplorerState, MapRef } from "./state.svelte";

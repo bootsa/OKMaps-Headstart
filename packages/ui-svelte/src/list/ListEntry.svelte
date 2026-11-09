@@ -7,15 +7,13 @@
   authors and area.
 -->
 <script lang="ts">
+	import type { Paper } from "@okmaps/core";
+	import { authorsLine, docTypeTags, paperDate, scaleUnit, shortTitle, t } from "@okmaps/core";
 	import Button from "../components/Button.svelte";
 	import Highlight from "../components/Highlight.svelte";
 	import Tag from "../components/Tag.svelte";
-	import { paperDate, scaleUnit } from "../data/papers";
 	import type { MapState } from "../data/state.svelte";
-	import type { Paper } from "../data/types";
-	import { t } from "../i18n/strings";
 	import { paperActions, paperMetrics } from "../plugins";
-	import { authorsLine, docTypeTags, shortTitle } from "./format";
 
 	interface Props {
 		paper: Paper;

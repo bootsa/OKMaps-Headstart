@@ -6,13 +6,19 @@
   source that cannot work is never saved.
 -->
 <script lang="ts">
+	import {
+		defaultValues,
+		type FieldValues,
+		metadataSourceTypes,
+		missingFields,
+		newStoreId,
+		type SourceInstance,
+		textValues,
+	} from "@okmaps/core";
 	import { untrack } from "svelte";
 	import Button from "../components/Button.svelte";
 	import Dialog from "../components/Dialog.svelte";
 	import Fields from "./Fields.svelte";
-	import { defaultValues, type FieldValues, missingFields, textValues } from "./fields";
-	import { metadataSourceTypes, type SourceInstance } from "./registry";
-	import { newStoreId } from "./settings.svelte";
 
 	interface Props {
 		open?: boolean;

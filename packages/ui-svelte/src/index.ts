@@ -1,6 +1,10 @@
 // The new OKMaps interface. Import "@okmaps/ui-svelte/styles.css" once for
 // the tokens and base styles, and wrap the interface in an element with the
 // `okmaps` class (and data-skin for a skin).
+//
+// Everything from @okmaps/core (processing, view types, sources and stores
+// registries, settings, wording) is re-exported here too.
+export * from "@okmaps/core";
 export { default as Button } from "./components/Button.svelte";
 export { default as CopyButton } from "./components/CopyButton.svelte";
 export { default as Dialog } from "./components/Dialog.svelte";
@@ -10,44 +14,9 @@ export { default as ScalePicker } from "./components/ScalePicker.svelte";
 export { default as SchemeToggle } from "./components/SchemeToggle.svelte";
 export { default as Tag } from "./components/Tag.svelte";
 export { default as Tooltip } from "./components/Tooltip.svelte";
-export {
-	type MapConfig,
-	mapConfig,
-	registerService,
-	type Service,
-	type VisType,
-} from "./data/config";
-export { type ListQuery, listPapers } from "./data/filter";
-export { highlightParts, queryTerms } from "./data/highlight";
-export { citedBySum, outsideReferences, parsePlace, scaleMetric, scaleUnit, socialMentions } from "./data/papers";
-export { placeOnChart, processMap, resizeMap } from "./data/process";
 export { MapState } from "./data/state.svelte";
-export { parseStreams } from "./data/streams";
-export type {
-	Area,
-	MapContext,
-	MapRecord,
-	Paper,
-	Place,
-	ProcessedMap,
-	RawDocument,
-	Stream,
-	StreamgraphData,
-} from "./data/types";
 export * from "./explorer";
-export {
-	type ContextItem,
-	contextItems,
-	contextParams,
-	type MapTitle,
-	mapTitle,
-	metadataQuality,
-	modifier,
-	timespan,
-} from "./header/context";
 export { default as Header } from "./header/Header.svelte";
-export { engOrcid, engPlos, extraLanguages, ger, gerLinkedcat, registerLanguages } from "./i18n/languages";
-export { registerLanguage, type Strings, strings, t } from "./i18n/strings";
 export { authorsLine, List, ListEntry, shortTitle } from "./list";
 export {
 	activePlugins,
@@ -100,9 +69,10 @@ export {
 	triplePlugin,
 	viperPlugin,
 } from "./plugins/integrations";
-export { applyScheme, initialScheme, type Scheme } from "./scheme";
 export * from "./search";
 export * from "./settings";
+// Svelte-reactive settings, rather than core's plain class of the same name.
+export { AppSettings } from "./settings/settings.svelte";
 export { default as Visualization } from "./Visualization.svelte";
 export { coreViews, registerCoreViews } from "./views/core";
 export { Geomap, geomapProcessor, geomapView, pinLabel, type TileLayerSpec, tileLayers } from "./views/geomap";

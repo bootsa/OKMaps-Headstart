@@ -7,13 +7,12 @@
   so the keyboard can pick them too.
 -->
 <script lang="ts">
+	import type { Stream } from "@okmaps/core";
+	import { BORDER, labelBox, SWATCH_GAP, SWATCH_WIDTH, separateLabels, t } from "@okmaps/core";
 	import { max, min } from "d3-array";
 	import { scaleLinear, scaleTime } from "d3-scale";
 	import { curveMonotoneX, area as d3area } from "d3-shape";
 	import type { MapState } from "../../data/state.svelte";
-	import type { Stream } from "../../data/types";
-	import { t } from "../../i18n/strings";
-	import { BORDER, labelBox, SWATCH_GAP, SWATCH_WIDTH, separateLabels } from "./labels";
 
 	interface Props {
 		state: MapState;

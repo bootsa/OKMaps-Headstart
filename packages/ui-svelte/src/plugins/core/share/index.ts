@@ -1,4 +1,4 @@
-import { t } from "../../../i18n/strings";
+import { t } from "@okmaps/core";
 import type { OkmPlugin } from "../../index";
 import LinkModal from "./LinkModal.svelte";
 import { type LinkMaker, type LinkRequest, pageLink } from "./links";

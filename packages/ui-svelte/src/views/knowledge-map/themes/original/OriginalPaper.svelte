@@ -6,9 +6,8 @@
   size (at most half the chart). All metadata is rendered as text.
 -->
 <script lang="ts">
+	import { cutAuthors, DOGEAR, dogEarPath, enlarge, paperDate, paperPath, roundedPath } from "@okmaps/core";
 	import Highlight from "../../../../components/Highlight.svelte";
-	import { paperDate } from "../../../../data/papers";
-	import { cutAuthors, DOGEAR, dogEarPath, enlarge, paperPath, roundedPath } from "../../geometry";
 	import type { PaperProps } from "../types";
 
 	let {

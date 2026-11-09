@@ -5,13 +5,12 @@
   items from plugins. All text, never HTML.
 -->
 <script lang="ts">
+	import { authorImage, contextItems, mapTitle, t } from "@okmaps/core";
 	import defaultImage from "../assets/author_default.png";
 	import Button from "../components/Button.svelte";
 	import Tooltip from "../components/Tooltip.svelte";
 	import type { MapState } from "../data/state.svelte";
-	import { t } from "../i18n/strings";
 	import { activePlugins, findModal, pluginTitle } from "../plugins";
-	import { authorImage, contextItems, mapTitle } from "./context";
 
 	let { state: map }: { state: MapState } = $props();
 

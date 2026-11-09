@@ -3,12 +3,10 @@
  * researcher's details and metrics, from the map's `author` record (old
  * Heading.tsx, Employment.tsx, OrcidMetrics.tsx and the researcher modals).
  */
-import { outsideReferences, socialMentions } from "../../../data/papers";
+
+import type { ContextItem, MapTitle, Paper } from "@okmaps/core";
+import { outsideReferences, sliceText, socialMentions, t } from "@okmaps/core";
 import type { MapState } from "../../../data/state.svelte";
-import type { Paper } from "../../../data/types";
-import type { ContextItem, MapTitle } from "../../../header/context";
-import { sliceText } from "../../../header/context";
-import { t } from "../../../i18n/strings";
 import type { PaperMetric } from "../../index";
 
 type Rec = Record<string, unknown>;

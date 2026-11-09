@@ -4,9 +4,9 @@
   how it was made, where the data comes from and the software behind it.
 -->
 <script lang="ts">
+	import { contextParams } from "@okmaps/core";
 	import type { Snippet } from "svelte";
 	import type { MapState } from "../../data/state.svelte";
-	import { contextParams } from "../../header/context";
 	import AboutSoftware from "../../plugins/core/info/AboutSoftware.svelte";
 
 	interface Props {
