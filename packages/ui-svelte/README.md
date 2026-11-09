@@ -5,15 +5,17 @@ The OKMaps interface, in Svelte 5 with plain CSS. It replaced `@okmaps/ui`
 (`apps/frontend`) draws every map with it.
 
 What is not drawing (map processing, view types, the sources and stores
-registries, settings, wording) lives in the framework-free
-`@okmaps/core`; this package re-exports all of it, so imports from
+registries, settings, the interface state `MapState` and `ExplorerState`,
+wording) lives in the framework-free `@okmaps/core`; the classes here of
+the same names are core's made reactive for Svelte (`src/data/reactive.ts`).
+This package re-exports all of it, so imports from
 `@okmaps/ui-svelte` keep working. For pages that don't use Svelte,
 `@okmaps/elements` wraps this interface as web components.
 
 ```
 src/styles       tokens.css (design tokens), skins.css, base.css, fonts
 src/components   components, each with a .stories.svelte file
-src/data         the interface state (MapState); processing is in @okmaps/core
+src/data         Svelte reactivity for core's state classes (MapState); processing is in @okmaps/core
 src/views        one folder per map view: its components (its type is in @okmaps/core)
 src/docs         Storybook pages for the foundations (tokens)
 test             Vitest + Testing Library

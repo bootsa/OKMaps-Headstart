@@ -97,11 +97,15 @@ export function createMap(target: HTMLElement, record: MapRecord, options: MapOp
 	});
 
 	const listeners = new Set<(s: MapSnapshot) => void>();
-	// Effects run after the current task, so compare with what the map showed
-	// when it was drawn, not with the effect's first run.
+	// The state is plain (@okmaps/core): follow it with subscribe, and report
+	// once per task, only when what a snapshot shows has changed.
 	let last = JSON.stringify(snapshotOf(state));
-	const stopWatching = $effect.root(() => {
-		$effect(() => {
+	let queued = false;
+	const stopWatching = state.subscribe(() => {
+		if (queued) return;
+		queued = true;
+		queueMicrotask(() => {
+			queued = false;
 			const snap = snapshotOf(state);
 			const key = JSON.stringify(snap);
 			if (key === last) return;

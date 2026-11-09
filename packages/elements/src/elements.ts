@@ -23,7 +23,7 @@ import {
 	type MapHandle,
 	type MapSnapshot,
 	type PartHandle,
-} from "./api.svelte";
+} from "./api";
 
 // Lets the module load where there is no DOM (server rendering, tests in Node).
 const Base: typeof HTMLElement = globalThis.HTMLElement ?? (class {} as unknown as typeof HTMLElement);

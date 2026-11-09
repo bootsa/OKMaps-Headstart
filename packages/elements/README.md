@@ -117,7 +117,8 @@ map.setSearch("climate");
 map.destroy();
 ```
 
-`MapHandle`: `state` (read anything: `state.map.areas`, `state.listed`, …),
+`MapHandle`: `state` (core's `MapState`: read anything, `state.map.areas`,
+`state.listed`, …, or follow it with `state.subscribe`),
 `snapshot()`, `zoomIn`, `zoomOut`, `selectPaper`, `deselectPaper`,
 `selectStream`, `setSearch`, `setFilter`, `setSort`, `on("change", fn)`,
 `destroy()`.

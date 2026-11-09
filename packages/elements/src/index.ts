@@ -6,7 +6,7 @@
  *   the ready-made bundle (dist/okmaps-elements.js), which also registers
  *   every view and the core plugins.
  * - Plain functions: createMap, createSearchForm, createSettingsPage,
- *   createExplorer (./api.svelte.ts).
+ *   createExplorer (./api.ts).
  * - The registries and everything else of @okmaps/core, so a page using
  *   the bundle registers its sources, stores, views and plugins in the
  *   same copy the elements read.
@@ -60,7 +60,7 @@ export {
 	pageSettings,
 	type SearchFormOptions,
 	type SettingsPageOptions,
-} from "./api.svelte";
+} from "./api";
 export {
 	defineElements,
 	elements,
