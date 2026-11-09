@@ -7,8 +7,7 @@
   themselves from an AppSettings.
 -->
 <script lang="ts">
-	import { onMount } from "svelte";
-	import Button from "../components/Button.svelte";
+	import type { AppSettings } from "@okmaps/core";
 	import {
 		getSourceType,
 		getStoreType,
@@ -19,10 +18,11 @@
 		ownSourceId,
 		type SourceInstance,
 		type StoreInstance,
-	} from "./registry";
+	} from "@okmaps/core";
+	import { onMount } from "svelte";
+	import Button from "../components/Button.svelte";
 	import SourceDialog from "./SourceDialog.svelte";
 	import StoreDialog from "./StoreDialog.svelte";
-	import type { AppSettings } from "./settings.svelte";
 
 	interface Props {
 		settings: AppSettings;

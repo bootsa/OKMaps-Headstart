@@ -21,16 +21,28 @@ offline once installed as a web app.
 | `packages/sources` | the metadata sources: PubMed, BASE, OpenAIRE, OpenAlex, Zenodo, Zotero, any SPARQL endpoint (Wikidata, DBpedia presets), place tables for geo maps, and Crossref citation counts |
 | `packages/storage` | where maps are kept: one interface, an adaptor per storage system (this browser, WebDAV, Solid Pod, Atomic Data), and the folder tree the map explorer uses |
 | `packages/gateway` | the small server some providers need (BASE's registered IP and key) and the store for share links |
+| `packages/core` | everything about a map except drawing it, with no UI framework: processing records into areas, papers, streams and places, the view types, the sources and stores registries, the person's settings, wording |
 | `packages/ui-svelte` | the interface in Svelte 5 and plain CSS: the map views (knowledge map, streamgraph, geo map), search form, settings page and map explorer, with its Storybook |
+| `packages/elements` | OKMaps for any framework, or none: web components (`<okmaps-map>`, `<okmaps-search>`, `<okmaps-settings>`, `<okmaps-explorer>`) and a plain JavaScript API, built into one JS and one CSS file, with a plain-HTML example |
 
 The parts are registered modules, so a deployment includes only what it
 needs: map views with `registerView`, metadata sources with `registerSource`
-and `registerSourceType`, kinds of store with `registerStoreType` (all from
-`@okmaps/ui-svelte`). On the settings page a person turns sources on or off,
+and `registerSourceType`, kinds of store with `registerStoreType` (from
+`@okmaps/core`; `@okmaps/ui-svelte` and `@okmaps/elements` export them too). On the settings page a person turns sources on or off,
 adds their own (an OpenAlex key, a Zotero library, a SPARQL endpoint, …) and
 sets up as many stores as they like; the search form shows the fields of the
 enabled sources and asks where to save the new map.
 
+No UI framework is required to use OKMaps. `@okmaps/core` is plain
+TypeScript, so a React, Vue or Angular page can draw maps its own way, and
+`@okmaps/elements` puts the ready-made interface on any page as HTML tags:
+
+    <link rel="stylesheet" href="okmaps-elements.css">
+    <script type="module" src="okmaps-elements.js"></script>
+    <okmaps-map src="map.json"></okmaps-map>
+
+See [packages/elements/README.md](packages/elements/README.md) and the
+[plain-HTML example](https://bootsa.github.io/OKMaps-Headstart/elements/example/).
 ### Custom versions
 
 Different projects can build their own version from one config file: which
@@ -53,7 +65,8 @@ how to run and test it. From the repository root:
 
     pnpm install
     pnpm test            # every package's tests
-    pnpm coverage        # the same, with a coverage summary per package
+    pnpm coverage        # the same, with coverage per package; fails below each
+                         # package's minimum (coverage.thresholds in its vitest config)
     pnpm typecheck
     pnpm lint            # Biome: lint and format check (pnpm lint:fix to apply)
     pnpm build           # the app into apps/frontend/dist

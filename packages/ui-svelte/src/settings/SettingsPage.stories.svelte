@@ -1,9 +1,8 @@
 <script module lang="ts">
+	import { AppSettings, registerSource, registerStoreType, type StoreInstance } from "@okmaps/core";
+	import { davLikeStoreType, demoSource, gatewaySource, memoryStoreType } from "@okmaps/core/testing";
 	import { defineMeta } from "@storybook/addon-svelte-csf";
-	import { registerSource, registerStoreType, type StoreInstance } from "./registry";
 	import SettingsPage from "./SettingsPage.svelte";
-	import { AppSettings } from "./settings.svelte";
-	import { davLikeStoreType, demoSource, gatewaySource, memoryStoreType } from "./testing/fakes";
 
 	registerStoreType(memoryStoreType);
 	registerStoreType(davLikeStoreType);

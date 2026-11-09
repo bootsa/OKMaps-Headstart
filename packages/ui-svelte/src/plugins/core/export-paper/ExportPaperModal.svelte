@@ -1,9 +1,9 @@
 <!-- @component A paper as BibTeX, to copy or download as a .bib file. -->
 <script lang="ts">
+	import type { Paper } from "@okmaps/core";
+	import { t } from "@okmaps/core";
 	import Button from "../../../components/Button.svelte";
 	import CopyButton from "../../../components/CopyButton.svelte";
-	import type { Paper } from "../../../data/types";
-	import { t } from "../../../i18n/strings";
 	import type { ModalProps } from "../../index";
 	import { bibtexFileName, paperBibtex } from "./bibtex";
 

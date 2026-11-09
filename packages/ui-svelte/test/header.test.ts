@@ -1,9 +1,9 @@
 import fs from "node:fs";
 import path from "node:path";
+import { mapConfig } from "@okmaps/core";
 import { render, screen } from "@testing-library/svelte";
 import { flushSync } from "svelte";
 import { afterEach, describe, expect, it } from "vitest";
-import { mapConfig } from "../src/data/config";
 import {
 	contextItems,
 	Header,

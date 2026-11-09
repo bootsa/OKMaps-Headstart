@@ -1,0 +1,35 @@
+{
+	"name": "@okmaps/core",
+	"version": "0.1.0",
+	"description": "Everything about an OKMaps map except drawing it, with no UI framework: processing records into papers, areas, streams and places, view types, the sources and stores registries, settings, wording. Use it from any framework, or none.",
+	"license": "MIT",
+	"type": "module",
+	"private": true,
+	"sideEffects": false,
+	"exports": {
+		".": "./src/index.ts",
+		"./testing": "./src/settings/testing/fakes.ts"
+	},
+	"scripts": {
+		"test": "vitest run",
+		"typecheck": "tsc --noEmit"
+	},
+	"engines": {
+		"node": ">=22.18"
+	},
+	"dependencies": {
+		"@okmaps/pipeline": "workspace:*",
+		"@okmaps/storage": "workspace:*",
+		"d3-array": "^3.2.5",
+		"d3-scale": "^4.0.3",
+		"d3-shape": "^3.2.1"
+	},
+	"devDependencies": {
+		"@types/d3-array": "^3.2.2",
+		"@types/d3-scale": "^4.0.9",
+		"@types/d3-shape": "^3.2.0",
+		"jsdom": "^31.0.0",
+		"typescript": "^5.9.3",
+		"vitest": "^5.1.0"
+	}
+}

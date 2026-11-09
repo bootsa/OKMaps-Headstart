@@ -1,7 +1,7 @@
 <!-- @component How to cite this map, with a copy button. -->
 <script lang="ts">
+	import { t } from "@okmaps/core";
 	import CopyButton from "../../../components/CopyButton.svelte";
-	import { t } from "../../../i18n/strings";
 	import type { ModalProps } from "../../index";
 	import { citationLabels, mapCitation } from "./citation";
 

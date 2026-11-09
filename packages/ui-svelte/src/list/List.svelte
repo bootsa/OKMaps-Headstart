@@ -6,12 +6,10 @@
   lists only that one.
 -->
 <script lang="ts">
+	import { capitalize, listPapers, t } from "@okmaps/core";
 	import { untrack } from "svelte";
 	import Button from "../components/Button.svelte";
-	import { listPapers } from "../data/filter";
 	import type { MapState } from "../data/state.svelte";
-	import { t } from "../i18n/strings";
-	import { capitalize } from "./format";
 	import ListEntry from "./ListEntry.svelte";
 
 	interface Props {

@@ -1,5 +1,5 @@
-import type { SourceModule } from "../settings/registry";
-import type { SaveTarget } from "../settings/settings.svelte";
+import type { SourceModule } from "./settings/registry";
+import type { SaveTarget } from "./settings/settings";
 
 /** What the search form hands over when someone makes a map. */
 export interface SearchSubmit {

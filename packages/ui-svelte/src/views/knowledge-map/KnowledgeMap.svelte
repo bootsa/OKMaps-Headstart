@@ -8,13 +8,11 @@
   (instantly with reduced motion).
 -->
 <script lang="ts">
+	import type { Area, Paper } from "@okmaps/core";
+	import { type Geometry, isNonText, mapGeometry, t } from "@okmaps/core";
 	import { cubicInOut } from "svelte/easing";
 	import { prefersReducedMotion, Tween } from "svelte/motion";
-	import { isNonText } from "../../data/filter";
 	import type { MapState } from "../../data/state.svelte";
-	import type { Area, Paper } from "../../data/types";
-	import { t } from "../../i18n/strings";
-	import { type Geometry, mapGeometry } from "./geometry";
 	import { getTheme } from "./themes";
 
 	interface Props {

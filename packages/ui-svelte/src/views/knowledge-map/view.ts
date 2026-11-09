@@ -1,28 +1,20 @@
-import { placeOnChart } from "../../data/process";
-import type { MapView, ViewProcessor } from "../types";
+import { knowledgeMapType } from "@okmaps/core";
+import type { MapView } from "../types";
 import KnowledgeMap from "./KnowledgeMap.svelte";
 import KnowledgeMapInfo from "./KnowledgeMapInfo.svelte";
-import { layoutMap } from "./layout";
 import { savedTheme } from "./themes";
 import ThemePicker from "./themes/ThemePicker.svelte";
 
-/** Areas as bubbles from the papers' layout coordinates, separated by a force layout. */
-export const knowledgeMapProcessor: ViewProcessor = {
-	id: "overview",
-	process: ({ record, papers, size, config }) => placeOnChart(record, papers, size, config),
-	layout: (map, config) => layoutMap(map.areas, map.papers, map.size, config),
-};
+export { knowledgeMapProcessor } from "@okmaps/core";
 
 /** The knowledge map (visType "overview"), drawn by the theme the state names. */
 export const knowledgeMapView: MapView = {
-	...knowledgeMapProcessor,
-	label: "Knowledge map",
+	...knowledgeMapType,
 	component: KnowledgeMap,
 	start(map) {
 		map.theme = savedTheme();
 	},
 	settings: [ThemePicker],
-	areas: true,
 	sections: {
 		label: "areas_label",
 		// Biggest areas first, as they draw the eye on the map.
@@ -41,8 +33,5 @@ export const knowledgeMapView: MapView = {
 			map.hoveredArea = id;
 		},
 	},
-	creatable: true,
-	strings: { heading: "overview_label", authorHeading: "overview_authors_label", backlink: "backlink_list" },
-	citation: { kind: "km", type: "Knowledge Map" },
 	info: KnowledgeMapInfo,
 };

@@ -4,6 +4,7 @@
 #   <site>/latest/     the default branch
 #   <site>/v1.2.0/     each tag v* (a release) that has the browser app
 #   <site>/storybook/  the design system (Storybook) of the default branch
+#   <site>/elements/   the web components bundle and its plain-HTML example
 #   <site>/configure/  the configurator for custom versions (apps/configurator)
 #   <site>/index.html  sends visitors to latest/
 #   <site>/versions.html, versions.json   the list of versions
@@ -61,6 +62,11 @@ build() { # <git ref> <folder> <version label>
   if [ "$dir" = latest ] && [ -d "$tree/packages/ui-svelte" ]; then
     (cd "$tree" && pnpm --filter @okmaps/ui-svelte build-storybook)
     cp -r "$tree/packages/ui-svelte/storybook-static" "$site/storybook"
+  fi
+  if [ "$dir" = latest ] && [ -d "$tree/packages/elements" ]; then
+    (cd "$tree" && pnpm --filter @okmaps/elements build)
+    mkdir -p "$site/elements"
+    cp -r "$tree/packages/elements/dist" "$tree/packages/elements/example" "$site/elements/"
   fi
   if [ "$dir" = latest ] && [ -d "$tree/apps/configurator" ]; then
     (cd "$tree" && pnpm --filter @okmaps/configurator build)

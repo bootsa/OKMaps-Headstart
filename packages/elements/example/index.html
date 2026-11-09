@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>OKMaps in plain HTML</title>
+		<!-- The whole of OKMaps: one stylesheet and one script, no framework, no build step. -->
+		<link rel="stylesheet" href="../dist/okmaps-elements.css" />
+		<script type="module" src="../dist/okmaps-elements.js"></script>
+		<style>
+			body {
+				margin: 0;
+				background: var(--color-bg, #fff);
+				color: var(--color-text, #333);
+				font-family: var(--font-family, system-ui, sans-serif);
+			}
+			main {
+				max-width: 72rem;
+				margin: 0 auto;
+				padding: 1rem;
+			}
+			h1 {
+				font-size: 1.4rem;
+				margin: 0.5rem 0;
+			}
+			h2 {
+				font-size: 1.1rem;
+				margin: 2rem 0 0.5rem;
+			}
+			.controls {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.5rem;
+				align-items: center;
+				margin: 0.5rem 0 1rem;
+			}
+			.controls input {
+				padding: 0.35rem 0.5rem;
+			}
+			okmaps-map {
+				display: block;
+				border: 1px solid #ccc;
+			}
+			#log {
+				font-family: ui-monospace, monospace;
+				font-size: 0.85rem;
+				min-height: 1.2em;
+				overflow-wrap: anywhere;
+			}
+			#areas {
+				columns: 16rem;
+				padding-left: 1.25rem;
+			}
+		</style>
+	</head>
+	<body>
+		<main>
+			<h1>OKMaps in plain HTML</h1>
+			<p>
+				A knowledge map from <code>map.json</code>, drawn by the <code>&lt;okmaps-map&gt;</code> tag. The buttons and the
+				search box below are ordinary page controls that drive the map through its methods; the line under them
+				shows its <code>okmaps-change</code> events.
+			</p>
+			<div class="controls">
+				<button type="button" id="biggest">Zoom into the biggest area</button>
+				<button type="button" id="overview">Back to the overview</button>
+				<label>Search the list <input id="search" type="search" placeholder="e.g. climate" /></label>
+			</div>
+			<p id="log" aria-live="polite"></p>
+
+			<okmaps-map id="map" src="map.json" height="640"></okmaps-map>
+
+			<h2>Your own drawing</h2>
+			<p>
+				The same record processed with the framework-free core (<code>processMap</code>) and written out as a plain list,
+				as a page in React, Vue or anything else could draw it its own way.
+			</p>
+			<ol id="areas"></ol>
+		</main>
+
+		<script type="module">
+			import { processMap } from "../dist/okmaps-elements.js";
+
+			const map = document.getElementById("map");
+			const log = document.getElementById("log");
+
+			map.addEventListener("okmaps-ready", (e) => {
+				const handle = e.detail;
+				log.textContent = `Ready: ${handle.state.map.areas.length} areas, ${handle.state.map.papers.length} papers.`;
+			});
+			map.addEventListener("okmaps-change", (e) => {
+				const { zoomedArea, selectedPaper, search, listed } = e.detail;
+				log.textContent = `okmaps-change: zoomedArea=${zoomedArea} selectedPaper=${selectedPaper} search="${search}" listed=${listed.length}`;
+			});
+			map.addEventListener("okmaps-error", (e) => {
+				log.textContent = `Could not draw the map: ${e.detail.error.message}`;
+			});
+
+			document.getElementById("biggest").addEventListener("click", () => {
+				const areas = map.handle?.state.map.areas ?? [];
+				const biggest = [...areas].sort((a, b) => b.papers.length - a.papers.length)[0];
+				if (biggest) map.zoomIn(biggest.uri);
+			});
+			document.getElementById("overview").addEventListener("click", () => map.zoomOut());
+			document.getElementById("search").addEventListener("input", (e) => map.handle?.setSearch(e.target.value));
+
+			const record = await (await fetch("map.json")).json();
+			const processed = processMap(record, 600);
+			document.getElementById("areas").replaceChildren(
+				...processed.areas
+					.sort((a, b) => b.papers.length - a.papers.length)
+					.map((area) => {
+						const li = document.createElement("li");
+						li.textContent = `${area.title} (${area.papers.length})`;
+						return li;
+					}),
+			);
+		</script>
+	</body>
+</html>

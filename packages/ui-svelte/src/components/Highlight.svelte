@@ -4,7 +4,7 @@
   text, so markup in a title or author name shows as typed.
 -->
 <script lang="ts">
-	import { highlightParts } from "../data/highlight";
+	import { highlightParts } from "@okmaps/core";
 
 	interface Props {
 		text: string;

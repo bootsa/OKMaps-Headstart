@@ -1,8 +1,8 @@
 <script module lang="ts">
+	import type { MapRecord } from "@okmaps/core";
 	import { defineMeta } from "@storybook/addon-svelte-csf";
 	import base from "../../test/fixtures/base-map.json";
 	import { MapState } from "../data/state.svelte";
-	import type { MapRecord } from "../data/types";
 	import List from "./List.svelte";
 
 	const { Story } = defineMeta({

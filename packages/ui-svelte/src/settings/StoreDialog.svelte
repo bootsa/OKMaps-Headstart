@@ -5,13 +5,20 @@
   read or written is never saved.
 -->
 <script lang="ts">
+	import {
+		connectStore,
+		defaultValues,
+		type FieldValues,
+		mapStoreTypes,
+		missingFields,
+		newStoreId,
+		type StoreInstance,
+		textValues,
+	} from "@okmaps/core";
 	import { untrack } from "svelte";
 	import Button from "../components/Button.svelte";
 	import Dialog from "../components/Dialog.svelte";
 	import Fields from "./Fields.svelte";
-	import { defaultValues, type FieldValues, missingFields, textValues } from "./fields";
-	import { connectStore, mapStoreTypes, type StoreInstance } from "./registry";
-	import { newStoreId } from "./settings.svelte";
 
 	interface Props {
 		open?: boolean;

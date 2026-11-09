@@ -7,10 +7,10 @@
   store's maps can be exported to a file, and a file imported into it.
 -->
 <script lang="ts">
+	import type { AppSettings } from "@okmaps/core";
+	import { getStoreType, type StoreInstance } from "@okmaps/core";
 	import type { MapStore } from "@okmaps/storage";
 	import { onMount } from "svelte";
-	import { getStoreType, type StoreInstance } from "../settings/registry";
-	import type { AppSettings } from "../settings/settings.svelte";
 	import { type DraggedMap, dropTarget } from "./dnd";
 	import FolderView from "./FolderView.svelte";
 	import MoveDialog from "./MoveDialog.svelte";

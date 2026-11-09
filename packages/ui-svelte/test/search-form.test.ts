@@ -1,3 +1,4 @@
+import { demoSource, endpointSourceType, gatewaySource } from "@okmaps/core/testing";
 import { fireEvent, render, screen, waitFor } from "@testing-library/svelte";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import {
@@ -9,7 +10,6 @@ import {
 	unregisterSource,
 	unregisterSourceType,
 } from "../src/index";
-import { demoSource, endpointSourceType, gatewaySource } from "../src/settings/testing/fakes";
 
 const other = { ...demoSource, id: "other", label: "Other library", views: ["overview"] };
 

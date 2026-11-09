@@ -4,8 +4,9 @@
  * (useCitationStyle.ts). citation-js and the styles load on first use, so
  * maps that never cite a paper don't download them.
  */
+
+import type { Paper } from "@okmaps/core";
 import type { MapState } from "../../../data/state.svelte";
-import type { Paper } from "../../../data/types";
 
 export interface CitationStyle {
 	id: string;

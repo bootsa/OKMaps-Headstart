@@ -5,8 +5,8 @@
   and opens the rest on "Show more". All text; only web links are links.
 -->
 <script lang="ts">
+	import { t } from "@okmaps/core";
 	import { SvelteSet } from "svelte/reactivity";
-	import { t } from "../../../i18n/strings";
 	import type { ModalProps } from "../../index";
 	import { researcherSections, text } from "./researcher";
 

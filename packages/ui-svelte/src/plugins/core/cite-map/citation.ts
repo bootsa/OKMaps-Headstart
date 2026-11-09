@@ -1,6 +1,7 @@
 /** The citation of a whole map (old CitationModal). */
+
+import { t } from "@okmaps/core";
 import type { MapState } from "../../../data/state.svelte";
-import { t } from "../../../i18n/strings";
 
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 

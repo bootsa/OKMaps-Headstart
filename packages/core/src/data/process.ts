@@ -5,7 +5,7 @@
  */
 import { extent } from "d3-array";
 import { type Strings, strings } from "../i18n/strings";
-import { getView } from "../views/registry";
+import { getViewType } from "../views/registry";
 import { type MapConfig, mapConfig, type Service } from "./config";
 import { processPaper } from "./papers";
 import {
@@ -34,7 +34,7 @@ export function processMap(record: MapRecord, size: number, options: ProcessOpti
 	const s = options.strings ?? strings(config.language);
 
 	const papers = record.documents.map((doc) => processPaper(doc, config, s, record.context));
-	return getView(config.visType).process({ record, papers, size, config });
+	return getViewType(config.visType).process({ record, papers, size, config });
 }
 
 /**

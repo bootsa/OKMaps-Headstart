@@ -1,6 +1,6 @@
 <!-- @component A paper's PDF in a frame, or a link to where it can be read. -->
 <script lang="ts">
-	import { t } from "../../../i18n/strings";
+	import { t } from "@okmaps/core";
 	import type { ModalProps } from "../../index";
 	import { fallbackUrl, type PdfRequest } from "./pdf";
 

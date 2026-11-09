@@ -5,10 +5,9 @@
   All text, never HTML.
 -->
 <script lang="ts">
+	import { cutAuthors, iconRect, paperDate, popupPlacement } from "@okmaps/core";
 	import Highlight from "../../../../components/Highlight.svelte";
 	import Tag from "../../../../components/Tag.svelte";
-	import { paperDate } from "../../../../data/papers";
-	import { cutAuthors, iconRect, popupPlacement } from "../../geometry";
 	import type { PopupProps } from "../types";
 
 	let { paper, rect, size, search = [], query = [] }: PopupProps = $props();

@@ -3,7 +3,7 @@
   Switches the page between light and dark mode (see scheme.ts).
 -->
 <script lang="ts">
-	import { applyScheme, initialScheme, type Scheme } from "../scheme";
+	import { applyScheme, initialScheme, type Scheme } from "@okmaps/core";
 
 	let scheme: Scheme = $state(initialScheme());
 	$effect(() => applyScheme(scheme));

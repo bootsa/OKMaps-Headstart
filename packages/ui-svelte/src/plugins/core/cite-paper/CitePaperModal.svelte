@@ -1,8 +1,8 @@
 <!-- @component A paper's citation in APA, MLA, Chicago or ACM, with a copy button. -->
 <script lang="ts">
+	import type { Paper } from "@okmaps/core";
+	import { t } from "@okmaps/core";
 	import CopyButton from "../../../components/CopyButton.svelte";
-	import type { Paper } from "../../../data/types";
-	import { t } from "../../../i18n/strings";
 	import type { ModalProps } from "../../index";
 	import { citationStyles, lowQualityCitation, paperCitation } from "./citation";
 

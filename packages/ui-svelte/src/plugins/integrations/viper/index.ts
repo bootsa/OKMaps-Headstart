@@ -1,4 +1,4 @@
-import { t } from "../../../i18n/strings";
+import { t } from "@okmaps/core";
 import type { OkmPlugin } from "../../index";
 import ViperEditModal from "./ViperEditModal.svelte";
 import ViperInfo from "./ViperInfo.svelte";

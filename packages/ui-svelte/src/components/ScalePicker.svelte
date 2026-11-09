@@ -5,8 +5,8 @@
   sizes mean. Shown only when the map offers choices.
 -->
 <script lang="ts">
+	import { t } from "@okmaps/core";
 	import type { MapState } from "../data/state.svelte";
-	import { t } from "../i18n/strings";
 
 	let { state: map }: { state: MapState } = $props();
 

@@ -1,48 +1,44 @@
-export { default as Fields } from "./Fields.svelte";
 export {
+	allSources,
+	connectStore,
 	defaultValues,
 	type FieldOption,
 	type FieldSpec,
 	type FieldValue,
 	type FieldValues,
-	missingFields,
-	text,
-	textValues,
-} from "./fields";
-export {
-	allSources,
-	connectStore,
 	getSource,
 	getSourceType,
 	getStoreType,
 	mapStoreTypes,
 	metadataSources,
 	metadataSourceTypes,
+	missingFields,
+	newStoreId,
 	openStore,
 	ownSource,
 	ownSourceId,
+	pathLabel,
 	registerSource,
 	registerSourceType,
 	registerStoreType,
+	type SaveTarget,
+	SETTINGS_KEY,
+	type SettingsData,
+	type SettingsOptions,
 	type SourceInstance,
 	type SourceModule,
 	type SourcePreset,
 	type SourceType,
 	type StoreInstance,
 	type StoreType,
+	text,
+	textValues,
 	unregisterSource,
 	unregisterSourceType,
 	unregisterStoreType,
-} from "./registry";
+} from "@okmaps/core";
+export { default as Fields } from "./Fields.svelte";
 export { default as SettingsPage } from "./SettingsPage.svelte";
 export { default as SourceDialog } from "./SourceDialog.svelte";
 export { default as StoreDialog } from "./StoreDialog.svelte";
-export {
-	AppSettings,
-	newStoreId,
-	pathLabel,
-	type SaveTarget,
-	SETTINGS_KEY,
-	type SettingsData,
-	type SettingsOptions,
-} from "./settings.svelte";
+export { AppSettings } from "./settings.svelte";

@@ -6,9 +6,8 @@
   popup on hover or focus (PaperPopup). All metadata is rendered as text.
 -->
 <script lang="ts">
+	import { dogEarPath, iconRect, paperDate, paperPath, roundedPath, labelWidth as titleWidth } from "@okmaps/core";
 	import Highlight from "../../../../components/Highlight.svelte";
-	import { paperDate } from "../../../../data/papers";
-	import { dogEarPath, iconRect, paperPath, roundedPath, labelWidth as titleWidth } from "../../geometry";
 	import type { PaperProps } from "../types";
 
 	let {

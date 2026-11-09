@@ -1,10 +1,10 @@
 import fs from "node:fs";
 import path from "node:path";
+import { labelBox, separateLabels } from "@okmaps/core";
 import { fireEvent, render, screen, within } from "@testing-library/svelte";
 import { flushSync } from "svelte";
 import { afterEach, describe, expect, it } from "vitest";
 import { infoPlugin, List, MapState, registerPlugin, unregisterPlugin, Visualization } from "../src/index";
-import { labelBox, separateLabels } from "../src/views/streamgraph/labels";
 
 const fixture = (name: string) => JSON.parse(fs.readFileSync(path.join(__dirname, "fixtures", name), "utf8"));
 const record = fixture("base-map.json");
