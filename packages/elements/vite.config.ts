@@ -31,6 +31,8 @@ export default defineConfig({
 		},
 	},
 	test: {
+		// The lowest coverage `pnpm coverage` accepts, a few points under today's.
+		coverage: { thresholds: { lines: 83, branches: 69, functions: 72 } },
 		globals: true,
 		environment: "jsdom",
 		setupFiles: ["./test/setup.ts"],
