@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.4.1](https://github.com/bootsa/OKMaps-Headstart/compare/v7.4.0...v7.4.1) (2026-11-09)
+
+
+### Bug Fixes
+
+* list released versions in the version chooser again ([10d9f5c](https://github.com/bootsa/OKMaps-Headstart/commit/10d9f5c5fefc74e89288ae87f1b38f4917f65e71))
+* list released versions in the version chooser again ([#117](https://github.com/bootsa/OKMaps-Headstart/issues/117)) ([a85d71e](https://github.com/bootsa/OKMaps-Headstart/commit/a85d71e4becf4e0d3d4a9ed4acd35385f3a8812c))
+
 ## [7.4.0](https://github.com/bootsa/OKMaps-Headstart/compare/v7.3.0...v7.4.0) (2026-11-09)
 
 
