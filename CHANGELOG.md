@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.4.0](https://github.com/bootsa/OKMaps-Headstart/compare/v7.3.0...v7.4.0) (2026-11-09)
+
+
+### Features
+
+* follow the map and explorer state from any framework (plain classes in core) ([48fe3b9](https://github.com/bootsa/OKMaps-Headstart/commit/48fe3b96f5e59f0e1d73bfd2bef24f95fb626238))
+* follow the map and explorer state from any framework (plain classes in core) ([#114](https://github.com/bootsa/OKMaps-Headstart/issues/114)) ([48fe3b9](https://github.com/bootsa/OKMaps-Headstart/commit/48fe3b96f5e59f0e1d73bfd2bef24f95fb626238))
+
 ## [7.3.0](https://github.com/bootsa/OKMaps-Headstart/compare/v7.2.0...v7.3.0) (2026-11-09)
 
 
