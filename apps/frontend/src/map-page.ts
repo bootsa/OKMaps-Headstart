@@ -7,6 +7,7 @@
  */
 
 import type { MapStore } from "@okmaps/storage";
+import { pageTitle } from "./app.ts";
 import { deleteDraft, getDraft, saveDraft } from "./drafts.ts";
 import { registerServiceWorker } from "./offline.ts";
 import { settings } from "./settings.ts";
@@ -36,7 +37,7 @@ function showMessage(text: string) {
  * first use), for the Share and Embed buttons.
  */
 function draw(map: SharedMap, sharedId?: () => Promise<string>) {
-	document.title = `${map.title} - Open Knowledge Maps`;
+	document.title = pageTitle(map.title);
 	const shareLink = sharedId ? async () => shareUrl(await sharedId()) : undefined;
 	drawMap($("visualization"), map as unknown as Parameters<typeof drawMap>[1], { shareLink });
 }

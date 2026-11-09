@@ -1,0 +1,23 @@
+{
+	"$schema": "../schema.json",
+	"site": {
+		"title": "Biomed Maps",
+		"lead": "Knowledge maps of PubMed topics, kept in this browser."
+	},
+	"sources": { "offer": ["pubmed"], "types": [] },
+	"stores": { "types": ["browser"] },
+	"views": ["overview"],
+	"features": {
+		"settingsPage": false,
+		"saveChoice": false,
+		"combine": false,
+		"share": false
+	},
+	"services": { "crossrefMailto": "maps@example.org" },
+	"theme": {
+		"accent": "#7a2e8e",
+		"heading": "#4a1a57",
+		"themeColor": "#7a2e8e",
+		"darkTokens": { "--color-accent": "#d59be6" }
+	}
+}

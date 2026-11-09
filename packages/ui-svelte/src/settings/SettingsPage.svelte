@@ -31,9 +31,23 @@
 		/** A message to show first (e.g. after a login the start page finished). */
 		notice?: string;
 		noticeError?: boolean;
+		/** Whether people can switch the site's sources on and off. */
+		chooseSources?: boolean;
+		/** Whether people can add their own sources (of the registered source types). */
+		addSources?: boolean;
+		/** Whether people can add, change and remove stores (else they only pick the default). */
+		addStores?: boolean;
 	}
 
-	let { settings, home = "./", notice = $bindable(""), noticeError = $bindable(false) }: Props = $props();
+	let {
+		settings,
+		home = "./",
+		notice = $bindable(""),
+		noticeError = $bindable(false),
+		chooseSources = true,
+		addSources = true,
+		addStores = true,
+	}: Props = $props();
 
 	const sources = metadataSources();
 	const sourceTypes = metadataSourceTypes();
@@ -116,7 +130,9 @@
 
 	<section aria-labelledby="okm-sources-heading">
 		<h2 id="okm-sources-heading">Metadata sources</h2>
-		<p class="intro">The search form offers the sources switched on here.</p>
+		<p class="intro">
+			{chooseSources ? "The search form offers the sources switched on here." : "The search form offers these sources."}
+		</p>
 		{#if sources.length === 0}
 			<p>This site has no sources.</p>
 		{:else}
@@ -128,7 +144,7 @@
 							<input
 								type="checkbox"
 								checked={!why && settings.sourceEnabled(source.id)}
-								disabled={!!why}
+								disabled={!!why || !chooseSources}
 								onchange={(e) => settings.setSourceEnabled(source.id, e.currentTarget.checked)}
 							>
 							<span>
@@ -145,7 +161,7 @@
 				{/each}
 			</ul>
 		{/if}
-		{#if sourceTypes.length > 0}
+		{#if addSources && sourceTypes.length > 0}
 			<h3 id="okm-own-sources-heading">Your own sources</h3>
 			<ul class="sources own" aria-labelledby="okm-own-sources-heading">
 				{#each settings.sources as s (s.id)}
@@ -201,7 +217,9 @@
 	<section aria-labelledby="okm-stores-heading">
 		<h2 id="okm-stores-heading">Where maps are kept</h2>
 		<p class="intro">
-			Add as many places as you like, of any kind, each with its own name. New maps are saved to the default one.
+			{addStores
+				? "Add as many places as you like, of any kind, each with its own name. New maps are saved to the default one."
+				: "New maps are saved to the default one."}
 		</p>
 		<ul class="stores">
 			{#each settings.stores as s, i (s.id)}
@@ -242,12 +260,14 @@
 								onclick={() => settings.moveStore(s.id, 1)}
 								>↓</Button
 							>
-							{#if type && type.fields.length > 0}
-								<Button size="sm" variant="secondary" onclick={() => edit(s)}>Edit</Button>
-							{:else if type}
-								<Button size="sm" variant="secondary" onclick={() => edit(s)}>Rename</Button>
+							{#if addStores}
+								{#if type && type.fields.length > 0}
+									<Button size="sm" variant="secondary" onclick={() => edit(s)}>Edit</Button>
+								{:else if type}
+									<Button size="sm" variant="secondary" onclick={() => edit(s)}>Rename</Button>
+								{/if}
+								<Button size="sm" variant="secondary" onclick={() => (confirmRemove = s.id)}>Remove</Button>
 							{/if}
-							<Button size="sm" variant="secondary" onclick={() => (confirmRemove = s.id)}>Remove</Button>
 						</div>
 					</div>
 					{#if confirmRemove === s.id}
@@ -262,7 +282,9 @@
 				<li class="empty">No places yet: maps can be made but not kept.</li>
 			{/each}
 		</ul>
-		<Button onclick={add} disabled={mapStoreTypes().length === 0}>Add a place to keep maps</Button>
+		{#if addStores}
+			<Button onclick={add} disabled={mapStoreTypes().length === 0}>Add a place to keep maps</Button>
+		{/if}
 		<p class="notice" class:error={noticeError} role="status" aria-live="polite">{notice}</p>
 	</section>
 </div>

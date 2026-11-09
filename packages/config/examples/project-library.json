@@ -1,0 +1,57 @@
+{
+	"$schema": "../schema.json",
+	"site": {
+		"title": "Project literature maps",
+		"lead": "Maps of our project's Zotero group and Zenodo community."
+	},
+	"sources": {
+		"offer": ["openaire"],
+		"types": ["sparql"],
+		"presets": [
+			{
+				"id": "group",
+				"type": "zotero",
+				"name": "Project library",
+				"description": "Everything in the project's public Zotero group.",
+				"config": { "library": "other", "other_library": "groups/2829873", "limit": "200" }
+			},
+			{
+				"id": "community",
+				"type": "zenodo",
+				"name": "Project outputs on Zenodo",
+				"config": { "community": "aquacosm", "limit": "100" }
+			}
+		],
+		"typePresets": {
+			"sparql": [
+				{
+					"id": "wikidata-papers",
+					"label": "Wikidata: scholarly articles",
+					"config": { "endpoint": "https://query.wikidata.org/sparql" }
+				}
+			]
+		}
+	},
+	"stores": {
+		"types": ["browser", "webdav"],
+		"presets": [
+			{ "id": "browser", "type": "browser", "name": "This browser", "config": { "db": "okmaps-storage" } },
+			{
+				"id": "team",
+				"type": "webdav",
+				"name": "Team folder",
+				"config": { "url": "https://cloud.example.org/remote.php/dav/files/okmaps/maps/", "username": "okmaps" }
+			}
+		],
+		"saveTo": "browser"
+	},
+	"features": { "addStores": false, "chooseSources": false },
+	"services": { "gatewayUrl": "${env:OKMAPS_GATEWAY:-}" },
+	"theme": {
+		"font": "Lato, Helvetica, sans-serif",
+		"fontStylesheet": "https://fonts.googleapis.com/css?family=Lato:400,700",
+		"accent": "#1e6662",
+		"logo": "icons/icon.svg",
+		"css": "project-library.css"
+	}
+}

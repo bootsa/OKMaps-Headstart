@@ -1,6 +1,7 @@
 /**
- * The kinds of store this site offers on the settings page. Each is an
- * opt-in module (registerStoreType); a deployment can leave any out.
+ * The kinds of store this site can offer on the settings page. Each is an
+ * opt-in module: the build config picks them (okmaps.catalog.ts,
+ * register-stores.ts).
  */
 import {
 	agentFromSecret,
@@ -12,7 +13,7 @@ import {
 	treeStore,
 	webdavStorage,
 } from "@okmaps/storage";
-import { registerStoreType, type StoreInstance, type StoreType } from "@okmaps/ui-svelte";
+import type { StoreInstance, StoreType } from "@okmaps/ui-svelte";
 import { podCopyStorage, sendUnsent } from "./pod-copy.ts";
 import { KNOWN_ISSUERS, solidLogin, solidSession } from "./solid-login.ts";
 
@@ -180,10 +181,3 @@ export const solidStoreType: StoreType = {
 		return { ...pending, config, name: pending.name || host(container, "Solid Pod") };
 	},
 };
-
-/** Every store type this site offers. */
-export const appStoreTypes = [browserStoreType, webdavStoreType, solidStoreType, atomicStoreType];
-
-export function registerAppStoreTypes(): void {
-	for (const t of appStoreTypes) registerStoreType(t);
-}

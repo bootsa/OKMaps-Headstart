@@ -27,9 +27,11 @@
 		 * "Several sources" when two or more keyword sources are on.
 		 */
 		combine?: (parts: { source: SourceModule; request: unknown }[], query: string, view: string) => unknown;
+		/** Whether the form asks where to keep the map (else it goes to the default store). */
+		saveChoice?: boolean;
 	}
 
-	let { settings, onsearch, viewLabel, settingsHref, combine }: Props = $props();
+	let { settings, onsearch, viewLabel, settingsHref, combine, saveChoice = true }: Props = $props();
 
 	const enabled = $derived(
 		allSources(settings.sources).filter((s) => !s.unavailable?.() && settings.sourceEnabled(s.id)),
@@ -197,21 +199,23 @@
 			{/if}
 		{/if}
 
-		<div class="field">
-			<label for="save_to">Keep the map in</label>
-			<select
-				id="save_to"
-				name="save_to"
-				value={saveKey}
-				onchange={(e) => pickSave(e.currentTarget.value)}
-				disabled={busy}
-			>
-				{#each saveOptions as o (o.key)}
-					<option value={o.key}>{o.label}</option>
-				{/each}
-				<option value={NONE}>Don't save it now (save it from the map)</option>
-			</select>
-		</div>
+		{#if saveChoice}
+			<div class="field">
+				<label for="save_to">Keep the map in</label>
+				<select
+					id="save_to"
+					name="save_to"
+					value={saveKey}
+					onchange={(e) => pickSave(e.currentTarget.value)}
+					disabled={busy}
+				>
+					{#each saveOptions as o (o.key)}
+						<option value={o.key}>{o.label}</option>
+					{/each}
+					<option value={NONE}>Don't save it now (save it from the map)</option>
+				</select>
+			</div>
+		{/if}
 
 		<Button type="submit" id="submit" disabled={busy}>Make map</Button>
 	{/if}

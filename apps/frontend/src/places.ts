@@ -4,13 +4,14 @@
  * them into @okmaps/sources place sources.
  *
  * The default is the AQUANAVI facility table bundled with the site
- * (public/data/aquanavi.csv). A build can name others in
- * VITE_PLACE_SOURCES, a JSON list of PlaceSourceSetting, e.g.
+ * (public/data/aquanavi.csv). A build names others in its config's
+ * sources.places (or VITE_PLACE_SOURCES), a JSON list of PlaceSourceSetting, e.g.
  *   [{"id":"stations","label":"Field stations","url":"https://example.org/stations.csv",
  *     "mapping":{"title":"name","latitude":"lat","longitude":"lon"}}]
  * and {"preset":"aquanavi","url":"..."} for the AQUANAVI columns.
  */
 import type { PlaceMapping } from "@okmaps/sources";
+import { config } from "./app.ts";
 
 export interface PlaceSourceSetting {
 	/** Map service id ("aquanavi"). */
@@ -27,17 +28,9 @@ export interface PlaceSourceSetting {
 	mapping?: Omit<PlaceMapping, "id">;
 }
 
+/** The build's place tables (VITE_PLACE_SOURCES is read into the config at build time). */
 function configured(): PlaceSourceSetting[] {
-	const raw = import.meta.env.VITE_PLACE_SOURCES;
-	if (raw) {
-		try {
-			const list = JSON.parse(raw);
-			if (Array.isArray(list)) return list;
-		} catch {
-			console.warn("VITE_PLACE_SOURCES is not a JSON list; using the default place sources");
-		}
-	}
-	return [{ preset: "aquanavi", url: "data/aquanavi.csv" }];
+	return config.sources.offer.includes("places") ? (config.sources.places as PlaceSourceSetting[]) : [];
 }
 
 export type PlaceSourceConfig = PlaceSourceSetting & { id: string; label: string };

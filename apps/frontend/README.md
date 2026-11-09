@@ -41,6 +41,24 @@ pnpm build                  # static site in dist/
 `dist/` can be served by any static host. Set `APP_BASE=/some/path/` if
 it is not served from the root. `pnpm dev` serves the app with hot reload.
 
+Without a config this is the full site. `OKMAPS_CONFIG=path/to/config.json
+pnpm build` (or `pnpm okmaps build <config>` from the root) builds a custom
+version: only the sources, stores, views and plugins the config picks, its
+features, services and look. See [packages/config](../../packages/config/README.md).
+The `VITE_*` variables still work and fill in what a config leaves out.
+
+How the app is put together for a config: `okmaps.catalog.ts` maps each
+module id to its code; the plugin from `@okmaps/config/vite` generates
+`virtual:okmaps/config`, `/sources`, `/stores`, `/views` and `/flags`;
+`src/app.ts` reads the config (features, title, scheme), and
+`src/register-sources.ts`, `register-stores.ts` and `register-views.ts`
+register the chosen modules on the pages that need them. The map worker
+checks `virtual:okmaps/flags` (constants), so the search and pipeline code
+of left-out sources and views is not built either. In the pages,
+`data-okmaps="title"` / `"lead"` mark what the config names and
+`data-okmaps-feature="<feature>"` marks an element that goes when the
+feature is off.
+
 ### GitHub Pages
 
 `.github/workflows/pages.yml` builds the site and publishes it to GitHub

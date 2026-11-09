@@ -1,7 +1,14 @@
 import { resolve } from "node:path";
+import { loadConfig } from "@okmaps/config/node";
+import { okmaps } from "@okmaps/config/vite";
 import { svelte } from "@sveltejs/vite-plugin-svelte";
 import { defineConfig } from "vite";
+import { catalog } from "./okmaps.catalog.ts";
 import { serviceWorker } from "./scripts/sw-plugin.ts";
+
+// The build config: $OKMAPS_CONFIG (a JSON file, see packages/config), else the full site.
+const build = loadConfig();
+const { features } = build.config;
 
 export default defineConfig({
 	base: process.env.APP_BASE ?? "/",
@@ -11,12 +18,16 @@ export default defineConfig({
 			input: {
 				index: resolve(__dirname, "index.html"),
 				map: resolve(__dirname, "map.html"),
-				settings: resolve(__dirname, "settings.html"),
+				...(features.settingsPage ? { settings: resolve(__dirname, "settings.html") } : {}),
 			},
 		},
 	},
-	worker: { format: "es" },
+	worker: { format: "es", plugins: () => [okmaps({ catalog, build, pages: false })] },
 	// The workspace packages (and the fixtures the tests read) live outside this folder.
 	server: { fs: { allow: [resolve(__dirname, "../..")] } },
-	plugins: [svelte(), serviceWorker(resolve(__dirname, "sw/sw.ts"))],
+	plugins: [
+		okmaps({ catalog, build }),
+		svelte(),
+		...(features.offline ? [serviceWorker(resolve(__dirname, "sw/sw.ts"))] : []),
+	],
 });

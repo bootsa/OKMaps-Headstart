@@ -6,7 +6,8 @@
 	--bg: #ffffff;
 	--panel: #f5f7fa;
 	--error: #b42318;
-	font-family: "Open Sans", system-ui, sans-serif;
+	/* The design tokens, so a build's theme (packages/config) reaches this page too. */
+	font-family: var(--font-sans, "Open Sans", system-ui, sans-serif);
 	color: var(--fg);
 	background: var(--bg);
 }
@@ -19,6 +20,7 @@ main {
 	padding: 32px 16px 64px;
 }
 h1 {
+	color: var(--color-heading, var(--fg));
 	font-size: 1.8rem;
 	margin: 0 0 4px;
 }

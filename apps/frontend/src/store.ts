@@ -6,8 +6,10 @@
  */
 import { indexedDbStorage, MapLibrary, type MapStore, type MapSummary } from "@okmaps/storage";
 import { AppSettings, openStore, type SaveTarget, type StoreInstance } from "@okmaps/ui-svelte";
+import { config, features } from "./app.ts";
+import { registerAppStoreTypes } from "./register-stores.ts";
 import type { MapRecord, SearchRequest } from "./search.ts";
-import { BROWSER_DB, registerAppStoreTypes } from "./stores.ts";
+import { BROWSER_DB } from "./stores.ts";
 
 export { LoggedOut } from "./pod-copy.ts";
 export { withoutPodLogin } from "./stores.ts";
@@ -62,23 +64,57 @@ function legacyStore(): StoreInstance | null {
 
 let settings: AppSettings | undefined;
 
+/** The build's stores (stores.presets) this browser has had, so a removed one is not added again. */
+const PRESETS_KEY = "okmaps-store-presets";
+
+function seenPresets(): string[] {
+	try {
+		const v = JSON.parse(localStorage.getItem(PRESETS_KEY) ?? "[]");
+		return Array.isArray(v) ? v : [];
+	} catch {
+		return [];
+	}
+}
+
+function rememberPresets(ids: string[]) {
+	try {
+		localStorage.setItem(PRESETS_KEY, JSON.stringify(ids));
+	} catch {
+		// blocked: a removed preset store comes back next time
+	}
+}
+
+const presetStores = (): StoreInstance[] =>
+	config.stores.presets.map((p) => ({ id: p.id, type: p.type, name: p.name, config: { ...p.config } }));
+
 /**
- * The settings, starting with this browser's store (and the storage chosen
- * before there were several, which stays the default).
+ * The settings. A new browser starts with the build's stores (by default
+ * this browser's) and the storage chosen before there were several, which
+ * stays the default. Stores a newer build adds are added once; sources the
+ * config has off start switched off.
  */
 export function appSettings(): AppSettings {
-	settings ??= new AppSettings({
+	if (settings) return settings;
+	let fresh = false;
+	settings = new AppSettings({
 		seed: () => {
-			const browser: StoreInstance = {
-				id: "browser",
-				type: "browser",
-				name: "This browser",
-				config: { db: BROWSER_DB },
-			};
-			const old = legacyStore();
-			return { stores: old ? [browser, old] : [browser], saveTo: { store: (old ?? browser).id, path: [] } };
+			fresh = true;
+			const stores = presetStores();
+			// The one store of before, if this build still offers its kind.
+			const legacy = legacyStore();
+			const old = legacy && config.stores.types.some((t) => t === legacy.type) ? legacy : null;
+			const saveTo = config.stores.saveTo === "none" ? "none" : { store: config.stores.saveTo, path: [] };
+			return { stores: old ? [...stores, old] : stores, saveTo: old ? { store: old.id, path: [] } : saveTo };
 		},
 	});
+	const seen = seenPresets();
+	if (!fresh)
+		for (const store of presetStores())
+			if (!seen.includes(store.id) && !settings.store(store.id)) settings.putStore(store);
+	rememberPresets([...new Set([...seen, ...presetStores().map((s) => s.id)])]);
+	// Off at first; without the choice, always as the config says.
+	if (fresh || !features.chooseSources)
+		for (const id of config.sources.off) if (settings.sourceEnabled(id)) settings.setSourceEnabled(id, false);
 	return settings;
 }
 

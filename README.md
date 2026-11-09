@@ -15,6 +15,8 @@ offline once installed as a web app.
 | Folder | What |
 |---|---|
 | `apps/frontend` | the browser app (Vite): search page, map page and settings page, the worker that makes maps, share links, offline use |
+| `apps/configurator` | the web configurator for custom versions: pick what a version offers and how it looks, get its config file |
+| `packages/config` | build configs of custom versions (`okmaps.config.json`): the format and its checks, the Vite plugin that builds only what a config picks, the `pnpm okmaps` wizard |
 | `packages/pipeline` | turns records into a map: clustering, layout, area titles, the streamgraph step (a TypeScript port of the R scripts) |
 | `packages/sources` | the metadata sources: PubMed, BASE, OpenAIRE, OpenAlex, Zenodo, Zotero, any SPARQL endpoint (Wikidata, DBpedia presets), place tables for geo maps, and Crossref citation counts |
 | `packages/storage` | where maps are kept: one interface, an adaptor per storage system (this browser, WebDAV, Solid Pod, Atomic Data), and the folder tree the map explorer uses |
@@ -41,6 +43,21 @@ TypeScript, so a React, Vue or Angular page can draw maps its own way, and
 
 See [packages/elements/README.md](packages/elements/README.md) and the
 [plain-HTML example](https://bootsa.github.io/OKMaps-Headstart/elements/example/).
+### Custom versions
+
+Different projects can build their own version from one config file: which
+sources, stores, map views and plugins it offers, ready-made sources (a
+project's Zotero group, a Zenodo community) and stores, settings for the
+services, which features people get (settings page, own sources, sharing,
+…) and the look (title, colours, fonts, logo, skin, light or dark). Only the
+chosen parts are built into the site.
+
+    pnpm okmaps configure configs/my-project.json   # answer the questions
+    pnpm okmaps build configs/my-project.json       # the site in dist-my-project/
+
+The [configurator](https://bootsa.github.io/OKMaps-Headstart/configure/)
+makes the same file in the browser, and the "Custom build" workflow builds a
+committed one on GitHub. See [packages/config](packages/config/README.md).
 
 It is a [pnpm](https://pnpm.io/) workspace (Node 22.18 or newer, CI and the gateway image use Node 26; `corepack enable`
 gives you the pnpm version in `package.json`). Each package has a README with
@@ -55,6 +72,7 @@ how to run and test it. From the repository root:
     pnpm build           # the app into apps/frontend/dist
     pnpm dev             # the app with hot reload
     pnpm test:browser    # the built app in headless Chromium
+    pnpm okmaps          # custom versions: configure, check, print, build
 
 Run one package's scripts with `pnpm --filter @okmaps/<name> <script>`.
 

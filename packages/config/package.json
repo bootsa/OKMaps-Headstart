@@ -1,0 +1,30 @@
+{
+	"name": "@okmaps/config",
+	"version": "0.1.0",
+	"description": "Build configuration for custom OKMaps versions: a typed, validated config file, a Vite plugin that builds only the chosen sources, stores and views, and an interactive wizard (okmaps configure).",
+	"license": "MIT",
+	"type": "module",
+	"private": true,
+	"bin": {
+		"okmaps": "./src/cli.ts"
+	},
+	"exports": {
+		".": "./src/index.ts",
+		"./vite": "./src/vite.ts",
+		"./node": "./src/node.ts",
+		"./schema.json": "./schema.json"
+	},
+	"scripts": {
+		"test": "vitest run",
+		"typecheck": "tsc --noEmit"
+	},
+	"engines": {
+		"node": ">=22.18"
+	},
+	"devDependencies": {
+		"@types/node": "^22.10.0",
+		"typescript": "^5.7.2",
+		"vite": "8.3.6",
+		"vitest": "^5.1.0"
+	}
+}
