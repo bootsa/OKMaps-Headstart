@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.3.0](https://github.com/bootsa/OKMaps-Headstart/compare/v7.2.0...v7.3.0) (2026-11-09)
+
+
+### Features
+
+* build custom versions from a config file, with a wizard and a web configurator ([#112](https://github.com/bootsa/OKMaps-Headstart/issues/112)) ([64af1bc](https://github.com/bootsa/OKMaps-Headstart/commit/64af1bc40eb1343a7e4983640e07b3b8d6940e0d))
+
 ## [7.2.0](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.44...v7.2.0) (2026-11-09)
 
 
