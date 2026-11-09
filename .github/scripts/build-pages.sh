@@ -83,12 +83,16 @@ build "${LATEST_REF:-origin/$default_branch}" latest latest
 stamp="$repo_name|${VITE_GATEWAY_URL:-}|${VITE_CROSSREF_MAILTO:-}"
 cache=${PAGES_CACHE:+$(realpath -m "$PAGES_CACHE")}
 
-# Release tags, newest first, that contain the browser app's build.
+# Release tags, newest first, that contain the browser app (its package.json;
+# not a file inside it that a later release may drop). The limit counts
+# published versions, so tags without the app don't use it up.
 versions=()
 reused=0
-for tag in $(git -C "$root" tag --list 'v*' --sort=-version:refname | head -n "${PAGES_MAX_VERSIONS:-20}"); do
-  if git -C "$root" cat-file -e "$tag:apps/frontend/scripts/build-vis.mjs" 2>/dev/null ||
-    git -C "$root" cat-file -e "$tag:packages/app/scripts/build-vis.mjs" 2>/dev/null; then
+max=${PAGES_MAX_VERSIONS:-20}
+for tag in $(git -C "$root" tag --list 'v*' --sort=-version:refname); do
+  [ "${#versions[@]}" -lt "$max" ] || break
+  if git -C "$root" cat-file -e "$tag:apps/frontend/package.json" 2>/dev/null ||
+    git -C "$root" cat-file -e "$tag:packages/app/package.json" 2>/dev/null; then
     commit=$(git -C "$root" rev-parse "$tag^{commit}")
     if [ -n "$cache" ] && [ "$(cat "$cache/$tag/.stamp" 2>/dev/null)" = "$commit|$stamp" ]; then
       echo "Reusing the build of $tag"
