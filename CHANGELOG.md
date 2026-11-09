@@ -1,5 +1,14 @@
 # Changelog
 
+## [7.2.0](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.44...v7.2.0) (2026-11-09)
+
+
+### Features
+
+* use OKMaps without Svelte: a framework-free core and web components ([6adb1a0](https://github.com/bootsa/OKMaps-Headstart/commit/6adb1a0e6eb875bedbf5679c2f4bce3fe22a7e21))
+* use OKMaps without Svelte: a framework-free core and web components ([1bb2b62](https://github.com/bootsa/OKMaps-Headstart/commit/1bb2b62d9cd5f85372994139aba5989e90762909))
+* use OKMaps without Svelte: a framework-free core and web components ([#111](https://github.com/bootsa/OKMaps-Headstart/issues/111)) ([6adb1a0](https://github.com/bootsa/OKMaps-Headstart/commit/6adb1a0e6eb875bedbf5679c2f4bce3fe22a7e21))
+
 ## [7.1.44](https://github.com/bootsa/OKMaps-Headstart/compare/v7.1.43...v7.1.44) (2026-11-08)
 
 
